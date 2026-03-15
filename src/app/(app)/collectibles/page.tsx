@@ -17,6 +17,7 @@ const FILTERS: { label: string; value: CollectibleCategory | 'all' }[] = [
 
 export default function CollectiblesPage() {
   const [selectedFilter, setSelectedFilter] = useState<CollectibleCategory | 'all'>('all');
+  const [search, setSearch] = useState('');
   const { isCompleted, toggle, countCompleted, loading, isAuthenticated } = useProgress();
 
   const allItems = getAllCollectiblesWithKeys();
@@ -64,6 +65,14 @@ export default function CollectiblesPage() {
         ))}
       </div>
 
+      <input
+        type="text"
+        placeholder="Search collectibles by name or location..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="w-full px-4 py-3 bg-pywel-card border border-pywel-border rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-400 transition-colors"
+      />
+
       {!isAuthenticated && !loading && (
         <SignInPrompt message="Sign in to track your collectibles" compact />
       )}
@@ -73,7 +82,13 @@ export default function CollectiblesPage() {
       ) : (
         <div className="space-y-8">
           {filteredCategories.map(category => {
-            const items = COLLECTIBLES[category];
+            const rawItems = COLLECTIBLES[category];
+            const items = search
+              ? rawItems.filter(item =>
+                  item.name.toLowerCase().includes(search.toLowerCase()) ||
+                  item.location.toLowerCase().includes(search.toLowerCase())
+                )
+              : rawItems;
             const itemKeys = allItems
               .filter(item => item.item.category === category)
               .map(item => item.key);
