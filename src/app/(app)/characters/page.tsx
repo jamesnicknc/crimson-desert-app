@@ -8,7 +8,7 @@ const CHARACTERS = [
     weapons: ['sword', 'shield', 'bow', 'polearm', 'greatsword', 'grapple', 'magic'],
     gradient: 'from-amber-900 to-amber-950',
     accentColor: 'border-gold-500',
-    image: '/assets/kliff.png',
+    image: '/assets/kliff.webp',
   },
   {
     name: 'Damiane',
@@ -17,7 +17,7 @@ const CHARACTERS = [
     weapons: ['rapier', 'claymore', 'pistol', 'musket', 'shield', 'spells'],
     gradient: 'from-rose-900 to-rose-950',
     accentColor: 'border-crimson-500',
-    image: '/assets/damiane.png',
+    image: '/assets/damiane.webp',
   },
   {
     name: 'Oongka',
@@ -26,7 +26,7 @@ const CHARACTERS = [
     weapons: ['battle-axe', 'wrist-cannon', 'two-handed', 'aoe-slams'],
     gradient: 'from-slate-900 to-slate-950',
     accentColor: 'border-gray-500',
-    image: '/assets/oongka.png',
+    image: '/assets/oongka.webp',
   },
 ];
 

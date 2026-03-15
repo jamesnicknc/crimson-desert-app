@@ -14,7 +14,7 @@ export default function MapPage() {
       <div className="bg-pywel-card rounded-lg border border-pywel-border overflow-hidden">
         <div className="relative overflow-hidden" style={{ aspectRatio: '1270 / 847' }}>
           <Image
-            src="/assets/pywel-map.png"
+            src="/assets/pywel-map.webp"
             alt="Map of Pywel"
             width={1587}
             height={2245}
