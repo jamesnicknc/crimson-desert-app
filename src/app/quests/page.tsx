@@ -3,12 +3,15 @@
 import { useState } from 'react';
 import { QUESTS } from '@/lib/game-data';
 import { createClient } from '@/lib/supabase/client';
+import { useUser } from '@/hooks/use-user';
+import SignInPrompt from '@/components/SignInPrompt';
 import type { QuestType, QuestStatus } from '@/types/game-data';
 
 export default function QuestsPage() {
   const [selectedFilter, setSelectedFilter] = useState<QuestType | 'all'>('all');
   const [questStatus, setQuestStatus] = useState<Record<string, QuestStatus>>({});
   const supabase = createClient();
+  const { user } = useUser();
 
   const filteredQuests = selectedFilter === 'all'
     ? QUESTS
@@ -102,6 +105,10 @@ export default function QuestsPage() {
           </button>
         ))}
       </div>
+
+      {!user && (
+        <SignInPrompt message="Sign in to track your quest progress" compact />
+      )}
 
       <div className="space-y-3">
         {filteredQuests.map(quest => {

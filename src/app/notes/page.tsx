@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { createClient } from '@/lib/supabase/client';
+import { useUser } from '@/hooks/use-user';
+import SignInPrompt from '@/components/SignInPrompt';
 
 export default function NotesPage() {
   const [notes, setNotes] = useState('');
@@ -9,6 +11,7 @@ export default function NotesPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const supabase = createClient();
+  const { user, loading: userLoading } = useUser();
 
   // Load notes on mount
   useEffect(() => {
@@ -70,6 +73,11 @@ export default function NotesPage() {
         <p className="text-gray-400">Keep personal notes about your adventure. Changes are saved automatically.</p>
       </div>
 
+      {!user && !userLoading && (
+        <SignInPrompt message="Sign in to save personal notes" />
+      )}
+
+      {user && (
       <div className="relative">
         {loading ? (
           <div className="w-full h-96 bg-pywel-card rounded-lg flex items-center justify-center text-gray-400">
@@ -96,6 +104,7 @@ export default function NotesPage() {
           </>
         )}
       </div>
+      )}
     </div>
   );
 }

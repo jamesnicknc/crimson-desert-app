@@ -3,13 +3,14 @@
 import { useState } from 'react';
 import { getSkillBranches, SKILLS } from '@/lib/game-data';
 import { useProgress } from '@/hooks/use-progress';
+import SignInPrompt from '@/components/SignInPrompt';
 import type { Character } from '@/types/game-data';
 
 const CHARACTERS: Character[] = ['kliff', 'damiane', 'oongka'];
 
 export default function SkillsPage() {
   const [selectedCharacter, setSelectedCharacter] = useState<Character>('kliff');
-  const { isCompleted, toggle, countCompleted, loading } = useProgress();
+  const { isCompleted, toggle, countCompleted, loading, isAuthenticated } = useProgress();
 
   const skillBranches = getSkillBranches(selectedCharacter);
   const charSkills = SKILLS.filter(s => s.character === selectedCharacter);
@@ -57,6 +58,10 @@ export default function SkillsPage() {
           </div>
         </div>
       </div>
+
+      {!isAuthenticated && !loading && (
+        <SignInPrompt message="Sign in to track your skill progress" compact />
+      )}
 
       {loading ? (
         <div className="text-center text-gray-400">Loading skills...</div>

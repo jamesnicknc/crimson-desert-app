@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { COLLECTIBLES, getAllCollectiblesWithKeys } from '@/lib/game-data';
 import { useProgress } from '@/hooks/use-progress';
+import SignInPrompt from '@/components/SignInPrompt';
 import type { CollectibleCategory } from '@/types/game-data';
 
 const FILTERS: { label: string; value: CollectibleCategory | 'all' }[] = [
@@ -16,7 +17,7 @@ const FILTERS: { label: string; value: CollectibleCategory | 'all' }[] = [
 
 export default function CollectiblesPage() {
   const [selectedFilter, setSelectedFilter] = useState<CollectibleCategory | 'all'>('all');
-  const { isCompleted, toggle, countCompleted, loading } = useProgress();
+  const { isCompleted, toggle, countCompleted, loading, isAuthenticated } = useProgress();
 
   const allItems = getAllCollectiblesWithKeys();
 
@@ -62,6 +63,10 @@ export default function CollectiblesPage() {
           </button>
         ))}
       </div>
+
+      {!isAuthenticated && !loading && (
+        <SignInPrompt message="Sign in to track your collectibles" compact />
+      )}
 
       {loading ? (
         <div className="text-center text-gray-400">Loading collectibles...</div>

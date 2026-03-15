@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
+import { useUser } from '@/hooks/use-user';
+import SignInPrompt from '@/components/SignInPrompt';
 import type { GroupMember } from '@/types/game-data';
 
 export default function GroupPage() {
@@ -12,6 +14,7 @@ export default function GroupPage() {
   const [creating, setCreating] = useState(false);
   const [joining, setJoining] = useState(false);
   const supabase = createClient();
+  const { user, loading: userLoading } = useUser();
 
   useEffect(() => {
     loadGroupData();
@@ -101,6 +104,12 @@ export default function GroupPage() {
         <p className="text-gray-400">Connect with friends and compare your progress across the game.</p>
       </div>
 
+      {!user && !userLoading && (
+        <SignInPrompt message="Sign in to create or join groups" />
+      )}
+
+      {user && (
+      <>
       {/* Create/Join Group */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-pywel-card rounded-lg p-6 border border-pywel-border">
@@ -212,6 +221,8 @@ export default function GroupPage() {
             ))}
           </div>
         </div>
+      )}
+      </>
       )}
     </div>
   );

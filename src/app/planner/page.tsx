@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { SKILLS, WEAPONS, COLLECTIBLES, getSkillBranches } from '@/lib/game-data';
 import { createClient } from '@/lib/supabase/client';
+import { useUser } from '@/hooks/use-user';
+import SignInPrompt from '@/components/SignInPrompt';
 import type { Character, Build } from '@/types/game-data';
 
 const CHARACTERS: Character[] = ['kliff', 'damiane', 'oongka'];
@@ -16,6 +18,7 @@ export default function PlannerPage() {
   const [isPublic, setIsPublic] = useState(false);
   const [saving, setSaving] = useState(false);
   const supabase = createClient();
+  const { user } = useUser();
 
   const charSkills = SKILLS.filter(s => s.character === selectedCharacter);
   const charWeapons = WEAPONS.filter(w => w.character === selectedCharacter);
@@ -218,33 +221,37 @@ export default function PlannerPage() {
           </div>
         </div>
 
-        <div className="space-y-3">
-          <input
-            type="text"
-            value={buildName}
-            onChange={(e) => setBuildName(e.target.value)}
-            placeholder="Enter build name..."
-            className="w-full bg-pywel-bg border border-pywel-border rounded px-3 py-2 text-white focus:border-gold-400 focus:outline-none"
-          />
-
-          <label className="flex items-center gap-2 cursor-pointer">
+        {user ? (
+          <div className="space-y-3">
             <input
-              type="checkbox"
-              checked={isPublic}
-              onChange={(e) => setIsPublic(e.target.checked)}
-              className="w-4 h-4 accent-gold-400"
+              type="text"
+              value={buildName}
+              onChange={(e) => setBuildName(e.target.value)}
+              placeholder="Enter build name..."
+              className="w-full bg-pywel-bg border border-pywel-border rounded px-3 py-2 text-white focus:border-gold-400 focus:outline-none"
             />
-            <span className="text-sm text-gray-300">Make this build public</span>
-          </label>
 
-          <button
-            onClick={saveBuild}
-            disabled={saving || !buildName.trim()}
-            className="w-full bg-crimson-600 hover:bg-crimson-700 disabled:bg-gray-600 text-white font-semibold py-2 rounded transition"
-          >
-            {saving ? 'Saving...' : 'Save Build'}
-          </button>
-        </div>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={isPublic}
+                onChange={(e) => setIsPublic(e.target.checked)}
+                className="w-4 h-4 accent-gold-400"
+              />
+              <span className="text-sm text-gray-300">Make this build public</span>
+            </label>
+
+            <button
+              onClick={saveBuild}
+              disabled={saving || !buildName.trim()}
+              className="w-full bg-crimson-600 hover:bg-crimson-700 disabled:bg-gray-600 text-white font-semibold py-2 rounded transition"
+            >
+              {saving ? 'Saving...' : 'Save Build'}
+            </button>
+          </div>
+        ) : (
+          <SignInPrompt message="Sign in to save your builds" compact />
+        )}
       </div>
     </div>
   );

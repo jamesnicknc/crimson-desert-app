@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import {
   Menu,
@@ -19,7 +19,11 @@ import {
   BookOpen,
   Users2,
   Wrench,
+  LogIn,
+  LogOut,
 } from 'lucide-react';
+import { useUser } from '@/hooks/use-user';
+import { createClient } from '@/lib/supabase/client';
 
 interface NavSection {
   label: string;
@@ -131,6 +135,14 @@ const navSections: NavSection[] = [
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+  const { user, loading: userLoading } = useUser();
+  const supabase = createClient();
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    router.push('/');
+  };
 
   const isActive = (href: string): boolean => {
     return pathname === href || pathname.startsWith(href + '/');
@@ -214,16 +226,44 @@ export default function Sidebar() {
 
         {/* Footer section */}
         <div className="border-t border-pywel-border p-4">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-crimson-500 to-gold-500" />
-            <div>
-              <p className="text-sm font-semibold text-gold-300">Wanderer</p>
-              <p className="text-xs text-gray-400">v1.0</p>
-            </div>
-          </div>
-          <button className="w-full px-3 py-2 text-sm bg-crimson-600 hover:bg-crimson-500 text-white rounded-lg transition-colors duration-200 font-cinzel">
-            Sign Out
-          </button>
+          {userLoading ? (
+            <div className="h-16 flex items-center justify-center text-gray-500 text-sm">Loading...</div>
+          ) : user ? (
+            <>
+              <div className="flex items-center gap-3 mb-4">
+                {user.user_metadata?.avatar_url ? (
+                  <img src={user.user_metadata.avatar_url} alt="" className="w-8 h-8 rounded-full" />
+                ) : (
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-crimson-500 to-gold-500 flex items-center justify-center text-xs font-bold text-white">
+                    {(user.user_metadata?.full_name?.[0] || user.email?.[0] || 'U').toUpperCase()}
+                  </div>
+                )}
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-gold-300 truncate">
+                    {user.user_metadata?.full_name || user.email?.split('@')[0] || 'Wanderer'}
+                  </p>
+                  <p className="text-xs text-gray-400">Signed in</p>
+                </div>
+              </div>
+              <button
+                onClick={handleSignOut}
+                className="w-full px-3 py-2 text-sm bg-pywel-card hover:bg-pywel-card-hover border border-pywel-border text-gray-300 rounded-lg transition-colors duration-200 font-cinzel flex items-center justify-center gap-2"
+              >
+                <LogOut className="w-4 h-4" />
+                Sign Out
+              </button>
+            </>
+          ) : (
+            <>
+              <p className="text-xs text-gray-400 mb-3">Sign in to save progress</p>
+              <Link href="/login" onClick={() => setIsOpen(false)}>
+                <button className="w-full px-3 py-2 text-sm bg-crimson-600 hover:bg-crimson-500 text-white rounded-lg transition-colors duration-200 font-cinzel flex items-center justify-center gap-2">
+                  <LogIn className="w-4 h-4" />
+                  Sign In
+                </button>
+              </Link>
+            </>
+          )}
         </div>
       </aside>
     </>

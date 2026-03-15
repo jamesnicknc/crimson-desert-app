@@ -2,10 +2,11 @@
 
 import { BOSSES, REGIONS } from '@/lib/game-data';
 import { useProgress } from '@/hooks/use-progress';
+import SignInPrompt from '@/components/SignInPrompt';
 import type { Difficulty, Region } from '@/types/game-data';
 
 export default function BestiaryPage() {
-  const { isCompleted, toggle, loading } = useProgress();
+  const { isCompleted, toggle, loading, isAuthenticated } = useProgress();
 
   const getDifficultyColor = (difficulty: Difficulty): string => {
     const colors: Record<Difficulty, string> = {
@@ -40,6 +41,10 @@ export default function BestiaryPage() {
         <h1 className="text-3xl font-cinzel font-bold text-gold-400 mb-2">Bestiary</h1>
         <p className="text-gray-400">Track defeated bosses and legendary creatures across Pywel.</p>
       </div>
+
+      {!isAuthenticated && !loading && (
+        <SignInPrompt message="Sign in to track your boss defeats" compact />
+      )}
 
       {loading ? (
         <div className="text-center text-gray-400">Loading bosses...</div>
