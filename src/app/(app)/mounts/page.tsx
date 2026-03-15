@@ -344,7 +344,8 @@ export default function MountsPage() {
             return (
               <div
                 key={mountKey}
-                className={`bg-pywel-card rounded-lg border transition-all ${
+                onClick={() => toggleExpanded(index)}
+                className={`bg-pywel-card rounded-lg border transition-all cursor-pointer ${
                   isObtained
                     ? 'border-gold-600/40 bg-pywel-secondary/50'
                     : 'border-pywel-border hover:border-gold-500/50'
@@ -357,6 +358,7 @@ export default function MountsPage() {
                       type="checkbox"
                       checked={isObtained}
                       onChange={() => toggle('mount', mountKey)}
+                      onClick={(e) => e.stopPropagation()}
                       className="mt-1 w-4 h-4 cursor-pointer accent-gold-400 flex-shrink-0"
                     />
                     <div className="flex-1 min-w-0">
@@ -379,6 +381,9 @@ export default function MountsPage() {
                         </span>
                       </div>
                     </div>
+                    <div className="flex items-center text-gold-400/60 ml-auto flex-shrink-0">
+                      {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                    </div>
                   </div>
 
                   {/* Quick stats row */}
@@ -396,15 +401,6 @@ export default function MountsPage() {
                       <span className="text-gray-300">{mount.stamina}</span>
                     </div>
                   </div>
-
-                  {/* Expand toggle */}
-                  <button
-                    onClick={() => toggleExpanded(index)}
-                    className="flex items-center gap-1 text-sm text-gold-400 hover:text-gold-300 transition-colors font-semibold mt-3"
-                  >
-                    {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                    {isExpanded ? 'Hide Details' : 'Show Details'}
-                  </button>
 
                   {/* Expanded details */}
                   {isExpanded && (

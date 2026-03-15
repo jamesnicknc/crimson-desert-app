@@ -9,7 +9,6 @@ export type QuestType = 'main' | 'side' | 'faction';
 export type QuestStatus = 'not-started' | 'active' | 'complete';
 export type CollectibleCategory = 'artifact' | 'gear' | 'recipe' | 'lore' | 'fast-travel';
 export type CraftingType = 'cooking' | 'alchemy' | 'blacksmith';
-export type MountCategory = 'horse' | 'bear' | 'raptor' | 'lizard' | 'wyvern' | 'mechanical' | 'dinosaur' | 'exotic';
 export type PinCategory = 'collectible' | 'boss' | 'npc' | 'poi' | 'custom';
 export type ScrapedSource = 'wiki' | 'news' | 'guide' | 'map';
 
@@ -41,12 +40,6 @@ export interface Quest {
   type: QuestType;
 }
 
-export interface SignatureAbility {
-  name: string;
-  description: string;
-  source: string;
-}
-
 export interface Weapon {
   name: string;
   icon: string;
@@ -56,7 +49,6 @@ export interface Weapon {
   spd: number;
   rng: number;
   character: Character;
-  signatureAbility?: SignatureAbility;
 }
 
 export interface Recipe {
@@ -64,17 +56,6 @@ export interface Recipe {
   type: CraftingType;
   ingredients: string[];
   effect: string;
-}
-
-export interface Mount {
-  name: string;
-  category: MountCategory;
-  region: Region | 'multiple';
-  speed: number;
-  combat: number;
-  stamina: number;
-  special?: string;
-  acquisition: string;
 }
 
 export interface RegionInfo {

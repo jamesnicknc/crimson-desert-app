@@ -77,7 +77,7 @@ export default function SkillsPage() {
                 {skills.map(skill => (
                   <div
                     key={skill.id}
-                    className="flex items-start gap-3 p-2 rounded hover:bg-pywel-card-hover transition"
+                    className="group relative flex items-start gap-3 p-2 rounded hover:bg-pywel-card-hover transition"
                   >
                     <input
                       type="checkbox"
@@ -94,6 +94,11 @@ export default function SkillsPage() {
                         {skill.name}
                       </p>
                       <p className="text-xs text-gold-300">{skill.cost}</p>
+                      {skill.description && (
+                        <p className="text-xs text-gray-400 mt-1 hidden group-hover:block">
+                          {skill.description}
+                        </p>
+                      )}
                     </div>
                   </div>
                 ))}

@@ -9,6 +9,8 @@ const FILTERS: { label: string; value: CraftingType | 'all' }[] = [
   { label: 'Cooking', value: 'cooking' },
   { label: 'Alchemy', value: 'alchemy' },
   { label: 'Blacksmithing', value: 'blacksmith' },
+  { label: 'Dyes', value: 'dye' },
+  { label: 'Camp Upgrades', value: 'camp-upgrade' },
 ];
 
 export default function CraftingPage() {
@@ -30,6 +32,8 @@ export default function CraftingPage() {
       cooking: 'bg-orange-600/20 border-orange-600 text-orange-300',
       alchemy: 'bg-purple-600/20 border-purple-600 text-purple-300',
       blacksmith: 'bg-slate-600/20 border-slate-600 text-slate-300',
+      dye: 'bg-pink-600/20 border-pink-600 text-pink-300',
+      'camp-upgrade': 'bg-amber-600/20 border-amber-600 text-amber-300',
     };
     return colors[type];
   };
@@ -39,6 +43,8 @@ export default function CraftingPage() {
       cooking: 'Cooking',
       alchemy: 'Alchemy',
       blacksmith: 'Blacksmithing',
+      dye: 'Dye Crafting',
+      'camp-upgrade': 'Camp Upgrade',
     };
     return labels[type];
   };

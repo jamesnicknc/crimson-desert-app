@@ -101,23 +101,21 @@ export default function WeaponsPage() {
           return (
             <div
               key={weapon.name}
-              className="bg-pywel-card rounded-lg p-4 border border-pywel-border hover:border-gold-500/50 transition"
+              onClick={() => toggleStats(weapon.name)}
+              className="bg-pywel-card rounded-lg p-4 border border-pywel-border hover:border-gold-500/50 transition cursor-pointer"
             >
-              <div className="mb-3">
-                <div className="mb-2">{(() => { const Icon = getWeaponIcon(weapon.iconKey); return <Icon size={36} />; })()}</div>
-                <h3 className="text-lg font-cinzel font-semibold text-gold-400">{weapon.name}</h3>
-                <p className="text-xs text-gray-400">
-                  {weapon.type} <span className="text-gold-300">{getCharacterLabel(weapon.character)}</span>
-                </p>
+              <div className="flex items-start justify-between">
+                <div className="mb-3">
+                  <div className="mb-2">{(() => { const Icon = getWeaponIcon(weapon.iconKey); return <Icon size={36} />; })()}</div>
+                  <h3 className="text-lg font-cinzel font-semibold text-gold-400">{weapon.name}</h3>
+                  <p className="text-xs text-gray-400">
+                    {weapon.type} <span className="text-gold-300">{getCharacterLabel(weapon.character)}</span>
+                  </p>
+                </div>
+                <div className="flex items-center text-gold-400/60 flex-shrink-0 mt-1">
+                  {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                </div>
               </div>
-
-              <button
-                onClick={() => toggleStats(weapon.name)}
-                className="flex items-center gap-1 text-sm text-gold-400 hover:text-gold-300 transition-colors font-semibold"
-              >
-                {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                {isExpanded ? 'Hide Stats' : 'Show Stats'}
-              </button>
 
               {isExpanded && (
                 <div className="space-y-3 pt-3 mt-3 border-t border-pywel-border">

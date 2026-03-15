@@ -53,12 +53,12 @@ export default function DashboardPage() {
   }, []);
 
   const stats = [
-    { label: 'World Size', value: '256 km²', icon: Globe },
-    { label: 'Regions', value: '5', icon: Compass },
-    { label: 'Bosses', value: '50+', icon: Skull },
-    { label: 'Mounts', value: '29', icon: Footprints },
-    { label: 'Characters', value: '3', icon: Users },
-    { label: 'Completion', value: '0%', icon: TrendingUp },
+    { label: 'World Size', value: '256 km²', icon: Globe, href: '/map' },
+    { label: 'Regions', value: '5', icon: Compass, href: '/map' },
+    { label: 'Bosses', value: '50+', icon: Skull, href: '/bestiary' },
+    { label: 'Mounts', value: '29', icon: Footprints, href: '/mounts' },
+    { label: 'Characters', value: '3', icon: Users, href: '/characters' },
+    { label: 'Completion', value: '0%', icon: TrendingUp, href: '/quests' },
   ];
 
   const quickAccess = [
@@ -158,20 +158,19 @@ export default function DashboardPage() {
           {stats.map((stat) => {
             const IconComponent = stat.icon;
             return (
-              <div
-                key={stat.label}
-                className="bg-pywel-card border border-pywel-border rounded-lg p-4 hover:bg-pywel-card-hover transition-colors duration-200"
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <IconComponent className="w-5 h-5 text-gold-400" />
-                  <p className="text-xs text-gray-400 font-cinzel uppercase">
-                    {stat.label}
+              <Link key={stat.label} href={stat.href}>
+                <div className="bg-pywel-card border border-pywel-border rounded-lg p-4 hover:bg-pywel-card-hover hover:border-gold-500/50 transition-colors duration-200 cursor-pointer">
+                  <div className="flex items-center gap-2 mb-3">
+                    <IconComponent className="w-5 h-5 text-gold-400" />
+                    <p className="text-xs text-gray-400 font-cinzel uppercase">
+                      {stat.label}
+                    </p>
+                  </div>
+                  <p className="text-2xl font-bold text-gold-300">
+                    {stat.value}
                   </p>
                 </div>
-                <p className="text-2xl font-bold text-gold-300">
-                  {stat.value}
-                </p>
-              </div>
+              </Link>
             );
           })}
         </div>

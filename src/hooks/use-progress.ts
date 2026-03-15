@@ -7,7 +7,6 @@ import { createClient } from '@/lib/supabase/client';
 export function useProgress() {
   const [progress, setProgress] = useState<Record<string, Record<string, boolean>>>({});
   const [loading, setLoading] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const supabase = createClient();
 
   // Load all progress on mount
@@ -15,7 +14,6 @@ export function useProgress() {
     async function load() {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) { setLoading(false); return; }
-      setIsAuthenticated(true);
 
       const { data } = await supabase
         .from('user_progress')
@@ -81,5 +79,5 @@ export function useProgress() {
     );
   }, [progress]);
 
-  return { progress, loading, isAuthenticated, isCompleted, toggle, countCompleted, totalCompleted };
+  return { progress, loading, isCompleted, toggle, countCompleted, totalCompleted };
 }

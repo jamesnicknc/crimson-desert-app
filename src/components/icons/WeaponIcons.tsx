@@ -86,60 +86,6 @@ export function CannonIcon({ size = 24, className = 'text-gold-400' }: IconProps
   );
 }
 
-export function DaggerIcon({ size = 24, className = 'text-gold-400' }: IconProps) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className} xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 2L14 8L12 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M12 2L10 8L12 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M8 14H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      <path d="M12 14V18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-      <path d="M10 18H14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
-  );
-}
-
-export function WarhammerIcon({ size = 24, className = 'text-gold-400' }: IconProps) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className} xmlns="http://www.w3.org/2000/svg">
-      <path d="M10 21L14 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-      <rect x="6" y="2" width="12" height="6" rx="1" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M6 5H4M18 5H20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
-  );
-}
-
-export function StaffIcon({ size = 24, className = 'text-gold-400' }: IconProps) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className} xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 6V22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      <circle cx="12" cy="4" r="2.5" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M9 4L7 2M15 4L17 2M9 4L7 6M15 4L17 6" stroke="currentColor" strokeWidth="1" strokeLinecap="round"/>
-      <path d="M10 10H14M10 14H14" stroke="currentColor" strokeWidth="1" strokeLinecap="round"/>
-    </svg>
-  );
-}
-
-export function RifleIcon({ size = 24, className = 'text-gold-400' }: IconProps) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className} xmlns="http://www.w3.org/2000/svg">
-      <path d="M2 10H18L22 8V12L18 10" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
-      <path d="M4 10V14L6 16H8V14" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
-      <path d="M14 10V13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      <circle cx="10" cy="10" r="0.75" fill="currentColor"/>
-    </svg>
-  );
-}
-
-export function HandCannonIcon({ size = 24, className = 'text-gold-400' }: IconProps) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className} xmlns="http://www.w3.org/2000/svg">
-      <path d="M4 9H14L17 7H20V13L17 11H14V14L11 17H8V14H6V12H4V9Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
-      <circle cx="9" cy="10.5" r="1.5" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M20 10L22 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-    </svg>
-  );
-}
-
 // Map pin icons
 export function MapPinCollectible({ size = 20, className = 'text-emerald-400' }: IconProps) {
   return (
@@ -197,11 +143,6 @@ export const WEAPON_ICON_MAP: Record<string, React.FC<IconProps>> = {
   pistol: PistolIcon,
   axe: AxeIcon,
   cannon: CannonIcon,
-  dagger: DaggerIcon,
-  warhammer: WarhammerIcon,
-  staff: StaffIcon,
-  rifle: RifleIcon,
-  handcannon: HandCannonIcon,
 };
 
 export function getWeaponIcon(iconKey: string): React.FC<IconProps> {

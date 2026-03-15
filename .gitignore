@@ -21,4 +21,3 @@ scraper/.env
 # OS
 .DS_Store
 Thumbs.db
-.vercel

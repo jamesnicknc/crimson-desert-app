@@ -5,7 +5,7 @@ import { Search, Filter, ChevronDown, ArrowUpDown } from 'lucide-react';
 import { BOSSES, REGIONS } from '@/lib/game-data';
 import { useProgress } from '@/hooks/use-progress';
 import SignInPrompt from '@/components/SignInPrompt';
-import type { Difficulty, Region } from '@/types/game-data';
+import type { Difficulty, Region, Element } from '@/types/game-data';
 
 type SortField = 'name' | 'region' | 'type' | 'difficulty' | 'reward';
 type SortDir = 'asc' | 'desc';
@@ -79,6 +79,17 @@ export default function BestiaryPage() {
     const region = REGIONS.find(r => r.id === regionId);
     if (region) return region.name;
     return regionId.charAt(0).toUpperCase() + regionId.slice(1);
+  };
+
+  const getElementStyle = (element: Element): { bg: string; text: string; label: string } => {
+    const styles: Record<Element, { bg: string; text: string; label: string }> = {
+      physical: { bg: 'bg-gray-600/30 border-gray-500', text: 'text-gray-300', label: 'Physical' },
+      fire: { bg: 'bg-red-600/30 border-red-500', text: 'text-red-300', label: 'Fire' },
+      frost: { bg: 'bg-cyan-600/30 border-cyan-500', text: 'text-cyan-300', label: 'Frost' },
+      shock: { bg: 'bg-yellow-600/30 border-yellow-500', text: 'text-yellow-300', label: 'Shock' },
+      abyss: { bg: 'bg-purple-600/30 border-purple-500', text: 'text-purple-300', label: 'Abyss' },
+    };
+    return styles[element];
   };
 
   const handleSort = (field: SortField) => {
@@ -335,6 +346,8 @@ export default function BestiaryPage() {
                 <SortHeader field="region">Region</SortHeader>
                 <SortHeader field="type">Type</SortHeader>
                 <SortHeader field="difficulty">Difficulty</SortHeader>
+                <th className="px-4 py-3 text-left text-xs font-cinzel font-bold text-gold-400">Element</th>
+                <th className="px-4 py-3 text-left text-xs font-cinzel font-bold text-gold-400">Weak To</th>
                 <SortHeader field="reward">Reward</SortHeader>
               </tr>
             </thead>
@@ -372,6 +385,16 @@ export default function BestiaryPage() {
                       <span className={`px-2 py-1 rounded text-xs font-semibold border ${getDifficultyColor(boss.difficulty)}`}>
                         {boss.difficulty.charAt(0).toUpperCase() + boss.difficulty.slice(1)}
                       </span>
+                    </td>
+                    <td className="px-4 py-3">
+                      {(() => { const s = getElementStyle(boss.element); return (
+                        <span className={`px-2 py-1 rounded text-xs font-semibold border ${s.bg} ${s.text}`}>{s.label}</span>
+                      ); })()}
+                    </td>
+                    <td className="px-4 py-3">
+                      {boss.weakness ? (() => { const s = getElementStyle(boss.weakness); return (
+                        <span className={`px-2 py-1 rounded text-xs font-semibold border ${s.bg} ${s.text}`}>{s.label}</span>
+                      ); })() : <span className="text-xs text-gray-600">???</span>}
                     </td>
                     <td className="px-4 py-3 text-sm text-gold-300">{boss.reward}</td>
                   </tr>

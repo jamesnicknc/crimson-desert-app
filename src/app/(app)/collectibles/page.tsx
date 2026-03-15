@@ -13,6 +13,7 @@ const FILTERS: { label: string; value: CollectibleCategory | 'all' }[] = [
   { label: 'Recipes', value: 'recipe' },
   { label: 'Lore Items', value: 'lore' },
   { label: 'Fast Travel', value: 'fast-travel' },
+  { label: 'Edition Exclusives', value: 'edition' },
 ];
 
 export default function CollectiblesPage() {
@@ -24,7 +25,7 @@ export default function CollectiblesPage() {
 
   const getFilteredCategories = (): CollectibleCategory[] => {
     if (selectedFilter === 'all') {
-      return ['artifact', 'gear', 'recipe', 'lore', 'fast-travel'];
+      return ['artifact', 'gear', 'recipe', 'lore', 'fast-travel', 'edition'];
     }
     return [selectedFilter];
   };
@@ -36,6 +37,7 @@ export default function CollectiblesPage() {
       recipe: 'Recipes',
       lore: 'Lore Items',
       'fast-travel': 'Fast Travel',
+      edition: 'Edition Exclusives',
     };
     return labels[cat];
   };

@@ -23,7 +23,7 @@ const CHARACTERS = [
     gradient: 'from-rose-900 to-rose-950',
     accentColor: 'border-gold-500',
     image: '/assets/damiane.webp',
-    imageStyle: { objectPosition: 'center 15%' },
+    imageStyle: { objectPosition: 'center 20%', transform: 'scale(1.15)' },
   },
   {
     name: 'Oongka',
