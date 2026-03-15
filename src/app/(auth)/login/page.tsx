@@ -14,7 +14,7 @@ export default function LoginPage() {
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
-  const handleOAuthSignIn = async (provider: 'google' | 'discord') => {
+  const handleOAuthSignIn = async (provider: 'discord') => {
     setIsLoading(true);
     setErrorMsg('');
     try {
@@ -114,21 +114,6 @@ export default function LoginPage() {
 
           {/* OAuth buttons */}
           <div className="space-y-3">
-            <button
-              onClick={() => handleOAuthSignIn('google')}
-              disabled={isLoading}
-              className="w-full px-4 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 flex items-center justify-center gap-3"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M23.001 11.639h-.069V11.5h-10.28v2.333h5.896c-.469 2.459-2.734 4.194-5.494 4.194-3.126 0-5.667-2.541-5.667-5.667 0-3.126 2.541-5.667 5.667-5.667 1.328 0 2.632.451 3.674 1.263l1.85-1.793C16.102 3.75 14.226 2.5 12 2.5c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75c5.245 0 9.639-4.199 9.75-9.513v-.097z" />
-              </svg>
-              {isLoading ? 'Signing in...' : 'Continue with Google'}
-            </button>
-
             <button
               onClick={() => handleOAuthSignIn('discord')}
               disabled={isLoading}
