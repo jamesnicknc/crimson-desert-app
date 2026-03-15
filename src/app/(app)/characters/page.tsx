@@ -9,7 +9,7 @@ const CHARACTERS = [
     gradient: 'from-amber-900 to-amber-950',
     accentColor: 'border-gold-500',
     image: '/assets/kliff.webp',
-    imagePosition: 'object-top',
+    imageStyle: { objectPosition: 'center top' },
   },
   {
     name: 'Damiane',
@@ -19,7 +19,7 @@ const CHARACTERS = [
     gradient: 'from-rose-900 to-rose-950',
     accentColor: 'border-gold-500',
     image: '/assets/damiane.webp',
-    imagePosition: 'object-center',
+    imageStyle: { objectPosition: 'center 15%' },
   },
   {
     name: 'Oongka',
@@ -29,7 +29,7 @@ const CHARACTERS = [
     gradient: 'from-slate-900 to-slate-950',
     accentColor: 'border-gray-500',
     image: '/assets/oongka.webp',
-    imagePosition: 'object-top',
+    imageStyle: { objectPosition: 'center top' },
   },
 ];
 
@@ -74,7 +74,8 @@ export default function CharactersPage() {
                 src={char.image}
                 alt={char.name}
                 fill
-                className={`object-cover ${char.imagePosition}`}
+                className="object-cover"
+                style={char.imageStyle}
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
