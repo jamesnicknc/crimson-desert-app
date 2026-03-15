@@ -33,6 +33,12 @@ export const REGIONS: RegionInfo[] = [
     description: 'A barren wasteland of crimson sand, completely lawless and home to brigands, powerful beasts, and ancient secrets buried beneath the dunes.',
     color: '#C0392B', features: ['Brigands', 'Ruins', 'Beasts', 'Secrets'],
   },
+  // Added 2026-03-15 via apply-data task
+  {
+    id: 'abyss', name: 'The Abyss', subtitle: 'Otherworldly Dimension / Source of Abyss Power',
+    description: 'A mysterious realm brimming with secrets and untold power. This otherworldly dimension lies beyond the known world and is tied to the dark magic threatening Pywel. Home to the Library of Providence and the dreaded Hexe Marie.',
+    color: '#1A0A2E', features: ['Library of Providence', 'Skyloop Bridge', 'Abyss Magic', 'Mysteries'],
+  },
 ];
 
 // ═══════════════════════════════════════
@@ -187,6 +193,8 @@ export const COLLECTIBLES: Record<CollectibleCategory, Collectible[]> = {
     { name: 'Shroud Lantern', location: 'Collector\'s Edition Bonus', category: 'edition' },
     { name: 'Hyperion Horse Tack Set', location: 'Collector\'s Edition Bonus', category: 'edition' },
     { name: 'Khaled Shield', location: 'Pre-Order Exclusive', category: 'edition' },
+    // Added 2026-03-15 via apply-data task
+    { name: 'Grotevant Plate Set', location: 'PlayStation 5 Exclusive Bonus', category: 'edition' },
   ],
 };
 
@@ -428,6 +436,30 @@ export const CAMP_FACILITIES: CampFacility[] = [
       { tier: 2, effect: '4 dispatch slots, medium expeditions (rare materials, intel)', materials: ['War Table x1', 'Courier Horse x1', 'Gold x3'] },
       { tier: 3, effect: '6 dispatch slots, siege missions and legendary material runs', materials: ['Command Banner x1', 'Siege Plans x1', 'Gold x8'] },
     ],
+  },
+  // Added 2026-03-15 via apply-data task
+  {
+    name: 'Barber Shop',
+    description: 'Customize the appearance of your character, including hairstyle, beard, eyebrows, face tattoos, and body tattoos. Purely cosmetic with no effect on gameplay stats.',
+    upgrades: [],
+  },
+  // Added 2026-03-15 via apply-data task
+  {
+    name: 'Dyehouse Shop',
+    description: 'Change outfit colors and customize mount colors for horses and mechanical mounts. Applies cosmetic dyes crafted at the camp.',
+    upgrades: [],
+  },
+  // Added 2026-03-15 via apply-data task
+  {
+    name: 'Trading Center',
+    description: 'Exchange goods for useful items needed during exploration across the lands of Pywel. A distinct trading facility separate from the Camp Vendor.',
+    upgrades: [],
+  },
+  // Added 2026-03-15 via apply-data task
+  {
+    name: 'Personal Resting House',
+    description: 'Create and customize your own house at Greymane Camp, used as a personal resting place between adventures.',
+    upgrades: [],
   },
 ];
 
