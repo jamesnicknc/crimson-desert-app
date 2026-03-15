@@ -1,6 +1,6 @@
 import type {
   Skill, Collectible, Boss, Quest, Weapon, Recipe, RegionInfo,
-  Character, CollectibleCategory, Mount, Activity, CampFacility,
+  Character, CollectibleCategory, Mount, Activity, CampFacility, Enemy,
 } from '@/types/game-data';
 
 // ═══════════════════════════════════════
@@ -214,6 +214,17 @@ export const BOSSES: Boss[] = [
   { name: 'Desert Hydra', region: 'desert', type: 'Beast', difficulty: 'extreme', reward: 'Hydra Scale Armor', element: 'fire', weakness: 'frost' },
   { name: 'Snow Walker', region: 'pailune', type: 'Elemental', difficulty: 'extreme', reward: 'Permafrost Crystal', element: 'frost', weakness: 'fire' },
   { name: "The Unifier's Shade", region: 'demeniss', type: 'Spirit', difficulty: 'legendary', reward: 'Crown of Pywel', element: 'abyss', weakness: 'shock' },
+];
+
+// ═══════════════════════════════════════
+// ENEMIES / BESTIARY
+// (401 creatures confirmed in Knowledge Codex -- populated post-launch)
+// ═══════════════════════════════════════
+
+export const ENEMIES: Enemy[] = [
+  // Entries will be populated post-launch once the full Knowledge Codex
+  // creature list is available. The Knowledge Codex confirms 401 creatures
+  // total across all regions of Pywel.
 ];
 
 export const QUESTS: Quest[] = [

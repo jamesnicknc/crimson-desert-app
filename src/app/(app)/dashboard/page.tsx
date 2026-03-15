@@ -54,8 +54,8 @@ export default function DashboardPage() {
 
   const stats = [
     { label: 'World Size', value: '256 km²', icon: Globe, href: '/map' },
-    { label: 'Regions', value: '5', icon: Compass, href: '/map' },
-    { label: 'Bosses', value: '50+', icon: Skull, href: '/bestiary' },
+    { label: 'Regions', value: '6', icon: Compass, href: '/map' },
+    { label: 'Bosses', value: '76', icon: Skull, href: '/bosses' },
     { label: 'Mounts', value: '29', icon: Footprints, href: '/mounts' },
     { label: 'Characters', value: '3', icon: Users, href: '/characters' },
     { label: 'Completion', value: '0%', icon: TrendingUp, href: '/quests' },
@@ -77,9 +77,9 @@ export default function DashboardPage() {
       color: 'from-amber-600 to-amber-800',
     },
     {
-      title: 'Bestiary',
-      description: 'Learn about creatures',
-      href: '/bestiary',
+      title: 'Bosses',
+      description: 'Defeat powerful bosses',
+      href: '/bosses',
       icon: Skull,
       color: 'from-red-600 to-red-800',
     },
@@ -225,7 +225,7 @@ export default function DashboardPage() {
               World Exploration
             </h3>
             <p className="text-gray-300">
-              Discover all 5 regions with our interactive map. Track discovered
+              Discover all 6 regions with our interactive map. Track discovered
               locations and uncover secrets hidden across the desert.
             </p>
           </div>
@@ -235,7 +235,7 @@ export default function DashboardPage() {
             </h3>
             <p className="text-gray-300">
               Study our comprehensive bestiary and weapon database. Plan your
-              loadouts and strategies against 50+ bosses.
+              loadouts and strategies against 76 bosses.
             </p>
           </div>
           <div>

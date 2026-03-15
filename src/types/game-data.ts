@@ -40,6 +40,17 @@ export interface Boss {
   weakness?: Element;
 }
 
+export interface Enemy {
+  name: string;
+  region: Region | 'multiple';
+  type: string;
+  element: Element;
+  weakness?: Element;
+  drops: string[];
+  location: string;
+  notes?: string;
+}
+
 export interface Activity {
   name: string;
   category: ActivityCategory;
