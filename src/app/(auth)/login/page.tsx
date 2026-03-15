@@ -1,14 +1,22 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 
 export default function LoginPage() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
 
   const handleOAuthSignIn = async (provider: 'google' | 'discord') => {
     setIsLoading(true);
+    setErrorMsg('');
     try {
       const supabase = createClient();
       const { error } = await supabase.auth.signInWithOAuth({
@@ -19,10 +27,53 @@ export default function LoginPage() {
       });
       if (error) {
         console.error('Auth error:', error);
+        setErrorMsg(error.message);
         setIsLoading(false);
       }
     } catch (error) {
       console.error('Auth error:', error);
+      setErrorMsg('An unexpected error occurred');
+      setIsLoading(false);
+    }
+  };
+
+  const handleEmailAuth = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setErrorMsg('');
+    setSuccessMsg('');
+
+    try {
+      const supabase = createClient();
+
+      if (isSignUp) {
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            emailRedirectTo: `${window.location.origin}/callback`,
+          },
+        });
+        if (error) {
+          setErrorMsg(error.message);
+        } else {
+          setSuccessMsg('Check your email for a confirmation link!');
+        }
+      } else {
+        const { error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+        if (error) {
+          setErrorMsg(error.message);
+        } else {
+          router.push('/dashboard');
+        }
+      }
+    } catch (error) {
+      console.error('Auth error:', error);
+      setErrorMsg('An unexpected error occurred');
+    } finally {
       setIsLoading(false);
     }
   };
@@ -93,6 +144,77 @@ export default function LoginPage() {
               {isLoading ? 'Signing in...' : 'Continue with Discord'}
             </button>
           </div>
+
+          {/* Divider */}
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-pywel-border" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-pywel-card text-gray-500">
+                or sign in with email
+              </span>
+            </div>
+          </div>
+
+          {/* Email/Password form */}
+          <form onSubmit={handleEmailAuth} className="space-y-4">
+            <div>
+              <input
+                type="email"
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full px-4 py-3 bg-pywel-bg border border-pywel-border rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-400 transition-colors"
+              />
+            </div>
+            <div>
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                minLength={6}
+                className="w-full px-4 py-3 bg-pywel-bg border border-pywel-border rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-400 transition-colors"
+              />
+            </div>
+
+            {errorMsg && (
+              <p className="text-red-400 text-sm text-center">{errorMsg}</p>
+            )}
+            {successMsg && (
+              <p className="text-green-400 text-sm text-center">{successMsg}</p>
+            )}
+
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full px-4 py-3 bg-crimson-600 hover:bg-crimson-500 text-white font-semibold rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+            >
+              {isLoading
+                ? 'Please wait...'
+                : isSignUp
+                  ? 'Create Account'
+                  : 'Sign In'}
+            </button>
+
+            <p className="text-center text-sm text-gray-400">
+              {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
+              <button
+                type="button"
+                onClick={() => {
+                  setIsSignUp(!isSignUp);
+                  setErrorMsg('');
+                  setSuccessMsg('');
+                }}
+                className="text-gold-300 hover:text-gold-200 font-medium transition-colors"
+              >
+                {isSignUp ? 'Sign in' : 'Sign up'}
+              </button>
+            </p>
+          </form>
 
           {/* Divider */}
           <div className="relative">
