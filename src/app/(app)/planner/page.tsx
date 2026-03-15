@@ -17,6 +17,7 @@ export default function PlannerPage() {
   const [buildName, setBuildName] = useState('');
   const [isPublic, setIsPublic] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [statusMsg, setStatusMsg] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
   const supabase = createClient();
   const { user } = useUser();
 
@@ -69,10 +70,11 @@ export default function PlannerPage() {
 
   const saveBuild = async () => {
     if (!buildName.trim()) {
-      alert('Please enter a build name');
+      setStatusMsg({ type: 'error', text: 'Please enter a build name' });
       return;
     }
 
+    setStatusMsg(null);
     setSaving(true);
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
@@ -103,7 +105,7 @@ export default function PlannerPage() {
     ]);
 
     setSaving(false);
-    alert('Build saved successfully!');
+    setStatusMsg({ type: 'success', text: 'Build saved successfully!' });
     setBuildName('');
   };
 
@@ -203,7 +205,7 @@ export default function PlannerPage() {
       <div className="bg-pywel-card rounded-lg p-6 border border-pywel-border space-y-4">
         <div>
           <p className="text-sm font-semibold text-gold-300 mb-1">Total Artifact Cost</p>
-          <p className="text-2xl font-cinzel font-bold text-crimson-400">{calculateArtifactCost()} Artifacts</p>
+          <p className="text-2xl font-cinzel font-bold text-gold-300">{calculateArtifactCost()} Artifacts</p>
         </div>
 
         <div className="grid grid-cols-3 gap-4 text-center py-4 border-t border-pywel-border border-b">
@@ -241,10 +243,16 @@ export default function PlannerPage() {
               <span className="text-sm text-gray-300">Make this build public</span>
             </label>
 
+            {statusMsg && (
+              <p className={`text-sm ${statusMsg.type === 'success' ? 'text-green-400' : 'text-red-400'}`}>
+                {statusMsg.text}
+              </p>
+            )}
+
             <button
               onClick={saveBuild}
               disabled={saving || !buildName.trim()}
-              className="w-full bg-crimson-600 hover:bg-crimson-700 disabled:bg-gray-600 text-white font-semibold py-2 rounded transition"
+              className="w-full bg-gold-600 hover:bg-gold-700 disabled:bg-gray-600 text-black font-semibold py-2 rounded transition"
             >
               {saving ? 'Saving...' : 'Save Build'}
             </button>

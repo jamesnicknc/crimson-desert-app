@@ -13,6 +13,7 @@ export default function GroupPage() {
   const [loading, setLoading] = useState(true);
   const [creating, setCreating] = useState(false);
   const [joining, setJoining] = useState(false);
+  const [statusMsg, setStatusMsg] = useState('');
   const supabase = createClient();
   const { user, loading: userLoading } = useUser();
 
@@ -27,10 +28,25 @@ export default function GroupPage() {
       return;
     }
 
-    // Get group progress
-    const { data: progressData } = await supabase.rpc('get_group_progress');
-    if (progressData) {
-      setGroupMembers(progressData);
+    try {
+      // Load the user's group_id from group_members table
+      const { data: membership } = await supabase
+        .from('group_members')
+        .select('group_id')
+        .eq('user_id', user.id)
+        .single();
+
+      if (membership?.group_id) {
+        const { data: progressData } = await supabase.rpc('get_group_progress', {
+          p_group_id: membership.group_id,
+        });
+        if (progressData) {
+          setGroupMembers(progressData);
+        }
+      }
+    } catch {
+      // Handle missing data gracefully
+      setGroupMembers([]);
     }
 
     setLoading(false);
@@ -38,6 +54,7 @@ export default function GroupPage() {
 
   const createGroup = async () => {
     setCreating(true);
+    setStatusMsg('');
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
       setCreating(false);
@@ -51,7 +68,7 @@ export default function GroupPage() {
       {
         name: `${user.email}'s Group`,
         invite_code: code,
-        owner_id: user.id,
+        created_by: user.id,
       },
     ]);
 
@@ -61,11 +78,12 @@ export default function GroupPage() {
 
   const joinGroup = async () => {
     if (!codeInput.trim()) {
-      alert('Please enter an invite code');
+      setStatusMsg('Please enter an invite code');
       return;
     }
 
     setJoining(true);
+    setStatusMsg('');
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
       setJoining(false);
@@ -79,7 +97,7 @@ export default function GroupPage() {
       .single();
 
     if (!group) {
-      alert('Invalid invite code');
+      setStatusMsg('Invalid invite code');
       setJoining(false);
       return;
     }
@@ -108,6 +126,12 @@ export default function GroupPage() {
         <SignInPrompt message="Sign in to create or join groups" />
       )}
 
+      {statusMsg && (
+        <div className="bg-pywel-card border border-gold-600 rounded-lg px-4 py-3 text-center text-gold-300 text-sm font-semibold">
+          {statusMsg}
+        </div>
+      )}
+
       {user && (
       <>
       {/* Create/Join Group */}
@@ -123,7 +147,8 @@ export default function GroupPage() {
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(inviteCode);
-                  alert('Invite code copied!');
+                  setStatusMsg('Invite code copied!');
+                  setTimeout(() => setStatusMsg(''), 3000);
                 }}
                 className="w-full bg-gold-600 hover:bg-gold-700 text-pywel-bg font-semibold py-2 rounded transition"
               >
@@ -134,7 +159,7 @@ export default function GroupPage() {
             <button
               onClick={createGroup}
               disabled={creating}
-              className="w-full bg-crimson-600 hover:bg-crimson-700 disabled:bg-gray-600 text-white font-semibold py-2 rounded transition"
+              className="w-full bg-gold-600 hover:bg-gold-700 disabled:bg-gray-600 text-black font-semibold py-2 rounded transition"
             >
               {creating ? 'Creating...' : 'Create Group'}
             </button>
@@ -154,7 +179,7 @@ export default function GroupPage() {
             <button
               onClick={joinGroup}
               disabled={joining || !codeInput.trim()}
-              className="w-full bg-gold-600 hover:bg-gold-700 disabled:bg-gray-600 text-pywel-bg font-semibold py-2 rounded transition"
+              className="w-full bg-gold-600 hover:bg-gold-700 disabled:bg-gray-600 text-black font-semibold py-2 rounded transition"
             >
               {joining ? 'Joining...' : 'Join Group'}
             </button>

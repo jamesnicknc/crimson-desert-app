@@ -1,15 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Crimson+Text:ital@0;1&family=Inter:wght@300;400;500;600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Font families */
-:root {
-  --font-cinzel: 'Cinzel', serif;
-  --font-crimson: 'Crimson Text', serif;
-  --font-body: 'Inter', sans-serif;
-}
 
 /* Base styles */
 html {
@@ -31,51 +22,18 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-crimson-700 rounded hover:bg-crimson-600;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-crimson-600;
+  @apply bg-gold-700 rounded hover:bg-gold-600;
 }
 
 /* Firefox scrollbar */
 * {
-  scrollbar-color: rgb(153, 27, 27) rgb(23, 23, 23);
+  scrollbar-color: #4A3E18 #0A0A0F;
   scrollbar-width: thin;
 }
 
 /* Heading styles */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   @apply font-cinzel;
-}
-
-h1 {
-  @apply text-4xl font-bold;
-}
-
-h2 {
-  @apply text-3xl font-bold;
-}
-
-h3 {
-  @apply text-2xl font-bold;
-}
-
-h4 {
-  @apply text-xl font-semibold;
-}
-
-h5 {
-  @apply text-lg font-semibold;
-}
-
-h6 {
-  @apply text-base font-semibold;
 }
 
 /* Links */
@@ -83,102 +41,7 @@ a {
   @apply transition-colors duration-200;
 }
 
-a:hover {
-  @apply text-gold-400;
-}
-
 /* Buttons */
 button {
   @apply transition-all duration-200;
-}
-
-/* Leaflet overrides for dark theme */
-.leaflet-container {
-  @apply bg-pywel-secondary;
-}
-
-.leaflet-popup-content-wrapper {
-  @apply bg-pywel-card border border-pywel-border rounded;
-  box-shadow: 0 0 15px rgba(139, 0, 0, 0.3);
-}
-
-.leaflet-popup-tip {
-  @apply bg-pywel-card;
-}
-
-.leaflet-control {
-  @apply bg-pywel-card border border-pywel-border rounded;
-}
-
-.leaflet-control-zoom-in,
-.leaflet-control-zoom-out {
-  @apply bg-pywel-card text-gold-300 border-b border-pywel-border;
-}
-
-.leaflet-control-zoom-in:hover,
-.leaflet-control-zoom-out:hover {
-  @apply bg-pywel-card-hover text-gold-400;
-}
-
-.leaflet-tile-pane {
-  filter: brightness(0.85) contrast(1.1);
-}
-
-.leaflet-map-pane canvas {
-  filter: invert(0.93) hue-rotate(200deg) saturate(0.5);
-}
-
-/* Animation for fade in */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-in;
-}
-
-/* Animation for slide in from left */
-@keyframes slideInLeft {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-.animate-slide-in-left {
-  animation: slideInLeft 0.3s ease-out;
-}
-
-/* Glow effect for crimson */
-.glow-crimson {
-  text-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
-}
-
-/* Gold accent text */
-.text-gold-accent {
-  @apply text-gold-300 font-semibold;
-}
-
-/* Crimson accent text */
-.text-crimson-accent {
-  @apply text-crimson-500 font-semibold;
-}
-
-/* Card hover effect */
-.card-hover {
-  @apply transition-all duration-200 hover:bg-pywel-card-hover hover:border-gold-400;
-}
-
-/* Smooth transitions */
-.transition-smooth {
-  @apply transition-all duration-300 ease-in-out;
 }

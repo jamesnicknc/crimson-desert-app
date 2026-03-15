@@ -49,8 +49,9 @@ export default function NotesPage() {
         return;
       }
 
-      await supabase.rpc('upsert_user_notes', {
-        p_content: notes,
+      await supabase.from('user_notes').upsert({
+        user_id: user.id,
+        content: notes,
       });
 
       setSaved(true);
@@ -89,7 +90,7 @@ export default function NotesPage() {
               value={notes}
               onChange={handleChange}
               placeholder="Write your notes here. They will be saved automatically..."
-              className="w-full h-96 bg-pywel-bg border-2 border-pywel-border rounded-lg p-4 text-gray-100 placeholder-gray-500 focus:border-crimson-500 focus:outline-none resize-none"
+              className="w-full h-96 bg-pywel-bg border-2 border-pywel-border rounded-lg p-4 text-gray-100 placeholder-gray-500 focus:border-gold-400 focus:outline-none resize-none"
             />
             {saved && (
               <div className="absolute bottom-4 right-4 bg-green-600/90 text-white px-3 py-1 rounded text-sm font-semibold">

@@ -38,96 +38,44 @@ const navSections: NavSection[] = [
   {
     label: 'Overview',
     items: [
-      {
-        label: 'Dashboard',
-        href: '/dashboard',
-        icon: <Compass className="w-5 h-5" />,
-      },
+      { label: 'Dashboard', href: '/dashboard', icon: <Compass className="w-5 h-5" /> },
     ],
   },
   {
     label: 'World',
     items: [
-      {
-        label: 'World Map',
-        href: '/map',
-        icon: <Globe className="w-5 h-5" />,
-      },
-      {
-        label: 'Characters',
-        href: '/characters',
-        icon: <Users className="w-5 h-5" />,
-      },
+      { label: 'World Map', href: '/map', icon: <Globe className="w-5 h-5" /> },
+      { label: 'Characters', href: '/characters', icon: <Users className="w-5 h-5" /> },
     ],
   },
   {
     label: 'Progress',
     items: [
-      {
-        label: 'Skill Trees',
-        href: '/skills',
-        icon: <TreePine className="w-5 h-5" />,
-      },
-      {
-        label: 'Collectibles',
-        href: '/collectibles',
-        icon: <Sparkles className="w-5 h-5" />,
-      },
-      {
-        label: 'Quest Log',
-        href: '/quests',
-        icon: <Scroll className="w-5 h-5" />,
-      },
+      { label: 'Skill Trees', href: '/skills', icon: <TreePine className="w-5 h-5" /> },
+      { label: 'Collectibles', href: '/collectibles', icon: <Sparkles className="w-5 h-5" /> },
+      { label: 'Quest Log', href: '/quests', icon: <Scroll className="w-5 h-5" /> },
     ],
   },
   {
     label: 'Combat',
     items: [
-      {
-        label: 'Bestiary',
-        href: '/bestiary',
-        icon: <Skull className="w-5 h-5" />,
-      },
-      {
-        label: 'Weapons',
-        href: '/weapons',
-        icon: <Sword className="w-5 h-5" />,
-      },
+      { label: 'Bestiary', href: '/bestiary', icon: <Skull className="w-5 h-5" /> },
+      { label: 'Weapons', href: '/weapons', icon: <Sword className="w-5 h-5" /> },
     ],
   },
   {
     label: 'Resources',
     items: [
-      {
-        label: 'Crafting',
-        href: '/crafting',
-        icon: <Hammer className="w-5 h-5" />,
-      },
-      {
-        label: 'Inventory',
-        href: '/inventory',
-        icon: <Package className="w-5 h-5" />,
-      },
-      {
-        label: 'Notes',
-        href: '/notes',
-        icon: <BookOpen className="w-5 h-5" />,
-      },
+      { label: 'Crafting', href: '/crafting', icon: <Hammer className="w-5 h-5" /> },
+      { label: 'Inventory', href: '/inventory', icon: <Package className="w-5 h-5" /> },
+      { label: 'Notes', href: '/notes', icon: <BookOpen className="w-5 h-5" /> },
     ],
   },
   {
     label: 'Social',
     items: [
-      {
-        label: 'Group',
-        href: '/group',
-        icon: <Users2 className="w-5 h-5" />,
-      },
-      {
-        label: 'Build Planner',
-        href: '/planner',
-        icon: <Wrench className="w-5 h-5" />,
-      },
+      { label: 'Group', href: '/group', icon: <Users2 className="w-5 h-5" /> },
+      { label: 'Build Planner', href: '/planner', icon: <Wrench className="w-5 h-5" /> },
     ],
   },
 ];
@@ -154,12 +102,9 @@ export default function Sidebar() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="fixed top-4 left-4 z-50 md:hidden bg-pywel-card border border-pywel-border p-2 rounded-lg text-gold-300 hover:bg-pywel-card-hover"
+        aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
       >
-        {isOpen ? (
-          <X className="w-6 h-6" />
-        ) : (
-          <Menu className="w-6 h-6" />
-        )}
+        {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
 
       {/* Overlay for mobile */}
@@ -185,9 +130,7 @@ export default function Sidebar() {
                 <br />
                 DESERT
               </h1>
-              <p className="text-xs text-gray-400 font-cinzel">
-                Companion Dashboard
-              </p>
+              <p className="text-xs text-gray-400 font-cinzel">Companion Dashboard</p>
             </div>
           </Link>
         </div>
@@ -208,7 +151,7 @@ export default function Sidebar() {
                         <div
                           className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors duration-200 ${
                             active
-                              ? 'bg-pywel-card border-l-4 border-crimson-500 text-gold-300'
+                              ? 'bg-pywel-card border-l-4 border-gold-400 text-gold-300'
                               : 'text-gray-300 hover:bg-pywel-card hover:text-gold-300'
                           }`}
                         >
@@ -234,7 +177,7 @@ export default function Sidebar() {
                 {user.user_metadata?.avatar_url ? (
                   <img src={user.user_metadata.avatar_url} alt="" className="w-8 h-8 rounded-full" />
                 ) : (
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-crimson-500 to-gold-500 flex items-center justify-center text-xs font-bold text-white">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-xs font-bold text-black">
                     {(user.user_metadata?.full_name?.[0] || user.email?.[0] || 'U').toUpperCase()}
                   </div>
                 )}
@@ -257,7 +200,7 @@ export default function Sidebar() {
             <>
               <p className="text-xs text-gray-400 mb-3">Sign in to save progress</p>
               <Link href="/login" onClick={() => setIsOpen(false)}>
-                <button className="w-full px-3 py-2 text-sm bg-crimson-600 hover:bg-crimson-500 text-white rounded-lg transition-colors duration-200 font-cinzel flex items-center justify-center gap-2">
+                <button className="w-full px-3 py-2 text-sm bg-gold-600 hover:bg-gold-500 text-black font-semibold rounded-lg transition-colors duration-200 font-cinzel flex items-center justify-center gap-2">
                   <LogIn className="w-4 h-4" />
                   Sign In
                 </button>

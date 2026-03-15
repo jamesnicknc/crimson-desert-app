@@ -89,7 +89,7 @@ export default function CollectiblesPage() {
 
                 <div className="w-full bg-pywel-bg rounded-full h-2 overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-crimson-600 to-crimson-500 transition-all duration-300"
+                    className="h-full bg-gradient-to-r from-gold-400 to-gold-500 transition-all duration-300"
                     style={{ width: `${(completed / total) * 100}%` }}
                   ></div>
                 </div>
@@ -113,8 +113,7 @@ export default function CollectiblesPage() {
                           <input
                             type="checkbox"
                             checked={isComplete}
-                            onChange={() => {}}
-                            onClick={(e) => e.stopPropagation()}
+                            onChange={() => toggle('collectible', key)}
                             className="mt-1 w-4 h-4 cursor-pointer accent-gold-400 flex-shrink-0"
                           />
                           <div className="flex-1 min-w-0">

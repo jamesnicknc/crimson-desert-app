@@ -10,18 +10,25 @@ import type { QuestType, QuestStatus } from '@/types/game-data';
 export default function QuestsPage() {
   const [selectedFilter, setSelectedFilter] = useState<QuestType | 'all'>('all');
   const [questStatus, setQuestStatus] = useState<Record<string, QuestStatus>>({});
+  const [search, setSearch] = useState('');
   const supabase = createClient();
   const { user } = useUser();
 
-  const filteredQuests = selectedFilter === 'all'
-    ? QUESTS
-    : QUESTS.filter(q => q.type === selectedFilter);
+  const filteredQuests = QUESTS.filter(q => {
+    const matchesType = selectedFilter === 'all' || q.type === selectedFilter;
+    const query = search.toLowerCase();
+    const matchesSearch =
+      !query ||
+      q.name.toLowerCase().includes(query) ||
+      q.description.toLowerCase().includes(query);
+    return matchesType && matchesSearch;
+  });
 
   const getTypeColor = (type: QuestType): string => {
     const colors: Record<QuestType, string> = {
       main: 'bg-gold-600/20 border-gold-600 text-gold-300',
       side: 'bg-blue-600/20 border-blue-600 text-blue-300',
-      faction: 'bg-crimson-600/20 border-crimson-600 text-crimson-300',
+      faction: 'bg-amber-600/20 border-amber-600 text-amber-300',
     };
     return colors[type];
   };
@@ -89,6 +96,14 @@ export default function QuestsPage() {
         <h1 className="text-3xl font-cinzel font-bold text-gold-400 mb-2">Quest Log</h1>
         <p className="text-gray-400">Track your progress through the main story, side quests, and faction missions.</p>
       </div>
+
+      <input
+        type="text"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Search by quest name or description..."
+        className="w-full bg-pywel-bg border border-pywel-border rounded-lg px-4 py-2 text-gray-100 placeholder-gray-500 focus:border-gold-400 focus:outline-none"
+      />
 
       <div className="flex gap-2 flex-wrap">
         {(['all', 'main', 'side', 'faction'] as const).map(filter => (

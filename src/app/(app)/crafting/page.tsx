@@ -13,10 +13,17 @@ const FILTERS: { label: string; value: CraftingType | 'all' }[] = [
 
 export default function CraftingPage() {
   const [selectedFilter, setSelectedFilter] = useState<CraftingType | 'all'>('all');
+  const [search, setSearch] = useState('');
 
-  const filteredRecipes = selectedFilter === 'all'
-    ? RECIPES
-    : RECIPES.filter(r => r.type === selectedFilter);
+  const filteredRecipes = RECIPES.filter(r => {
+    const matchesType = selectedFilter === 'all' || r.type === selectedFilter;
+    const query = search.toLowerCase();
+    const matchesSearch =
+      !query ||
+      r.name.toLowerCase().includes(query) ||
+      r.ingredients.some(i => i.toLowerCase().includes(query));
+    return matchesType && matchesSearch;
+  });
 
   const getTypeColor = (type: CraftingType): string => {
     const colors: Record<CraftingType, string> = {
@@ -42,6 +49,14 @@ export default function CraftingPage() {
         <h1 className="text-3xl font-cinzel font-bold text-gold-400 mb-2">Crafting Recipes</h1>
         <p className="text-gray-400">Master the recipes for cooking, alchemy, and blacksmithing across Pywel.</p>
       </div>
+
+      <input
+        type="text"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Search by recipe name or ingredient..."
+        className="w-full bg-pywel-bg border border-pywel-border rounded-lg px-4 py-2 text-gray-100 placeholder-gray-500 focus:border-gold-400 focus:outline-none"
+      />
 
       <div className="flex gap-2 flex-wrap">
         {FILTERS.map(filter => (

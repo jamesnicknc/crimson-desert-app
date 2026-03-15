@@ -52,7 +52,7 @@ export default function SkillsPage() {
           </div>
           <div className="w-full bg-pywel-bg rounded-full h-2 overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-crimson-600 to-crimson-500 transition-all duration-300"
+              className="h-full bg-gradient-to-r from-gold-400 to-gold-500 transition-all duration-300"
               style={{ width: `${(completed / total) * 100}%` }}
             ></div>
           </div>

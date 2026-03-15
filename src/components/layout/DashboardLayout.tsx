@@ -16,8 +16,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Main content area */}
       <main className="flex-1 md:ml-60">
         {/* Hero banner */}
-        <div className="bg-gradient-to-r from-crimson-900 to-black border-b border-pywel-border">
-          <div className="px-6 md:px-8 py-8 md:py-12 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-pywel-secondary to-black border-b border-pywel-border">
+          <div className="pl-16 md:pl-8 pr-6 md:pr-8 py-8 md:py-12 flex items-center justify-between">
             <div>
               <h1 className="font-cinzel text-3xl md:text-4xl font-bold text-gold-300">
                 Crimson Desert

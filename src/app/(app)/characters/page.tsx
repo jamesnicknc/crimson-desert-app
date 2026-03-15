@@ -16,7 +16,7 @@ const CHARACTERS = [
     description: 'A swift, agile glass cannon who combines a rapier and buckler for devastating close-quarters dueling with a flintlock pistol and musket for ranged engagements. Her mobility and dodge-chaining make her nearly untouchable, but her low HP demands precise positioning.',
     weapons: ['rapier', 'claymore', 'pistol', 'musket', 'shield', 'spells'],
     gradient: 'from-rose-900 to-rose-950',
-    accentColor: 'border-crimson-500',
+    accentColor: 'border-gold-500',
     image: '/assets/damiane.webp',
   },
   {
@@ -77,7 +77,7 @@ export default function CharactersPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
               <div className="absolute bottom-3 left-4">
                 <h2 className="text-2xl font-cinzel font-bold text-gold-300 drop-shadow-lg">{char.name}</h2>
-                <p className="text-sm text-crimson-300 italic drop-shadow">{char.role}</p>
+                <p className="text-sm text-gold-300 italic drop-shadow">{char.role}</p>
               </div>
             </div>
 

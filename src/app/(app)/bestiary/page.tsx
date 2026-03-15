@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { BOSSES, REGIONS } from '@/lib/game-data';
 import { useProgress } from '@/hooks/use-progress';
 import SignInPrompt from '@/components/SignInPrompt';
@@ -7,12 +8,13 @@ import type { Difficulty, Region } from '@/types/game-data';
 
 export default function BestiaryPage() {
   const { isCompleted, toggle, loading, isAuthenticated } = useProgress();
+  const [searchQuery, setSearchQuery] = useState('');
 
   const getDifficultyColor = (difficulty: Difficulty): string => {
     const colors: Record<Difficulty, string> = {
       normal: 'bg-green-600/20 border-green-600 text-green-300',
       hard: 'bg-amber-600/20 border-amber-600 text-amber-300',
-      extreme: 'bg-crimson-600/20 border-crimson-600 text-crimson-300',
+      extreme: 'bg-orange-600/20 border-orange-600 text-orange-300',
       legendary: 'bg-purple-600/20 border-purple-600 text-purple-300',
     };
     return colors[difficulty];
@@ -32,14 +34,37 @@ export default function BestiaryPage() {
 
   const getRegionName = (regionId: Region): string => {
     const region = REGIONS.find(r => r.id === regionId);
-    return region?.name || regionId;
+    if (region) return region.name;
+    // Title case fallback for regions not in the REGIONS array (e.g. "abyss" -> "Abyss")
+    return regionId.charAt(0).toUpperCase() + regionId.slice(1);
   };
+
+  const filteredBosses = BOSSES.filter(boss => {
+    if (!searchQuery.trim()) return true;
+    const query = searchQuery.toLowerCase();
+    return (
+      boss.name.toLowerCase().includes(query) ||
+      getRegionName(boss.region).toLowerCase().includes(query) ||
+      boss.type.toLowerCase().includes(query)
+    );
+  });
 
   return (
     <div className="space-y-6">
       <div className="text-center">
         <h1 className="text-3xl font-cinzel font-bold text-gold-400 mb-2">Bestiary</h1>
         <p className="text-gray-400">Track defeated bosses and legendary creatures across Pywel.</p>
+      </div>
+
+      {/* Search bar */}
+      <div className="max-w-md mx-auto">
+        <input
+          type="text"
+          placeholder="Search by boss name, region, or type..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full px-4 py-3 bg-pywel-card border border-pywel-border rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-400 transition-colors"
+        />
       </div>
 
       {!isAuthenticated && !loading && (
@@ -62,8 +87,8 @@ export default function BestiaryPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-pywel-border">
-              {BOSSES.map((boss, idx) => {
-                const bossKey = `boss-${idx}`;
+              {filteredBosses.map((boss, idx) => {
+                const bossKey = `boss-${BOSSES.indexOf(boss)}`;
                 const isDefeated = isCompleted('boss', bossKey);
 
                 return (

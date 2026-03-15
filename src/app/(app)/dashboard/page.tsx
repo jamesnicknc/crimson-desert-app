@@ -107,13 +107,13 @@ export default function DashboardPage() {
   return (
     <div className="space-y-8">
       {/* Countdown section */}
-      <section className="bg-gradient-to-r from-crimson-900/30 to-black/30 border border-pywel-border rounded-lg p-8">
+      <section className="bg-gradient-to-r from-pywel-secondary/30 to-black/30 border border-pywel-border rounded-lg p-8">
         <h2 className="font-cinzel text-2xl font-bold text-gold-300 mb-6">
           Launch Countdown
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-pywel-card border border-pywel-border rounded-lg p-4 text-center">
-            <p className="text-3xl md:text-4xl font-bold text-crimson-500">
+            <p className="text-3xl md:text-4xl font-bold text-gold-300">
               {countdown.days}
             </p>
             <p className="text-xs md:text-sm text-gray-400 mt-2 font-cinzel">
@@ -121,7 +121,7 @@ export default function DashboardPage() {
             </p>
           </div>
           <div className="bg-pywel-card border border-pywel-border rounded-lg p-4 text-center">
-            <p className="text-3xl md:text-4xl font-bold text-crimson-500">
+            <p className="text-3xl md:text-4xl font-bold text-gold-300">
               {countdown.hours}
             </p>
             <p className="text-xs md:text-sm text-gray-400 mt-2 font-cinzel">
@@ -129,7 +129,7 @@ export default function DashboardPage() {
             </p>
           </div>
           <div className="bg-pywel-card border border-pywel-border rounded-lg p-4 text-center">
-            <p className="text-3xl md:text-4xl font-bold text-crimson-500">
+            <p className="text-3xl md:text-4xl font-bold text-gold-300">
               {countdown.minutes}
             </p>
             <p className="text-xs md:text-sm text-gray-400 mt-2 font-cinzel">
@@ -137,7 +137,7 @@ export default function DashboardPage() {
             </p>
           </div>
           <div className="bg-pywel-card border border-pywel-border rounded-lg p-4 text-center">
-            <p className="text-3xl md:text-4xl font-bold text-crimson-500">
+            <p className="text-3xl md:text-4xl font-bold text-gold-300">
               {countdown.seconds}
             </p>
             <p className="text-xs md:text-sm text-gray-400 mt-2 font-cinzel">
@@ -166,7 +166,7 @@ export default function DashboardPage() {
                     {stat.label}
                   </p>
                 </div>
-                <p className="text-2xl font-bold text-crimson-400">
+                <p className="text-2xl font-bold text-gold-300">
                   {stat.value}
                 </p>
               </div>
@@ -205,7 +205,7 @@ export default function DashboardPage() {
       </section>
 
       {/* Features section */}
-      <section className="bg-gradient-to-r from-black/30 to-crimson-900/30 border border-pywel-border rounded-lg p-8">
+      <section className="bg-gradient-to-r from-black/30 to-pywel-secondary/30 border border-pywel-border rounded-lg p-8">
         <h2 className="font-cinzel text-2xl font-bold text-gold-300 mb-6">
           Key Features
         </h2>
