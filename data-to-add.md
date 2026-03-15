@@ -285,11 +285,10 @@ No new specific builds were found that warrant adding to the app's data layer, a
 - Source: Fextralife Wiki, game-data.ts (Frost Salamander Pailune/Frozen Soul Mountain cross-reference)
 - Researched and resolved: 2026-03-15 (Run 4)
 
-### Balgran Shield - Dual Listing Issue [NEEDS REVIEW]
-- Current state: Listed both as an edition collectible (`category: 'edition'`, `location: 'Deluxe Edition Bonus'`) AND as a weapon for Oongka in the WEAPONS array (`character: 'oongka'`, `type: 'Shield'`).
-- Issue: The Deluxe Edition bonus Balgran Shield is a cosmetic/edition item. If Oongka also uses a shield in standard gameplay, they should be differentiated (e.g., rename one to "Oongka's War Shield" or clarify edition vs. gameplay item). As-is, the same name appears twice with conflicting contexts.
+### Balgran Shield - Dual Listing Issue [RESOLVED -- 2026-03-15]
+- Resolution: Edition collectible renamed from `'Balgran Shield'` to `'Balgran Shield (Deluxe Edition)'` to distinguish it from Oongka's gameplay weapon entry of the same name. The gameplay weapon (`character: 'oongka'`, `type: 'Shield'`, `atk: 15, spd: 40, rng: 10`) is unchanged. The edition collectible (`category: 'edition'`, `location: 'Deluxe Edition Bonus'`) now has a distinct name consistent with how other edition items are named.
 - Source: Fextralife Wiki, game-data.ts cross-reference
-- Flagged: 2026-03-15
+- Flagged: 2026-03-15; Resolved: 2026-03-15
 
 ### REGIONS Array Missing 'The Abyss' [ADDED -- 2026-03-15]
 - Fixed: Added The Abyss as a sixth entry in the REGIONS array with id: 'abyss'.

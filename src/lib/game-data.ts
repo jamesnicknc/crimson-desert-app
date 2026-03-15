@@ -185,7 +185,7 @@ export const COLLECTIBLES: Record<CollectibleCategory, Collectible[]> = {
   ],
   edition: [
     { name: 'Kairos Plate Set', location: 'Deluxe Edition Bonus', category: 'edition' },
-    { name: 'Balgran Shield', location: 'Deluxe Edition Bonus', category: 'edition' },
+    { name: 'Balgran Shield (Deluxe Edition)', location: 'Deluxe Edition Bonus', category: 'edition' },
     { name: 'Exclaire Horse Tack Set', location: 'Deluxe Edition Bonus', category: 'edition' },
     { name: 'Tormented Soul Bow', location: 'Collector\'s Edition Bonus', category: 'edition' },
     { name: 'Derictus Spear', location: 'Collector\'s Edition Bonus', category: 'edition' },

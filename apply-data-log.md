@@ -4,6 +4,24 @@ Each entry records one manual run of the apply-data task.
 
 ---
 
+## Run: 2026-03-15 (Run 6) -- Balgran Shield Deduplication
+
+**Result:** Success
+**Items processed:** 1
+**Items added:** 0
+**Items corrected:** 1
+**Items skipped (needs review):** 0
+**TypeScript build:** Clean
+
+### Fixed This Run
+- Balgran Shield dual listing -- Renamed edition collectible from `'Balgran Shield'` to `'Balgran Shield (Deluxe Edition)'` to eliminate the name collision with Oongka's gameplay weapon entry. No other fields changed on either record.
+
+### Notes
+- All 8 pending boss entries remain blocked by the `reward` field. Game releases March 19, 2026 -- recommend a follow-up data run on or after March 20 once wiki reward data is populated.
+- No other actionable queue items exist pre-launch. Remaining [NEEDS REVIEW] items require either post-launch data, a new NPC data structure, or an architectural decision (sub-location model, CollectibleCategory expansion, etc.).
+
+---
+
 ## Run: 2026-03-15 (second run)
 
 **Result:** Partial
