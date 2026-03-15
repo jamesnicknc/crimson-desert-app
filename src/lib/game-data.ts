@@ -1,6 +1,6 @@
 import type {
   Skill, Collectible, Boss, Quest, Weapon, Recipe, RegionInfo,
-  Character, CollectibleCategory,
+  Character, CollectibleCategory, Mount,
 } from '@/types/game-data';
 
 // ═══════════════════════════════════════
@@ -183,20 +183,20 @@ export const COLLECTIBLES: Record<CollectibleCategory, Collectible[]> = {
 };
 
 export const BOSSES: Boss[] = [
-  { name: 'Ironclad Guardian', region: 'hernand', type: 'Mechanical', difficulty: 'normal', reward: 'Iron Fortress Mod' },
-  { name: 'Frost Wyrm', region: 'pailune', type: 'Dragon', difficulty: 'hard', reward: 'Frost Core Artifact' },
-  { name: 'Black Bear Warlord', region: 'demeniss', type: 'Human', difficulty: 'hard', reward: 'Unique Weapon' },
-  { name: 'Sand Colossus', region: 'desert', type: 'Golem', difficulty: 'extreme', reward: 'Crimson Shard' },
+  { name: 'Queen Stoneback Crab', region: 'hernand', type: 'Beast', difficulty: 'hard', reward: 'Stoneback Shell Armor' },
+  { name: 'White Horn', region: 'pailune', type: 'Beast', difficulty: 'hard', reward: 'Frost Core Artifact' },
+  { name: 'Myurdin', region: 'demeniss', type: 'Human', difficulty: 'legendary', reward: 'Black Bear Standard' },
+  { name: 'Walter Lanford', region: 'desert', type: 'Human', difficulty: 'extreme', reward: 'Hand Cannon Blueprint' },
   { name: 'Delesyian Automaton', region: 'delesyia', type: 'Mechanical', difficulty: 'normal', reward: 'Speed Catalyst Gear' },
-  { name: 'Dire Wolf Alpha', region: 'hernand', type: 'Beast', difficulty: 'normal', reward: 'Pelt Materials' },
-  { name: 'Blizzard Drake', region: 'pailune', type: 'Dragon', difficulty: 'extreme', reward: "Dragon's Tear" },
-  { name: 'Shadow Assassin', region: 'demeniss', type: 'Human', difficulty: 'hard', reward: 'Stealth Module Gear' },
+  { name: 'Kearush the Slayer', region: 'hernand', type: 'Monster', difficulty: 'hard', reward: 'Slayer Claw Materials' },
+  { name: 'Reed Devil', region: 'pailune', type: 'Humanoid', difficulty: 'extreme', reward: "Dragon's Tear" },
+  { name: 'Matthias', region: 'demeniss', type: 'Human', difficulty: 'hard', reward: 'Radiant Knight Armor' },
   { name: 'Crimson Scorpion King', region: 'desert', type: 'Beast', difficulty: 'hard', reward: 'Venom Materials' },
-  { name: 'Thunder Titan', region: 'delesyia', type: 'Magical', difficulty: 'extreme', reward: 'Thunder Fragment' },
-  { name: 'The Hollow Knight', region: 'abyss', type: 'Magical', difficulty: 'legendary', reward: 'Deep Abyss Core' },
-  { name: "Greymane's Ghost", region: 'pailune', type: 'Spirit', difficulty: 'legendary', reward: "Gian's Blade" },
+  { name: 'Golden Star', region: 'delesyia', type: 'Mechanical', difficulty: 'legendary', reward: 'Mech Mount Key' },
+  { name: 'Hexe Marie', region: 'abyss', type: 'Magical', difficulty: 'legendary', reward: 'Deep Abyss Core' },
+  { name: 'Staglord', region: 'pailune', type: 'Humanoid', difficulty: 'legendary', reward: "Gian's Blade" },
   { name: 'Desert Hydra', region: 'desert', type: 'Beast', difficulty: 'extreme', reward: 'Hydra Scale Armor' },
-  { name: 'Clockwork Dragon', region: 'delesyia', type: 'Mechanical', difficulty: 'legendary', reward: 'Mech Mount Key' },
+  { name: 'Snow Walker', region: 'pailune', type: 'Elemental', difficulty: 'extreme', reward: 'Permafrost Crystal' },
   { name: "The Unifier's Shade", region: 'demeniss', type: 'Spirit', difficulty: 'legendary', reward: 'Crown of Pywel' },
 ];
 
@@ -217,17 +217,34 @@ export const QUESTS: Quest[] = [
 ];
 
 export const WEAPONS: Weapon[] = [
+  // Kliff
   { name: 'Iron Longsword', icon: '⚔', iconKey: 'sword', type: 'Sword', atk: 45, spd: 70, rng: 30, character: 'kliff' },
   { name: 'Greymane Shield', icon: '🛡', iconKey: 'shield', type: 'Shield', atk: 10, spd: 50, rng: 10, character: 'kliff' },
   { name: "Hunter's Bow", icon: '🏹', iconKey: 'bow', type: 'Bow', atk: 35, spd: 60, rng: 90, character: 'kliff' },
-  { name: 'War Polearm', icon: '🔨', iconKey: 'polearm', type: 'Polearm', atk: 55, spd: 45, rng: 50, character: 'kliff' },
-  { name: 'Steel Greatsword', icon: '⚔', iconKey: 'sword', type: 'Greatsword', atk: 70, spd: 30, rng: 40, character: 'kliff' },
-  { name: 'Elegant Rapier', icon: '🗡', iconKey: 'rapier', type: 'Rapier', atk: 40, spd: 85, rng: 25, character: 'damiane' },
+  { name: 'War Polearm', icon: '🔨', iconKey: 'polearm', type: 'Polearm', atk: 55, spd: 45, rng: 50, character: 'kliff',
+    signatureAbility: { name: 'Spectral Guardians', description: 'Successful parries summon phantom warriors that attack nearby enemies for 5 seconds.', source: 'Staglord' } },
+  { name: 'Steel Greatsword', icon: '⚔', iconKey: 'sword', type: 'Greatsword', atk: 70, spd: 30, rng: 40, character: 'kliff',
+    signatureAbility: { name: 'Frost Cleave', description: 'Charged heavy attacks leave frozen ground that slows enemies by 40% for 3 seconds.', source: 'White Horn' } },
+  { name: 'Mercenary Daggers', icon: '🗡', iconKey: 'dagger', type: 'Daggers', atk: 30, spd: 90, rng: 15, character: 'kliff' },
+  { name: 'Abyss Staff', icon: '🪄', iconKey: 'staff', type: 'Staff', atk: 40, spd: 55, rng: 65, character: 'kliff',
+    signatureAbility: { name: 'Abyssal Conduit', description: 'Magic attacks chain to one additional enemy. Chained damage is reduced by 50%.', source: 'Hexe Marie' } },
+  // Damiane
+  { name: 'Elegant Rapier', icon: '🗡', iconKey: 'rapier', type: 'Rapier', atk: 40, spd: 85, rng: 25, character: 'damiane',
+    signatureAbility: { name: 'Golden Pierce', description: 'Critical hits release two homing projectiles that deal 25% weapon damage each.', source: 'Golden Star' } },
   { name: 'Dueling Pistol', icon: '🔫', iconKey: 'pistol', type: 'Pistol', atk: 30, spd: 75, rng: 70, character: 'damiane' },
-  { name: 'Sharpshooter Musket', icon: '🔫', iconKey: 'pistol', type: 'Musket', atk: 60, spd: 25, rng: 95, character: 'damiane' },
+  { name: 'Sharpshooter Musket', icon: '🔫', iconKey: 'pistol', type: 'Musket', atk: 60, spd: 25, rng: 95, character: 'damiane',
+    signatureAbility: { name: 'Hexed Rounds', description: 'Shots mark enemies for 8 seconds. Marked enemies take 15% bonus damage from all sources.', source: 'Hexe Marie' } },
   { name: "Damiane's Claymore", icon: '⚔', iconKey: 'sword', type: 'Claymore', atk: 65, spd: 40, rng: 35, character: 'damiane' },
-  { name: "Oongka's Greataxe", icon: '🪓', iconKey: 'axe', type: 'Battle Axe', atk: 80, spd: 25, rng: 35, character: 'oongka' },
+  { name: 'Marksman Rifle', icon: '🔫', iconKey: 'rifle', type: 'Rifle', atk: 55, spd: 35, rng: 95, character: 'damiane' },
+  { name: 'Blackpowder Hand Cannon', icon: '💣', iconKey: 'handcannon', type: 'Hand Cannon', atk: 75, spd: 20, rng: 50, character: 'damiane',
+    signatureAbility: { name: 'Stonebreaker Shot', description: 'Fully charged shots shatter enemy guard and stagger for 2 seconds, ignoring all block.', source: 'Queen Stoneback Crab' } },
+  // Oongka
+  { name: "Oongka's Greataxe", icon: '🪓', iconKey: 'axe', type: 'Battle Axe', atk: 80, spd: 25, rng: 35, character: 'oongka',
+    signatureAbility: { name: "Slayer's Fury", description: 'Each consecutive hit increases attack speed by 8%, stacking up to 5 times. Resets after 3 seconds without hitting.', source: 'Kearush the Slayer' } },
   { name: 'Wrist Cannon', icon: '💣', iconKey: 'cannon', type: 'Cannon', atk: 55, spd: 35, rng: 60, character: 'oongka' },
+  { name: 'Iron Warhammer', icon: '🔨', iconKey: 'warhammer', type: 'Warhammer', atk: 85, spd: 20, rng: 30, character: 'oongka',
+    signatureAbility: { name: 'Stoneback Slam', description: 'Ground slam attacks create shockwaves in a 5m radius that stagger all nearby enemies.', source: 'Queen Stoneback Crab' } },
+  { name: 'Balgran Shield', icon: '🛡', iconKey: 'shield', type: 'Shield', atk: 15, spd: 40, rng: 10, character: 'oongka' },
 ];
 
 export const RECIPES: Recipe[] = [
@@ -243,6 +260,50 @@ export const RECIPES: Recipe[] = [
   { name: 'Weapon Refinement II', type: 'blacksmith', ingredients: ['Steel Ingot x3', 'Rare Coal x2', 'Gold Dust x1'], effect: 'Weapon ATK +25' },
   { name: 'Armor Reinforcement', type: 'blacksmith', ingredients: ['Leather x4', 'Iron Plates x2'], effect: 'DEF +15' },
   { name: 'Abyss Gear Socket', type: 'blacksmith', ingredients: ['Abyss Shard x1', 'Mithril x2'], effect: 'Adds gear socket to weapon' },
+];
+
+// ═══════════════════════════════════════
+// MOUNTS (29 confirmed)
+// ═══════════════════════════════════════
+
+export const MOUNTS: Mount[] = [
+  // Horses (6)
+  { name: 'Plains Stallion', category: 'horse', region: 'hernand', speed: 70, combat: 10, stamina: 75, acquisition: 'Starter mount, available at game start' },
+  { name: 'Greymane Warhorse', category: 'horse', region: 'pailune', speed: 65, combat: 30, stamina: 85, special: 'Charge attack that knocks enemies aside while galloping', acquisition: 'Greymane faction reputation reward' },
+  { name: 'Noble Destrier', category: 'horse', region: 'demeniss', speed: 75, combat: 20, stamina: 80, special: 'Increased speed on roads and paved surfaces', acquisition: 'Purchase from Demeniss Royal Stables' },
+  { name: 'Desert Charger', category: 'horse', region: 'desert', speed: 80, combat: 15, stamina: 60, special: 'Heat-resistant; no stamina penalty in desert biomes', acquisition: 'Tame in the wild (Crimson Desert outskirts)' },
+  { name: 'Dappled Palfrey', category: 'horse', region: 'hernand', speed: 85, combat: 5, stamina: 90, special: 'Fastest sustained gallop; ideal for long-distance travel', acquisition: 'Reward from the Hernand Horse Breeder side quest' },
+  { name: 'Midnight Runner', category: 'horse', region: 'multiple', speed: 90, combat: 15, stamina: 70, special: 'Near-silent movement; enemies are slower to detect you while mounted', acquisition: 'Rare wild spawn at night across all regions' },
+  // Bears (4)
+  { name: 'Pailune Snow Bear', category: 'bear', region: 'pailune', speed: 45, combat: 85, stamina: 80, special: 'Slashes with claws and bites enemies while riding; frost resistance aura', acquisition: 'Tame in the wild (Pailune mountain caves)' },
+  { name: 'Ironhide Cave Bear', category: 'bear', region: 'hernand', speed: 40, combat: 90, stamina: 85, special: 'Massive HP pool; acts as a shield absorbing hits for the rider', acquisition: 'Defeat and tame in Ironhide Den (Hernand)' },
+  { name: 'Black Bear War Mount', category: 'bear', region: 'demeniss', speed: 50, combat: 80, stamina: 75, special: 'Intimidation roar that fears nearby enemies for 3 seconds', acquisition: 'Captured from Black Bear faction stronghold' },
+  { name: 'Crimson Grizzly', category: 'bear', region: 'desert', speed: 45, combat: 75, stamina: 65, special: 'Ground slam attack that staggers enemies in a frontal cone', acquisition: 'Tame in the wild (Crimson Desert oasis)' },
+  // Raptors (4)
+  { name: 'Sand Raptor', category: 'raptor', region: 'desert', speed: 90, combat: 40, stamina: 55, special: 'Extreme burst speed; double sprint in desert terrain', acquisition: 'Tame in the wild (Red Dunes hunting grounds)' },
+  { name: 'Forest Stalker', category: 'raptor', region: 'hernand', speed: 80, combat: 50, stamina: 60, special: 'Pounce attack that pins smaller enemies', acquisition: 'Tame in the wild (Hernand deep forest)' },
+  { name: 'Frost Raptor', category: 'raptor', region: 'pailune', speed: 75, combat: 45, stamina: 70, special: 'Ice-trail movement; leaves slippery terrain that slows pursuers', acquisition: 'Complete the Pailune Hunter chain quest' },
+  { name: 'Delesyian Swift', category: 'raptor', region: 'delesyia', speed: 85, combat: 35, stamina: 65, special: 'Enhanced agility; can perform sharp turns without speed loss', acquisition: 'Purchase from Delesyia Beast Handler' },
+  // Lizards (3)
+  { name: 'Rock Lizard', category: 'lizard', region: 'hernand', speed: 55, combat: 25, stamina: 80, special: 'Wall climbing; can scale vertical cliff faces and fortress walls', acquisition: 'Tame in the wild (Hernand canyon walls)' },
+  { name: 'Sand Skimmer', category: 'lizard', region: 'desert', speed: 70, combat: 20, stamina: 75, special: 'Glides across sand dunes; ignores quicksand and soft terrain', acquisition: 'Tame in the wild (Crimson Desert flats)' },
+  { name: 'Frost Salamander', category: 'lizard', region: 'pailune', speed: 50, combat: 30, stamina: 85, special: 'Traverses ice and frozen water without slipping; cold immunity', acquisition: 'Found in Frozen Soul Mountain caves' },
+  // Wyverns & Dragons (4)
+  { name: 'Highland Wyvern', category: 'wyvern', region: 'pailune', speed: 80, combat: 60, stamina: 50, special: 'Full flight control; dive-bomb attack on ground targets', acquisition: 'Complete the Dragon Ridge wyvern egg quest' },
+  { name: 'Storm Drake', category: 'wyvern', region: 'delesyia', speed: 85, combat: 70, stamina: 45, special: 'Lightning breath attack; chain-damages groups of enemies from the sky', acquisition: 'Tame atop the Tesla Ruins during a storm event' },
+  { name: 'Ember Wyvern', category: 'wyvern', region: 'desert', speed: 75, combat: 75, stamina: 40, special: 'Fire breathing from the sky; scorches terrain creating fire hazard zones', acquisition: 'Rare spawn in the Crimson Desert volcanic rifts' },
+  { name: 'Abyssal Dragon', category: 'wyvern', region: 'abyss', speed: 90, combat: 95, stamina: 60, special: 'Void breath that bypasses all resistances; full aerial combat', acquisition: 'End-game reward from the Abyss storyline' },
+  // Mechanical (3)
+  { name: 'Scout Automaton', category: 'mechanical', region: 'delesyia', speed: 65, combat: 40, stamina: 100, special: 'Infinite stamina; never tires. Built-in lantern for dark areas', acquisition: 'Craft at Delesyia Workshop (Blueprints required)' },
+  { name: 'Siege Walker', category: 'mechanical', region: 'delesyia', speed: 40, combat: 95, stamina: 90, special: 'Fires devastating missiles; massive AoE siege damage', acquisition: 'Rare blueprint drop from Delesyian Automaton boss' },
+  { name: 'Golden Star Mech', category: 'mechanical', region: 'delesyia', speed: 70, combat: 90, stamina: 80, special: 'Homing projectile barrage; energy shield absorbs 3 hits before cooldown', acquisition: 'Boss drop from Golden Star (Mech Mount Key)' },
+  // Dinosaurs (3)
+  { name: 'Steppe Ceratops', category: 'dinosaur', region: 'hernand', speed: 50, combat: 70, stamina: 90, special: 'Horn charge attack that sends enemies flying; high knockback', acquisition: 'Tame in the wild (Hernand steppe plains)' },
+  { name: 'Jungle Strider', category: 'dinosaur', region: 'hernand', speed: 60, combat: 45, stamina: 80, special: 'Tall mount; rider can see over obstacles and foliage. Kick attack', acquisition: 'Tame in the wild (Hernand jungle canopy)' },
+  { name: 'Armored Ankylo', category: 'dinosaur', region: 'desert', speed: 35, combat: 80, stamina: 95, special: 'Heavily armored; tail swipe knocks back all surrounding enemies', acquisition: 'Tame in the wild (Crimson Desert bone fields)' },
+  // Exotic (2)
+  { name: 'Abyssal Spider', category: 'exotic', region: 'abyss', speed: 60, combat: 55, stamina: 70, special: 'Wall climbing on any surface; leaves web trail that slows enemies', acquisition: 'Tame in the Abyss depths (requires Beast Taming skill)' },
+  { name: 'Phantom Steed', category: 'exotic', region: 'multiple', speed: 95, combat: 10, stamina: 50, special: 'Ghostly mount that phases through obstacles and enemies; cannot attack', acquisition: "Legendary reward from the Ghost of Gian side quest" },
 ];
 
 // Skill branches grouped by character

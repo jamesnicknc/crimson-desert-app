@@ -19,8 +19,11 @@ import {
   BookOpen,
   Users2,
   Wrench,
+  Share2,
+  Coffee,
   LogIn,
   LogOut,
+  Footprints,
 } from 'lucide-react';
 import { useUser } from '@/hooks/use-user';
 import { createClient } from '@/lib/supabase/client';
@@ -31,6 +34,7 @@ interface NavSection {
     label: string;
     href: string;
     icon: React.ReactNode;
+    comingSoon?: boolean;
   }[];
 }
 
@@ -44,8 +48,9 @@ const navSections: NavSection[] = [
   {
     label: 'World',
     items: [
-      { label: 'World Map', href: '/map', icon: <Globe className="w-5 h-5" /> },
+      { label: 'World Map', href: '/map', icon: <Globe className="w-5 h-5" />, comingSoon: true },
       { label: 'Characters', href: '/characters', icon: <Users className="w-5 h-5" /> },
+      { label: 'Mounts', href: '/mounts', icon: <Footprints className="w-5 h-5" /> },
     ],
   },
   {
@@ -67,15 +72,16 @@ const navSections: NavSection[] = [
     label: 'Resources',
     items: [
       { label: 'Crafting', href: '/crafting', icon: <Hammer className="w-5 h-5" /> },
-      { label: 'Inventory', href: '/inventory', icon: <Package className="w-5 h-5" /> },
+      { label: 'Inventory', href: '/inventory', icon: <Package className="w-5 h-5" />, comingSoon: true },
       { label: 'Notes', href: '/notes', icon: <BookOpen className="w-5 h-5" /> },
     ],
   },
   {
     label: 'Social',
     items: [
-      { label: 'Group', href: '/group', icon: <Users2 className="w-5 h-5" /> },
+      { label: 'Group', href: '/group', icon: <Users2 className="w-5 h-5" />, comingSoon: true },
       { label: 'Build Planner', href: '/planner', icon: <Wrench className="w-5 h-5" /> },
+      { label: 'Shared Builds', href: '/builds', icon: <Share2 className="w-5 h-5" /> },
     ],
   },
 ];
@@ -139,7 +145,7 @@ export default function Sidebar() {
         <nav className="flex-1 px-4 py-6">
           {navSections.map((section) => (
             <div key={section.label} className="mb-8">
-              <h3 className="text-xs font-cinzel text-gold-400 uppercase tracking-wider mb-3 px-2">
+              <h3 className="text-sm font-cinzel font-semibold text-gold-300 uppercase tracking-wider mb-3 px-2">
                 {section.label}
               </h3>
               <ul className="space-y-1">
@@ -157,6 +163,11 @@ export default function Sidebar() {
                         >
                           <span className="flex-shrink-0">{item.icon}</span>
                           <span className="text-sm font-medium">{item.label}</span>
+                          {item.comingSoon && (
+                            <span className="ml-auto text-[10px] font-semibold text-gold-400/70 bg-gold-400/10 px-1.5 py-0.5 rounded">
+                              Soon
+                            </span>
+                          )}
                         </div>
                       </Link>
                     </li>
@@ -167,8 +178,21 @@ export default function Sidebar() {
           ))}
         </nav>
 
+        {/* Support section */}
+        <div className="border-t border-pywel-border p-4 pb-2">
+          <a
+            href="https://buymeacoffee.com/crimsoncompanion"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-cinzel font-semibold rounded-lg transition-all duration-200 bg-gradient-to-r from-amber-700/20 to-amber-900/20 hover:from-amber-700/30 hover:to-amber-900/30 border border-amber-600/30 hover:border-amber-500/50 text-amber-300 hover:text-amber-200"
+          >
+            <Coffee className="w-4 h-4" />
+            Buy Me a Coffee
+          </a>
+        </div>
+
         {/* Footer section */}
-        <div className="border-t border-pywel-border p-4">
+        <div className="border-t border-pywel-border/50 p-4">
           {userLoading ? (
             <div className="h-16 flex items-center justify-center text-gray-500 text-sm">Loading...</div>
           ) : user ? (

@@ -16,7 +16,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Main content area */}
       <main className="flex-1 md:ml-60">
         {/* Hero banner */}
-        <div className="bg-gradient-to-r from-crimson-900 via-crimson-900/40 to-black border-b border-pywel-border">
+        <div className="border-b border-pywel-border" style={{ background: 'linear-gradient(to right, #1A0305 0%, #1A0305 20%, #180305 28%, #160204 35%, #140204 42%, #120203 50%, #100103 58%, #0E0102 65%, #0C0102 72%, #0A0101 80%, #090101 88%, #080101 94%, #070101 100%)' }}>
           <div className="pl-16 md:pl-8 pr-6 md:pr-8 py-8 md:py-12 flex items-center justify-between">
             <div>
               <h1 className="font-cinzel text-3xl md:text-4xl font-bold text-gold-300">

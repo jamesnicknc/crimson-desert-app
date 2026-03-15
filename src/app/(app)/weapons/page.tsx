@@ -133,6 +133,14 @@ export default function WeaponsPage() {
                     <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Range</label>
                     {renderStatBar(weapon.rng)}
                   </div>
+                  {weapon.signatureAbility && (
+                    <div className="pt-2 mt-2 border-t border-pywel-border">
+                      <label className="text-xs font-semibold text-purple-400 uppercase tracking-wider">Signature Ability</label>
+                      <p className="text-sm font-cinzel font-semibold text-purple-300 mt-1">{weapon.signatureAbility.name}</p>
+                      <p className="text-xs text-gray-400 mt-0.5">{weapon.signatureAbility.description}</p>
+                      <p className="text-[10px] text-gray-500 mt-1">Source: {weapon.signatureAbility.source} (Boss Drop)</p>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

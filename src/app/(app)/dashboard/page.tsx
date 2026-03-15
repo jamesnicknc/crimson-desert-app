@@ -12,6 +12,7 @@ import {
   Scroll,
   Hammer,
   BookOpen,
+  Footprints,
 } from 'lucide-react';
 
 interface CountdownState {
@@ -55,6 +56,7 @@ export default function DashboardPage() {
     { label: 'World Size', value: '256 km²', icon: Globe },
     { label: 'Regions', value: '5', icon: Compass },
     { label: 'Bosses', value: '50+', icon: Skull },
+    { label: 'Mounts', value: '29', icon: Footprints },
     { label: 'Characters', value: '3', icon: Users },
     { label: 'Completion', value: '0%', icon: TrendingUp },
   ];
@@ -152,7 +154,7 @@ export default function DashboardPage() {
         <h2 className="font-cinzel text-2xl font-bold text-gold-300 mb-6">
           World Statistics
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {stats.map((stat) => {
             const IconComponent = stat.icon;
             return (
