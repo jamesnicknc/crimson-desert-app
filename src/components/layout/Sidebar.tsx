@@ -73,7 +73,8 @@ const navSections: NavSection[] = [
   {
     label: 'Combat',
     items: [
-      { label: 'Bestiary', href: '/bestiary', icon: <Skull className="w-5 h-5" /> },
+      { label: 'Bosses', href: '/bosses', icon: <Skull className="w-5 h-5" /> },
+      { label: 'Bestiary', href: '/bestiary', icon: <BookOpen className="w-5 h-5" /> },
       { label: 'Weapons', href: '/weapons', icon: <Sword className="w-5 h-5" /> },
     ],
   },

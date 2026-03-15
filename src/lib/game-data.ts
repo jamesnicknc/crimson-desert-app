@@ -1,6 +1,6 @@
 import type {
   Skill, Collectible, Boss, Quest, Weapon, Recipe, RegionInfo,
-  Character, CollectibleCategory, Mount, Activity, CampFacility,
+  Character, CollectibleCategory, Mount, Activity, CampFacility, Enemy,
 } from '@/types/game-data';
 
 // ═══════════════════════════════════════
@@ -185,7 +185,7 @@ export const COLLECTIBLES: Record<CollectibleCategory, Collectible[]> = {
   ],
   edition: [
     { name: 'Kairos Plate Set', location: 'Deluxe Edition Bonus', category: 'edition' },
-    { name: 'Balgran Shield', location: 'Deluxe Edition Bonus', category: 'edition' },
+    { name: 'Balgran Shield (Deluxe Edition)', location: 'Deluxe Edition Bonus', category: 'edition' },
     { name: 'Exclaire Horse Tack Set', location: 'Deluxe Edition Bonus', category: 'edition' },
     { name: 'Tormented Soul Bow', location: 'Collector\'s Edition Bonus', category: 'edition' },
     { name: 'Derictus Spear', location: 'Collector\'s Edition Bonus', category: 'edition' },
@@ -206,7 +206,7 @@ export const BOSSES: Boss[] = [
   { name: 'Delesyian Automaton', region: 'delesyia', type: 'Mechanical', difficulty: 'normal', reward: 'Speed Catalyst Gear', element: 'shock', weakness: 'physical' },
   { name: 'Kearush the Slayer', region: 'hernand', type: 'Monster', difficulty: 'hard', reward: 'Slayer Claw Materials', element: 'physical', weakness: 'fire' },
   { name: 'Reed Devil', region: 'pailune', type: 'Humanoid', difficulty: 'extreme', reward: "Dragon's Tear", element: 'physical', weakness: 'shock' },
-  { name: 'Matthias', region: 'demeniss', type: 'Human', difficulty: 'hard', reward: 'Radiant Knight Armor', element: 'physical', weakness: 'shock' },
+  { name: 'Matthias', region: 'hernand', type: 'Human', difficulty: 'hard', reward: 'Radiant Knight Armor', element: 'physical', weakness: 'shock' }, // Updated 2026-03-15: region corrected from 'demeniss' to 'hernand' -- confirmed by Fextralife Wiki and Game8
   { name: 'Crimson Scorpion King', region: 'desert', type: 'Beast', difficulty: 'hard', reward: 'Venom Materials', element: 'fire', weakness: 'frost' },
   { name: 'Golden Star', region: 'delesyia', type: 'Mechanical', difficulty: 'legendary', reward: 'Mech Mount Key', element: 'shock', weakness: 'physical' },
   { name: 'Hexe Marie', region: 'abyss', type: 'Magical', difficulty: 'legendary', reward: 'Deep Abyss Core', element: 'abyss' },
@@ -214,6 +214,17 @@ export const BOSSES: Boss[] = [
   { name: 'Desert Hydra', region: 'desert', type: 'Beast', difficulty: 'extreme', reward: 'Hydra Scale Armor', element: 'fire', weakness: 'frost' },
   { name: 'Snow Walker', region: 'pailune', type: 'Elemental', difficulty: 'extreme', reward: 'Permafrost Crystal', element: 'frost', weakness: 'fire' },
   { name: "The Unifier's Shade", region: 'demeniss', type: 'Spirit', difficulty: 'legendary', reward: 'Crown of Pywel', element: 'abyss', weakness: 'shock' },
+];
+
+// ═══════════════════════════════════════
+// ENEMIES / BESTIARY
+// (401 creatures confirmed in Knowledge Codex -- populated post-launch)
+// ═══════════════════════════════════════
+
+export const ENEMIES: Enemy[] = [
+  // Entries will be populated post-launch once the full Knowledge Codex
+  // creature list is available. The Knowledge Codex confirms 401 creatures
+  // total across all regions of Pywel.
 ];
 
 export const QUESTS: Quest[] = [
