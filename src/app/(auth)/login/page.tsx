@@ -1,19 +1,79 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { createClient } from '@/lib/supabase/client';
 
 export default function LoginPage() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
 
-  const handleOAuthSignIn = async (provider: 'google' | 'discord') => {
+  const handleOAuthSignIn = async (provider: 'discord') => {
     setIsLoading(true);
+    setErrorMsg('');
     try {
-      // This will be integrated with Supabase auth
-      // For now, we'll just redirect to simulate OAuth flow
-      window.location.href = `/api/auth/signin/${provider}`;
+      const supabase = createClient();
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+          redirectTo: `${window.location.origin}/callback`,
+        },
+      });
+      if (error) {
+        console.error('Auth error:', error);
+        setErrorMsg(error.message);
+        setIsLoading(false);
+      }
     } catch (error) {
       console.error('Auth error:', error);
+      setErrorMsg('An unexpected error occurred');
+      setIsLoading(false);
+    }
+  };
+
+  const handleEmailAuth = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setErrorMsg('');
+    setSuccessMsg('');
+
+    try {
+      const supabase = createClient();
+
+      if (isSignUp) {
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            emailRedirectTo: `${window.location.origin}/callback`,
+          },
+        });
+        if (error) {
+          setErrorMsg(error.message);
+        } else {
+          setSuccessMsg('Check your email for a confirmation link!');
+        }
+      } else {
+        const { error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+        if (error) {
+          setErrorMsg(error.message);
+        } else {
+          router.push('/dashboard');
+        }
+      }
+    } catch (error) {
+      console.error('Auth error:', error);
+      setErrorMsg('An unexpected error occurred');
+    } finally {
       setIsLoading(false);
     }
   };
@@ -22,7 +82,7 @@ export default function LoginPage() {
     <main className="min-h-screen bg-pywel-bg text-gray-100 flex items-center justify-center px-4">
       {/* Animated background */}
       <div className="fixed inset-0 opacity-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-crimson-900 via-black to-crimson-900" />
+        <div className="absolute inset-0 bg-gradient-to-br from-pywel-secondary via-black to-pywel-secondary" />
       </div>
 
       {/* Login card */}
@@ -33,7 +93,7 @@ export default function LoginPage() {
             <h1 className="font-cinzel text-5xl font-bold mb-2 cursor-pointer hover:text-gold-300 transition-colors">
               <span className="text-gold-300">CRIMSON</span>
               <br />
-              <span className="text-crimson-500">DESERT</span>
+              <span className="text-gold-400">DESERT</span>
             </h1>
           </Link>
           <p className="font-crimson text-lg text-gold-400 italic">
@@ -55,21 +115,6 @@ export default function LoginPage() {
           {/* OAuth buttons */}
           <div className="space-y-3">
             <button
-              onClick={() => handleOAuthSignIn('google')}
-              disabled={isLoading}
-              className="w-full px-4 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 flex items-center justify-center gap-3"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M23.001 11.639h-.069V11.5h-10.28v2.333h5.896c-.469 2.459-2.734 4.194-5.494 4.194-3.126 0-5.667-2.541-5.667-5.667 0-3.126 2.541-5.667 5.667-5.667 1.328 0 2.632.451 3.674 1.263l1.85-1.793C16.102 3.75 14.226 2.5 12 2.5c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75c5.245 0 9.639-4.199 9.75-9.513v-.097z" />
-              </svg>
-              {isLoading ? 'Signing in...' : 'Continue with Google'}
-            </button>
-
-            <button
               onClick={() => handleOAuthSignIn('discord')}
               disabled={isLoading}
               className="w-full px-4 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 flex items-center justify-center gap-3"
@@ -84,6 +129,77 @@ export default function LoginPage() {
               {isLoading ? 'Signing in...' : 'Continue with Discord'}
             </button>
           </div>
+
+          {/* Divider */}
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-pywel-border" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-pywel-card text-gray-500">
+                or sign in with email
+              </span>
+            </div>
+          </div>
+
+          {/* Email/Password form */}
+          <form onSubmit={handleEmailAuth} className="space-y-4">
+            <div>
+              <input
+                type="email"
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full px-4 py-3 bg-pywel-bg border border-pywel-border rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-400 transition-colors"
+              />
+            </div>
+            <div>
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                minLength={6}
+                className="w-full px-4 py-3 bg-pywel-bg border border-pywel-border rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-400 transition-colors"
+              />
+            </div>
+
+            {errorMsg && (
+              <p className="text-red-400 text-sm text-center">{errorMsg}</p>
+            )}
+            {successMsg && (
+              <p className="text-green-400 text-sm text-center">{successMsg}</p>
+            )}
+
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full px-4 py-3 bg-gold-600 hover:bg-gold-500 text-black font-semibold rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+            >
+              {isLoading
+                ? 'Please wait...'
+                : isSignUp
+                  ? 'Create Account'
+                  : 'Sign In'}
+            </button>
+
+            <p className="text-center text-sm text-gray-400">
+              {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
+              <button
+                type="button"
+                onClick={() => {
+                  setIsSignUp(!isSignUp);
+                  setErrorMsg('');
+                  setSuccessMsg('');
+                }}
+                className="text-gold-300 hover:text-gold-200 font-medium transition-colors"
+              >
+                {isSignUp ? 'Sign in' : 'Sign up'}
+              </button>
+            </p>
+          </form>
 
           {/* Divider */}
           <div className="relative">
