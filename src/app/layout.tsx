@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Cinzel, Crimson_Text, Inter } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import '@/styles/globals.css';
 
 const cinzel = Cinzel({
@@ -46,6 +47,7 @@ export default function RootLayout({
     <html lang="en" className={`dark ${cinzel.variable} ${crimsonText.variable} ${inter.variable}`}>
       <body className="bg-pywel-bg text-gray-100 font-sans">
         {children}
+        <Analytics />
       </body>
     </html>
   );
