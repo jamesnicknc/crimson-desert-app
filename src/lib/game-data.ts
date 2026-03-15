@@ -1,6 +1,6 @@
 import type {
   Skill, Collectible, Boss, Quest, Weapon, Recipe, RegionInfo,
-  Character, CollectibleCategory,
+  Character, CollectibleCategory, Mount, Activity, CampFacility,
 } from '@/types/game-data';
 
 // ═══════════════════════════════════════
@@ -14,9 +14,9 @@ export const REGIONS: RegionInfo[] = [
     color: '#5BAA5B', features: ['Cities', 'Forests', 'Noble Houses', 'Meadows'],
   },
   {
-    id: 'pailune', name: 'Pailune', subtitle: 'Frozen North / Greymane Homeland',
-    description: 'Harsh snowy terrain and treacherous mountains. The ancestral home of the Greymanes, once unified under the great leader Gian.',
-    color: '#5B8FA8', features: ['Mountains', 'Snow', 'Greymane HQ', 'Wildlife'],
+    id: 'pailune', name: 'Pailune', subtitle: 'Northern Highlands / Greymane Homeland',
+    description: 'Green highlands and rugged terrain give way to snowy mountain peaks. Open grasslands where wild horses roam lead to treacherous frozen passes. The ancestral home of the Greymanes, once unified under the great leader Gian.',
+    color: '#5B8FA8', features: ['Highlands', 'Mountains', 'Grasslands', 'Greymane HQ', 'Wildlife'],
   },
   {
     id: 'demeniss', name: 'Demeniss', subtitle: 'Capital / Seat of Power',
@@ -41,77 +41,74 @@ export const REGIONS: RegionInfo[] = [
 
 export const SKILLS: Skill[] = [
   // Kliff - Sword Mastery
-  { id: 'k-s1', name: 'Quick Slash Combo', cost: '1 Artifact', branch: 'Sword Mastery', character: 'kliff' },
-  { id: 'k-s2', name: 'Shield Counter', cost: '1 Artifact', branch: 'Sword Mastery', character: 'kliff' },
-  { id: 'k-s3', name: 'Whirlwind Strike', cost: '2 Artifacts', branch: 'Sword Mastery', character: 'kliff' },
-  { id: 'k-s4', name: 'Perfect Parry', cost: '2 Artifacts', branch: 'Sword Mastery', character: 'kliff' },
-  { id: 'k-s5', name: 'Blade Storm Finisher', cost: '3 Artifacts', branch: 'Sword Mastery', character: 'kliff' },
+  { id: 'k-s1', name: 'Quick Slash Combo', cost: '1 Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'A rapid three-hit sword combo. Fast and reliable for building momentum.' },
+  { id: 'k-s2', name: 'Shield Counter', cost: '1 Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'Block an incoming attack and immediately counter with a powerful shield bash.' },
+  { id: 'k-s3', name: 'Whirlwind Strike', cost: '2 Artifacts', branch: 'Sword Mastery', character: 'kliff', description: 'Spin with your sword, hitting all enemies in a 360-degree arc around you.' },
+  { id: 'k-s4', name: 'Perfect Parry', cost: '2 Artifacts', branch: 'Sword Mastery', character: 'kliff', description: 'Time your block perfectly to stagger the enemy and open them to a critical follow-up.' },
+  { id: 'k-s5', name: 'Blade Storm Finisher', cost: '3 Artifacts', branch: 'Sword Mastery', character: 'kliff', description: 'Unleash a devastating flurry of slashes, dealing massive damage to a single target.' },
   // Kliff - Unarmed
-  { id: 'k-u1', name: 'Wrestling Grapple', cost: '1 Artifact', branch: 'Unarmed Combat', character: 'kliff' },
-  { id: 'k-u2', name: 'Body Slam', cost: '1 Artifact', branch: 'Unarmed Combat', character: 'kliff' },
-  { id: 'k-u3', name: 'Belly Slam (Observed)', cost: 'Observe', branch: 'Unarmed Combat', character: 'kliff' },
-  { id: 'k-u4', name: 'Pile-Driver Finisher', cost: '2 Artifacts', branch: 'Unarmed Combat', character: 'kliff' },
-  { id: 'k-u5', name: 'Throw Combo Chain', cost: '2 Artifacts', branch: 'Unarmed Combat', character: 'kliff' },
+  { id: 'k-u1', name: 'Wrestling Grapple', cost: '1 Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'Grab an enemy and throw them to the ground, temporarily stunning them.' },
+  { id: 'k-u2', name: 'Body Slam', cost: '1 Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'Launch yourself at an enemy with a full-body tackle, dealing heavy impact damage.' },
+  { id: 'k-u3', name: 'Belly Slam (Observed)', cost: 'Observe', branch: 'Unarmed Combat', character: 'kliff', description: 'A technique learned by observing a sumo wrestler. Devastating belly-first slam.' },
+  { id: 'k-u4', name: 'Pile-Driver Finisher', cost: '2 Artifacts', branch: 'Unarmed Combat', character: 'kliff', description: 'Lift an enemy overhead and drive them headfirst into the ground.' },
+  { id: 'k-u5', name: 'Throw Combo Chain', cost: '2 Artifacts', branch: 'Unarmed Combat', character: 'kliff', description: 'Chain multiple grapple throws together, tossing enemies into each other.' },
   // Kliff - Ranged
-  { id: 'k-r1', name: 'Aimed Shot', cost: '1 Artifact', branch: 'Ranged & Bow', character: 'kliff' },
-  { id: 'k-r2', name: 'Rain of Arrows', cost: '2 Artifacts', branch: 'Ranged & Bow', character: 'kliff' },
-  { id: 'k-r3', name: 'Explosive Arrow', cost: '2 Artifacts', branch: 'Ranged & Bow', character: 'kliff' },
-  { id: 'k-r4', name: 'Quickdraw Volley', cost: '3 Artifacts', branch: 'Ranged & Bow', character: 'kliff' },
+  { id: 'k-r1', name: 'Aimed Shot', cost: '1 Artifact', branch: 'Ranged & Bow', character: 'kliff', description: 'Hold to carefully aim your bow for increased damage and accuracy.' },
+  { id: 'k-r2', name: 'Rain of Arrows', cost: '2 Artifacts', branch: 'Ranged & Bow', character: 'kliff', description: 'Fire a volley of arrows into the sky that rain down on a target area.' },
+  { id: 'k-r3', name: 'Explosive Arrow', cost: '2 Artifacts', branch: 'Ranged & Bow', character: 'kliff', description: 'Fire an arrow rigged with blackpowder that explodes on impact.' },
+  { id: 'k-r4', name: 'Quickdraw Volley', cost: '3 Artifacts', branch: 'Ranged & Bow', character: 'kliff', description: 'Rapidly fire three arrows in quick succession at the cost of reduced accuracy.' },
   // Kliff - Abyss Magic
-  { id: 'k-m1', name: 'Flame Imbue', cost: '1 Artifact', branch: 'Abyss Magic', character: 'kliff' },
-  { id: 'k-m2', name: 'Frost Imbue', cost: '1 Artifact', branch: 'Abyss Magic', character: 'kliff' },
-  { id: 'k-m3', name: 'Gravity Shift', cost: '2 Artifacts', branch: 'Abyss Magic', character: 'kliff' },
-  { id: 'k-m4', name: 'Weightless Lift', cost: '2 Artifacts', branch: 'Abyss Magic', character: 'kliff' },
-  { id: 'k-m5', name: 'Stun Burst', cost: '3 Artifacts', branch: 'Abyss Magic', character: 'kliff' },
+  { id: 'k-m1', name: 'Flame Imbue', cost: '1 Artifact', branch: 'Abyss Magic', character: 'kliff', description: 'Enchant your weapon with fire, adding burn damage to attacks for 30 seconds.' },
+  { id: 'k-m2', name: 'Frost Imbue', cost: '1 Artifact', branch: 'Abyss Magic', character: 'kliff', description: 'Enchant your weapon with ice, slowing enemies hit for 30 seconds.' },
+  { id: 'k-m3', name: 'Gravity Shift', cost: '2 Artifacts', branch: 'Abyss Magic', character: 'kliff', description: 'Manipulate gravity in a small area, pulling enemies together.' },
+  { id: 'k-m4', name: 'Weightless Lift', cost: '2 Artifacts', branch: 'Abyss Magic', character: 'kliff', description: 'Launch yourself into the air using gravity magic for aerial combos.' },
+  { id: 'k-m5', name: 'Stun Burst', cost: '3 Artifacts', branch: 'Abyss Magic', character: 'kliff', description: 'Release a pulse of Abyss energy that stuns all nearby enemies briefly.' },
   // Kliff - Vitality
-  { id: 'k-v1', name: 'Health Boost I', cost: '1 Artifact', branch: 'Vitality', character: 'kliff' },
-  { id: 'k-v2', name: 'Health Boost II', cost: '2 Artifacts', branch: 'Vitality', character: 'kliff' },
-  { id: 'k-v3', name: 'Stamina Boost I', cost: '1 Artifact', branch: 'Vitality', character: 'kliff' },
-  { id: 'k-v4', name: 'Stamina Boost II', cost: '2 Artifacts', branch: 'Vitality', character: 'kliff' },
-  // Kliff - Observation
-  { id: 'k-o1', name: 'NPC Fishing Technique', cost: 'Observe', branch: 'Observation', character: 'kliff' },
-  { id: 'k-o2', name: 'Enemy Charge Attack', cost: 'Observe', branch: 'Observation', character: 'kliff' },
-  { id: 'k-o3', name: 'Beast Taming Skill', cost: 'Observe', branch: 'Observation', character: 'kliff' },
-  { id: 'k-o4', name: 'Abyss Glider Mastery', cost: 'Observe', branch: 'Observation', character: 'kliff' },
+  { id: 'k-v1', name: 'Health Boost I', cost: '1 Artifact', branch: 'Vitality', character: 'kliff', description: 'Permanently increase maximum health by 10%.' },
+  { id: 'k-v2', name: 'Health Boost II', cost: '2 Artifacts', branch: 'Vitality', character: 'kliff', description: 'Permanently increase maximum health by an additional 15%.' },
+  { id: 'k-v3', name: 'Stamina Boost I', cost: '1 Artifact', branch: 'Vitality', character: 'kliff', description: 'Permanently increase maximum stamina by 10%.' },
+  { id: 'k-v4', name: 'Stamina Boost II', cost: '2 Artifacts', branch: 'Vitality', character: 'kliff', description: 'Permanently increase maximum stamina by an additional 15%.' },
+  // Kliff - Observed Skills (integrated into existing branches)
+  { id: 'k-o1', name: 'Force Palm (Observed)', cost: 'Observe', branch: 'Unarmed Combat', character: 'kliff', description: 'Learned by observing a holographic projection. A devastating open-palm strike that sends enemies flying.' },
   // Damiane - Blade Arts
-  { id: 'd-b1', name: 'Rapier Lunge', cost: '1 Artifact', branch: 'Blade Arts', character: 'damiane' },
-  { id: 'd-b2', name: 'Claymore Sweep', cost: '1 Artifact', branch: 'Blade Arts', character: 'damiane' },
-  { id: 'd-b3', name: 'Riposte Counter', cost: '2 Artifacts', branch: 'Blade Arts', character: 'damiane' },
-  { id: 'd-b4', name: 'Shadow Step Slash', cost: '2 Artifacts', branch: 'Blade Arts', character: 'damiane' },
-  { id: 'd-b5', name: 'Death Blossom', cost: '3 Artifacts', branch: 'Blade Arts', character: 'damiane' },
+  { id: 'd-b1', name: 'Rapier Lunge', cost: '1 Artifact', branch: 'Blade Arts', character: 'damiane', description: 'A swift forward thrust with the rapier, closing distance instantly.' },
+  { id: 'd-b2', name: 'Claymore Sweep', cost: '1 Artifact', branch: 'Blade Arts', character: 'damiane', description: 'A wide horizontal sweep with the claymore, hitting multiple enemies.' },
+  { id: 'd-b3', name: 'Riposte Counter', cost: '2 Artifacts', branch: 'Blade Arts', character: 'damiane', description: 'Deflect an attack and immediately counter with a precise rapier strike.' },
+  { id: 'd-b4', name: 'Shadow Step Slash', cost: '2 Artifacts', branch: 'Blade Arts', character: 'damiane', description: 'Dash through shadows to appear behind an enemy, striking their back.' },
+  { id: 'd-b5', name: 'Death Blossom', cost: '3 Artifacts', branch: 'Blade Arts', character: 'damiane', description: 'Spin with dual blades in a deadly dance, hitting everything in range.' },
   // Damiane - Gunplay
-  { id: 'd-g1', name: 'Pistol Quick Draw', cost: '1 Artifact', branch: 'Gunplay', character: 'damiane' },
-  { id: 'd-g2', name: 'Musket Precision', cost: '1 Artifact', branch: 'Gunplay', character: 'damiane' },
-  { id: 'd-g3', name: 'Explosive Round', cost: '2 Artifacts', branch: 'Gunplay', character: 'damiane' },
-  { id: 'd-g4', name: 'Fan the Hammer', cost: '3 Artifacts', branch: 'Gunplay', character: 'damiane' },
+  { id: 'd-g1', name: 'Pistol Quick Draw', cost: '1 Artifact', branch: 'Gunplay', character: 'damiane', description: 'Draw and fire your pistol in a single fluid motion. Fast but moderate damage.' },
+  { id: 'd-g2', name: 'Musket Precision', cost: '1 Artifact', branch: 'Gunplay', character: 'damiane', description: 'Steady your musket for a high-damage precision shot. Slow but devastating.' },
+  { id: 'd-g3', name: 'Explosive Round', cost: '2 Artifacts', branch: 'Gunplay', character: 'damiane', description: 'Load a special round that explodes on impact, dealing area damage.' },
+  { id: 'd-g4', name: 'Fan the Hammer', cost: '3 Artifacts', branch: 'Gunplay', character: 'damiane', description: 'Rapidly fan the pistol hammer, emptying the cylinder in seconds.' },
   // Damiane - Evasion
-  { id: 'd-e1', name: 'Dodge Roll', cost: '1 Artifact', branch: 'Evasion', character: 'damiane' },
-  { id: 'd-e2', name: 'Phase Dash', cost: '2 Artifacts', branch: 'Evasion', character: 'damiane' },
-  { id: 'd-e3', name: 'Smoke Bomb', cost: '2 Artifacts', branch: 'Evasion', character: 'damiane' },
-  { id: 'd-e4', name: 'Vanishing Strike', cost: '3 Artifacts', branch: 'Evasion', character: 'damiane' },
+  { id: 'd-e1', name: 'Dodge Roll', cost: '1 Artifact', branch: 'Evasion', character: 'damiane', description: 'A quick evasive roll with invincibility frames. Essential for survival.' },
+  { id: 'd-e2', name: 'Phase Dash', cost: '2 Artifacts', branch: 'Evasion', character: 'damiane', description: 'Dash forward while becoming intangible, passing through enemies and attacks.' },
+  { id: 'd-e3', name: 'Smoke Bomb', cost: '2 Artifacts', branch: 'Evasion', character: 'damiane', description: 'Deploy a smoke cloud that blinds enemies and grants temporary invisibility.' },
+  { id: 'd-e4', name: 'Vanishing Strike', cost: '3 Artifacts', branch: 'Evasion', character: 'damiane', description: 'Disappear completely and reappear with a devastating backstab.' },
   // Damiane - Abyss Spells
-  { id: 'd-m1', name: 'Arcane Bolt', cost: '1 Artifact', branch: 'Abyss Spells', character: 'damiane' },
-  { id: 'd-m2', name: 'Shield Ward', cost: '2 Artifacts', branch: 'Abyss Spells', character: 'damiane' },
-  { id: 'd-m3', name: 'Chain Lightning', cost: '3 Artifacts', branch: 'Abyss Spells', character: 'damiane' },
+  { id: 'd-m1', name: 'Arcane Bolt', cost: '1 Artifact', branch: 'Abyss Spells', character: 'damiane', description: 'Fire a concentrated bolt of Abyss energy at a single target.' },
+  { id: 'd-m2', name: 'Shield Ward', cost: '2 Artifacts', branch: 'Abyss Spells', character: 'damiane', description: 'Conjure a magical barrier that absorbs a set amount of incoming damage.' },
+  { id: 'd-m3', name: 'Chain Lightning', cost: '3 Artifacts', branch: 'Abyss Spells', character: 'damiane', description: 'Launch a bolt of lightning that chains between up to 4 nearby enemies.' },
   // Oongka - Axe Fury
-  { id: 'o-a1', name: 'Cleave', cost: '1 Artifact', branch: 'Axe Fury', character: 'oongka' },
-  { id: 'o-a2', name: 'Spinning Axe', cost: '1 Artifact', branch: 'Axe Fury', character: 'oongka' },
-  { id: 'o-a3', name: 'Ground Shatter', cost: '2 Artifacts', branch: 'Axe Fury', character: 'oongka' },
-  { id: 'o-a4', name: 'Berserker Rage', cost: '2 Artifacts', branch: 'Axe Fury', character: 'oongka' },
-  { id: 'o-a5', name: 'Earthquake Slam', cost: '3 Artifacts', branch: 'Axe Fury', character: 'oongka' },
+  { id: 'o-a1', name: 'Cleave', cost: '1 Artifact', branch: 'Axe Fury', character: 'oongka', description: 'A powerful downward chop that splits enemy defenses.' },
+  { id: 'o-a2', name: 'Spinning Axe', cost: '1 Artifact', branch: 'Axe Fury', character: 'oongka', description: 'Whirl your greataxe in a circle, hitting all enemies around you.' },
+  { id: 'o-a3', name: 'Ground Shatter', cost: '2 Artifacts', branch: 'Axe Fury', character: 'oongka', description: 'Slam your axe into the ground, creating a shockwave that staggers enemies.' },
+  { id: 'o-a4', name: 'Berserker Rage', cost: '2 Artifacts', branch: 'Axe Fury', character: 'oongka', description: 'Enter a frenzy that increases attack speed and damage but reduces defense.' },
+  { id: 'o-a5', name: 'Earthquake Slam', cost: '3 Artifacts', branch: 'Axe Fury', character: 'oongka', description: 'Leap into the air and slam down with earth-shattering force.' },
   // Oongka - Wrist Cannon
-  { id: 'o-c1', name: 'Cannon Blast', cost: '1 Artifact', branch: 'Wrist Cannon', character: 'oongka' },
-  { id: 'o-c2', name: 'Scatter Shot', cost: '2 Artifacts', branch: 'Wrist Cannon', character: 'oongka' },
-  { id: 'o-c3', name: 'Explosive Barrage', cost: '3 Artifacts', branch: 'Wrist Cannon', character: 'oongka' },
+  { id: 'o-c1', name: 'Cannon Blast', cost: '1 Artifact', branch: 'Wrist Cannon', character: 'oongka', description: 'Fire a heavy cannonball that deals explosive damage at medium range.' },
+  { id: 'o-c2', name: 'Scatter Shot', cost: '2 Artifacts', branch: 'Wrist Cannon', character: 'oongka', description: 'Fire a spread of shrapnel, hitting multiple enemies in a cone.' },
+  { id: 'o-c3', name: 'Explosive Barrage', cost: '3 Artifacts', branch: 'Wrist Cannon', character: 'oongka', description: 'Rapidly fire three explosive rounds in succession.' },
   // Oongka - Fortitude
-  { id: 'o-f1', name: 'Iron Skin', cost: '1 Artifact', branch: 'Fortitude', character: 'oongka' },
-  { id: 'o-f2', name: 'War Cry', cost: '1 Artifact', branch: 'Fortitude', character: 'oongka' },
-  { id: 'o-f3', name: 'Regeneration', cost: '2 Artifacts', branch: 'Fortitude', character: 'oongka' },
-  { id: 'o-f4', name: 'Unstoppable Force', cost: '3 Artifacts', branch: 'Fortitude', character: 'oongka' },
+  { id: 'o-f1', name: 'Iron Skin', cost: '1 Artifact', branch: 'Fortitude', character: 'oongka', description: 'Harden your body, reducing all incoming damage by 25% for 15 seconds.' },
+  { id: 'o-f2', name: 'War Cry', cost: '1 Artifact', branch: 'Fortitude', character: 'oongka', description: 'Let out a battle cry that boosts nearby allies\' attack by 10% for 20 seconds.' },
+  { id: 'o-f3', name: 'Regeneration', cost: '2 Artifacts', branch: 'Fortitude', character: 'oongka', description: 'Slowly regenerate health over time for 30 seconds.' },
+  { id: 'o-f4', name: 'Unstoppable Force', cost: '3 Artifacts', branch: 'Fortitude', character: 'oongka', description: 'Become immune to stagger and knockback for 10 seconds.' },
   // Oongka - Vitality
-  { id: 'o-v1', name: 'Health Boost I', cost: '1 Artifact', branch: 'Vitality', character: 'oongka' },
-  { id: 'o-v2', name: 'Health Boost II', cost: '2 Artifacts', branch: 'Vitality', character: 'oongka' },
-  { id: 'o-v3', name: 'Stamina Boost I', cost: '1 Artifact', branch: 'Vitality', character: 'oongka' },
+  { id: 'o-v1', name: 'Health Boost I', cost: '1 Artifact', branch: 'Vitality', character: 'oongka', description: 'Permanently increase maximum health by 10%.' },
+  { id: 'o-v2', name: 'Health Boost II', cost: '2 Artifacts', branch: 'Vitality', character: 'oongka', description: 'Permanently increase maximum health by an additional 15%.' },
+  { id: 'o-v3', name: 'Stamina Boost I', cost: '1 Artifact', branch: 'Vitality', character: 'oongka', description: 'Permanently increase maximum stamina by 10%.' },
 ];
 
 export const COLLECTIBLES: Record<CollectibleCategory, Collectible[]> = {
@@ -180,69 +177,172 @@ export const COLLECTIBLES: Record<CollectibleCategory, Collectible[]> = {
     { name: "Bandit's Rest", location: 'Crimson Desert', category: 'fast-travel' },
     { name: 'Abyss Gateway', location: 'The Abyss', category: 'fast-travel' },
   ],
+  edition: [
+    { name: 'Kairos Plate Set', location: 'Deluxe Edition Bonus', category: 'edition' },
+    { name: 'Balgran Shield', location: 'Deluxe Edition Bonus', category: 'edition' },
+    { name: 'Exclaire Horse Tack Set', location: 'Deluxe Edition Bonus', category: 'edition' },
+    { name: 'Tormented Soul Bow', location: 'Collector\'s Edition Bonus', category: 'edition' },
+    { name: 'Derictus Spear', location: 'Collector\'s Edition Bonus', category: 'edition' },
+    { name: 'Sielos Longsword', location: 'Collector\'s Edition Bonus', category: 'edition' },
+    { name: 'Shroud Lantern', location: 'Collector\'s Edition Bonus', category: 'edition' },
+    { name: 'Hyperion Horse Tack Set', location: 'Collector\'s Edition Bonus', category: 'edition' },
+    { name: 'Khaled Shield', location: 'Pre-Order Exclusive', category: 'edition' },
+  ],
 };
 
 export const BOSSES: Boss[] = [
-  { name: 'Ironclad Guardian', region: 'hernand', type: 'Mechanical', difficulty: 'normal', reward: 'Iron Fortress Mod' },
-  { name: 'Frost Wyrm', region: 'pailune', type: 'Dragon', difficulty: 'hard', reward: 'Frost Core Artifact' },
-  { name: 'Black Bear Warlord', region: 'demeniss', type: 'Human', difficulty: 'hard', reward: 'Unique Weapon' },
-  { name: 'Sand Colossus', region: 'desert', type: 'Golem', difficulty: 'extreme', reward: 'Crimson Shard' },
-  { name: 'Delesyian Automaton', region: 'delesyia', type: 'Mechanical', difficulty: 'normal', reward: 'Speed Catalyst Gear' },
-  { name: 'Dire Wolf Alpha', region: 'hernand', type: 'Beast', difficulty: 'normal', reward: 'Pelt Materials' },
-  { name: 'Blizzard Drake', region: 'pailune', type: 'Dragon', difficulty: 'extreme', reward: "Dragon's Tear" },
-  { name: 'Shadow Assassin', region: 'demeniss', type: 'Human', difficulty: 'hard', reward: 'Stealth Module Gear' },
-  { name: 'Crimson Scorpion King', region: 'desert', type: 'Beast', difficulty: 'hard', reward: 'Venom Materials' },
-  { name: 'Thunder Titan', region: 'delesyia', type: 'Magical', difficulty: 'extreme', reward: 'Thunder Fragment' },
-  { name: 'The Hollow Knight', region: 'abyss', type: 'Magical', difficulty: 'legendary', reward: 'Deep Abyss Core' },
-  { name: "Greymane's Ghost", region: 'pailune', type: 'Spirit', difficulty: 'legendary', reward: "Gian's Blade" },
-  { name: 'Desert Hydra', region: 'desert', type: 'Beast', difficulty: 'extreme', reward: 'Hydra Scale Armor' },
-  { name: 'Clockwork Dragon', region: 'delesyia', type: 'Mechanical', difficulty: 'legendary', reward: 'Mech Mount Key' },
-  { name: "The Unifier's Shade", region: 'demeniss', type: 'Spirit', difficulty: 'legendary', reward: 'Crown of Pywel' },
+  { name: 'Queen Stoneback Crab', region: 'hernand', type: 'Beast', difficulty: 'hard', reward: 'Stoneback Shell Armor', element: 'physical', weakness: 'fire' },
+  { name: 'White Horn', region: 'pailune', type: 'Beast', difficulty: 'hard', reward: 'Frost Core Artifact', element: 'frost', weakness: 'fire' },
+  { name: 'Myurdin', region: 'demeniss', type: 'Human', difficulty: 'legendary', reward: 'Black Bear Standard', element: 'physical', weakness: 'frost' },
+  { name: 'Walter Lanford', region: 'desert', type: 'Human', difficulty: 'extreme', reward: 'Hand Cannon Blueprint', element: 'fire', weakness: 'frost' },
+  { name: 'Delesyian Automaton', region: 'delesyia', type: 'Mechanical', difficulty: 'normal', reward: 'Speed Catalyst Gear', element: 'shock', weakness: 'physical' },
+  { name: 'Kearush the Slayer', region: 'hernand', type: 'Monster', difficulty: 'hard', reward: 'Slayer Claw Materials', element: 'physical', weakness: 'fire' },
+  { name: 'Reed Devil', region: 'pailune', type: 'Humanoid', difficulty: 'extreme', reward: "Dragon's Tear", element: 'physical', weakness: 'shock' },
+  { name: 'Matthias', region: 'demeniss', type: 'Human', difficulty: 'hard', reward: 'Radiant Knight Armor', element: 'physical', weakness: 'shock' },
+  { name: 'Crimson Scorpion King', region: 'desert', type: 'Beast', difficulty: 'hard', reward: 'Venom Materials', element: 'fire', weakness: 'frost' },
+  { name: 'Golden Star', region: 'delesyia', type: 'Mechanical', difficulty: 'legendary', reward: 'Mech Mount Key', element: 'shock', weakness: 'physical' },
+  { name: 'Hexe Marie', region: 'abyss', type: 'Magical', difficulty: 'legendary', reward: 'Deep Abyss Core', element: 'abyss' },
+  { name: 'Staglord', region: 'pailune', type: 'Humanoid', difficulty: 'legendary', reward: "Gian's Blade", element: 'physical', weakness: 'abyss' },
+  { name: 'Desert Hydra', region: 'desert', type: 'Beast', difficulty: 'extreme', reward: 'Hydra Scale Armor', element: 'fire', weakness: 'frost' },
+  { name: 'Snow Walker', region: 'pailune', type: 'Elemental', difficulty: 'extreme', reward: 'Permafrost Crystal', element: 'frost', weakness: 'fire' },
+  { name: "The Unifier's Shade", region: 'demeniss', type: 'Spirit', difficulty: 'legendary', reward: 'Crown of Pywel', element: 'abyss', weakness: 'shock' },
 ];
 
 export const QUESTS: Quest[] = [
+  // Main Story
   { name: "The Greymane's Burden", description: 'Reunite with scattered Greymane members after the Black Bear ambush', type: 'main' },
   { name: 'Shadows over Demeniss', description: "Investigate the circumstances behind King Demeniss's coma", type: 'main' },
   { name: 'Into the Abyss', description: 'Discover the source of the Abyss and its threat to Pywel', type: 'main' },
   { name: 'The Black Bear Hunt', description: 'Track down and confront the Black Bear leadership', type: 'main' },
   { name: "Pywel's Last Stand", description: 'Unite the factions to face the ultimate threat to the continent', type: 'main' },
+  // Side Quests
   { name: "The Hermit's Recipe", description: "Find rare ingredients for a desert hermit's legendary dish", type: 'side' },
   { name: 'Delesyian Blueprints', description: 'Recover stolen mechanical schematics from bandits', type: 'side' },
   { name: 'Ghost of Gian', description: 'Investigate supernatural sightings near the Pailune monument', type: 'side' },
   { name: 'Arena Champion', description: 'Win the underground fighting tournament in Hernand', type: 'side' },
   { name: 'Fishing Mastery', description: 'Catch one of every fish species across all five regions', type: 'side' },
+  // Faction Quests
   { name: 'Greymane Stronghold', description: 'Liberate territory from Black Bear occupation', type: 'faction' },
   { name: 'Dispatch Missions', description: 'Send comrades on expeditions for rare resources', type: 'faction' },
   { name: 'Camp Expansion', description: 'Upgrade the Greymane Camp with all facilities', type: 'faction' },
+  // Character Arcs
+  { name: "Damiane's Redemption", description: "Uncover Damiane's hidden past and settle her debts with the noble houses of Hernand. A separate story arc with unique cutscenes and boss encounters.", type: 'character' },
+  { name: "Oongka's Homeland", description: "Journey with Oongka to reclaim his ancestral orc territories in the far reaches of Pywel. Features unique combat encounters and tribe diplomacy.", type: 'character' },
+  { name: "Kliff's Promise", description: "Fulfill the oath Kliff made to the fallen Greymane leader Gian. Follow the trail of clues across all five regions.", type: 'character' },
+  // Region Liberation
+  { name: 'Liberate Hernand Pass', description: 'Break the Black Bear blockade on the main trade route through Hernand. Once freed, merchants and travelers return to the region.', type: 'liberation' },
+  { name: 'Liberate Pailune Bridge', description: 'Retake the frozen bridge connecting northern Pailune settlements. Restores supply lines to the Greymane homeland.', type: 'liberation' },
+  { name: 'Liberate Desert Outpost', description: 'Drive Black Bear forces from the Crimson Desert trading post. Opens access to desert vendors and crafting materials.', type: 'liberation' },
+  { name: 'Liberate Demeniss Docks', description: 'Free the capital docks from enemy occupation. Unlocks naval transport between regions.', type: 'liberation' },
 ];
 
 export const WEAPONS: Weapon[] = [
+  // Kliff
   { name: 'Iron Longsword', icon: '⚔', iconKey: 'sword', type: 'Sword', atk: 45, spd: 70, rng: 30, character: 'kliff' },
   { name: 'Greymane Shield', icon: '🛡', iconKey: 'shield', type: 'Shield', atk: 10, spd: 50, rng: 10, character: 'kliff' },
   { name: "Hunter's Bow", icon: '🏹', iconKey: 'bow', type: 'Bow', atk: 35, spd: 60, rng: 90, character: 'kliff' },
-  { name: 'War Polearm', icon: '🔨', iconKey: 'polearm', type: 'Polearm', atk: 55, spd: 45, rng: 50, character: 'kliff' },
-  { name: 'Steel Greatsword', icon: '⚔', iconKey: 'sword', type: 'Greatsword', atk: 70, spd: 30, rng: 40, character: 'kliff' },
-  { name: 'Elegant Rapier', icon: '🗡', iconKey: 'rapier', type: 'Rapier', atk: 40, spd: 85, rng: 25, character: 'damiane' },
+  { name: 'War Polearm', icon: '🔨', iconKey: 'polearm', type: 'Polearm', atk: 55, spd: 45, rng: 50, character: 'kliff',
+    signatureAbility: { name: 'Spectral Guardians', description: 'Successful parries summon phantom warriors that attack nearby enemies for 5 seconds.', source: 'Staglord' } },
+  { name: 'Steel Greatsword', icon: '⚔', iconKey: 'sword', type: 'Greatsword', atk: 70, spd: 30, rng: 40, character: 'kliff',
+    signatureAbility: { name: 'Frost Cleave', description: 'Charged heavy attacks leave frozen ground that slows enemies by 40% for 3 seconds.', source: 'White Horn' } },
+  { name: 'Mercenary Daggers', icon: '🗡', iconKey: 'dagger', type: 'Daggers', atk: 30, spd: 90, rng: 15, character: 'kliff' },
+  { name: 'Abyss Staff', icon: '🪄', iconKey: 'staff', type: 'Staff', atk: 40, spd: 55, rng: 65, character: 'kliff',
+    signatureAbility: { name: 'Abyssal Conduit', description: 'Magic attacks chain to one additional enemy. Chained damage is reduced by 50%.', source: 'Hexe Marie' } },
+  // Damiane
+  { name: 'Elegant Rapier', icon: '🗡', iconKey: 'rapier', type: 'Rapier', atk: 40, spd: 85, rng: 25, character: 'damiane',
+    signatureAbility: { name: 'Golden Pierce', description: 'Critical hits release two homing projectiles that deal 25% weapon damage each.', source: 'Golden Star' } },
   { name: 'Dueling Pistol', icon: '🔫', iconKey: 'pistol', type: 'Pistol', atk: 30, spd: 75, rng: 70, character: 'damiane' },
-  { name: 'Sharpshooter Musket', icon: '🔫', iconKey: 'pistol', type: 'Musket', atk: 60, spd: 25, rng: 95, character: 'damiane' },
+  { name: 'Sharpshooter Musket', icon: '🔫', iconKey: 'pistol', type: 'Musket', atk: 60, spd: 25, rng: 95, character: 'damiane',
+    signatureAbility: { name: 'Hexed Rounds', description: 'Shots mark enemies for 8 seconds. Marked enemies take 15% bonus damage from all sources.', source: 'Hexe Marie' } },
   { name: "Damiane's Claymore", icon: '⚔', iconKey: 'sword', type: 'Claymore', atk: 65, spd: 40, rng: 35, character: 'damiane' },
-  { name: "Oongka's Greataxe", icon: '🪓', iconKey: 'axe', type: 'Battle Axe', atk: 80, spd: 25, rng: 35, character: 'oongka' },
+  { name: 'Marksman Rifle', icon: '🔫', iconKey: 'rifle', type: 'Rifle', atk: 55, spd: 35, rng: 95, character: 'damiane' },
+  { name: 'Blackpowder Hand Cannon', icon: '💣', iconKey: 'handcannon', type: 'Hand Cannon', atk: 75, spd: 20, rng: 50, character: 'damiane',
+    signatureAbility: { name: 'Stonebreaker Shot', description: 'Fully charged shots shatter enemy guard and stagger for 2 seconds, ignoring all block.', source: 'Queen Stoneback Crab' } },
+  // Oongka
+  { name: "Oongka's Greataxe", icon: '🪓', iconKey: 'axe', type: 'Battle Axe', atk: 80, spd: 25, rng: 35, character: 'oongka',
+    signatureAbility: { name: "Slayer's Fury", description: 'Each consecutive hit increases attack speed by 8%, stacking up to 5 times. Resets after 3 seconds without hitting.', source: 'Kearush the Slayer' } },
   { name: 'Wrist Cannon', icon: '💣', iconKey: 'cannon', type: 'Cannon', atk: 55, spd: 35, rng: 60, character: 'oongka' },
+  { name: 'Iron Warhammer', icon: '🔨', iconKey: 'warhammer', type: 'Warhammer', atk: 85, spd: 20, rng: 30, character: 'oongka',
+    signatureAbility: { name: 'Stoneback Slam', description: 'Ground slam attacks create shockwaves in a 5m radius that stagger all nearby enemies.', source: 'Queen Stoneback Crab' } },
+  { name: 'Balgran Shield', icon: '🛡', iconKey: 'shield', type: 'Shield', atk: 15, spd: 40, rng: 10, character: 'oongka' },
 ];
 
 export const RECIPES: Recipe[] = [
+  // Cooking (bonfire recipes)
   { name: 'Hearty Stew', type: 'cooking', ingredients: ['Venison x2', 'Root Vegetables x3', 'Salt x1'], effect: '+30% Max Health for 10 min' },
   { name: "Hunter's Feast", type: 'cooking', ingredients: ['Wild Boar x1', 'Forest Mushrooms x3', 'Herbs x2'], effect: '+20% Attack for 10 min' },
   { name: 'Frozen Berry Tart', type: 'cooking', ingredients: ['Snow Berries x4', 'Flour x2', 'Honey x1'], effect: '+25% Stamina Regen for 10 min' },
   { name: 'Spiced Desert Jerky', type: 'cooking', ingredients: ['Desert Lizard x2', 'Red Spice x3'], effect: '+15% Heat Resistance' },
+  { name: "Warrior's Broth", type: 'cooking', ingredients: ['Bone Marrow x2', 'Garlic x3', 'Spring Water x1'], effect: '+15% Attack & +10% Defense for 8 min' },
+  // Alchemy
   { name: 'Healing Salve', type: 'alchemy', ingredients: ['Healing Herb x3', 'Spring Water x1', 'Beeswax x1'], effect: 'Restores 50% HP over time' },
   { name: 'Stamina Elixir', type: 'alchemy', ingredients: ['Ginseng Root x2', 'Crystal Water x1'], effect: 'Full Stamina Restore' },
   { name: 'Fire Resistance Tonic', type: 'alchemy', ingredients: ['Fire Bloom x2', 'Ice Moss x1', 'Vial x1'], effect: '+40% Fire Resistance for 15 min' },
   { name: 'Strength Draught', type: 'alchemy', ingredients: ['Bear Claw x1', 'Iron Dust x2', 'Alcohol x1'], effect: '+25% Strength for 8 min' },
+  // Blacksmithing
   { name: 'Weapon Refinement I', type: 'blacksmith', ingredients: ['Iron Ore x5', 'Coal x3'], effect: 'Weapon ATK +10' },
   { name: 'Weapon Refinement II', type: 'blacksmith', ingredients: ['Steel Ingot x3', 'Rare Coal x2', 'Gold Dust x1'], effect: 'Weapon ATK +25' },
   { name: 'Armor Reinforcement', type: 'blacksmith', ingredients: ['Leather x4', 'Iron Plates x2'], effect: 'DEF +15' },
   { name: 'Abyss Gear Socket', type: 'blacksmith', ingredients: ['Abyss Shard x1', 'Mithril x2'], effect: 'Adds gear socket to weapon' },
+  // Alchemy - Potions & Medicine (alchemy covers all consumable crafting)
+  { name: 'Healing Potion', type: 'alchemy', ingredients: ['Moonpetal x2', 'Purified Water x1'], effect: 'Instant 40% HP restore' },
+  { name: 'Antidote', type: 'alchemy', ingredients: ['Charcoal x1', 'Swamp Lily x2', 'Vial x1'], effect: 'Cures poison and venom effects' },
+  { name: 'Combat Stimulant', type: 'alchemy', ingredients: ['Crimson Root x1', 'Adrenaline Gland x1', 'Alcohol x1'], effect: '+30% Attack Speed for 60 seconds' },
+  { name: 'Spirit Restoration Draught', type: 'alchemy', ingredients: ['Abyss Dewdrop x2', 'Silver Dust x1'], effect: 'Restores Spirit gauge used for Abyss Magic' },
+  // Dye Crafting
+  { name: 'Crimson Dye', type: 'dye', ingredients: ['Red Desert Flower x4', 'Mordant x1'], effect: 'Deep red armor/clothing color' },
+  { name: 'Midnight Black Dye', type: 'dye', ingredients: ['Squid Ink x3', 'Charcoal x2', 'Mordant x1'], effect: 'Pure black armor/clothing color' },
+  { name: 'Royal Gold Dye', type: 'dye', ingredients: ['Gold Dust x2', 'Saffron x3', 'Mordant x1'], effect: 'Metallic gold armor/clothing color' },
+  { name: 'Forest Green Dye', type: 'dye', ingredients: ['Green Moss x4', 'Copper Sulfate x1'], effect: 'Deep green armor/clothing color' },
+  // Camp Upgrades
+  { name: 'Reinforced Palisade', type: 'camp-upgrade', ingredients: ['Timber x10', 'Iron Nails x5', 'Rope x3'], effect: 'Increases camp defense; reduces raid damage' },
+  { name: 'Watchtower', type: 'camp-upgrade', ingredients: ['Timber x15', 'Stone Block x8', 'Iron Fittings x3'], effect: 'Early warning of incoming attacks; extends minimap range at camp' },
+  { name: 'Expanded Stables', type: 'camp-upgrade', ingredients: ['Timber x8', 'Hay x10', 'Leather x4'], effect: 'Stores up to 4 additional mounts at camp' },
+  { name: 'Upgraded Forge', type: 'camp-upgrade', ingredients: ['Firebrick x6', 'Bellows x1', 'Steel Ingot x4'], effect: 'Unlocks Tier 2 blacksmithing recipes' },
+];
+
+// ═══════════════════════════════════════
+// MOUNTS (29 confirmed)
+// ═══════════════════════════════════════
+
+export const MOUNTS: Mount[] = [
+  // Horses (6)
+  { name: 'Plains Stallion', category: 'horse', region: 'hernand', speed: 70, combat: 10, stamina: 75, acquisition: 'Starter mount, available at game start' },
+  { name: 'Greymane Warhorse', category: 'horse', region: 'pailune', speed: 65, combat: 30, stamina: 85, special: 'Charge attack that knocks enemies aside while galloping', acquisition: 'Greymane faction reputation reward' },
+  { name: 'Noble Destrier', category: 'horse', region: 'demeniss', speed: 75, combat: 20, stamina: 80, special: 'Increased speed on roads and paved surfaces', acquisition: 'Purchase from Demeniss Royal Stables' },
+  { name: 'Desert Charger', category: 'horse', region: 'desert', speed: 80, combat: 15, stamina: 60, special: 'Heat-resistant; no stamina penalty in desert biomes', acquisition: 'Tame in the wild (Crimson Desert outskirts)' },
+  { name: 'Dappled Palfrey', category: 'horse', region: 'hernand', speed: 85, combat: 5, stamina: 90, special: 'Fastest sustained gallop; ideal for long-distance travel', acquisition: 'Reward from the Hernand Horse Breeder side quest' },
+  { name: 'Midnight Runner', category: 'horse', region: 'multiple', speed: 90, combat: 15, stamina: 70, special: 'Near-silent movement; enemies are slower to detect you while mounted', acquisition: 'Rare wild spawn at night across all regions' },
+  // Bears (4)
+  { name: 'Pailune Snow Bear', category: 'bear', region: 'pailune', speed: 45, combat: 85, stamina: 80, special: 'Slashes with claws and bites enemies while riding; frost resistance aura', acquisition: 'Tame in the wild (Pailune mountain caves)' },
+  { name: 'Ironhide Cave Bear', category: 'bear', region: 'hernand', speed: 40, combat: 90, stamina: 85, special: 'Massive HP pool; acts as a shield absorbing hits for the rider', acquisition: 'Defeat and tame in Ironhide Den (Hernand)' },
+  { name: 'Black Bear War Mount', category: 'bear', region: 'demeniss', speed: 50, combat: 80, stamina: 75, special: 'Intimidation roar that fears nearby enemies for 3 seconds', acquisition: 'Captured from Black Bear faction stronghold' },
+  { name: 'Crimson Grizzly', category: 'bear', region: 'desert', speed: 45, combat: 75, stamina: 65, special: 'Ground slam attack that staggers enemies in a frontal cone', acquisition: 'Tame in the wild (Crimson Desert oasis)' },
+  // Raptors (4)
+  { name: 'Sand Raptor', category: 'raptor', region: 'desert', speed: 90, combat: 40, stamina: 55, special: 'Extreme burst speed; double sprint in desert terrain', acquisition: 'Tame in the wild (Red Dunes hunting grounds)' },
+  { name: 'Forest Stalker', category: 'raptor', region: 'hernand', speed: 80, combat: 50, stamina: 60, special: 'Pounce attack that pins smaller enemies', acquisition: 'Tame in the wild (Hernand deep forest)' },
+  { name: 'Frost Raptor', category: 'raptor', region: 'pailune', speed: 75, combat: 45, stamina: 70, special: 'Ice-trail movement; leaves slippery terrain that slows pursuers', acquisition: 'Complete the Pailune Hunter chain quest' },
+  { name: 'Delesyian Swift', category: 'raptor', region: 'delesyia', speed: 85, combat: 35, stamina: 65, special: 'Enhanced agility; can perform sharp turns without speed loss', acquisition: 'Purchase from Delesyia Beast Handler' },
+  // Lizards (3)
+  { name: 'Rock Lizard', category: 'lizard', region: 'hernand', speed: 55, combat: 25, stamina: 80, special: 'Wall climbing; can scale vertical cliff faces and fortress walls', acquisition: 'Tame in the wild (Hernand canyon walls)' },
+  { name: 'Sand Skimmer', category: 'lizard', region: 'desert', speed: 70, combat: 20, stamina: 75, special: 'Glides across sand dunes; ignores quicksand and soft terrain', acquisition: 'Tame in the wild (Crimson Desert flats)' },
+  { name: 'Frost Salamander', category: 'lizard', region: 'pailune', speed: 50, combat: 30, stamina: 85, special: 'Traverses ice and frozen water without slipping; cold immunity', acquisition: 'Found in Frozen Soul Mountain caves' },
+  // Wyverns & Dragons (4)
+  { name: 'Highland Wyvern', category: 'wyvern', region: 'pailune', speed: 80, combat: 60, stamina: 50, special: 'Full flight control; dive-bomb attack on ground targets', acquisition: 'Complete the Dragon Ridge wyvern egg quest' },
+  { name: 'Storm Drake', category: 'wyvern', region: 'delesyia', speed: 85, combat: 70, stamina: 45, special: 'Lightning breath attack; chain-damages groups of enemies from the sky', acquisition: 'Tame atop the Tesla Ruins during a storm event' },
+  { name: 'Ember Wyvern', category: 'wyvern', region: 'desert', speed: 75, combat: 75, stamina: 40, special: 'Fire breathing from the sky; scorches terrain creating fire hazard zones', acquisition: 'Rare spawn in the Crimson Desert volcanic rifts' },
+  { name: 'Abyssal Dragon', category: 'wyvern', region: 'abyss', speed: 90, combat: 95, stamina: 60, special: 'Void breath that bypasses all resistances; full aerial combat', acquisition: 'End-game reward from the Abyss storyline' },
+  // Mechanical (3)
+  { name: 'Scout Automaton', category: 'mechanical', region: 'delesyia', speed: 65, combat: 40, stamina: 100, special: 'Infinite stamina; never tires. Built-in lantern for dark areas', acquisition: 'Craft at Delesyia Workshop (Blueprints required)' },
+  { name: 'Siege Walker', category: 'mechanical', region: 'delesyia', speed: 40, combat: 95, stamina: 90, special: 'Fires devastating missiles; massive AoE siege damage', acquisition: 'Rare blueprint drop from Delesyian Automaton boss' },
+  { name: 'Golden Star Mech', category: 'mechanical', region: 'delesyia', speed: 70, combat: 90, stamina: 80, special: 'Homing projectile barrage; energy shield absorbs 3 hits before cooldown', acquisition: 'Boss drop from Golden Star (Mech Mount Key)' },
+  // Dinosaurs (3)
+  { name: 'Steppe Ceratops', category: 'dinosaur', region: 'hernand', speed: 50, combat: 70, stamina: 90, special: 'Horn charge attack that sends enemies flying; high knockback', acquisition: 'Tame in the wild (Hernand steppe plains)' },
+  { name: 'Jungle Strider', category: 'dinosaur', region: 'hernand', speed: 60, combat: 45, stamina: 80, special: 'Tall mount; rider can see over obstacles and foliage. Kick attack', acquisition: 'Tame in the wild (Hernand jungle canopy)' },
+  { name: 'Armored Ankylo', category: 'dinosaur', region: 'desert', speed: 35, combat: 80, stamina: 95, special: 'Heavily armored; tail swipe knocks back all surrounding enemies', acquisition: 'Tame in the wild (Crimson Desert bone fields)' },
+  // Exotic (2)
+  { name: 'Abyssal Spider', category: 'exotic', region: 'abyss', speed: 60, combat: 55, stamina: 70, special: 'Wall climbing on any surface; leaves web trail that slows enemies', acquisition: 'Tame in the Abyss depths (requires Beast Taming skill)' },
+  { name: 'Phantom Steed', category: 'exotic', region: 'multiple', speed: 95, combat: 10, stamina: 50, special: 'Ghostly mount that phases through obstacles and enemies; cannot attack', acquisition: "Legendary reward from the Ghost of Gian side quest" },
 ];
 
 // Skill branches grouped by character
@@ -256,11 +356,86 @@ export function getSkillBranches(character: Character) {
   return branches;
 }
 
+// ═══════════════════════════════════════
+// ACTIVITIES & GREYMANE CAMP
+// ═══════════════════════════════════════
+
+export const ACTIVITIES: Activity[] = [
+  { name: 'Fishing', category: 'gathering', location: 'Riverbanks & coastlines throughout Pywel', description: 'Cast your line along rivers and coastal areas to catch fish for cooking ingredients and rare catches.', yields: ['Fish', 'Cooking Ingredients', 'Rare Catches'] },
+  { name: 'Hunting', category: 'gathering', location: 'Wilderness across all regions', description: 'Track and hunt wildlife for meat, pelts, and crafting materials. Different prey in each region.', yields: ['Meat', 'Pelts', 'Bones', 'Animal Materials'] },
+  { name: 'Mining', category: 'gathering', location: 'Caves, cliffs, and mountain passes', description: 'Extract ores and minerals from rock deposits for blacksmithing and camp upgrades.', yields: ['Iron Ore', 'Coal', 'Gold Dust', 'Rare Minerals'] },
+  { name: 'Herb Gathering', category: 'gathering', location: 'Forests, fields, and swamps', description: 'Collect medicinal herbs, flowers, and alchemical reagents growing throughout the wild.', yields: ['Healing Herbs', 'Alchemical Reagents', 'Rare Plants'] },
+  { name: 'Crop Farming', category: 'farming', location: 'Greymane Camp farm plots', description: 'Plant, tend, and harvest crops at the Greymane Camp to produce cooking ingredients and trade goods.', yields: ['Vegetables', 'Grain', 'Fruit', 'Trade Goods'] },
+  { name: 'Livestock Raising', category: 'farming', location: 'Greymane Camp ranch', description: 'Raise cows, pigs, goats, and chickens at camp for a steady supply of food and crafting materials.', yields: ['Milk', 'Eggs', 'Meat', 'Wool', 'Leather'] },
+  { name: 'Horse Taming', category: 'farming', location: 'Wild grasslands across Pywel', description: 'Find and tame wild horses roaming the open grasslands. Each breed has different stats and abilities.', yields: ['Tamed Horses', 'Mount Variety'] },
+  { name: 'Sheep Wrangling', category: 'farming', location: 'Pailune highlands', description: 'Herd and wrangle sheep across the highland pastures of Pailune for wool and camp resources.', yields: ['Wool', 'Camp Supplies'] },
+  { name: 'Wrestling', category: 'social', location: 'Greymane Camp fighting ring', description: 'Challenge fellow mercenaries to wrestling bouts at camp. Wins earn respect and reward tokens.', yields: ['Reward Tokens', 'Faction Reputation'] },
+  { name: 'Cooking', category: 'social', location: 'Any bonfire throughout Pywel', description: 'Prepare meals at any bonfire using gathered ingredients. Cooked food provides temporary stat buffs.', yields: ['Stat Buffs', 'Health Restoration', 'Stamina Recovery'] },
+  { name: 'Mercenary Dispatch', category: 'combat', location: 'Greymane Camp dispatch board', description: 'Send AI companions on timed expeditions to acquire timber, ore, rare materials, or besiege enemy fortresses.', yields: ['Timber', 'Ore', 'Rare Materials', 'Abyss Remnants'] },
+];
+
+export const CAMP_FACILITIES: CampFacility[] = [
+  {
+    name: 'Blacksmith Forge',
+    description: 'Craft and upgrade weapons, armor, and equipment. Higher tiers unlock advanced recipes and gear sockets.',
+    upgrades: [
+      { tier: 1, effect: 'Basic weapon/armor crafting and Refinement I recipes', materials: ['Timber x5', 'Iron Ore x10', 'Coal x5'] },
+      { tier: 2, effect: 'Refinement II recipes and Abyss Gear Socket crafting', materials: ['Steel Ingot x8', 'Firebrick x6', 'Bellows x1'] },
+      { tier: 3, effect: 'Legendary weapon forging and signature ability infusion', materials: ['Mithril x5', 'Abyss Shard x3', 'Master Plans x1'] },
+    ],
+  },
+  {
+    name: 'Bonfire Kitchen',
+    description: 'Prepare meals from gathered ingredients. Upgraded kitchens unlock complex recipes with stronger buffs.',
+    upgrades: [
+      { tier: 1, effect: 'Basic cooking recipes (stews, jerky)', materials: ['Stone x5', 'Timber x3', 'Iron Pot x1'] },
+      { tier: 2, effect: 'Advanced recipes and dual-buff meals', materials: ['Firebrick x4', 'Copper Cookware x1', 'Spice Rack x1'] },
+      { tier: 3, effect: 'Feast-tier recipes that buff entire party', materials: ['Master Cookbook x1', 'Silver Cookware x1', 'Rare Spices x5'] },
+    ],
+  },
+  {
+    name: 'Farm Plots',
+    description: 'Grow crops for cooking ingredients and trade goods. Expansions add more plots and unlock rare seed types.',
+    upgrades: [
+      { tier: 1, effect: '4 basic crop plots (vegetables, grain)', materials: ['Timber x3', 'Fertilizer x5', 'Seeds x10'] },
+      { tier: 2, effect: '8 plots, fruit trees, and irrigation system', materials: ['Stone Pipe x6', 'Rich Soil x8', 'Fruit Saplings x4'] },
+      { tier: 3, effect: '12 plots, rare herb garden, and automated watering', materials: ['Mechanical Pump x1', 'Abyss-Touched Seeds x3', 'Gold x5'] },
+    ],
+  },
+  {
+    name: 'Livestock Ranch',
+    description: 'House and breed animals for food and materials. Higher tiers add pens for larger and rarer animals.',
+    upgrades: [
+      { tier: 1, effect: 'Chicken coop and goat pen (eggs, milk)', materials: ['Timber x5', 'Fence Posts x8', 'Hay x10'] },
+      { tier: 2, effect: 'Cattle barn and pig sty (meat, leather)', materials: ['Timber x10', 'Iron Fittings x4', 'Trough x2'] },
+      { tier: 3, effect: 'Exotic animal pen (rare materials from unique creatures)', materials: ['Reinforced Fence x6', 'Exotic Feed x5', 'Gold x3'] },
+    ],
+  },
+  {
+    name: 'Camp Vendor',
+    description: 'A merchant stall where you can buy supplies, sell goods, and access special faction inventory.',
+    upgrades: [
+      { tier: 1, effect: 'Basic supplies: potions, arrows, repair kits', materials: ['Timber x4', 'Cloth x3', 'Gold x2'] },
+      { tier: 2, effect: 'Expanded inventory with rare materials and recipes', materials: ['Timber x6', 'Trade Ledger x1', 'Gold x5'] },
+      { tier: 3, effect: 'Black market access: unique gear, mounts, and blueprints', materials: ['Merchant Contract x1', 'Gold x10', 'Faction Token x3'] },
+    ],
+  },
+  {
+    name: 'Dispatch Board',
+    description: 'Send mercenary companions on expeditions for resources, intel, and siege missions.',
+    upgrades: [
+      { tier: 1, effect: '2 dispatch slots, short expeditions (timber, ore)', materials: ['Timber x3', 'Map x1', 'Ink x2'] },
+      { tier: 2, effect: '4 dispatch slots, medium expeditions (rare materials, intel)', materials: ['War Table x1', 'Courier Horse x1', 'Gold x3'] },
+      { tier: 3, effect: '6 dispatch slots, siege missions and legendary material runs', materials: ['Command Banner x1', 'Siege Plans x1', 'Gold x8'] },
+    ],
+  },
+];
+
 // All collectibles as flat array with keys
 export function getAllCollectiblesWithKeys() {
   const result: { key: string; item: Collectible }[] = [];
   const prefixMap: Record<CollectibleCategory, string> = {
-    artifact: 'art', gear: 'gear', recipe: 'rec', lore: 'lore', 'fast-travel': 'trav',
+    artifact: 'art', gear: 'gear', recipe: 'rec', lore: 'lore', 'fast-travel': 'trav', edition: 'ed',
   };
   for (const [cat, items] of Object.entries(COLLECTIBLES)) {
     items.forEach((item, i) => {
