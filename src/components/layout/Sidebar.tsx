@@ -50,12 +50,12 @@ const navSections: NavSection[] = [
     items: [
       {
         label: 'World Map',
-        href: '/dashboard/map',
+        href: '/map',
         icon: <Globe className="w-5 h-5" />,
       },
       {
         label: 'Characters',
-        href: '/dashboard/characters',
+        href: '/characters',
         icon: <Users className="w-5 h-5" />,
       },
     ],
@@ -65,17 +65,17 @@ const navSections: NavSection[] = [
     items: [
       {
         label: 'Skill Trees',
-        href: '/dashboard/skills',
+        href: '/skills',
         icon: <TreePine className="w-5 h-5" />,
       },
       {
         label: 'Collectibles',
-        href: '/dashboard/collectibles',
+        href: '/collectibles',
         icon: <Sparkles className="w-5 h-5" />,
       },
       {
         label: 'Quest Log',
-        href: '/dashboard/quests',
+        href: '/quests',
         icon: <Scroll className="w-5 h-5" />,
       },
     ],
@@ -85,12 +85,12 @@ const navSections: NavSection[] = [
     items: [
       {
         label: 'Bestiary',
-        href: '/dashboard/bestiary',
+        href: '/bestiary',
         icon: <Skull className="w-5 h-5" />,
       },
       {
         label: 'Weapons',
-        href: '/dashboard/weapons',
+        href: '/weapons',
         icon: <Sword className="w-5 h-5" />,
       },
     ],
@@ -100,17 +100,17 @@ const navSections: NavSection[] = [
     items: [
       {
         label: 'Crafting',
-        href: '/dashboard/crafting',
+        href: '/crafting',
         icon: <Hammer className="w-5 h-5" />,
       },
       {
         label: 'Inventory',
-        href: '/dashboard/inventory',
+        href: '/inventory',
         icon: <Package className="w-5 h-5" />,
       },
       {
         label: 'Notes',
-        href: '/dashboard/notes',
+        href: '/notes',
         icon: <BookOpen className="w-5 h-5" />,
       },
     ],
@@ -120,12 +120,12 @@ const navSections: NavSection[] = [
     items: [
       {
         label: 'Group',
-        href: '/dashboard/group',
+        href: '/group',
         icon: <Users2 className="w-5 h-5" />,
       },
       {
         label: 'Build Planner',
-        href: '/dashboard/builds',
+        href: '/planner',
         icon: <Wrench className="w-5 h-5" />,
       },
     ],

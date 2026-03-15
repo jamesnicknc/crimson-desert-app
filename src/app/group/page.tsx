@@ -99,7 +99,7 @@ export default function GroupPage() {
 
   return (
     <div className="space-y-6">
-      <div>
+      <div className="text-center">
         <h1 className="text-3xl font-cinzel font-bold text-gold-400 mb-2">Group Dashboard</h1>
         <p className="text-gray-400">Connect with friends and compare your progress across the game.</p>
       </div>

@@ -36,7 +36,7 @@ export default function WeaponsPage() {
 
   return (
     <div className="space-y-6">
-      <div>
+      <div className="text-center">
         <h1 className="text-3xl font-cinzel font-bold text-gold-400 mb-2">Weapons</h1>
         <p className="text-gray-400">Compare weapons and their stats across all characters.</p>
       </div>

@@ -38,7 +38,7 @@ export default function CraftingPage() {
 
   return (
     <div className="space-y-6">
-      <div>
+      <div className="text-center">
         <h1 className="text-3xl font-cinzel font-bold text-gold-400 mb-2">Crafting Recipes</h1>
         <p className="text-gray-400">Master the recipes for cooking, alchemy, and blacksmithing across Pywel.</p>
       </div>

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { createClient } from '@/lib/supabase/client';
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -9,9 +10,17 @@ export default function LoginPage() {
   const handleOAuthSignIn = async (provider: 'google' | 'discord') => {
     setIsLoading(true);
     try {
-      // This will be integrated with Supabase auth
-      // For now, we'll just redirect to simulate OAuth flow
-      window.location.href = `/api/auth/signin/${provider}`;
+      const supabase = createClient();
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+          redirectTo: `${window.location.origin}/callback`,
+        },
+      });
+      if (error) {
+        console.error('Auth error:', error);
+        setIsLoading(false);
+      }
     } catch (error) {
       console.error('Auth error:', error);
       setIsLoading(false);

@@ -37,7 +37,7 @@ export default function BestiaryPage() {
 
   return (
     <div className="space-y-6">
-      <div>
+      <div className="text-center">
         <h1 className="text-3xl font-cinzel font-bold text-gold-400 mb-2">Bestiary</h1>
         <p className="text-gray-400">Track defeated bosses and legendary creatures across Pywel.</p>
       </div>

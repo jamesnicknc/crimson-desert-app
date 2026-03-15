@@ -122,8 +122,9 @@ export default function LandingPage() {
         </div>
 
         {/* Footer */}
-        <div className="absolute bottom-6 left-0 right-0 text-center text-gray-500 text-sm">
+        <div className="absolute bottom-6 left-0 right-0 text-center text-gray-500 text-sm space-y-1">
           <p>Crimson Desert Companion v0.1 - Pre-launch</p>
+          <p className="text-xs text-gray-600">This is an unofficial fan companion and is not affiliated with Pearl Abyss.</p>
         </div>
       </div>
     </main>
