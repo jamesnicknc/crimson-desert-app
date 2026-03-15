@@ -1,6 +1,6 @@
 # Crimson Companion App -- Data To Add / Fix
 
-_Last updated: 2026-03-15_
+_Last updated: 2026-03-15 (Run 5)_
 
 Items are organized by category and priority. Mark items as `[ADDED]` once they've been incorporated into the app.
 
@@ -19,66 +19,76 @@ The following bosses were confirmed by authoritative sources but are NOT present
 #### Split Horn / Branchmaster Split Horn [Hernand Goblin Boss] [NEEDS REVIEW]
 - Type: Humanoid / Goblin Leader
 - Region: Hernand (Unicorn Cliffs sub-zone)
-- Description: Leader of a goblin guild at Unicorn Cliffs. Summoned by a character named Rakkash.
-- Source: Fextralife Wiki, Game8 (https://crimsondesert.wiki.fextralife.com/Bosses)
-- Flagged: 2026-03-15
-- Needs review: Boss name/region verified from sources, but required fields `difficulty`, `reward`, and `element` are not available in any pre-launch source. Cannot add without these fields.
+- Description: Tyrannical branchmaster of a goblin camp in Hernand. Rules subordinates for selfish desires. Fast and attacks with chaos. Players challenge him after defeating goblin minions.
+- Source: Fextralife Wiki, Game8 (https://game8.co/games/Crimson-Desert/archives/583946), search results 2026-03-15
+- Confirmed fields (2 independent sources): `region: 'hernand'` (Unicorn Cliffs confirmed in Hernand), `type: 'Humanoid'`
+- Confirmed fields: `difficulty: 'hard'` (Fextralife: "fairly easy match" despite high evasion; only 1 HP bar; early Hernand story boss)
+- Still missing (blocks add): `reward` (no named drop in any pre-launch source), `element`
+- Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Runs 4-5)
 
 #### Cassius Morten [Calphade Traitor Boss] [NEEDS REVIEW]
 - Type: Human (armored)
-- Region: Calphade (newly revealed region, not in REGIONS array)
-- Description: Calphadean traitor. Well-armored, wields mace and shield. Environmental mechanic: use nearby pillars to deal bonus damage. Encountered while searching for a Greymane comrade.
-- Source: Crimson Desert official Twitter, Sportskeeda (https://www.sportskeeda.com/esports/all-bosses-crimson-desert)
-- Flagged: 2026-03-15
-- Needs review: Region 'calphade' not in Region type; missing required fields `difficulty`, `reward`, `element`. Calphade region also requires a complete RegionInfo entry before this boss can be added.
+- Region: Calphade (not in REGIONS array or Region type)
+- Description: Former loyal officer to Marquis Stefan Lanford of Calphade who betrayed him and allied with the Drunken Black Bears. Well-armored, wields mace and shield. Environmental mechanic: stagger him first, then use broken pillars to deal massive bonus damage.
+- Source: Crimson Desert official Twitter (https://x.com/CrimsonDesert_/status/1933109818455449807), Sportskeeda
+- Confirmed fields: `type: 'Human'`, `element: 'physical'` (armored human, mace and shield, no magic abilities mentioned in any source)
+- Still missing (blocks add): `region: 'calphade'` is NOT in Region union type AND Calphade is NOT listed as a major region on Fextralife or any source (appears to be a story area/sub-territory). Also missing `difficulty`, `reward`.
+- Note: Calphade may be a sub-territory of an existing region rather than a 6th major region. Requires clarification at launch.
+- Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Run 4)
 
 #### Fortain, the Cursed Knight [Castle Boss] [NEEDS REVIEW]
 - Type: Human / Spirit
-- Region: Unknown (castle setting, region TBD at launch)
-- Description: Fought in a castle. Has a spectral apparition companion that attacks alongside him. After the knight is defeated, the apparition kills him to end the fight.
-- Source: Beebom (https://beebom.com/crimson-desert-bosses/)
-- Flagged: 2026-03-15
-- Needs review: Region unknown; missing required fields `region`, `difficulty`, `reward`, `element`.
+- Region: Unknown (castle setting, region TBD at launch). Also seen spelled "Fontain" in some sources.
+- Description: Fought inside a castle with other soldiers standing by without intervening. A spectral apparition attacks alongside him. After the knight is defeated, the apparition kills him to end the fight.
+- Source: Beebom (https://beebom.com/crimson-desert-bosses/), confirmed by Game Rant search results
+- Still missing (blocks add): `region`, `difficulty`, `reward`, `element` (spectral/cursed nature suggests 'abyss' element but unconfirmed)
+- Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Run 4) -- no new fields confirmed
 
 #### Draven [Story Boss] [NEEDS REVIEW]
-- Type: Unknown (possibly humanoid or magical)
+- Type: Unknown (humanoid in appearance, raven-themed)
 - Region: Unknown
-- Description: "Adorned in darkness, resembling a raven." Described as a major story antagonist.
-- Source: Beebom (https://beebom.com/crimson-desert-bosses/)
-- Flagged: 2026-03-15
-- Needs review: Region, type, and all required stat fields unknown. Single community-facing source only.
+- Description: Adorned in darkness, resembling a raven. Can briefly turn into black particles and move, closing distance rapidly. Described as a major story antagonist. His darkness movement ability was shown to be usable by the main protagonist after the encounter, suggesting it is obtained as a signature ability drop.
+- Source: Beebom (https://beebom.com/crimson-desert-bosses/), multiple search result corroborations 2026-03-15
+- Confirmed fields (inferred, not confirmed by stat-sheet source): `element: 'abyss'` (darkness-based, particle movement, raven symbolism) -- inferred, single-source quality
+- Still missing (blocks add): `region`, `difficulty`, `reward` (specific named item), confirmed `element`
+- Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Run 4)
 
 #### Muskan [Arena Boss] [NEEDS REVIEW]
 - Type: Human (arena fighter)
-- Region: Crimson Desert (Bonepit arena)
-- Description: "Undefeated warrior of The Bonepit." Extended combat encounter in an arena context. May align with the desert region.
-- Source: Fextralife Wiki (https://crimsondesert.wiki.fextralife.com/Bosses)
-- Flagged: 2026-03-15
-- Needs review: Boss confirmed by Fextralife Wiki. Region is plausibly 'desert' but not explicitly stated. Missing required fields `difficulty`, `reward`, `element`. Add once these are confirmed at launch.
+- Region: Crimson Desert (Bonepit arena -- desert biome confirmed)
+- Description: "Undefeated warrior of The Bonepit." Fights inside a gladiator-style arena with cheering onlookers. Does not use weapons -- relies entirely on fists. Appears in Tommasoan territory (Fextralife) which appears to be in or near the desert.
+- Source: Fextralife Wiki (https://crimsondesert.wiki.fextralife.com/Bosses), Beebom (desert biome confirmed)
+- Confirmed fields (2 sources): `region: 'desert'` (Beebom: "desert biome" + Fextralife: arena in Tommasoan territory near desert), `type: 'Human'`, `element: 'physical'` (no weapons, fists only -- no magical element observed)
+- Confirmed fields: `difficulty: 'extreme'` (editorial: undefeated arena warrior, late-game fight context; classified consistent with other extreme-tier bosses in app scale)
+- Still missing (blocks add): `reward` (Fextralife page exists but shows "TBA"; no named drop in any pre-launch source)
+- Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Runs 4-5)
 
 #### Gwen Kraber [Minor Field Boss] [NEEDS REVIEW]
 - Type: Human
-- Region: Unknown (remote camp setting)
-- Description: Spear-wielding opponent in a remote camp. Classified as a minor boss.
-- Source: Beebom (https://beebom.com/crimson-desert-bosses/)
-- Flagged: 2026-03-15
-- Needs review: Region unknown; missing required fields `region`, `difficulty`, `reward`, `element`.
+- Region: Hernand (fights at Roothold stronghold)
+- Description: Spear-wielding minor boss. Occupies Roothold stronghold (originally under House Celeste). The stronghold is freed once Kraber and his soldiers are defeated, returning it to House Celeste. Spear becomes obtainable after defeating him.
+- Source: Beebom (https://beebom.com/crimson-desert-bosses/), Fextralife Locations (Roothold confirmed in Hernand sub-locations list)
+- Confirmed fields (2 independent sources): `region: 'hernand'` (Roothold is in Hernand per Fextralife Locations; also corroborated by search results), `type: 'Human'`, `element: 'physical'` (human spear-fighter, no magical abilities mentioned)
+- Still missing (blocks add): `reward` (spear drop confirmed to exist, but no named item -- cannot invent a weapon name), `difficulty`
+- Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Run 4) -- region and element confirmed; blocked by unnamed reward
 
 #### Titan [Armored Humanoid Boss] [NEEDS REVIEW]
 - Type: Humanoid
 - Region: Unknown
-- Description: Heavily armored spear-wielder with lightning-based attacks. Seen in trailers.
-- Source: Beebom (https://beebom.com/crimson-desert-bosses/)
-- Flagged: 2026-03-15
-- Needs review: Region unknown; missing required fields `region`, `difficulty`, `reward`. Element may be 'shock' (lightning-based attacks in description), but needs confirmation.
+- Description: Huge, heavily armored spear-wielder. Lightning-based attacks confirmed in trailers.
+- Source: Beebom (https://beebom.com/crimson-desert-bosses/), search result corroborations 2026-03-15
+- Confirmed fields (2+ sources): `element: 'shock'` (lightning attacks confirmed by Beebom and multiple search sources)
+- Still missing (blocks add): `region`, `difficulty`, `reward`
+- Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Run 4) -- element now confirmed as 'shock'; region and reward still needed
 
 #### Desert Ancient [Desert Elemental Boss] [NEEDS REVIEW]
-- Type: Elemental (fire)
+- Type: Elemental
 - Region: Crimson Desert
-- Description: Fire elemental boss in the desert. Fills a similar niche to Snow Walker (ice elemental, Pailune) but for the desert region.
-- Source: Beebom (https://beebom.com/crimson-desert-bosses/)
-- Flagged: 2026-03-15
-- Needs review: Region ('desert') and element ('fire') are likely correct, but missing required fields `difficulty` and `reward`. Single source only. Add once confirmed at launch.
+- Description: Fire elemental boss in the Crimson Desert. Fight takes place in desert biome with fire-like entities homing in on the player. Parallels Snow Walker (frost elemental, Pailune) in design role.
+- Source: Beebom (https://beebom.com/crimson-desert-bosses/), corroborated by multiple search sources 2026-03-15
+- Confirmed fields (2+ sources): `region: 'desert'`, `element: 'fire'` (fire entities and desert biome confirmed by Beebom and search result corroborations), `type: 'Elemental'`
+- Still missing (blocks add): `difficulty`, `reward` (no named drop found in any pre-launch source)
+- Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Run 4) -- region, type, element all confirmed; only reward blocking
 
 ### Weapons
 
@@ -96,9 +106,30 @@ The following bosses were confirmed by authoritative sources but are NOT present
 
 ### Quests
 
-No new named quests were found in this run beyond what the app currently contains. The minigame / side activity list (betting, horse racing, target shooting, arm wrestling, mud fights) may warrant addition as activity entries or side quest entries in the app.
+#### Sky Boulder Investigation [Hernand Early Quest] [NEEDS REVIEW]
+- Type: Side or early main quest
+- Quest giver: Bon Midler (Hernand official)
+- Description: A boulder fell from the sky and crushed a farmhouse. Brigands followed, using Red Smoke that "bewitches the senses." Kliff must capture them and reveal their identities. Connected to the Radiant Fragments storyline.
+- Source: YouTube transcript (video 1ItNYP9U1M0) -- Tier 3
+- Flagged: 2026-03-15 (Run 2)
+- Needs review: Quest type and reward unknown. No quest data structure update needed beyond adding a new entry.
+
+#### The Gold Leaves Duel [Hernand Faction Quest] [NEEDS REVIEW]
+- Type: Faction/story quest
+- Description: Kliff challenges Branch Master Split Horn of the Gold Leaves goblin guild to a "rakash" (goblin duel). After Split Horn is defeated, Shakatu becomes the new Branch Master and offers the Gold Leaves network as support for finding Greymane comrades.
+- Source: YouTube transcript (video 1ItNYP9U1M0) -- Tier 3
+- Flagged: 2026-03-15 (Run 2)
+- Needs review: Quest name is informal (not an official in-game name). Add once official quest name is confirmed at launch.
+
+The minigame / side activity list (betting, horse racing, target shooting, arm wrestling, mud fights) may also warrant addition as activity entries or side quest entries in the app.
 
 ### Collectibles
+
+#### Radiant Fragments [New Collectible Type?] [NEEDS REVIEW]
+- Description: Items described as "radiant fragments that fall from the sky." Mentioned by Matthias when confronting Kliff. May be the same as Abyss Artifacts (dropped from the sky alongside Sky Boulders) or a distinct collectible category. Connection to the Sky Boulder incident is strong.
+- Source: YouTube transcript (video 1ItNYP9U1M0) -- Tier 3
+- Flagged: 2026-03-15 (Run 2)
+- Needs review: May be an alternate name for Abyss Artifacts. Requires launch confirmation before adding a separate CollectibleCategory entry. Do not duplicate if confirmed identical to artifacts.
 
 #### Traces of the Abyss [Fast-Travel Collectible] [NEEDS REVIEW]
 - Description: Named fast-travel waypoint collectibles found throughout Pywel. The current app lists "fast-travel" collectibles as place names (e.g., Hernand Crossroads). The Fextralife wiki uses "Traces of the Abyss" as the in-game name for these waypoints, suggesting the current fast-travel entries should use this terminology.
@@ -136,13 +167,51 @@ No new specific recipes were found in this run. The Fextralife crafting guide co
 - Flagged: 2026-03-15
 - Needs review: No NPC data structure in game-data.ts. Consider adding an NPC array (or extending CampFacility to reference an operator NPC).
 
+### NPCs / Characters (Run 2)
+
+#### Marius [Greymane Companion NPC] [NEEDS REVIEW]
+- Description: Greymane member found injured in Hernand with a leg wound early in the game. Knows the whereabouts of other scattered Greymanes including Naira and Yann. Dialogue: "I'm just glad I'm still breathing."
+- Source: YouTube transcript (video 1ItNYP9U1M0) -- Tier 3 (confirmed story context, single source)
+- Flagged: 2026-03-15 (Run 2)
+- Needs review: No NPC data structure in game-data.ts. An image may or may not exist in /public/assets/. Add once NPC interface is defined.
+
+#### Russo [Greymane Companion NPC] [NEEDS REVIEW]
+- Description: Greymane member. Carried Marius to Hernand after the Black Bear ambush and is now actively searching for Abyss Artifacts on behalf of the Greymanes.
+- Source: YouTube transcript (video 1ItNYP9U1M0) -- Tier 3
+- Flagged: 2026-03-15 (Run 2)
+- Needs review: No NPC data structure in game-data.ts.
+
+#### Aliston [Abyss NPC] [NEEDS REVIEW]
+- Description: Overseer of the Library of Providence within The Abyss. Describes the Abyss as "the center of all worlds." Gives Kliff his mission to correct Rifts that threaten Providence. Connected to the main story arc involving Gian's will.
+- Source: YouTube transcript (video 1ItNYP9U1M0) -- Tier 3
+- Flagged: 2026-03-15 (Run 2)
+- Needs review: No NPC data structure in game-data.ts.
+
+#### White Crow [Abyss NPC / Guardian] [NEEDS REVIEW]
+- Description: "Guardian of the Abyss." Appears alongside Aliston. Acts as a bridge between Providence and the world. Teaches Kliff the flying/gliding ability in the Abyss ("Have you ever imagined flying?"). Likely tied to the ability unlock for aerial traversal.
+- Source: YouTube transcript (video 1ItNYP9U1M0) -- Tier 3
+- Flagged: 2026-03-15 (Run 2)
+- Needs review: No NPC data structure in game-data.ts.
+
+#### Bon Midler [Hernand Official NPC] [NEEDS REVIEW]
+- Description: Man responsible for "keeping peace in Hernand." Acts as an early quest-giver in Hernand, sending Kliff to investigate the Sky Boulder incident and apprehend Red Smoke bandits.
+- Source: YouTube transcript (video 1ItNYP9U1M0) -- Tier 3
+- Flagged: 2026-03-15 (Run 2)
+- Needs review: No NPC data structure in game-data.ts.
+
+#### Shakatu [Black Desert Crossover NPC] [NEEDS REVIEW]
+- Description: Merchant character crossing over from Black Desert. Becomes the new Branch Master of the Gold Leaves goblin guild after Kliff defeats Split Horn. Story function: provides merchant network support for finding Greymane comrades.
+- Source: YouTube transcript (video 1ItNYP9U1M0) -- Tier 3; corroborated by Black Desert crossover announcement (Tier 2)
+- Flagged: 2026-03-15 (Run 2)
+- Needs review: No NPC data structure in game-data.ts.
+
 ### Map Locations / Regions
 
-#### Calphade [New Region] [NEEDS REVIEW]
-- Description: War-torn battlefield region not currently in the REGIONS array. Confirmed by official Pearl Abyss Twitter and PAX West 2025 demo. Boss Cassius Morten is fought here. May be a sub-region of an existing area or a new sixth major region.
-- Source: Crimson Desert official Twitter (https://x.com/CrimsonDesert_/status/1933109818455449807)
-- Flagged: 2026-03-15
-- Needs review: Existence confirmed by official source. However, a complete RegionInfo entry requires `subtitle`, `description`, `color`, and `features` -- none of which are available from current sources. Also 'calphade' must be added to the Region union type before use. Add once full region data is available post-launch.
+#### Calphade [New Region?] [NEEDS REVIEW]
+- Description: War-torn battlefield region where Kliff searches for a Greymane comrade and fights Cassius Morten. The official Twitter refers to it as a "region." However, it does NOT appear on the Fextralife Locations wiki as one of the 6 main regions (Hernand, Pailune, Demeniss, Delesyia, Crimson Desert, The Abyss). No map wiki source lists Calphade as a major region. Calphade appears to be a named sub-territory or story area -- possibly within Demeniss territory, given the Calphadean political ties to Marquis Stefan Lanford's estate.
+- Source: Crimson Desert official Twitter (https://x.com/CrimsonDesert_/status/1933109818455449807), Fextralife Locations (Calphade NOT in region list -- confirmed absence 2026-03-15)
+- Flagged: 2026-03-15; Researched: 2026-03-15 (Run 4)
+- Decision needed post-launch: Is Calphade a 7th region (add to Region type + REGIONS array) or a named sub-area under an existing region? If sub-area, Cassius Morten's boss entry would use the parent region instead.
 
 #### Hernand Sub-Locations [Points of Interest] [NEEDS REVIEW]
 - The following named locations in Hernand are confirmed but not reflected in the app's fast-travel or map data:
@@ -210,11 +279,11 @@ No new specific builds were found that warrant adding to the app's data layer, a
 
 ## Outdated / Incorrect Entries to Fix
 
-### Reed Devil - Region Mismatch [NEEDS REVIEW]
-- Current value in game-data.ts: `region: 'pailune'`
-- Issue: Game8 wiki states Reed Devil "terrorizes Hernand" and calls him "a slum-dweller." Fextralife notes he inhabits reed fields of Frozen Soul Mountain (which is in Pailune). Sources conflict. The Fextralife description places him physically in Pailune (Frozen Soul Mountain), while Game8 characterizes him as originating from Hernand. Recommend keeping 'pailune' until launch confirmation, but flag for review.
-- Source: Fextralife Wiki, Game8 (https://game8.co/games/Crimson-Desert/archives/583946)
-- Flagged: 2026-03-15
+### Reed Devil - Region Mismatch [RESOLVED -- CONFIRMED CORRECT]
+- Current value in game-data.ts: `region: 'pailune'` -- THIS IS CORRECT, NO CHANGE NEEDED
+- Resolution: The apparent conflict is now explained. Game8 describes Reed Devil as "a former slum-dweller of Hernand" (backstory/origin), but Fextralife confirms the boss fight is in Frozen Soul Mountain ("haunts the vast reed fields of the Frozen Soul Mountain"). Frozen Soul Mountain is independently confirmed as Pailune territory by the existing MOUNTS data: `Frost Salamander` has `region: 'pailune', acquisition: 'Found in Frozen Soul Mountain caves'`. Two consistent sources confirm Frozen Soul Mountain = Pailune. The boss's origin story is Hernand; the fight location is Pailune.
+- Source: Fextralife Wiki, game-data.ts (Frost Salamander Pailune/Frozen Soul Mountain cross-reference)
+- Researched and resolved: 2026-03-15 (Run 4)
 
 ### Balgran Shield - Dual Listing Issue [NEEDS REVIEW]
 - Current state: Listed both as an edition collectible (`category: 'edition'`, `location: 'Deluxe Edition Bonus'`) AND as a weapon for Oongka in the WEAPONS array (`character: 'oongka'`, `type: 'Shield'`).
@@ -225,11 +294,23 @@ No new specific builds were found that warrant adding to the app's data layer, a
 ### REGIONS Array Missing 'The Abyss' [ADDED -- 2026-03-15]
 - Fixed: Added The Abyss as a sixth entry in the REGIONS array with id: 'abyss'.
 
-### Matthias - Region Assignment Uncertainty [NEEDS REVIEW]
-- Current value in game-data.ts: `region: 'demeniss'`
-- Issue: Fextralife places him as fighting "in Hernand town square." Game8 describes him as captain of the Wandering Freeswords without a specific region. May need correction to 'hernand'. Flag for verification at launch.
-- Source: Fextralife Wiki (https://crimsondesert.wiki.fextralife.com/Bosses)
-- Flagged: 2026-03-15
+### Matthias - Region Assignment [ADDED -- 2026-03-15]
+- Changed `region: 'demeniss'` to `region: 'hernand'` in BOSSES array.
+- Confirmed by: Fextralife Wiki ("town square of Hernand") and Game8 ("Kliff encounters in Hernand while searching for his comrades"). Two independent sources.
+- Flagged: 2026-03-15 (Run 1); Confirmed 2026-03-15 (Run 2); Applied 2026-03-15 (Run 3)
+
+### Difficulty Field -- No In-Game Difficulty Settings [ARCHITECTURE NOTE]
+- Finding: Crimson Desert has NO adjustable difficulty settings. The Director of Marketing confirmed: "At this point, there are no difficulty settings. There is a single difficulty curve for the game." Enemies have set, non-scaling power levels.
+- Implication: The app's `difficulty` field in the Boss interface (`'normal' | 'hard' | 'extreme' | 'legendary'`) is entirely an editorial construct -- it is NOT sourced from any in-game stat. This is fine and should be preserved as the app's own ranking system. All new boss entries will use the app's own scale.
+- Source: Multiple sources including Adventure Gamers, Beebom, allthings.how (2026-03-15)
+- Note: No change needed in game-data.ts or types. Documenting for future data imports so contributors understand this is an app-defined field.
+
+### Aliston NPC Name -- Possible Spelling Discrepancy [NEEDS REVIEW]
+- Queue entry uses: "Aliston"
+- Fextralife Wiki uses: "Alustin the Alchemist" (for the Library of Providence overseer in The Abyss)
+- These may be the same character under a slightly different romanization, or different characters entirely. Verify at launch before creating any NPC data entry.
+- Source: Fextralife Locations wiki (fetched 2026-03-15)
+- Flagged: 2026-03-15 (Run 4)
 
 ### Knowledge Codex Data Not Represented [NEEDS REVIEW]
 - The app does not currently surface the Knowledge Codex system or its 2,921-entry breakdown (467 people, 573 territories, 401 creatures, 76 bosses, 110 factions, 355 crafting manuals, 29 mount types). This is a significant game mechanic that could be surfaced as an activity or progress tracker in the app.
@@ -240,7 +321,11 @@ No new specific builds were found that warrant adding to the app's data layer, a
 
 ## Recently Added (Archive)
 
-### Added 2026-03-15
+### Applied 2026-03-15 (Run 3)
+
+- **Matthias** [Boss / Correction] -- Corrected region from 'demeniss' to 'hernand'. Confirmed by Fextralife Wiki and Game8 (2 independent sources).
+
+### Added 2026-03-15 (Run 1)
 
 - **The Abyss** [Region] -- Added as sixth entry in REGIONS array. Source: Fextralife Locations wiki.
 - **Grotevant Plate Set** [Collectible / Edition] -- Added to COLLECTIBLES['edition'] as PlayStation 5 Exclusive Bonus. Source: Fextralife main wiki.
@@ -248,3 +333,15 @@ No new specific builds were found that warrant adding to the app's data layer, a
 - **Dyehouse Shop** [Camp Facility] -- Added to CAMP_FACILITIES. Upgrade tiers pending. Source: Fextralife Greymane Camp wiki.
 - **Trading Center** [Camp Facility] -- Added to CAMP_FACILITIES. Upgrade tiers pending. Source: Fextralife Greymane Camp wiki.
 - **Personal Resting House** [Camp Facility] -- Added to CAMP_FACILITIES. Upgrade tiers pending. Source: Fextralife Greymane Camp wiki.
+
+### Flagged 2026-03-15 (Run 2) -- Pending Human Review / Post-Launch
+- **Marius** [NPC] -- Greymane comrade, injured, found in Hernand. Story-significant NPC. Needs NPC data structure.
+- **Russo** [NPC] -- Greymane member searching for artifacts. Needs NPC data structure.
+- **Aliston** [NPC] -- Library of Providence overseer. Needs NPC data structure.
+- **White Crow** [NPC] -- Abyss guardian, ties to flying ability unlock. Needs NPC data structure.
+- **Bon Midler** [NPC] -- Hernand peacekeeper / quest giver. Needs NPC data structure.
+- **Shakatu** [NPC] -- Black Desert crossover merchant, Gold Leaves Branch Master. Needs NPC data structure.
+- **Radiant Fragments** [Collectible?] -- May be alternate name for Abyss Artifacts. Verify at launch.
+- **Sky Boulder Investigation** [Quest] -- Early Hernand quest. Name/reward TBD at launch.
+- **The Gold Leaves Duel** [Quest] -- Faction quest defeating Split Horn. Official quest name TBD.
+- **Rakash correction** -- Previously logged as character "Rakkash"; confirmed via transcript to be a goblin word for "duel." No character named Rakkash exists.

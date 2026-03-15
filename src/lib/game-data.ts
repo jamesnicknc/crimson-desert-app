@@ -206,7 +206,7 @@ export const BOSSES: Boss[] = [
   { name: 'Delesyian Automaton', region: 'delesyia', type: 'Mechanical', difficulty: 'normal', reward: 'Speed Catalyst Gear', element: 'shock', weakness: 'physical' },
   { name: 'Kearush the Slayer', region: 'hernand', type: 'Monster', difficulty: 'hard', reward: 'Slayer Claw Materials', element: 'physical', weakness: 'fire' },
   { name: 'Reed Devil', region: 'pailune', type: 'Humanoid', difficulty: 'extreme', reward: "Dragon's Tear", element: 'physical', weakness: 'shock' },
-  { name: 'Matthias', region: 'demeniss', type: 'Human', difficulty: 'hard', reward: 'Radiant Knight Armor', element: 'physical', weakness: 'shock' },
+  { name: 'Matthias', region: 'hernand', type: 'Human', difficulty: 'hard', reward: 'Radiant Knight Armor', element: 'physical', weakness: 'shock' }, // Updated 2026-03-15: region corrected from 'demeniss' to 'hernand' -- confirmed by Fextralife Wiki and Game8
   { name: 'Crimson Scorpion King', region: 'desert', type: 'Beast', difficulty: 'hard', reward: 'Venom Materials', element: 'fire', weakness: 'frost' },
   { name: 'Golden Star', region: 'delesyia', type: 'Mechanical', difficulty: 'legendary', reward: 'Mech Mount Key', element: 'shock', weakness: 'physical' },
   { name: 'Hexe Marie', region: 'abyss', type: 'Magical', difficulty: 'legendary', reward: 'Deep Abyss Core', element: 'abyss' },
