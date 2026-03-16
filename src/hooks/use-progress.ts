@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 import { createClient } from '@/lib/supabase/client';
 
 // Manages syncing progress to/from Supabase with optimistic local updates
@@ -9,31 +9,63 @@ export function useProgress() {
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const supabase = createClient();
+  const loadedRef = useRef(false);
 
-  // Load all progress on mount
-  useEffect(() => {
-    async function load() {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) { setLoading(false); return; }
-      setIsAuthenticated(true);
+  // Load progress for a given user
+  const loadProgress = useCallback(async (userId: string) => {
+    const { data, error } = await supabase
+      .from('user_progress')
+      .select('category, item_key, value')
+      .eq('user_id', userId);
 
-      const { data } = await supabase
-        .from('user_progress')
-        .select('category, item_key, value')
-        .eq('user_id', user.id);
-
-      if (data) {
-        const grouped: Record<string, Record<string, boolean>> = {};
-        data.forEach(row => {
-          if (!grouped[row.category]) grouped[row.category] = {};
-          grouped[row.category][row.item_key] = true;
-        });
-        setProgress(grouped);
-      }
+    if (error) {
+      console.error('Failed to load progress:', error.message);
       setLoading(false);
+      return;
     }
-    load();
-  }, []);
+
+    if (data) {
+      const grouped: Record<string, Record<string, boolean>> = {};
+      data.forEach(row => {
+        if (!grouped[row.category]) grouped[row.category] = {};
+        grouped[row.category][row.item_key] = true;
+      });
+      setProgress(grouped);
+    }
+    setIsAuthenticated(true);
+    setLoading(false);
+    loadedRef.current = true;
+  }, [supabase]);
+
+  // Listen for auth state changes so progress loads even if session
+  // isn't ready on first mount (fixes progress not appearing on reload)
+  useEffect(() => {
+    // Try loading immediately if session already exists
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user && !loadedRef.current) {
+        loadProgress(user.id);
+      } else if (!user) {
+        setLoading(false);
+      }
+    });
+
+    // Also listen for auth state changes (sign-in, token refresh, etc.)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        if (session?.user && !loadedRef.current) {
+          loadProgress(session.user.id);
+        } else if (!session?.user) {
+          // User signed out - clear progress
+          setProgress({});
+          setIsAuthenticated(false);
+          setLoading(false);
+          loadedRef.current = false;
+        }
+      }
+    );
+
+    return () => subscription.unsubscribe();
+  }, [supabase, loadProgress]);
 
   const isCompleted = useCallback((category: string, key: string) => {
     return progress[category]?.[key] ?? false;
@@ -56,18 +88,20 @@ export function useProgress() {
     if (!user) return;
 
     if (next) {
-      await supabase.rpc('upsert_progress', {
+      const { error } = await supabase.rpc('upsert_progress', {
         p_category: category,
         p_item_key: key,
         p_value: { completed: true },
       });
+      if (error) console.error('Failed to save progress:', error.message);
     } else {
-      await supabase
+      const { error } = await supabase
         .from('user_progress')
         .delete()
         .eq('user_id', user.id)
         .eq('category', category)
         .eq('item_key', key);
+      if (error) console.error('Failed to delete progress:', error.message);
     }
   }, [progress, supabase]);
 
