@@ -107,6 +107,11 @@ export interface Mount {
   acquisition: string;
 }
 
+export interface RegionPOI {
+  name: string;
+  type: 'town' | 'dungeon' | 'landmark' | 'stronghold' | 'ruins' | 'arena' | 'camp' | 'shrine' | 'other';
+}
+
 export interface RegionInfo {
   id: Region;
   name: string;
@@ -114,6 +119,7 @@ export interface RegionInfo {
   description: string;
   color: string;
   features: string[];
+  pois: RegionPOI[];
 }
 
 export interface MapPin {

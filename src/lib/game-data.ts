@@ -1,5 +1,5 @@
 import type {
-  Skill, Collectible, Boss, Quest, Weapon, Recipe, RegionInfo,
+  Skill, Collectible, Boss, Quest, Weapon, Recipe, RegionInfo, RegionPOI,
   Character, CollectibleCategory, Mount, Activity, CampFacility, Enemy,
 } from '@/types/game-data';
 
@@ -12,32 +12,82 @@ export const REGIONS: RegionInfo[] = [
     id: 'hernand', name: 'Hernand', subtitle: 'Fertile Heartland / Starting Region',
     description: 'Lush green fields dotted with prosperous cities and dense forests. The journey begins here amid political intrigue and noble house rivalries.',
     color: '#5BAA5B', features: ['Cities', 'Forests', 'Noble Houses', 'Meadows'],
+    pois: [
+      { name: 'Hernand Castle', type: 'landmark' },
+      { name: 'Roothold Stronghold', type: 'stronghold' },
+      { name: 'Unicorn Cliffs', type: 'landmark' },
+      { name: 'Antumbra Ritual Grounds', type: 'ruins' },
+      { name: 'Bluemont Manor', type: 'landmark' },
+      { name: 'The Eldertree', type: 'landmark' },
+      { name: 'Nas River Fishing Dock', type: 'other' },
+      { name: 'Hernand Crossroads', type: 'town' },
+      { name: 'Hernand Highway', type: 'other' },
+    ],
   },
   {
     id: 'pailune', name: 'Pailune', subtitle: 'Northern Highlands / Greymane Homeland',
     description: 'Green highlands and rugged terrain give way to snowy mountain peaks. Open grasslands where wild horses roam lead to treacherous frozen passes. The ancestral home of the Greymanes, once unified under the great leader Gian.',
     color: '#5B8FA8', features: ['Highlands', 'Mountains', 'Grasslands', 'Greymane HQ', 'Wildlife'],
+    pois: [
+      { name: 'Greymane Base Camp', type: 'camp' },
+      { name: 'Frozen Soul Mountain', type: 'landmark' },
+      { name: 'Frozen Pass', type: 'landmark' },
+      { name: 'Dragon Ridge', type: 'landmark' },
+      { name: 'Pailune Archives', type: 'landmark' },
+      { name: 'Pailune Monument', type: 'shrine' },
+      { name: "Dragon's Nest", type: 'dungeon' },
+      { name: 'Mountain Peak Shrine', type: 'shrine' },
+    ],
   },
   {
     id: 'demeniss', name: 'Demeniss', subtitle: 'Capital / Seat of Power',
     description: "The grand capital of Pywel and major military staging ground. King Demeniss's coma has sparked a dangerous power vacuum here.",
     color: '#8B7530', features: ['Castle', 'Military', 'Politics', 'Markets'],
+    pois: [
+      { name: 'Demeniss Castle', type: 'landmark' },
+      { name: 'Royal Quarter', type: 'town' },
+      { name: 'Royal Catacombs', type: 'dungeon' },
+      { name: 'Military Fort', type: 'stronghold' },
+      { name: 'Demeniss Gate', type: 'landmark' },
+      { name: 'Demeniss Throne Room', type: 'landmark' },
+    ],
   },
   {
     id: 'delesyia', name: 'Delesyia', subtitle: 'Mechanical Frontier / Science & Tech',
     description: 'The most scientifically advanced region, filled with mechanical beings, otherworldly constructs, and alchemical innovation.',
     color: '#7B5EA7', features: ['Robots', 'Alchemy Labs', 'Tech', 'Constructs'],
+    pois: [
+      { name: "Marni's Masterium", type: 'landmark' },
+      { name: 'Tesla Ruins', type: 'ruins' },
+      { name: 'Sky Tower', type: 'landmark' },
+      { name: 'Delesyia Lab', type: 'other' },
+      { name: 'Delesyia Outskirts', type: 'town' },
+    ],
   },
   {
     id: 'desert', name: 'The Crimson Desert', subtitle: 'Lawless Wastes / Red Sands',
     description: 'A barren wasteland of crimson sand, completely lawless and home to brigands, powerful beasts, and ancient secrets buried beneath the dunes.',
     color: '#C0392B', features: ['Brigands', 'Ruins', 'Beasts', 'Secrets'],
+    pois: [
+      { name: 'The Bonepit Arena', type: 'arena' },
+      { name: 'Buried Temple', type: 'ruins' },
+      { name: 'Lava Pit', type: 'landmark' },
+      { name: 'Red Dunes Entry', type: 'landmark' },
+      { name: "Bandit's Rest", type: 'other' },
+      { name: 'Desert Hermit Outpost', type: 'other' },
+    ],
   },
   // Added 2026-03-15 via apply-data task
   {
     id: 'abyss', name: 'The Abyss', subtitle: 'Otherworldly Dimension / Source of Abyss Power',
     description: 'A mysterious realm brimming with secrets and untold power. This otherworldly dimension lies beyond the known world and is tied to the dark magic threatening Pywel. Home to the Library of Providence and the dreaded Hexe Marie.',
     color: '#1A0A2E', features: ['Library of Providence', 'Skyloop Bridge', 'Abyss Magic', 'Mysteries'],
+    pois: [
+      { name: 'Library of Providence', type: 'landmark' },
+      { name: 'Skyloop Bridge', type: 'landmark' },
+      { name: 'Abyss Gateway', type: 'shrine' },
+      { name: 'Final Depth', type: 'dungeon' },
+    ],
   },
 ];
 
