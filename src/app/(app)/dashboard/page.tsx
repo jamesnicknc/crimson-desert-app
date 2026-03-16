@@ -14,8 +14,6 @@ import {
   BookOpen,
   Footprints,
 } from 'lucide-react';
-import { REGIONS, BOSSES, MOUNTS, QUESTS, CAMP_FACILITIES, getAllCollectiblesWithKeys } from '@/lib/game-data';
-import { useProgress } from '@/hooks/use-progress';
 
 interface CountdownState {
   days: number;
@@ -25,8 +23,6 @@ interface CountdownState {
 }
 
 export default function DashboardPage() {
-  const { countCompleted, progress, loading: progressLoading } = useProgress();
-
   const [countdown, setCountdown] = useState<CountdownState>({
     days: 0,
     hours: 0,
@@ -36,7 +32,7 @@ export default function DashboardPage() {
 
   useEffect(() => {
     const calculateCountdown = () => {
-      const targetDate = new Date('2026-03-19T00:00:00').getTime();
+      const targetDate = new Date('2026-03-19T23:00:00Z').getTime(); // 6 PM EST (UTC-5)
       const now = new Date().getTime();
       const difference = targetDate - now;
 
@@ -56,42 +52,13 @@ export default function DashboardPage() {
     return () => clearInterval(timer);
   }, []);
 
-  // Calculate dynamic completion percentage from mounts, camp facilities, collectibles, quest log, and bosses
-  const mountKeys = MOUNTS.map((_, i) => `mount-${i}`);
-  const mountCompleted = countCompleted('mount', mountKeys);
-
-  const facilityKeys: string[] = [];
-  CAMP_FACILITIES.forEach(facility => {
-    facility.upgrades.forEach(upgrade => {
-      facilityKeys.push(`camp-${facility.name}-t${upgrade.tier}`);
-    });
-  });
-  const facilityCompleted = countCompleted('collectible', facilityKeys);
-
-  const allCollectibles = getAllCollectiblesWithKeys();
-  const collectibleKeys = allCollectibles.map(c => c.key);
-  const collectibleCompleted = countCompleted('collectible', collectibleKeys);
-
-  const questKeys = QUESTS.map(q => q.name);
-  const questCompleted = questKeys.filter(k => {
-    const val = progress['quest']?.[k];
-    return val;
-  }).length;
-
-  const bossKeys = BOSSES.map((_, i) => `boss-${i}`);
-  const bossCompleted = countCompleted('boss', bossKeys);
-
-  const totalTrackable = mountKeys.length + facilityKeys.length + collectibleKeys.length + questKeys.length + bossKeys.length;
-  const totalDone = mountCompleted + facilityCompleted + collectibleCompleted + questCompleted + bossCompleted;
-  const completionPct = totalTrackable > 0 ? Math.round((totalDone / totalTrackable) * 100) : 0;
-
   const stats = [
     { label: 'World Size', value: '256 km²', icon: Globe, href: '/map' },
-    { label: 'Regions', value: String(REGIONS.length), icon: Compass, href: '/map' },
+    { label: 'Regions', value: '6', icon: Compass, href: '/map' },
     { label: 'Bosses', value: '76', icon: Skull, href: '/bosses' },
-    { label: 'Mounts', value: String(MOUNTS.length), icon: Footprints, href: '/mounts' },
-    { label: 'Characters', value: '3', icon: Users, href: '/skills' },
-    { label: 'Completion', value: `${completionPct}%`, icon: TrendingUp, href: '/quests' },
+    { label: 'Mounts', value: '29', icon: Footprints, href: '/mounts' },
+    { label: 'Characters', value: '3', icon: Users, href: '/characters' },
+    { label: 'Completion', value: '0%', icon: TrendingUp, href: '/quests' },
   ];
 
   const quickAccess = [
@@ -258,7 +225,7 @@ export default function DashboardPage() {
               World Exploration
             </h3>
             <p className="text-gray-300">
-              Discover all {REGIONS.length} regions with our interactive map. Track discovered
+              Discover all 6 regions with our interactive map. Track discovered
               locations and uncover secrets hidden across the desert.
             </p>
           </div>
