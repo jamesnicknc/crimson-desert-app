@@ -65,10 +65,19 @@ export interface CampFacility {
   upgrades: { tier: number; effect: string; materials: string[] }[];
 }
 
+export interface QuestStep {
+  step: number;
+  instruction: string;
+  tip?: string;
+}
+
 export interface Quest {
   name: string;
   description: string;
   type: QuestType;
+  region?: string;
+  rewards?: string[];
+  walkthrough?: QuestStep[];
 }
 
 export interface SignatureAbility {
