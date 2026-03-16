@@ -1,10 +1,8 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState } from 'react';
 import { QUESTS } from '@/lib/game-data';
-import { createClient } from '@/lib/supabase/client';
-import { useUser } from '@/hooks/use-user';
-import SignInPrompt from '@/components/SignInPrompt';
+import { useProgress } from '@/hooks/use-progress';
 import { X, Scroll, Gift, CheckCircle2, Circle, Loader2 } from 'lucide-react';
 import type { QuestType, QuestStatus } from '@/types/game-data';
 
@@ -16,38 +14,18 @@ interface Quest {
 
 export default function QuestsPage() {
   const [selectedFilter, setSelectedFilter] = useState<QuestType | 'all'>('all');
-  const [questStatus, setQuestStatus] = useState<Record<string, QuestStatus>>({});
   const [search, setSearch] = useState('');
   const [selectedQuest, setSelectedQuest] = useState<Quest | null>(null);
-  const supabase = createClient();
-  const { user, loading: userLoading } = useUser();
+  const { getValue, setValue, countCompleted, loading, isAuthenticated, progress } = useProgress();
 
-  // Load quest progress from Supabase on mount
-  const loadQuestProgress = useCallback(async () => {
-    if (!user) return;
-    const { data } = await supabase
-      .from('user_progress')
-      .select('item_key, value')
-      .eq('user_id', user.id)
-      .eq('category', 'quest');
-
-    if (data) {
-      const statuses: Record<string, QuestStatus> = {};
-      data.forEach(row => {
-        const val = row.value as { status?: QuestStatus } | null;
-        if (val?.status) {
-          statuses[row.item_key] = val.status;
-        }
-      });
-      setQuestStatus(statuses);
+  const getQuestStatus = (questName: string): QuestStatus => {
+    const val = getValue('quest', questName);
+    if (!val) return 'not-started';
+    if (typeof val === 'object' && 'status' in val) {
+      return (val.status as QuestStatus) || 'not-started';
     }
-  }, [user, supabase]);
-
-  useEffect(() => {
-    if (!userLoading && user) {
-      loadQuestProgress();
-    }
-  }, [userLoading, user, loadQuestProgress]);
+    return 'not-started';
+  };
 
   const filteredQuests = QUESTS.filter(q => {
     const matchesType = selectedFilter === 'all' || q.type === selectedFilter;
@@ -60,7 +38,7 @@ export default function QuestsPage() {
   });
 
   // Completion counts (only 'complete' status counts toward completion)
-  const completedCount = QUESTS.filter(q => questStatus[q.name] === 'complete').length;
+  const completedCount = QUESTS.filter(q => getQuestStatus(q.name) === 'complete').length;
   const totalQuests = QUESTS.length;
 
   const getTypeColor = (type: QuestType): string => {
@@ -85,64 +63,32 @@ export default function QuestsPage() {
     return labels[type];
   };
 
-  const toggleQuestStatus = async (questName: string) => {
-    const current = questStatus[questName] || 'not-started';
-    const statuses: Record<QuestStatus, QuestStatus> = {
+  const cycleQuestStatus = (questName: string) => {
+    const current = getQuestStatus(questName);
+    const next: Record<QuestStatus, QuestStatus> = {
       'not-started': 'active',
       'active': 'complete',
       'complete': 'not-started',
     };
-    const next = statuses[current];
+    const nextStatus = next[current];
 
-    setQuestStatus(prev => ({
-      ...prev,
-      [questName]: next,
-    }));
-
-    if (!user) return;
-
-    if (next === 'not-started') {
-      await supabase
-        .from('user_progress')
-        .delete()
-        .eq('user_id', user.id)
-        .eq('category', 'quest')
-        .eq('item_key', questName);
+    if (nextStatus === 'not-started') {
+      setValue('quest', questName, null);
     } else {
-      await supabase.rpc('upsert_progress', {
-        p_category: 'quest',
-        p_item_key: questName,
-        p_value: { status: next },
-      });
+      setValue('quest', questName, { status: nextStatus });
     }
   };
 
-  const setQuestStatusDirect = async (questName: string, status: QuestStatus) => {
-    setQuestStatus(prev => ({
-      ...prev,
-      [questName]: status,
-    }));
-
-    if (!user) return;
-
+  const setQuestStatus = (questName: string, status: QuestStatus) => {
     if (status === 'not-started') {
-      await supabase
-        .from('user_progress')
-        .delete()
-        .eq('user_id', user.id)
-        .eq('category', 'quest')
-        .eq('item_key', questName);
+      setValue('quest', questName, null);
     } else {
-      await supabase.rpc('upsert_progress', {
-        p_category: 'quest',
-        p_item_key: questName,
-        p_value: { status },
-      });
+      setValue('quest', questName, { status });
     }
   };
 
   const getStatusBadge = (questName: string) => {
-    const status = questStatus[questName] || 'not-started';
+    const status = getQuestStatus(questName);
     const badges: Record<QuestStatus, string> = {
       'not-started': 'Not Started',
       'active': 'Active',
@@ -157,7 +103,7 @@ export default function QuestsPage() {
   };
 
   const getStatusIcon = (questName: string) => {
-    const status = questStatus[questName] || 'not-started';
+    const status = getQuestStatus(questName);
     switch (status) {
       case 'complete':
         return <CheckCircle2 className="w-5 h-5 text-green-400" />;
@@ -213,10 +159,6 @@ export default function QuestsPage() {
         ))}
       </div>
 
-      {!user && !userLoading && (
-        <SignInPrompt message="Sign in to track your quest progress" compact />
-      )}
-
       <div className="space-y-3">
         {filteredQuests.map(quest => {
           const badge = getStatusBadge(quest.name);
@@ -241,7 +183,7 @@ export default function QuestsPage() {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    toggleQuestStatus(quest.name);
+                    cycleQuestStatus(quest.name);
                   }}
                   className={`px-4 py-2 rounded font-semibold text-sm whitespace-nowrap transition ${badge.color} hover:opacity-80`}
                 >
@@ -253,7 +195,7 @@ export default function QuestsPage() {
         })}
       </div>
 
-      {/* Quest Detail Modal (larger for future walkthrough content) */}
+      {/* Quest Detail Modal */}
       {selectedQuest && (
         <div
           className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
@@ -292,7 +234,7 @@ export default function QuestsPage() {
                 </div>
                 <div className="flex gap-2">
                   {(['not-started', 'active', 'complete'] as QuestStatus[]).map(status => {
-                    const current = questStatus[selectedQuest.name] || 'not-started';
+                    const current = getQuestStatus(selectedQuest.name);
                     const isActive = current === status;
                     const statusLabels: Record<QuestStatus, string> = {
                       'not-started': 'Not Started',
@@ -307,7 +249,7 @@ export default function QuestsPage() {
                     return (
                       <button
                         key={status}
-                        onClick={() => setQuestStatusDirect(selectedQuest.name, status)}
+                        onClick={() => setQuestStatus(selectedQuest.name, status)}
                         className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors ${statusColors[status]}`}
                       >
                         {statusLabels[status]}

@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { COLLECTIBLES, getAllCollectiblesWithKeys } from '@/lib/game-data';
 import { useProgress } from '@/hooks/use-progress';
-import SignInPrompt from '@/components/SignInPrompt';
 import type { CollectibleCategory } from '@/types/game-data';
 
 const FILTERS: { label: string; value: CollectibleCategory | 'all' }[] = [
@@ -75,10 +74,6 @@ export default function CollectiblesPage() {
         className="w-full px-4 py-3 bg-pywel-card border border-pywel-border rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-400 transition-colors"
       />
 
-      {!isAuthenticated && !loading && (
-        <SignInPrompt message="Sign in to track your collectibles" compact />
-      )}
-
       {loading ? (
         <div className="text-center text-gray-400">Loading collectibles...</div>
       ) : (
@@ -130,7 +125,8 @@ export default function CollectiblesPage() {
                           <input
                             type="checkbox"
                             checked={isComplete}
-                            onChange={() => toggle('collectible', key)}
+                            onChange={() => {}}
+                            onClick={(e) => e.stopPropagation()}
                             className="mt-1 w-4 h-4 cursor-pointer accent-gold-400 flex-shrink-0"
                           />
                           <div className="flex-1 min-w-0">
