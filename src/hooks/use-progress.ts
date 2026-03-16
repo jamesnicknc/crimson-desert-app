@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState, useRef } from 'react';
+import { useCallback, useEffect, useState, useRef, useMemo } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useUser } from '@/hooks/use-user';
 
@@ -13,7 +13,9 @@ export function useProgress() {
   const [progress, setProgress] = useState<Record<string, Record<string, ProgressValue>>>({});
   const [loading, setLoading] = useState(true);
   const { user, loading: userLoading } = useUser();
-  const supabase = createClient();
+  // Stabilize supabase client reference so it doesn't trigger effect re-runs
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const supabase = useMemo(() => createClient(), []);
   const loadedForUser = useRef<string | null>(null);
 
   // Load all progress when user becomes available
@@ -30,11 +32,16 @@ export function useProgress() {
     // Don't re-load if we already loaded for this user
     if (loadedForUser.current === user.id) return;
 
+    let cancelled = false;
+
     async function load() {
+      console.log('[useProgress] Loading progress for user:', user!.id);
       const { data, error } = await supabase
         .from('user_progress')
         .select('category, item_key, value')
         .eq('user_id', user!.id);
+
+      if (cancelled) return;
 
       if (error) {
         console.error('[useProgress] Failed to load:', error.message);
@@ -43,6 +50,7 @@ export function useProgress() {
       }
 
       if (data) {
+        console.log('[useProgress] Loaded', data.length, 'items');
         const grouped: Record<string, Record<string, ProgressValue>> = {};
         data.forEach(row => {
           if (!grouped[row.category]) grouped[row.category] = {};
@@ -57,6 +65,8 @@ export function useProgress() {
     }
 
     load();
+
+    return () => { cancelled = true; };
   }, [user, userLoading, supabase]);
 
   const isAuthenticated = !!user;
