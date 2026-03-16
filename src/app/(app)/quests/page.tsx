@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { QUESTS } from '@/lib/game-data';
 import { createClient } from '@/lib/supabase/client';
 import { useUser } from '@/hooks/use-user';
@@ -20,7 +20,34 @@ export default function QuestsPage() {
   const [search, setSearch] = useState('');
   const [selectedQuest, setSelectedQuest] = useState<Quest | null>(null);
   const supabase = createClient();
-  const { user } = useUser();
+  const { user, loading: userLoading } = useUser();
+
+  // Load quest progress from Supabase on mount
+  const loadQuestProgress = useCallback(async () => {
+    if (!user) return;
+    const { data } = await supabase
+      .from('user_progress')
+      .select('item_key, value')
+      .eq('user_id', user.id)
+      .eq('category', 'quest');
+
+    if (data) {
+      const statuses: Record<string, QuestStatus> = {};
+      data.forEach(row => {
+        const val = row.value as { status?: QuestStatus } | null;
+        if (val?.status) {
+          statuses[row.item_key] = val.status;
+        }
+      });
+      setQuestStatus(statuses);
+    }
+  }, [user, supabase]);
+
+  useEffect(() => {
+    if (!userLoading && user) {
+      loadQuestProgress();
+    }
+  }, [userLoading, user, loadQuestProgress]);
 
   const filteredQuests = QUESTS.filter(q => {
     const matchesType = selectedFilter === 'all' || q.type === selectedFilter;
@@ -31,6 +58,10 @@ export default function QuestsPage() {
       q.description.toLowerCase().includes(query);
     return matchesType && matchesSearch;
   });
+
+  // Completion counts (only 'complete' status counts toward completion)
+  const completedCount = QUESTS.filter(q => questStatus[q.name] === 'complete').length;
+  const totalQuests = QUESTS.length;
 
   const getTypeColor = (type: QuestType): string => {
     const colors: Record<QuestType, string> = {
@@ -68,7 +99,6 @@ export default function QuestsPage() {
       [questName]: next,
     }));
 
-    const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
     if (next === 'not-started') {
@@ -83,6 +113,30 @@ export default function QuestsPage() {
         p_category: 'quest',
         p_item_key: questName,
         p_value: { status: next },
+      });
+    }
+  };
+
+  const setQuestStatusDirect = async (questName: string, status: QuestStatus) => {
+    setQuestStatus(prev => ({
+      ...prev,
+      [questName]: status,
+    }));
+
+    if (!user) return;
+
+    if (status === 'not-started') {
+      await supabase
+        .from('user_progress')
+        .delete()
+        .eq('user_id', user.id)
+        .eq('category', 'quest')
+        .eq('item_key', questName);
+    } else {
+      await supabase.rpc('upsert_progress', {
+        p_category: 'quest',
+        p_item_key: questName,
+        p_value: { status },
       });
     }
   };
@@ -121,6 +175,20 @@ export default function QuestsPage() {
         <p className="text-gray-400">Track your progress through the main story, side quests, and faction missions.</p>
       </div>
 
+      {/* Completion bar */}
+      <div className="bg-pywel-card border border-pywel-border rounded-lg p-4">
+        <div className="flex justify-between items-baseline mb-2">
+          <span className="text-sm font-cinzel font-semibold text-gold-400">Quests Completed</span>
+          <span className="text-sm text-gold-300">{completedCount} / {totalQuests}</span>
+        </div>
+        <div className="w-full bg-pywel-bg rounded-full h-2.5 overflow-hidden">
+          <div
+            className="h-full bg-gradient-to-r from-gold-400 to-gold-500 transition-all duration-300"
+            style={{ width: `${totalQuests > 0 ? (completedCount / totalQuests) * 100 : 0}%` }}
+          ></div>
+        </div>
+      </div>
+
       <input
         type="text"
         value={search}
@@ -145,7 +213,7 @@ export default function QuestsPage() {
         ))}
       </div>
 
-      {!user && (
+      {!user && !userLoading && (
         <SignInPrompt message="Sign in to track your quest progress" compact />
       )}
 
@@ -185,14 +253,14 @@ export default function QuestsPage() {
         })}
       </div>
 
-      {/* Quest Detail Modal */}
+      {/* Quest Detail Modal (larger for future walkthrough content) */}
       {selectedQuest && (
         <div
           className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
           onClick={() => setSelectedQuest(null)}
         >
           <div
-            className="bg-pywel-secondary border border-pywel-border rounded-xl w-full max-w-lg max-h-[80vh] overflow-y-auto shadow-2xl"
+            className="bg-pywel-secondary border border-pywel-border rounded-xl w-full max-w-2xl max-h-[85vh] overflow-y-auto shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
@@ -239,9 +307,7 @@ export default function QuestsPage() {
                     return (
                       <button
                         key={status}
-                        onClick={() => {
-                          setQuestStatus(prev => ({ ...prev, [selectedQuest.name]: status }));
-                        }}
+                        onClick={() => setQuestStatusDirect(selectedQuest.name, status)}
                         className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors ${statusColors[status]}`}
                       >
                         {statusLabels[status]}
@@ -257,8 +323,8 @@ export default function QuestsPage() {
                   <Scroll className="w-5 h-5 text-gold-400" />
                   <h3 className="text-sm font-cinzel font-semibold text-gold-400 uppercase tracking-wider">Walkthrough</h3>
                 </div>
-                <div className="bg-pywel-card border border-pywel-border rounded-lg p-6 text-center">
-                  <p className="text-gray-500 italic text-sm">Quest Info Coming Soon</p>
+                <div className="bg-pywel-card border border-pywel-border rounded-lg p-8 text-center min-h-[120px] flex items-center justify-center">
+                  <p className="text-gray-500 italic text-sm">Walkthrough information coming soon</p>
                 </div>
               </div>
 
@@ -268,8 +334,8 @@ export default function QuestsPage() {
                   <Gift className="w-5 h-5 text-purple-400" />
                   <h3 className="text-sm font-cinzel font-semibold text-gold-400 uppercase tracking-wider">Rewards</h3>
                 </div>
-                <div className="bg-pywel-card border border-pywel-border rounded-lg p-6 text-center">
-                  <p className="text-gray-500 italic text-sm">Quest Info Coming Soon</p>
+                <div className="bg-pywel-card border border-pywel-border rounded-lg p-8 text-center min-h-[80px] flex items-center justify-center">
+                  <p className="text-gray-500 italic text-sm">Reward details coming soon</p>
                 </div>
               </div>
             </div>

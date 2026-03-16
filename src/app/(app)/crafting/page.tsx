@@ -10,7 +10,6 @@ const FILTERS: { label: string; value: CraftingType | 'all' }[] = [
   { label: 'Alchemy', value: 'alchemy' },
   { label: 'Blacksmithing', value: 'blacksmith' },
   { label: 'Dyes', value: 'dye' },
-  { label: 'Camp Upgrades', value: 'camp-upgrade' },
 ];
 
 export default function CraftingPage() {
@@ -18,6 +17,8 @@ export default function CraftingPage() {
   const [search, setSearch] = useState('');
 
   const filteredRecipes = RECIPES.filter(r => {
+    // Camp upgrades have been moved to the Greymane Camp page
+    if (r.type === 'camp-upgrade') return false;
     const matchesType = selectedFilter === 'all' || r.type === selectedFilter;
     const query = search.toLowerCase();
     const matchesSearch =

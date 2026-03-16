@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Search, Filter, ChevronDown, ChevronUp, ArrowUpDown } from 'lucide-react';
+import { Search, Filter, ChevronDown, ArrowUpDown, X } from 'lucide-react';
 import { MOUNTS, REGIONS } from '@/lib/game-data';
 import { useProgress } from '@/hooks/use-progress';
 import SignInPrompt from '@/components/SignInPrompt';
-import type { MountCategory, Region } from '@/types/game-data';
+import type { MountCategory, Region, Mount } from '@/types/game-data';
 
 type SortField = 'name' | 'category' | 'region' | 'speed' | 'combat' | 'stamina';
 type SortDir = 'asc' | 'desc';
@@ -84,7 +84,7 @@ export default function MountsPage() {
   const [regionFilters, setRegionFilters] = useState<Set<string>>(new Set());
   const [sortField, setSortField] = useState<SortField>('name');
   const [sortDir, setSortDir] = useState<SortDir>('asc');
-  const [expandedMounts, setExpandedMounts] = useState<Set<number>>(new Set());
+  const [selectedMount, setSelectedMount] = useState<{ mount: Mount; index: number } | null>(null);
 
   const hasActiveFilters = categoryFilters.size > 0 || regionFilters.size > 0;
 
@@ -96,15 +96,6 @@ export default function MountsPage() {
     if (next.has(value)) next.delete(value);
     else next.add(value);
     setter(next);
-  };
-
-  const toggleExpanded = (idx: number) => {
-    setExpandedMounts(prev => {
-      const next = new Set(prev);
-      if (next.has(idx)) next.delete(idx);
-      else next.add(idx);
-      return next;
-    });
   };
 
   const handleSort = (field: SortField) => {
@@ -339,12 +330,11 @@ export default function MountsPage() {
           {filteredMounts.map(({ mount, index }) => {
             const mountKey = `mount-${index}`;
             const isObtained = isCompleted('mount', mountKey);
-            const isExpanded = expandedMounts.has(index);
 
             return (
               <div
                 key={mountKey}
-                onClick={() => toggleExpanded(index)}
+                onClick={() => setSelectedMount({ mount, index })}
                 className={`bg-pywel-card rounded-lg border transition-all cursor-pointer ${
                   isObtained
                     ? 'border-gold-600/40 bg-pywel-secondary/50'
@@ -381,9 +371,6 @@ export default function MountsPage() {
                         </span>
                       </div>
                     </div>
-                    <div className="flex items-center text-gold-400/60 ml-auto flex-shrink-0">
-                      {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
-                    </div>
                   </div>
 
                   {/* Quick stats row */}
@@ -401,42 +388,128 @@ export default function MountsPage() {
                       <span className="text-gray-300">{mount.stamina}</span>
                     </div>
                   </div>
-
-                  {/* Expanded details */}
-                  {isExpanded && (
-                    <div className="space-y-3 pt-3 mt-3 border-t border-pywel-border">
-                      <div>
-                        <label className="text-xs font-semibold text-blue-400 uppercase tracking-wider">Speed</label>
-                        {renderStatBar(mount.speed, 'bg-gradient-to-r from-blue-500 to-blue-400')}
-                      </div>
-                      <div>
-                        <label className="text-xs font-semibold text-red-400 uppercase tracking-wider">Combat</label>
-                        {renderStatBar(mount.combat, 'bg-gradient-to-r from-red-500 to-red-400')}
-                      </div>
-                      <div>
-                        <label className="text-xs font-semibold text-green-400 uppercase tracking-wider">Stamina</label>
-                        {renderStatBar(mount.stamina, 'bg-gradient-to-r from-green-500 to-green-400')}
-                      </div>
-
-                      {mount.special && (
-                        <div className="pt-2 mt-2 border-t border-pywel-border">
-                          <label className="text-xs font-semibold text-purple-400 uppercase tracking-wider">Special Ability</label>
-                          <p className="text-sm text-gray-300 mt-1">{mount.special}</p>
-                        </div>
-                      )}
-
-                      <div className="pt-2 mt-2 border-t border-pywel-border">
-                        <label className="text-xs font-semibold text-gold-400 uppercase tracking-wider">How to Obtain</label>
-                        <p className="text-sm text-gray-400 mt-1">{mount.acquisition}</p>
-                      </div>
-                    </div>
-                  )}
                 </div>
               </div>
             );
           })}
         </div>
       )}
+
+      {/* Mount Detail Modal */}
+      {selectedMount && (() => {
+        const { mount, index } = selectedMount;
+        const mountKey = `mount-${index}`;
+        const isObtained = isCompleted('mount', mountKey);
+
+        return (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={() => setSelectedMount(null)}>
+            <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
+            <div
+              className="relative z-10 w-full max-w-lg bg-pywel-card border-2 rounded-xl overflow-hidden max-h-[85vh] flex flex-col"
+              style={{ borderColor: getRegionColor(mount.region) }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="p-6 border-b border-pywel-border bg-gradient-to-br from-pywel-secondary/50 to-pywel-card">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-2xl">{getCategoryIcon(mount.category)}</span>
+                      <h2 className="text-xl font-cinzel font-bold text-gold-300">{mount.name}</h2>
+                    </div>
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-sm text-gray-400">{getCategoryLabel(mount.category)}</span>
+                      <span className="text-gray-600">|</span>
+                      <span
+                        className="inline-block px-2 py-0.5 rounded-full text-xs font-semibold text-white"
+                        style={{ backgroundColor: getRegionColor(mount.region) }}
+                      >
+                        {getRegionName(mount.region)}
+                      </span>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setSelectedMount(null)}
+                    className="p-1.5 text-gray-400 hover:text-gray-200 bg-pywel-bg/50 rounded-lg transition-colors flex-shrink-0"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                {/* Obtained toggle */}
+                <div className="flex items-center gap-2 mt-4">
+                  <input
+                    type="checkbox"
+                    checked={isObtained}
+                    onChange={() => toggle('mount', mountKey)}
+                    className="w-4 h-4 cursor-pointer accent-gold-400"
+                  />
+                  <span className={`text-sm font-semibold ${isObtained ? 'text-gold-400' : 'text-gray-400'}`}>
+                    {isObtained ? 'Obtained' : 'Not Obtained'}
+                  </span>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="overflow-y-auto flex-1 p-6 space-y-5">
+                {/* Stats */}
+                <div className="grid grid-cols-3 gap-4 text-center">
+                  <div className="bg-pywel-bg rounded-lg p-3 border border-pywel-border">
+                    <p className="text-2xl font-bold text-blue-400">{mount.speed}</p>
+                    <p className="text-xs text-gray-500 mt-1">Speed</p>
+                  </div>
+                  <div className="bg-pywel-bg rounded-lg p-3 border border-pywel-border">
+                    <p className="text-2xl font-bold text-red-400">{mount.combat}</p>
+                    <p className="text-xs text-gray-500 mt-1">Combat</p>
+                  </div>
+                  <div className="bg-pywel-bg rounded-lg p-3 border border-pywel-border">
+                    <p className="text-2xl font-bold text-green-400">{mount.stamina}</p>
+                    <p className="text-xs text-gray-500 mt-1">Stamina</p>
+                  </div>
+                </div>
+
+                {/* Stat bars */}
+                <div className="space-y-3">
+                  <div>
+                    <label className="text-xs font-semibold text-blue-400 uppercase tracking-wider">Speed</label>
+                    {renderStatBar(mount.speed, 'bg-gradient-to-r from-blue-500 to-blue-400')}
+                  </div>
+                  <div>
+                    <label className="text-xs font-semibold text-red-400 uppercase tracking-wider">Combat</label>
+                    {renderStatBar(mount.combat, 'bg-gradient-to-r from-red-500 to-red-400')}
+                  </div>
+                  <div>
+                    <label className="text-xs font-semibold text-green-400 uppercase tracking-wider">Stamina</label>
+                    {renderStatBar(mount.stamina, 'bg-gradient-to-r from-green-500 to-green-400')}
+                  </div>
+                </div>
+
+                {mount.special && (
+                  <div>
+                    <h3 className="text-sm font-cinzel font-semibold text-purple-400 uppercase tracking-wider mb-2">Special Ability</h3>
+                    <p className="text-sm text-gray-300">{mount.special}</p>
+                  </div>
+                )}
+
+                <div>
+                  <h3 className="text-sm font-cinzel font-semibold text-gold-400 uppercase tracking-wider mb-2">How to Obtain</h3>
+                  <p className="text-sm text-gray-400">{mount.acquisition}</p>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="p-6 pt-0">
+                <button
+                  onClick={() => setSelectedMount(null)}
+                  className="w-full py-2.5 bg-pywel-card border border-pywel-border rounded-lg text-gray-300 text-sm font-cinzel font-semibold hover:bg-pywel-card-hover hover:text-gold-300 transition-colors"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
     </div>
   );
 }

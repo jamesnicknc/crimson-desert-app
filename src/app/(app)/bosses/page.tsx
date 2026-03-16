@@ -7,7 +7,7 @@ import { useProgress } from '@/hooks/use-progress';
 import SignInPrompt from '@/components/SignInPrompt';
 import type { Difficulty, Region, Element } from '@/types/game-data';
 
-type SortField = 'name' | 'region' | 'type' | 'difficulty' | 'reward';
+type SortField = 'name' | 'region' | 'type' | 'difficulty' | 'reward' | 'element' | 'weakness';
 type SortDir = 'asc' | 'desc';
 
 const DIFFICULTY_ORDER: Record<Difficulty, number> = {
@@ -15,6 +15,14 @@ const DIFFICULTY_ORDER: Record<Difficulty, number> = {
   hard: 1,
   extreme: 2,
   legendary: 3,
+};
+
+const ELEMENT_ORDER: Record<Element, number> = {
+  physical: 0,
+  fire: 1,
+  frost: 2,
+  shock: 3,
+  abyss: 4,
 };
 
 const REGION_OPTIONS: { label: string; value: Region }[] = [
@@ -30,17 +38,31 @@ const DIFFICULTY_OPTIONS: { label: string; value: Difficulty }[] = [
   { label: 'Legendary', value: 'legendary' },
 ];
 
+const ELEMENT_OPTIONS: { label: string; value: Element }[] = [
+  { label: 'Physical', value: 'physical' },
+  { label: 'Fire', value: 'fire' },
+  { label: 'Frost', value: 'frost' },
+  { label: 'Shock', value: 'shock' },
+  { label: 'Abyss', value: 'abyss' },
+];
+
 export default function BossesPage() {
-  const { isCompleted, toggle, loading, isAuthenticated } = useProgress();
+  const { isCompleted, toggle, countCompleted, loading, isAuthenticated } = useProgress();
   const [searchQuery, setSearchQuery] = useState('');
   const [showFilters, setShowFilters] = useState(false);
   const [regionFilters, setRegionFilters] = useState<Set<Region>>(new Set());
   const [typeFilters, setTypeFilters] = useState<Set<string>>(new Set());
   const [difficultyFilters, setDifficultyFilters] = useState<Set<Difficulty>>(new Set());
+  const [elementFilters, setElementFilters] = useState<Set<Element>>(new Set());
+  const [weaknessFilters, setWeaknessFilters] = useState<Set<Element>>(new Set());
   const [sortField, setSortField] = useState<SortField>('name');
   const [sortDir, setSortDir] = useState<SortDir>('asc');
 
-  const hasActiveFilters = regionFilters.size > 0 || typeFilters.size > 0 || difficultyFilters.size > 0;
+  const hasActiveFilters = regionFilters.size > 0 || typeFilters.size > 0 || difficultyFilters.size > 0 || elementFilters.size > 0 || weaknessFilters.size > 0;
+
+  // Completion tracking
+  const bossKeys = BOSSES.map((_, i) => `boss-${i}`);
+  const defeatedCount = countCompleted('boss', bossKeys);
 
   const toggleFilter = <T,>(set: Set<T>, value: T, setter: (s: Set<T>) => void) => {
     const next = new Set(set);
@@ -104,6 +126,8 @@ export default function BossesPage() {
     setRegionFilters(new Set());
     setTypeFilters(new Set());
     setDifficultyFilters(new Set());
+    setElementFilters(new Set());
+    setWeaknessFilters(new Set());
     setSearchQuery('');
   };
 
@@ -113,6 +137,8 @@ export default function BossesPage() {
         if (regionFilters.size > 0 && !regionFilters.has(boss.region)) return false;
         if (typeFilters.size > 0 && !typeFilters.has(boss.type)) return false;
         if (difficultyFilters.size > 0 && !difficultyFilters.has(boss.difficulty)) return false;
+        if (elementFilters.size > 0 && !elementFilters.has(boss.element)) return false;
+        if (weaknessFilters.size > 0 && (!boss.weakness || !weaknessFilters.has(boss.weakness))) return false;
         if (searchQuery.trim()) {
           const query = searchQuery.toLowerCase();
           return (
@@ -120,7 +146,9 @@ export default function BossesPage() {
             getRegionName(boss.region).toLowerCase().includes(query) ||
             boss.type.toLowerCase().includes(query) ||
             boss.difficulty.toLowerCase().includes(query) ||
-            boss.reward.toLowerCase().includes(query)
+            boss.reward.toLowerCase().includes(query) ||
+            getElementStyle(boss.element).label.toLowerCase().includes(query) ||
+            (boss.weakness && getElementStyle(boss.weakness).label.toLowerCase().includes(query))
           );
         }
         return true;
@@ -140,13 +168,22 @@ export default function BossesPage() {
           case 'difficulty':
             cmp = DIFFICULTY_ORDER[a.difficulty] - DIFFICULTY_ORDER[b.difficulty];
             break;
+          case 'element':
+            cmp = ELEMENT_ORDER[a.element] - ELEMENT_ORDER[b.element];
+            break;
+          case 'weakness': {
+            const aWeak = a.weakness ? ELEMENT_ORDER[a.weakness] : 99;
+            const bWeak = b.weakness ? ELEMENT_ORDER[b.weakness] : 99;
+            cmp = aWeak - bWeak;
+            break;
+          }
           case 'reward':
             cmp = a.reward.localeCompare(b.reward);
             break;
         }
         return sortDir === 'asc' ? cmp : -cmp;
       });
-  }, [searchQuery, regionFilters, typeFilters, difficultyFilters, sortField, sortDir]);
+  }, [searchQuery, regionFilters, typeFilters, difficultyFilters, elementFilters, weaknessFilters, sortField, sortDir]);
 
   const SortHeader = ({ field, children }: { field: SortField; children: React.ReactNode }) => (
     <th
@@ -165,8 +202,22 @@ export default function BossesPage() {
       <div className="text-center">
         <h1 className="text-3xl font-cinzel font-bold text-gold-400 mb-2">Bosses</h1>
         <p className="text-gray-400">
-          Track defeated bosses across Pywel. {BOSSES.length} named bosses confirmed — 76 total in the Knowledge Codex.
+          Track defeated bosses across Pywel. {BOSSES.length} named bosses confirmed, 76 total in the Knowledge Codex.
         </p>
+      </div>
+
+      {/* Completion bar */}
+      <div className="bg-pywel-card border border-pywel-border rounded-lg p-4">
+        <div className="flex justify-between items-baseline mb-2">
+          <span className="text-sm font-cinzel font-semibold text-gold-400">Bosses Defeated</span>
+          <span className="text-sm text-gold-300">{defeatedCount} / {BOSSES.length}</span>
+        </div>
+        <div className="w-full bg-pywel-bg rounded-full h-2.5 overflow-hidden">
+          <div
+            className="h-full bg-gradient-to-r from-gold-400 to-gold-500 transition-all duration-300"
+            style={{ width: `${BOSSES.length > 0 ? (defeatedCount / BOSSES.length) * 100 : 0}%` }}
+          ></div>
+        </div>
       </div>
 
       {/* Search & Filter Controls */}
@@ -175,7 +226,7 @@ export default function BossesPage() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
           <input
             type="text"
-            placeholder="Search by name, region, type, difficulty, or reward..."
+            placeholder="Search by name, region, type, difficulty, element, or reward..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-3 bg-pywel-card border border-pywel-border rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-400 transition-colors"
@@ -193,7 +244,7 @@ export default function BossesPage() {
           Filters
           {hasActiveFilters && (
             <span className="bg-gold-600 text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
-              {regionFilters.size + typeFilters.size + difficultyFilters.size}
+              {regionFilters.size + typeFilters.size + difficultyFilters.size + elementFilters.size + weaknessFilters.size}
             </span>
           )}
           <ChevronDown className={`w-4 h-4 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
@@ -293,6 +344,66 @@ export default function BossesPage() {
             </div>
           </div>
 
+          {/* Element Filter */}
+          <div>
+            <p className="text-xs font-cinzel font-semibold text-gold-400 uppercase tracking-wider mb-3">Element</p>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setElementFilters(new Set())}
+                className={`px-3 py-1.5 rounded-full font-semibold text-xs transition-colors ${
+                  elementFilters.size === 0
+                    ? 'bg-gold-600 text-black'
+                    : 'bg-pywel-bg border border-pywel-border text-gray-300 hover:text-gold-300'
+                }`}
+              >
+                All Elements
+              </button>
+              {ELEMENT_OPTIONS.map(e => (
+                <button
+                  key={e.value}
+                  onClick={() => toggleFilter(elementFilters, e.value, setElementFilters)}
+                  className={`px-3 py-1.5 rounded-full font-semibold text-xs transition-colors ${
+                    elementFilters.has(e.value)
+                      ? 'bg-gold-600 text-black'
+                      : 'bg-pywel-bg border border-pywel-border text-gray-300 hover:text-gold-300'
+                  }`}
+                >
+                  {e.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Weak To Filter */}
+          <div>
+            <p className="text-xs font-cinzel font-semibold text-gold-400 uppercase tracking-wider mb-3">Weak To</p>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setWeaknessFilters(new Set())}
+                className={`px-3 py-1.5 rounded-full font-semibold text-xs transition-colors ${
+                  weaknessFilters.size === 0
+                    ? 'bg-gold-600 text-black'
+                    : 'bg-pywel-bg border border-pywel-border text-gray-300 hover:text-gold-300'
+                }`}
+              >
+                All Weaknesses
+              </button>
+              {ELEMENT_OPTIONS.map(e => (
+                <button
+                  key={`weak-${e.value}`}
+                  onClick={() => toggleFilter(weaknessFilters, e.value, setWeaknessFilters)}
+                  className={`px-3 py-1.5 rounded-full font-semibold text-xs transition-colors ${
+                    weaknessFilters.has(e.value)
+                      ? 'bg-gold-600 text-black'
+                      : 'bg-pywel-bg border border-pywel-border text-gray-300 hover:text-gold-300'
+                  }`}
+                >
+                  {e.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
           {hasActiveFilters && (
             <button
               onClick={clearFilters}
@@ -342,8 +453,8 @@ export default function BossesPage() {
                 <SortHeader field="region">Region</SortHeader>
                 <SortHeader field="type">Type</SortHeader>
                 <SortHeader field="difficulty">Difficulty</SortHeader>
-                <th className="px-4 py-3 text-left text-xs font-cinzel font-bold text-gold-400">Element</th>
-                <th className="px-4 py-3 text-left text-xs font-cinzel font-bold text-gold-400">Weak To</th>
+                <SortHeader field="element">Element</SortHeader>
+                <SortHeader field="weakness">Weak To</SortHeader>
                 <SortHeader field="reward">Reward</SortHeader>
               </tr>
             </thead>
