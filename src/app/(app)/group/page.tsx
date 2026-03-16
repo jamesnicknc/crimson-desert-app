@@ -153,6 +153,11 @@ export default function GroupPage() {
 
     const name = groupName.trim();
 
+    // Ensure profile exists (required by groups.created_by FK constraint)
+    await supabase
+      .from('profiles')
+      .upsert({ id: user.id }, { onConflict: 'id', ignoreDuplicates: true });
+
     // Insert group
     const { data: newGroup, error: createErr } = await supabase
       .from('groups')
@@ -161,7 +166,7 @@ export default function GroupPage() {
       .single();
 
     if (createErr || !newGroup) {
-      setError('Failed to create group. Please try again.');
+      setError(`Failed to create group: ${createErr?.message ?? 'unknown error'}`);
       setActionLoading(false);
       return;
     }
@@ -218,12 +223,17 @@ export default function GroupPage() {
       return;
     }
 
+    // Ensure profile exists (required by group_members.user_id FK constraint)
+    await supabase
+      .from('profiles')
+      .upsert({ id: user.id }, { onConflict: 'id', ignoreDuplicates: true });
+
     const { error: joinErr } = await supabase
       .from('group_members')
       .insert({ group_id: group.id, user_id: user.id });
 
     if (joinErr) {
-      setError('Failed to join group. Please try again.');
+      setError(`Failed to join group: ${joinErr.message}`);
       setActionLoading(false);
       return;
     }

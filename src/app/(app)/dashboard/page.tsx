@@ -13,7 +13,9 @@ import {
   Hammer,
   BookOpen,
   Footprints,
+  Trophy,
 } from 'lucide-react';
+import { TROPHIES } from '@/lib/game-data';
 
 interface CountdownState {
   days: number;
@@ -205,48 +207,68 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      {/* Features section */}
+      {/* Trophies section */}
       <section className="bg-gradient-to-r from-black/30 to-pywel-secondary/30 border border-pywel-border rounded-lg p-8">
-        <h2 className="font-cinzel text-2xl font-bold text-gold-300 mb-6">
-          Key Features
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div>
-            <h3 className="font-cinzel text-lg font-bold text-gold-300 mb-2">
-              Progress Tracking
-            </h3>
-            <p className="text-gray-300">
-              Monitor your completion across skill trees, quests, and collectibles.
-              Watch your journey unfold through detailed statistics.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-cinzel text-lg font-bold text-gold-300 mb-2">
-              World Exploration
-            </h3>
-            <p className="text-gray-300">
-              Discover all 6 regions with our interactive map. Track discovered
-              locations and uncover secrets hidden across the desert.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-cinzel text-lg font-bold text-gold-300 mb-2">
-              Combat Mastery
-            </h3>
-            <p className="text-gray-300">
-              Study our comprehensive bestiary and weapon database. Plan your
-              loadouts and strategies against 76 bosses.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-cinzel text-lg font-bold text-gold-300 mb-2">
-              Resource Management
-            </h3>
-            <p className="text-gray-300">
-              Track crafting recipes, manage your inventory, and plan your builds.
-              Organize your adventure with personal notes.
-            </p>
-          </div>
+        <div className="flex items-center gap-3 mb-6">
+          <Trophy className="w-6 h-6 text-gold-400" />
+          <h2 className="font-cinzel text-2xl font-bold text-gold-300">
+            Trophies & Achievements
+          </h2>
+          <span className="ml-auto text-sm text-gray-500 font-cinzel">{TROPHIES.length} total</span>
+        </div>
+
+        {/* Rarity summary row */}
+        <div className="grid grid-cols-4 gap-3 mb-6">
+          {(
+            [
+              { rarity: 'platinum', label: 'Platinum', color: 'text-cyan-300', bg: 'bg-cyan-900/20 border-cyan-700/30' },
+              { rarity: 'gold', label: 'Gold', color: 'text-yellow-400', bg: 'bg-yellow-900/20 border-yellow-700/30' },
+              { rarity: 'silver', label: 'Silver', color: 'text-gray-300', bg: 'bg-gray-700/20 border-gray-600/30' },
+              { rarity: 'bronze', label: 'Bronze', color: 'text-amber-600', bg: 'bg-amber-900/20 border-amber-700/30' },
+            ] as const
+          ).map(({ rarity, label, color, bg }) => {
+            const count = TROPHIES.filter(t => t.rarity === rarity).length;
+            return (
+              <div key={rarity} className={`rounded-lg border p-3 text-center ${bg}`}>
+                <p className={`text-2xl font-bold font-cinzel ${color}`}>{count}</p>
+                <p className={`text-xs font-cinzel mt-0.5 ${color} opacity-80`}>{label}</p>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Trophy list */}
+        <div className="space-y-1.5 max-h-72 overflow-y-auto pr-1">
+          {TROPHIES.map((trophy) => {
+            const rarityStyles: Record<string, string> = {
+              platinum: 'text-cyan-300 border-cyan-700/40',
+              gold: 'text-yellow-400 border-yellow-700/40',
+              silver: 'text-gray-300 border-gray-600/40',
+              bronze: 'text-amber-600 border-amber-700/40',
+            };
+            const rarityDot: Record<string, string> = {
+              platinum: 'bg-cyan-300',
+              gold: 'bg-yellow-400',
+              silver: 'bg-gray-400',
+              bronze: 'bg-amber-600',
+            };
+            return (
+              <div
+                key={trophy.id}
+                className="flex items-start gap-3 p-2.5 rounded-lg bg-pywel-bg/40 border border-pywel-border/50 hover:border-pywel-border transition-colors"
+              >
+                <span className={`w-2 h-2 rounded-full flex-shrink-0 mt-1.5 ${rarityDot[trophy.rarity]}`} />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-baseline gap-2 flex-wrap">
+                    <span className="font-cinzel font-semibold text-sm text-gray-100">{trophy.name}</span>
+                    <span className={`text-xs font-cinzel ${rarityStyles[trophy.rarity]}`}>{trophy.rarity}</span>
+                    <span className="text-xs text-gray-600 ml-auto">{trophy.category}</span>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{trophy.description}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
     </div>

@@ -10,7 +10,8 @@ export type QuestType = 'main' | 'side' | 'faction' | 'character' | 'liberation'
 export type QuestStatus = 'not-started' | 'active' | 'complete';
 export type CollectibleCategory = 'artifact' | 'gear' | 'recipe' | 'lore' | 'fast-travel' | 'edition';
 export type CraftingType = 'cooking' | 'alchemy' | 'blacksmith' | 'dye' | 'camp-upgrade';
-export type MountCategory = 'horse' | 'bear' | 'raptor' | 'lizard' | 'wyvern' | 'mechanical' | 'dinosaur' | 'exotic';
+export type MountCategory = 'horse' | 'bear' | 'raptor' | 'lizard' | 'wyvern' | 'mechanical' | 'dinosaur' | 'exotic' | 'wolf';
+export type TrophyRarity = 'platinum' | 'gold' | 'silver' | 'bronze';
 export type ActivityCategory = 'gathering' | 'farming' | 'combat' | 'social';
 export type PinCategory = 'collectible' | 'boss' | 'npc' | 'poi' | 'custom';
 export type ScrapedSource = 'wiki' | 'news' | 'guide' | 'map';
@@ -169,6 +170,14 @@ export interface GroupMember {
   bossesDefeated: number;
   collectiblesFound: number;
   questsCompleted: number;
+}
+
+export interface Trophy {
+  id: string;
+  name: string;
+  rarity: TrophyRarity;
+  description: string;
+  category: string;
 }
 
 export interface ScrapedContent {
