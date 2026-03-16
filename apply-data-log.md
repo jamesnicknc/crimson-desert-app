@@ -198,3 +198,90 @@ Aborted at pre-flight Step 0a. Both `src/lib/game-data.ts` and `src/types/game-d
 **Action required:** Commit or stash the staged changes to `game-data.ts` and `src/types/game-data.ts` before re-running this task.
 
 ---
+
+## Run: 2026-03-16 13:34 UTC (Run 8) -- Queue Exhausted
+
+**Result:** Success (no items to add)
+**Items processed:** 0
+**Items added:** 0
+**Items skipped (needs review):** 0
+**Items skipped (unconfirmed):** 0
+**Images generated:** 0
+**Images set to coming-soon placeholder:** 0
+**TypeScript build:** Clean (pre-flight only; no writes made)
+
+### Added This Run
+- None
+
+### Skipped / Flagged This Run
+- None
+
+### Notes
+All items in `data-to-add.md` are either already marked `[ADDED]`, `[RESOLVED]`, or `[NEEDS REVIEW]`. There were zero actionable items to process this run. The queue is fully caught up pending post-launch data.
+
+A `game-data.ts.bak` file from a prior run exists in `src/lib/` and could not be removed (permission denied). A human should delete it manually: `src/lib/game-data.ts.bak`.
+
+No changes were made to `game-data.ts` or any other source files this run.
+
+---
+
+## Run: 2026-03-16 (Run 9) -- NEEDS REVIEW Audit
+
+**Result:** Success (research-only run; no writes to game-data.ts)
+**Items processed:** 28 (all NEEDS REVIEW items in queue)
+**Items added:** 0
+**Items skipped (needs review):** 28 -- all remain blocked; see findings below
+**Items skipped (unconfirmed):** 0
+**Images generated:** 0
+**Images set to coming-soon placeholder:** 0
+**TypeScript build:** Not run (no source file changes)
+
+### Added This Run
+- None
+
+### Skipped / Flagged This Run
+- All 28 NEEDS REVIEW items remain blocked -- see Notes for item-by-item breakdown
+
+### Notes
+
+This was a dedicated research audit of all items marked `[NEEDS REVIEW]`. No items became actionable. The core reason is uniform across most items: the game launches **March 19-20, 2026** (3-4 days from this run). Pre-launch sources have been fully exhausted -- no new data exists beyond what was gathered in Runs 1-5.
+
+**Item-by-item findings:**
+
+**Bosses (8 items) -- all blocked by missing `reward` field:**
+All 8 pending bosses (Split Horn, Cassius Morten, Fortain, Draven, Muskan, Gwen Kraber, Titan, Desert Ancient) were searched across Fextralife Wiki, Game8, Beebom, Sportskeeda, GamingBolt, PlayStation Blog, and a third-party boss guide. Zero sources name any specific item drop for any of these bosses. The Boss interface requires `reward` as a non-optional field. This blocker is pre-launch by nature -- reward data simply does not exist yet.
+
+Additional individual findings:
+- Cassius Morten: Calphade still absent from all wiki region lists after a direct Fextralife Locations fetch. Likely a sub-territory, not a 7th major region. Region blocker confirmed.
+- Fortain: One search result speculatively placed him in Demeniss -- this was flagged as editorial inference, not sourced data.
+- Gwen Kraber: Confirmed the Beebom weapons page "Derictus Spear" is a Collector's Edition item, NOT his drop weapon. Still unnamed.
+- Muskan: Confirmed the Black Desert Online "Muskan" (shoe drop) is a different game entirely -- not usable.
+
+**Wolf Mounts -- blocked by missing stats and type:**
+Wolf mount existence confirmed by Deltia's Gaming and FandomWire (visible in release date reveal trailer, properly saddled). However: no speed/combat/stamina stats, no acquisition method, and the 'wolf' category is not in the MountCategory union type. All three blockers remain.
+
+**Quests (2 items) -- blocked by missing official names/rewards:**
+Sky Boulder Investigation and The Gold Leaves Duel are both working names from a YouTube transcript. Neither has a confirmed in-game quest name. No quest data can be added without the official name.
+
+**Collectibles (3 items):**
+- Radiant Fragments: Still possibly an alternate name for Abyss Artifacts. Cannot resolve pre-launch.
+- Traces of the Abyss: Fextralife confirms this is the waypoint term; Beebom does not use the name. Moderate confidence but not enough to bulk-rename ~15 existing records. Human decision needed.
+- Treasure Maps: No in-game treasure map items found in any source. The "treasure hunting" mechanic (shovel + digging) was confirmed, but no collectible item type called "treasure map" was surfaced.
+
+**Characters/NPCs (7 items) -- blocked by missing data structure:**
+All NPC entries (Yann, Naira, Ronie, Marius, Russo, Aliston/Alustin, White Crow, Bon Midler, Shakatu) remain blocked because game-data.ts has no NPC interface or exported array. This is an architecture decision for the human, not a data problem.
+
+**Map Locations (6 items) -- blocked by missing data structure:**
+All sub-location entries (Calphade, Hernand sub-locations, Unicorn Cliffs, Marni's Masterium, Raventine Monastery, Library of Providence) are blocked because game-data.ts has no sub-location or POI data structure.
+
+**Architecture notes (2 items):**
+- Aliston name discrepancy: "Alustin the Alchemist" on Fextralife vs. "Aliston" from YouTube transcript. Do not create NPC entry until confirmed at launch.
+- Knowledge Codex: No change. Architecture decision for human.
+
+**Recommendation:** Re-run this task on or after March 21, 2026 (24-48 hours post-launch). Wiki sources should begin publishing confirmed reward data, regional boss placements, and named item drops within that window. The 8 pending bosses are the highest-priority items to resolve.
+
+---
+
+---
+
+---

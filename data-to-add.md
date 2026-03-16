@@ -1,6 +1,6 @@
 # Crimson Companion App -- Data To Add / Fix
 
-_Last updated: 2026-03-15 (Run 5)_
+_Last updated: 2026-03-16 (Run 9 -- NEEDS REVIEW audit)_
 
 Items are organized by category and priority. Mark items as `[ADDED]` once they've been incorporated into the app.
 
@@ -25,6 +25,7 @@ The following bosses were confirmed by authoritative sources but are NOT present
 - Confirmed fields: `difficulty: 'hard'` (Fextralife: "fairly easy match" despite high evasion; only 1 HP bar; early Hernand story boss)
 - Still missing (blocks add): `reward` (no named drop in any pre-launch source), `element`
 - Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Runs 4-5)
+- Researched: 2026-03-16 (Run 9) -- No new data. Game8, Fextralife, Beebom, and Sportskeeda all confirm his presence and Hernand region but zero sources name any item drop. Game launches March 19-20, 2026. Re-run post-launch.
 
 #### Cassius Morten [Calphade Traitor Boss] [NEEDS REVIEW]
 - Type: Human (armored)
@@ -35,6 +36,7 @@ The following bosses were confirmed by authoritative sources but are NOT present
 - Still missing (blocks add): `region: 'calphade'` is NOT in Region union type AND Calphade is NOT listed as a major region on Fextralife or any source (appears to be a story area/sub-territory). Also missing `difficulty`, `reward`.
 - Note: Calphade may be a sub-territory of an existing region rather than a 6th major region. Requires clarification at launch.
 - Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Run 4)
+- Researched: 2026-03-16 (Run 9) -- Fextralife Locations wiki (fetched directly) confirms only 5 main regions + Abyss. Calphade is absent from all wiki sources. The GameSpot article title ("two boss battles") corroborates Cassius Morten as a showcased boss but provides no region clarification. Region blocker remains. Re-run post-launch.
 
 #### Fortain, the Cursed Knight [Castle Boss] [NEEDS REVIEW]
 - Type: Human / Spirit
@@ -43,6 +45,7 @@ The following bosses were confirmed by authoritative sources but are NOT present
 - Source: Beebom (https://beebom.com/crimson-desert-bosses/), confirmed by Game Rant search results
 - Still missing (blocks add): `region`, `difficulty`, `reward`, `element` (spectral/cursed nature suggests 'abyss' element but unconfirmed)
 - Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Run 4) -- no new fields confirmed
+- Researched: 2026-03-16 (Run 9) -- One source (search result inference, not a direct wiki page) suggests a Demeniss castle location based on Demeniss being the capital with "grand castles." This is editorial speculation from the source, not verified data -- do not use. Spelling confirmed as "Fortain" by Beebom and GamingBolt. Re-run post-launch for region, reward, element.
 
 #### Draven [Story Boss] [NEEDS REVIEW]
 - Type: Unknown (humanoid in appearance, raven-themed)
@@ -52,6 +55,7 @@ The following bosses were confirmed by authoritative sources but are NOT present
 - Confirmed fields (inferred, not confirmed by stat-sheet source): `element: 'abyss'` (darkness-based, particle movement, raven symbolism) -- inferred, single-source quality
 - Still missing (blocks add): `region`, `difficulty`, `reward` (specific named item), confirmed `element`
 - Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Run 4)
+- Researched: 2026-03-16 (Run 9) -- No new data from any source. Still 4 missing required fields. Re-run post-launch.
 
 #### Muskan [Arena Boss] [NEEDS REVIEW]
 - Type: Human (arena fighter)
@@ -62,6 +66,7 @@ The following bosses were confirmed by authoritative sources but are NOT present
 - Confirmed fields: `difficulty: 'extreme'` (editorial: undefeated arena warrior, late-game fight context; classified consistent with other extreme-tier bosses in app scale)
 - Still missing (blocks add): `reward` (Fextralife page exists but shows "TBA"; no named drop in any pre-launch source)
 - Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Runs 4-5)
+- Researched: 2026-03-16 (Run 9) -- No new data. Note: a "Muskan" appears in Black Desert Online (drops shoes) but this is a different game -- do not use. Re-run post-launch for reward field.
 
 #### Gwen Kraber [Minor Field Boss] [NEEDS REVIEW]
 - Type: Human
@@ -71,6 +76,7 @@ The following bosses were confirmed by authoritative sources but are NOT present
 - Confirmed fields (2 independent sources): `region: 'hernand'` (Roothold is in Hernand per Fextralife Locations; also corroborated by search results), `type: 'Human'`, `element: 'physical'` (human spear-fighter, no magical abilities mentioned)
 - Still missing (blocks add): `reward` (spear drop confirmed to exist, but no named item -- cannot invent a weapon name), `difficulty`
 - Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Run 4) -- region and element confirmed; blocked by unnamed reward
+- Researched: 2026-03-16 (Run 9) -- No new data. Note: the Beebom weapons page mentions a "Derictus Spear" as a Collector's Edition item -- this is NOT the Kraber drop spear. The in-game spear reward still has no confirmed name. Re-run post-launch.
 
 #### Titan [Armored Humanoid Boss] [NEEDS REVIEW]
 - Type: Humanoid
@@ -80,6 +86,7 @@ The following bosses were confirmed by authoritative sources but are NOT present
 - Confirmed fields (2+ sources): `element: 'shock'` (lightning attacks confirmed by Beebom and multiple search sources)
 - Still missing (blocks add): `region`, `difficulty`, `reward`
 - Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Run 4) -- element now confirmed as 'shock'; region and reward still needed
+- Researched: 2026-03-16 (Run 9) -- No new data. No source names a region or reward. Re-run post-launch.
 
 #### Desert Ancient [Desert Elemental Boss] [NEEDS REVIEW]
 - Type: Elemental
@@ -89,6 +96,7 @@ The following bosses were confirmed by authoritative sources but are NOT present
 - Confirmed fields (2+ sources): `region: 'desert'`, `element: 'fire'` (fire entities and desert biome confirmed by Beebom and search result corroborations), `type: 'Elemental'`
 - Still missing (blocks add): `difficulty`, `reward` (no named drop found in any pre-launch source)
 - Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Run 4) -- region, type, element all confirmed; only reward blocking
+- Researched: 2026-03-16 (Run 9) -- No new data. Desert Ancient is among the least-documented bosses -- Beebom notes it was "barely shown in a trailer." No difficulty or reward sourced. Re-run post-launch.
 
 ### Weapons
 
@@ -103,6 +111,7 @@ The following bosses were confirmed by authoritative sources but are NOT present
 - Source: Fextralife Wiki (https://crimsondesert.wiki.fextralife.com/Crimson+Desert+Wiki)
 - Flagged: 2026-03-15
 - Needs review: Category 'wolf' is not in the MountCategory union type (`src/types/game-data.ts`). Type must be updated first. No stats available (speed, combat, stamina, acquisition) -- all required fields. Add specific mount entries post-launch once stats are confirmed.
+- Researched: 2026-03-16 (Run 9) -- Wolf mount existence confirmed by Deltia's Gaming and FandomWire: the release date trailer shows Kliff riding a "direwolf-sized" wolf that is "properly saddled." Acquisition method is unknown but likely follows the taming minigame mechanic used for horses. No speed/combat/stamina stats in any source. 'wolf' category still absent from MountCategory type. Remains fully blocked. Re-run post-launch.
 
 ### Quests
 
@@ -135,7 +144,8 @@ The minigame / side activity list (betting, horse racing, target shooting, arm w
 - Description: Named fast-travel waypoint collectibles found throughout Pywel. The current app lists "fast-travel" collectibles as place names (e.g., Hernand Crossroads). The Fextralife wiki uses "Traces of the Abyss" as the in-game name for these waypoints, suggesting the current fast-travel entries should use this terminology.
 - Source: Fextralife Wiki (https://crimsondesert.wiki.fextralife.com/Locations)
 - Flagged: 2026-03-15
-- Needs review: This is a bulk-rename of existing fast-travel entries rather than a new addition. Requires human review to decide whether to rename existing entries (touching ~15 records) and whether the wiki naming matches the final released game.
+- Researched: 2026-03-16 (Run 9) -- Fextralife Locations wiki confirms "Traces of the Abyss location" as the term used for fast-travel nodes, described as functioning "similar to a waypoint portal once unlocked." However, the Beebom fast-travel guide (separate article) does NOT use this name -- it simply calls them "fast travel points" and describes them as "small pillars." The naming discrepancy may resolve post-launch. Confidence: moderate that "Traces of the Abyss" is the official in-game name, but not high enough to bulk-rename ~15 existing records until launch confirms.
+- Needs review: Still a bulk-rename decision for human. Do not auto-apply until you can verify the in-game UI uses this label on the waypoint collectible screen.
 
 #### Treasure Maps [Collectible Type] [NEEDS REVIEW]
 - Description: Treasure Maps are confirmed as a collectible type that leads to hidden treasure locations. Not currently represented in the COLLECTIBLES data.
@@ -212,6 +222,7 @@ No new specific recipes were found in this run. The Fextralife crafting guide co
 - Source: Crimson Desert official Twitter (https://x.com/CrimsonDesert_/status/1933109818455449807), Fextralife Locations (Calphade NOT in region list -- confirmed absence 2026-03-15)
 - Flagged: 2026-03-15; Researched: 2026-03-15 (Run 4)
 - Decision needed post-launch: Is Calphade a 7th region (add to Region type + REGIONS array) or a named sub-area under an existing region? If sub-area, Cassius Morten's boss entry would use the parent region instead.
+- Researched: 2026-03-16 (Run 9) -- Fextralife Locations page (fetched directly) continues to list only 5 regions + Abyss. Calphade absent from all third-party map sources. The continent codex lists 573 territories -- Calphade is likely one of those sub-territories, not a 7th major region. Still requires launch confirmation. No change to status.
 
 #### Hernand Sub-Locations [Points of Interest] [NEEDS REVIEW]
 - The following named locations in Hernand are confirmed but not reflected in the app's fast-travel or map data:
