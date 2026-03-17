@@ -14,8 +14,31 @@ import {
   BookOpen,
   Footprints,
   Trophy,
+  Swords,
+  MapPin,
+  Shield,
+  Leaf,
+  Gem,
+  Bug,
+  Library,
 } from 'lucide-react';
 import { TROPHIES } from '@/lib/game-data';
+
+// ─── Knowledge Codex counts (confirmed via in-game codex data) ──────────────
+const CODEX_CATEGORIES = [
+  { label: 'Characters', count: 467, icon: Users, color: 'text-blue-400' },
+  { label: 'Factions', count: 110, icon: Shield, color: 'text-purple-400' },
+  { label: 'Territories', count: 573, icon: MapPin, color: 'text-green-400' },
+  { label: 'Creatures', count: 401, icon: Bug, color: 'text-red-400' },
+  { label: 'Bosses', count: 76, icon: Skull, color: 'text-orange-400' },
+  { label: 'Mounts', count: 29, icon: Footprints, color: 'text-amber-400' },
+  { label: 'Adventures', count: 430, icon: Compass, color: 'text-cyan-400' },
+  { label: 'Gatherables', count: 150, icon: Leaf, color: 'text-emerald-400' },
+  { label: 'Collectibles', count: 94, icon: Gem, color: 'text-pink-400' },
+  { label: 'Crafting Manuals', count: 355, icon: Hammer, color: 'text-yellow-400' },
+];
+
+const CODEX_TOTAL = CODEX_CATEGORIES.reduce((sum, c) => sum + c.count, 0);
 
 interface CountdownState {
   days: number;
@@ -56,11 +79,11 @@ export default function DashboardPage() {
 
   const stats = [
     { label: 'World Size', value: '256 km²', icon: Globe, href: '/map' },
-    { label: 'Regions', value: '6', icon: Compass, href: '/map' },
+    { label: 'Territories', value: '573', icon: MapPin, href: '/map' },
     { label: 'Bosses', value: '76', icon: Skull, href: '/bosses' },
-    { label: 'Mounts', value: '29', icon: Footprints, href: '/mounts' },
-    { label: 'Characters', value: '3', icon: Users, href: '/characters' },
-    { label: 'Completion', value: '0%', icon: TrendingUp, href: '/quests' },
+    { label: 'Adventures', value: '430', icon: Compass, href: '/quests' },
+    { label: 'Creatures', value: '401', icon: Bug, href: '/bosses' },
+    { label: 'Codex Entries', value: CODEX_TOTAL.toLocaleString(), icon: Library, href: '/quests' },
   ];
 
   const quickAccess = [
@@ -205,6 +228,37 @@ export default function DashboardPage() {
             );
           })}
         </div>
+      </section>
+
+      {/* Knowledge Codex section */}
+      <section>
+        <div className="flex items-center gap-3 mb-6">
+          <Library className="w-6 h-6 text-gold-400" />
+          <h2 className="font-cinzel text-2xl font-bold text-gold-300">
+            Knowledge Codex
+          </h2>
+          <span className="ml-auto text-sm text-gray-500 font-cinzel">{CODEX_TOTAL.toLocaleString()} entries</span>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+          {CODEX_CATEGORIES.map((cat) => {
+            const IconComponent = cat.icon;
+            return (
+              <div
+                key={cat.label}
+                className="bg-pywel-card border border-pywel-border rounded-lg p-4 hover:border-pywel-border/80 transition-colors"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <IconComponent className={`w-4 h-4 ${cat.color}`} />
+                  <p className="text-xs text-gray-400 font-cinzel">{cat.label}</p>
+                </div>
+                <p className={`text-xl font-bold font-cinzel ${cat.color}`}>{cat.count.toLocaleString()}</p>
+              </div>
+            );
+          })}
+        </div>
+        <p className="text-xs text-gray-600 mt-3 text-center">
+          Adventures include side quests, camp clearing missions, puzzles, and side boss encounters.
+        </p>
       </section>
 
       {/* Trophies section */}
