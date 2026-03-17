@@ -112,14 +112,19 @@ export default function GroupPage() {
       .select('id, display_name')
       .in('id', userIds);
 
-    // Get progress counts per user
+    // Get progress counts per user (only count truly completed items)
     const { data: progressRows } = await supabase
       .from('user_progress')
-      .select('user_id')
+      .select('user_id, category, value')
       .in('user_id', userIds);
 
     const progressCounts: Record<string, number> = {};
     (progressRows ?? []).forEach((r) => {
+      // For quests, only count items with status "complete" (not "active")
+      if (r.category === 'quest') {
+        const val = r.value as { status?: string } | null;
+        if (val?.status !== 'complete') return;
+      }
       progressCounts[r.user_id] = (progressCounts[r.user_id] ?? 0) + 1;
     });
 

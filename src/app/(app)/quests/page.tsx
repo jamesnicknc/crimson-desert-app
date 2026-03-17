@@ -239,6 +239,32 @@ export default function QuestsPage() {
   const supabase = createClient();
   const { user } = useUser();
 
+  // Load saved quest statuses from Supabase on mount
+  useEffect(() => {
+    async function loadQuestStatus() {
+      const { data: { user: u } } = await supabase.auth.getUser();
+      if (!u) return;
+
+      const { data } = await supabase
+        .from('user_progress')
+        .select('item_key, value')
+        .eq('user_id', u.id)
+        .eq('category', 'quest');
+
+      if (data && data.length > 0) {
+        const loaded: Record<string, QuestStatus> = {};
+        data.forEach(row => {
+          const status = (row.value as { status?: string })?.status;
+          if (status === 'active' || status === 'complete') {
+            loaded[row.item_key] = status;
+          }
+        });
+        setQuestStatus(loaded);
+      }
+    }
+    loadQuestStatus();
+  }, [supabase]);
+
   const filteredQuests = QUESTS.filter(q => {
     const matchesType = selectedFilter === 'all' || q.type === selectedFilter;
     const query = search.toLowerCase();
