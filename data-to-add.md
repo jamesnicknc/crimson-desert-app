@@ -1,6 +1,6 @@
 # Crimson Companion App -- Data To Add / Fix
 
-_Last updated: 2026-03-16 (Run 9 -- NEEDS REVIEW audit)_
+_Last updated: 2026-03-16 (Run 10)_
 
 Items are organized by category and priority. Mark items as `[ADDED]` once they've been incorporated into the app.
 
@@ -11,6 +11,29 @@ Items are organized by category and priority. Mark items as `[ADDED]` once they'
 ### Skills
 
 No new named skills were found in this run that are absent from the current app skill list. The app's SKILLS array appears comprehensive for the three confirmed characters and their known branches. The observation-learned skills already present (Belly Slam, Force Palm) are consistent with what sources describe.
+
+#### Skill Name Accuracy Issue [MAJOR GAP] [NEEDS REVIEW] -- Flagged: 2026-03-16 (Run 10)
+- The app's SKILLS array uses editorially invented names that do not match confirmed in-game skill names.
+- The Beebom skills article (Tier 2 source, based on direct gameplay preview) provides the actual in-game names for Kliff's skill tree.
+- Examples of discrepancies:
+  - App uses "Quick Slash Combo" -- actual skills are "Forward Slash (3 levels)" and "Turning Slash (3 levels)"
+  - App uses "Blade Storm Finisher" -- actual skill is "Blinding Flash Finisher" / "Sword Flurry"
+  - App uses "Body Slam" (branch: Unarmed) -- actual game has both "Body Slam" and "Clothesline" and "Dropkick" as separate skills
+  - App has no "Pump Kick", "Dropkick", "Vault", "Flying Kick", "Meteor Kick" (all confirmed Blue branch unarmed skills)
+  - App has no "Nature's Echo", "Nature's Snare", "Keen Senses" (confirmed Green branch spirit skills)
+  - App has no "Fist of Flame", "Veil of Fog", "Mantle of Frost", "Surge of Sparks", "Winch" (confirmed Red branch health skills)
+  - App has no "Axiom Force" (confirmed flight/aerial skill)
+  - App has no "Falling Palm" (the central connecting skill of all three branches)
+- Action needed: A comprehensive skill tree rewrite post-launch with the full in-game text. This is a data quality problem, not just a gap. The current names are plausible but incorrect.
+- Source: Beebom (https://beebom.com/crimson-desert-skills/) [2026-03-16] -- Tier 2
+- Flagged: 2026-03-16 (Run 10). Requires human decision: rewrite now with known names, or wait until post-launch for the full confirmed list.
+
+#### Falling Palm [Central Skill] [NEEDS REVIEW] -- Flagged: 2026-03-16 (Run 10)
+- Description: "Unleash a powerful blow to the ground by harnessing the force of the fall and channeling all your Stamina into the strike."
+- This skill sits at the convergence point of all three skill branches and is unlocked after completing any one of the three color trees. It is a distinct skill, not a branch ability.
+- Currently absent from the SKILLS array entirely.
+- Source: Beebom skills article [2026-03-16] -- Tier 2
+- Needs review: Does this belong in a new branch (e.g. "Mastery" or "Core"), or as a standalone entry? Character assignment would be 'kliff'.
 
 ### Bosses & Enemies
 
@@ -112,6 +135,14 @@ The following bosses were confirmed by authoritative sources but are NOT present
 - Flagged: 2026-03-15
 - Needs review: Category 'wolf' is not in the MountCategory union type (`src/types/game-data.ts`). Type must be updated first. No stats available (speed, combat, stamina, acquisition) -- all required fields. Add specific mount entries post-launch once stats are confirmed.
 - Researched: 2026-03-16 (Run 9) -- Wolf mount existence confirmed by Deltia's Gaming and FandomWire: the release date trailer shows Kliff riding a "direwolf-sized" wolf that is "properly saddled." Acquisition method is unknown but likely follows the taming minigame mechanic used for horses. No speed/combat/stamina stats in any source. 'wolf' category still absent from MountCategory type. Remains fully blocked. Re-run post-launch.
+- Researched: 2026-03-16 (Run 10) -- No new data on wolf mount stats. Same blocker as before. Game launches March 19. Re-run post-launch.
+
+#### Vehicle Mounts [New Mount Category] [NEEDS REVIEW]
+- Category: Vehicle (new -- not currently in MountCategory type)
+- Description: Multiple vehicle-style mounts confirmed -- War Robot (fires missiles, suppressing fire, EMP), Hot Air Balloon (aerial traversal), Wagon (goods transport), Skiff (water traversal). These do not fit the existing animal-based mount categories. A new 'vehicle' or 'vessel' category would be needed in the MountCategory union type. Alternatively, War Robot maps loosely to 'mechanical' category which already exists.
+- Source: gurugamer.com gameplay features [2026-03-16] -- Tier 2
+- Flagged: 2026-03-16 (Run 10)
+- Needs review: MountCategory type does not include 'vehicle'. War Robot could potentially use existing 'mechanical' category. Wagon and Skiff may not belong in MOUNTS at all (they may be scripted traversal, not player-owned mounts). Requires design decision + post-launch stat verification.
 
 ### Quests
 
@@ -131,6 +162,14 @@ The following bosses were confirmed by authoritative sources but are NOT present
 - Needs review: Quest name is informal (not an official in-game name). Add once official quest name is confirmed at launch.
 
 The minigame / side activity list (betting, horse racing, target shooting, arm wrestling, mud fights) may also warrant addition as activity entries or side quest entries in the app.
+
+#### "A Blacksmith's Debt" [Side Quest] [NEEDS REVIEW] -- Flagged: 2026-03-16 (Run 10)
+- Type: Side quest
+- Region: Hernand
+- Description: A quest in Hernand involving the town blacksmith. Named in a beginner's guide as an early gameplay milestone.
+- Possibly related to obtaining the Hernand Iron Sword reward.
+- Source: crimsondesert.club [2026-03-16] -- Tier 3
+- Needs review: Quest type, full description, and reward not confirmed in any authoritative source. Add post-launch once official quest content is verified. The name itself is only Tier 3.
 
 ### Collectibles
 
@@ -153,9 +192,29 @@ The minigame / side activity list (betting, horse racing, target shooting, arm w
 - Flagged: 2026-03-15
 - Needs review: CollectibleCategory union type does not include a 'treasure-map' or similar value. Type must be updated first. No specific named treasure map entries are available to add yet. Add once specific entries are known post-launch.
 
+#### Dual Blades [Weapon Type] [NEEDS REVIEW] -- Flagged: 2026-03-16 (Run 10)
+- Description: Confirmed as S-tier weapon in pre-launch tier list. Focuses on speed and aggressive combat with extremely fast attack chains, high damage through combos, and excellent mobility. Distinct from Daggers (which are also fast but single-weapon). "Requires strong stamina management to avoid vulnerability."
+- Not present in the WEAPONS array as a weapon type.
+- Characters: Unknown -- may be Kliff or a shared weapon type.
+- Source: crimsondeserthub.com tier list [2026-03-16] -- Tier 2. Note: this is a pre-launch editorial tier list and may not reflect final game balance.
+- Needs review: Confirm which character(s) can use Dual Blades, and add weapon entry with stats once known post-launch.
+
+#### Hernand Iron Sword [Weapon] [NEEDS REVIEW] -- Flagged: 2026-03-16 (Run 10)
+- Description: An early game quest reward sword with a notably higher Stagger rating than the starter blade. Named as one of the first recommended gear upgrades.
+- Type: Sword, character: Kliff (inferred)
+- Source: crimsondesert.club beginner guide [2026-03-16] -- Tier 3
+- Needs review: Stats unknown. Confirm quest that rewards it ("A Blacksmith's Debt" is a candidate but unconfirmed). Add to WEAPONS array post-launch with confirmed stats.
+
 ### Crafting Recipes
 
 No new specific recipes were found in this run. The Fextralife crafting guide confirms the app's cooking / alchemy / blacksmithing / camp-upgrade categories are accurate. Specific recipes at launch will need a follow-up run.
+
+#### Elemental Oils [Recipe / Consumable] [NEEDS REVIEW] -- Flagged: 2026-03-16 (Run 10)
+- Description: Three types confirmed: fire oil, frost oil, lightning oil. Applied to weapons to add elemental damage for a duration. Used to exploit enemy elemental weaknesses. Described as essentials to carry in combat.
+- Crafting type: alchemy (likely)
+- Not in the RECIPES array or any other app data.
+- Source: crimsondesert.club beginner guide [2026-03-16] -- Tier 3
+- Needs review: Ingredient list and exact effects unknown pre-launch. Add to RECIPES post-launch with confirmed data.
 
 ### Characters
 
@@ -261,6 +320,13 @@ No new specific recipes were found in this run. The Fextralife crafting guide co
 - Flagged: 2026-03-15
 - Needs review: Referenced as a feature in the Abyss RegionInfo entry added this run. No sub-location data structure in game-data.ts for a more detailed entry.
 
+#### Akman Plains [Named Location] [NEEDS REVIEW] -- Flagged: 2026-03-16 (Run 10)
+- Description: Named location referenced as a spot for taming wild horses with higher sprint and stamina stats. Described as "wild grasslands."
+- Likely region: Hernand or Pailune (based on grassland/highland terrain descriptions).
+- Not in any region's POI list in REGIONS array.
+- Source: crimsondesert.club beginner guide [2026-03-16] -- Tier 3
+- Needs review: Region assignment unknown. Add to the appropriate REGIONS entry's `pois` array post-launch, with type 'other' or a new POI type.
+
 #### The Abyss [Missing from REGIONS Array] [ADDED -- 2026-03-15]
 - Added as sixth entry in REGIONS array with id: 'abyss'. Description sourced from Fextralife Locations wiki. Features include Library of Providence and Skyloop Bridge (both confirmed by Fextralife).
 
@@ -322,6 +388,14 @@ No new specific builds were found that warrant adding to the app's data layer, a
 - Source: Fextralife Locations wiki (fetched 2026-03-15)
 - Flagged: 2026-03-15 (Run 4)
 
+### Skill Names in SKILLS Array -- Mass Accuracy Issue [NEEDS REVIEW] -- Flagged: 2026-03-16 (Run 10)
+- The SKILLS array uses invented/editorial names for Kliff's abilities. The Beebom skills article (Tier 2, from direct preview gameplay) confirms the actual in-game names are substantially different.
+- This affects the following branches: Sword Mastery (Blue), Unarmed Combat (Blue), Ranged and Bow (Blue), and all Green and Red branch skills for Kliff.
+- Recommended action: Audit the SKILLS array against the full confirmed in-game skill list post-launch and rename entries to match official in-game text. New entries will also need to be created for skills not currently in the array.
+- Severity: High. The app presents incorrect skill names to users.
+- Source: Beebom skills article (https://beebom.com/crimson-desert-skills/) [2026-03-16] -- Tier 2
+- Note: Damiane and Oongka skill names have not been confirmed from an authoritative source yet, so their current names may or may not be accurate. Flag for post-launch verification as well.
+
 ### Knowledge Codex Data Not Represented [NEEDS REVIEW]
 - The app does not currently surface the Knowledge Codex system or its 2,921-entry breakdown (467 people, 573 territories, 401 creatures, 76 bosses, 110 factions, 355 crafting manuals, 29 mount types). This is a significant game mechanic that could be surfaced as an activity or progress tracker in the app.
 - Source: Sportskeeda (https://www.sportskeeda.com/esports/with-3000-knowledge-entries-crimson-desert-easily-beats-rdr2-exploration-compendium)
@@ -330,6 +404,20 @@ No new specific builds were found that warrant adding to the app's data layer, a
 ---
 
 ## Recently Added (Archive)
+
+### Flagged 2026-03-16 (Run 10) -- Pending Human Review / Post-Launch
+- **Skill Name Accuracy** [Skills] -- MAJOR: App skill names for Kliff's tree do not match confirmed in-game names from Beebom Tier 2 source. Needs full rewrite post-launch.
+- **Falling Palm** [Skill] -- Central connecting skill for all three branches. Not in app. Needs branch assignment decision.
+- **Dual Blades** [Weapon] -- S-tier weapon type confirmed, not in WEAPONS array.
+- **Hernand Iron Sword** [Weapon] -- Named early quest reward sword, not in WEAPONS array.
+- **Wanderer's Leather Set** [Armor] -- Named armor set with +10% stamina recovery, not in any app data.
+- **Elemental Oils** [Recipe/Consumable] -- Fire, frost, lightning oils, not in RECIPES array.
+- **"A Blacksmith's Debt"** [Quest] -- Named Hernand side quest, Tier 3 only, needs post-launch confirmation.
+- **Akman Plains** [Map Location] -- Named horse taming location, not in POI data.
+- **Wolf / Direwolf Mount** [Mounts] -- Confirmed with saddle, 'wolf' category not in MountCategory type.
+- **Vehicle Mounts** [Mounts] -- War Robot, Hot Air Balloon, Wagon, Skiff -- no matching category in MountCategory type.
+- **Artillery Weapon Category** [Weapons] -- "Master of Artillery" trophy implies distinct category from Firearms.
+- **35 Trophies** [Achievements] -- Full trophy list confirmed, not in app data.
 
 ### Applied 2026-03-15 (Run 3)
 
@@ -355,3 +443,18 @@ No new specific builds were found that warrant adding to the app's data layer, a
 - **Sky Boulder Investigation** [Quest] -- Early Hernand quest. Name/reward TBD at launch.
 - **The Gold Leaves Duel** [Quest] -- Faction quest defeating Split Horn. Official quest name TBD.
 - **Rakash correction** -- Previously logged as character "Rakkash"; confirmed via transcript to be a goblin word for "duel." No character named Rakkash exists.
+
+### Flagged 2026-03-16 (Run 10) -- New Items
+
+- **Wolf / Direwolf Mount** [Mounts] -- New mount category 'wolf' confirmed. Shown with proper saddle in release date trailer. Acquisition unknown. Requires 'wolf' added to MountCategory union type before entries can be created. See Mounts section below.
+- **Vehicle Mounts** [Mounts] -- War Robot, Hot Air Balloon, Wagon, Skiff confirmed as rideable. No matching MountCategory type. Likely need a new 'vehicle' or 'vessel' category. See Mounts section below.
+- **Akman Plains** [Map Location] -- Named horse taming location. Not in any region's POI list. Add as POI to appropriate region (likely Hernand or Pailune based on grassland description).
+- **Skill Name Accuracy Issue** [Skills] -- The app's SKILLS array uses invented names (Quick Slash Combo, Blade Storm Finisher, etc.). The actual in-game skill names confirmed by Beebom's skill tree article are substantially different (Forward Slash, Turning Slash, Blinding Flash, Pump Kick, Dropkick, Vault, Flying Kick, Meteor Kick, Nature's Echo, Fist of Flame, Veil of Fog, Mantle of Frost, Surge of Sparks, Winch, Focus, Charged Shot, Evasive Shot, etc.). This is a major data quality gap. Requires comprehensive skills rewrite post-launch once the full in-game text is confirmed. Flag for human review.
+- **Falling Palm** [Skill] -- Central skill unlocked after completing one of the three color branches. "Unleash a powerful blow to the ground by harnessing the force of the fall and channeling all your Stamina into the strike." Not in the app's SKILLS array. Source: Beebom [2026-03-16] -- Tier 2.
+- **"A Blacksmith's Debt"** [Quest] -- Named side quest in Hernand involving the town blacksmith. Not in QUESTS array. Source: crimsondesert.club [2026-03-16] -- Tier 3. Add once quest type and reward are confirmed post-launch.
+- **Elemental Oils** [Inventory] -- Consumable items (fire oil, frost oil, lightning oil) that apply elemental effects to weapons. Not in RECIPES or any item data. Source: crimsondesert.club [2026-03-16] -- Tier 3.
+- **Wanderer's Leather Set** [Weapon/Armor] -- Armor set providing +10% stamina recovery boost. Crafted using wolf pelts and thick leather. Not in any app data. Source: crimsondesert.club [2026-03-16] -- Tier 3.
+- **Hernand Iron Sword** [Weapon] -- Early quest reward sword with higher Stagger rating than the starter blade. Not in WEAPONS array. Source: crimsondesert.club [2026-03-16] -- Tier 3.
+- **35 Trophies** [Achievements] -- Full trophy list confirmed. Not in app data. Consider adding a trophy/achievement tracker feature. Confirms: multiple Abyss areas (Conqueror of the Abysses, plural), Artillery as a distinct weapon category (Master of Artillery), mount taming as a progression path (Tamer of Legends). Source: gamingbible.com [2026-03-16] -- Tier 2.
+- **Artillery Weapon Category** [Weapons] -- "Master of Artillery" trophy implies Artillery is a distinct combat category from Firearms (Master of Firearms is a separate trophy). This may refer to Hand Cannons, siege weapons, or mounted weapons. No existing app weapon has 'Artillery' as a type. Requires post-launch confirmation.
+- **Dual Blades** [Weapons] -- Confirmed as S-tier weapon in pre-launch tier list (crimsondeserthub.com). Not present in app's WEAPONS array as a weapon type. Distinct from Daggers (which focus on speed) -- Dual Blades specifically chain attacks for max combo potential. Source: crimsondeserthub.com [2026-03-16] -- Tier 2.

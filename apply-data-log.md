@@ -4,6 +4,43 @@ Each entry records one manual run of the apply-data task.
 
 ---
 
+## Run: 2026-03-16 (Run 11) -- Aborted: Uncommitted Changes in game-data.ts
+
+**Result:** Aborted
+**Items processed:** 0
+**Items added:** 0
+**Items skipped (needs review):** 0
+**Items skipped (unconfirmed):** 0
+**Images generated:** 0
+**Images set to coming-soon placeholder:** 0
+**TypeScript build:** Not run (aborted at pre-flight Step 0a)
+
+### Added This Run
+- None
+
+### Skipped / Flagged This Run
+- None
+
+### Notes
+Aborted at pre-flight Step 0a. `src/lib/game-data.ts` has uncommitted local changes (472-line diff vs HEAD). Per task rules, the run cannot proceed while game-data.ts has uncommitted changes.
+
+Inspection of the diff reveals the uncommitted changes are substantial and appear to be from a prior session:
+- Added `Trophy` type import and `TROPHIES` exported array (35 trophy entries sourced from gamingbible.com)
+- Added `RegionPOI` type import and `pois` arrays to all six REGIONS entries
+- Cleared invented collectibles (artifact, gear, recipe, lore arrays emptied with a post-launch placeholder comment)
+- Cleared invented recipes (cooking, alchemy, blacksmith recipes removed; only confirmed dye recipes remain)
+- Cleaned up QUESTS array (removed unverified side quests; kept only confirmed main/faction/character/liberation quests)
+- Added skill entries for Damiane and Oongka branches
+- Removed invented names from multiple entries and replaced with post-launch placeholder descriptions
+
+These changes are valid and appear intentional. The issue is they were never committed.
+
+**Action required before next run:** Commit (or stash) the current uncommitted changes to `src/lib/game-data.ts` and `src/types/game-data.ts`. A quick `git diff HEAD -- src/types/game-data.ts` should also be checked to see if the Trophy and RegionPOI types need to be committed together.
+
+Once committed, re-run this task. The queue has no new actionable items pre-launch (game releases March 19-20, 2026), so the next productive data run is on or after March 21, 2026.
+
+---
+
 ## Run: 2026-03-15 (Run 6) -- Balgran Shield Deduplication
 
 **Result:** Success
