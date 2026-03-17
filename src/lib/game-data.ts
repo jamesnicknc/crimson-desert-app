@@ -98,46 +98,71 @@ export const REGIONS: RegionInfo[] = [
 export const SKILLS: Skill[] = [
   // ─── KLIFF ───────────────────────────────────────────────────────────────────
   // Skill names sourced from Beebom skills article (beebom.com/crimson-desert-skills/)
-  // Tier 2 source -- confirmed from direct gameplay preview. Full tree to be
+  // and cross-referenced with gameplay preview footage. Full tree to be
   // verified and completed post-launch with in-game text.
+
+  // Kliff - Blue Branch: Stamina / Core Stats
+  { id: 'k-st', name: 'Stamina', cost: 'Passive', branch: 'Stamina', character: 'kliff', description: 'Increases your maximum stamina pool, enabling more evasions and actions before tiring.' },
+  { id: 'k-ac', name: 'Armed Combat', cost: 'Artifact', branch: 'Armed Combat', character: 'kliff', description: 'Master the fundamentals of weapon-based fighting. Higher levels unlock new weapon techniques.' },
+  { id: 'k-uc', name: 'Unarmed Combat', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'Develop hand-to-hand fighting prowess. Enables grappling, kicks, and body attacks.' },
+  { id: 'k-ar', name: 'Archery', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Improve bow handling and accuracy. Higher levels unlock advanced ranged techniques.' },
 
   // Kliff - Blue Branch: Sword Mastery
   { id: 'k-s1', name: 'Forward Slash', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'A forward slashing attack. Can be leveled multiple times for increased potency.' },
-  { id: 'k-s2', name: 'Turning Slash', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'A wide turning slash that hits enemies on all sides.' },
-  { id: 'k-s3', name: 'Blinding Flash', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'A flash of light from the blade that disorients enemies and opens a follow-up window.' },
+  { id: 'k-s2', name: 'Turning Slash', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'A wide turning slash that hits enemies on all sides. Upgrades into Double and Mastery variants.' },
+  { id: 'k-s3', name: 'Stab', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'A piercing thrust that deals concentrated damage. Upgrades into Swift Stab and Skewer.' },
   { id: 'k-s4', name: 'Sword Flurry', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'Unleash a rapid flurry of sword strikes in quick succession.' },
+  { id: 'k-s5', name: 'Blinding Flash', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'A flash of light from the blade that disorients enemies. Enables Blinding Flash Finisher.' },
+  { id: 'k-s6', name: 'Evasive Slash', cost: 'Artifact', branch: 'Armed Combat', character: 'kliff', description: 'Dodge and slash simultaneously, avoiding damage while dealing a precise cut.' },
+  { id: 'k-s7', name: 'Shield Bash', cost: 'Artifact', branch: 'Armed Combat', character: 'kliff', description: 'Strike an enemy with your shield, staggering them and creating an opening.' },
 
   // Kliff - Blue Branch: Unarmed Combat
-  { id: 'k-u1', name: 'Pump Kick', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'A fast pumping kick that pushes enemies back.' },
-  { id: 'k-u2', name: 'Dropkick', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'Launch forward and drive both feet into an enemy.' },
+  { id: 'k-u1', name: 'Pump Kick', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'A fast pumping kick that pushes enemies back and creates distance.' },
+  { id: 'k-u2', name: 'Dropkick', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'Launch forward and drive both feet into an enemy with devastating force.' },
   { id: 'k-u3', name: 'Vault', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'Vault over an enemy, repositioning behind them for a follow-up strike.' },
   { id: 'k-u4', name: 'Flying Kick', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'A leaping kick that covers distance and knocks enemies off-balance.' },
   { id: 'k-u5', name: 'Meteor Kick', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'A devastating aerial heel drop that slams enemies into the ground.' },
-  { id: 'k-u6', name: 'Body Slam', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'A full-body tackle that sends enemies sprawling.' },
-  { id: 'k-u7', name: 'Clothesline', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'A running lariat that takes enemies off their feet.' },
-  { id: 'k-u8', name: 'Belly Slam', cost: 'Observe', branch: 'Unarmed Combat', character: 'kliff', description: 'Learned by observing a master wrestler. A devastating belly-first impact.' },
+  { id: 'k-u6', name: 'Grappling', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'Master grappling techniques including throws, restraints, and lariats.' },
+  { id: 'k-u7', name: 'Body Slam', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'A full-body tackle that sends enemies sprawling.' },
+  { id: 'k-u8', name: 'Clothesline', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'A running lariat that takes enemies off their feet.' },
+  { id: 'k-u9', name: 'Belly Slam', cost: 'Observe', branch: 'Unarmed Combat', character: 'kliff', description: 'Learned by observing a master wrestler. A devastating belly-first impact.' },
 
   // Kliff - Blue Branch: Ranged & Bow
-  { id: 'k-r1', name: 'Evasive Shot', cost: 'Artifact', branch: 'Ranged & Bow', character: 'kliff', description: 'Fire while rolling or evading, maintaining offensive pressure during dodges.' },
-  { id: 'k-r2', name: 'Charged Shot', cost: 'Artifact', branch: 'Ranged & Bow', character: 'kliff', description: 'Hold to charge the bow for a high-damage precision shot.' },
-  { id: 'k-r3', name: 'Focus', cost: 'Artifact', branch: 'Ranged & Bow', character: 'kliff', description: 'Enter a focused state that slows perceived time and increases bow accuracy.' },
-  { id: 'k-r4', name: 'Winch', cost: 'Artifact', branch: 'Ranged & Bow', character: 'kliff', description: 'Fire a grappling shot that pulls enemies toward you or yanks you to a distant ledge.' },
+  { id: 'k-r1', name: 'Evasive Shot', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Fire while rolling or evading, maintaining offensive pressure during dodges.' },
+  { id: 'k-r2', name: 'Charged Shot', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Hold to charge the bow for a high-damage precision shot.' },
+  { id: 'k-r3', name: 'Multishot', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Fire multiple arrows simultaneously, hitting several targets at once.' },
+  { id: 'k-r4', name: 'Focus Shot', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Enter a focused state for extreme accuracy. Time slows as you aim.' },
 
   // Kliff - Green Branch: Spirit Arts
-  { id: 'k-g1', name: "Nature's Echo", cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Channel the spirit of the natural world to amplify your next attack.' },
+  { id: 'k-sp', name: 'Spirit', cost: 'Passive', branch: 'Spirit', character: 'kliff', description: 'Increases your maximum spirit pool, powering all nature-based and defensive abilities.' },
+  { id: 'k-g1', name: "Nature's Echo", cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Channel the spirit of the natural world to amplify your next attack. Unlocks echoing variants.' },
   { id: 'k-g2', name: "Nature's Snare", cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Summon binding roots or vines that immobilize a target briefly.' },
-  { id: 'k-g3', name: 'Keen Senses', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Heighten awareness to detect hidden enemies and avoid ambushes.' },
+  { id: 'k-g3', name: 'Keen Senses', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Heighten awareness to detect hidden enemies and avoid ambushes. Enables Parry and Counter.' },
+  { id: 'k-g4', name: 'Focus', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Enter a focused state that slows perceived time and increases accuracy.' },
+  { id: 'k-g5', name: 'Force Palm', cost: 'Observe', branch: 'Spirit Arts', character: 'kliff', description: 'A devastating open-palm strike that sends enemies flying. Learned by observing a holographic projection.' },
+  { id: 'k-g6', name: 'Parry', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Deflect incoming attacks with precise timing, creating a window for counterattack.' },
+  { id: 'k-g7', name: 'Counter', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'After a successful parry, automatically strike back with increased damage.' },
+  { id: 'k-g8', name: 'Evasive Roll', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'A quick evasive roll that grants brief invincibility frames.' },
+  { id: 'k-g9', name: 'Double Jump', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Perform a second jump in mid-air, greatly improving vertical mobility.' },
 
-  // Kliff - Red Branch: Elemental Power
+  // Kliff - Red Branch: Health / Elemental Power
+  { id: 'k-hp', name: 'Health', cost: 'Passive', branch: 'Health', character: 'kliff', description: 'Increases your maximum health pool, improving endurance during combat.' },
   { id: 'k-h1', name: 'Fist of Flame', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Imbue your fists with fire, adding burn damage to unarmed strikes.' },
   { id: 'k-h2', name: 'Veil of Fog', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Shroud yourself in concealing fog, reducing enemy detection range.' },
   { id: 'k-h3', name: 'Mantle of Frost', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Wrap yourself in frost that slows enemies who strike you in melee.' },
   { id: 'k-h4', name: 'Surge of Sparks', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Release a crackling surge of lightning that chains across nearby enemies.' },
+  { id: 'k-h5', name: 'Imbue Elements', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Infuse your weapon with elemental power. Higher levels unlock Elemental Turning Slash and more.' },
+  { id: 'k-h6', name: 'Mystical Storage', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Access a pocket dimension to store and retrieve items during combat.' },
+  { id: 'k-h7', name: 'Winch', cost: 'Artifact', branch: 'Utility', character: 'kliff', description: 'Fire a grappling shot that pulls enemies toward you or yanks you to a distant ledge.' },
 
-  // Kliff - Core Skills (unlocked after completing a branch)
-  { id: 'k-c1', name: 'Falling Palm', cost: 'Artifact', branch: 'Core', character: 'kliff', description: 'Unleash a powerful blow to the ground by harnessing the force of the fall and channeling all your Stamina into the strike. Unlocked after completing one full skill branch.' },
-  { id: 'k-c2', name: 'Axiom Force', cost: 'Artifact', branch: 'Core', character: 'kliff', description: 'Harness Abyss power to launch into aerial combat. Enables flight-style moves.' },
-  { id: 'k-c3', name: 'Force Palm', cost: 'Observe', branch: 'Core', character: 'kliff', description: 'Learned by observing a holographic projection. A devastating open-palm strike that sends enemies flying.' },
+  // Kliff - Red Branch: Axiom / Flight
+  { id: 'k-ax1', name: 'Axiom Force', cost: 'Story', branch: 'Axiom', character: 'kliff', description: 'Harness Abyss power to launch into aerial combat. Enables flight-style moves.' },
+  { id: 'k-ax2', name: 'Flight', cost: 'Story', branch: 'Axiom', character: 'kliff', description: 'Spread crow wings and take to the skies. Enables aerial exploration and combat.' },
+  { id: 'k-ax3', name: 'Aerial Maneuver', cost: 'Artifact', branch: 'Axiom', character: 'kliff', description: 'Perform advanced maneuvers while airborne, dodging attacks and repositioning.' },
+  { id: 'k-ax4', name: 'Aerial Swing', cost: 'Artifact', branch: 'Axiom', character: 'kliff', description: 'Execute powerful sword swings while in flight, striking ground targets from above.' },
+
+  // Kliff - Core Convergence Skill
+  { id: 'k-c1', name: 'Falling Palm', cost: 'Convergence', branch: 'Core', character: 'kliff', description: 'Unleash a powerful blow to the ground by harnessing the force of the fall. The ultimate convergence skill unlocked after mastering all three branches.' },
 
   // ─── DAMIANE ─────────────────────────────────────────────────────────────────
   // In-game skill names for Damiane are not confirmed from an authoritative
