@@ -82,7 +82,7 @@ export default function DashboardPage() {
     { label: 'Territories', value: '573', icon: MapPin, href: '/map' },
     { label: 'Bosses', value: '76', icon: Skull, href: '/bosses' },
     { label: 'Adventures', value: '430', icon: Compass, href: '/quests' },
-    { label: 'Creatures', value: '401', icon: Bug, href: '/bosses' },
+    { label: 'Creatures', value: '401', icon: Bug, href: '/bestiary' },
     { label: 'Codex Entries', value: CODEX_TOTAL.toLocaleString(), icon: Library, href: '/quests' },
   ];
 

@@ -19,7 +19,7 @@ const CHARACTERS = [
     name: 'Damiane',
     role: 'Glass Cannon Swashbuckler',
     description: 'A duelist who turns speed into a weapon. Damiane pairs a rapier and buckler for devastating close-range exchanges with a flintlock pistol and musket for ranged harassment, weaving between attacks with chained dodges that make her nearly impossible to pin down. Her low HP demands perfect spacing — one mistimed engagement can be fatal.',
-    weapons: ['rapier', 'claymore', 'pistol', 'musket', 'shield', 'spells'],
+    weapons: ['rapier', 'claymore', 'pistol', 'musket', 'spells'],
     gradient: 'from-rose-900 to-rose-950',
     accentColor: 'border-gold-500',
     image: '/assets/damiane.webp',

@@ -66,7 +66,7 @@ export default function GuidePage() {
         <div className="space-y-4">
           <div className="border border-pywel-border rounded-lg p-4">
             <h3 className="font-cinzel font-semibold text-gold-300 mb-1">
-              Kliff — Versatile Swordsman
+              Kliff — Versatile Mercenary Leader
             </h3>
             <p className="text-gray-300 text-sm leading-relaxed">
               Leader of the Greymane mercenary company. Wields swords, bows,
@@ -207,7 +207,7 @@ export default function GuidePage() {
 
           <div>
             <h3 className="text-sm font-semibold text-gold-300 mb-2">
-              6 Facilities
+              10 Facilities
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {[
@@ -217,6 +217,10 @@ export default function GuidePage() {
                 'Livestock Ranch',
                 'Camp Vendor',
                 'Dispatch Board',
+                'Barber Shop',
+                'Dyehouse Shop',
+                'Trading Center',
+                'Personal Resting House',
               ].map((facility) => (
                 <div
                   key={facility}
