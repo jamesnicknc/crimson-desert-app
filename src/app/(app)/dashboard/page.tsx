@@ -57,7 +57,7 @@ export default function DashboardPage() {
 
   useEffect(() => {
     const calculateCountdown = () => {
-      const targetDate = new Date('2026-03-19T23:00:00Z').getTime(); // 6 PM EST (UTC-5)
+      const targetDate = new Date('2026-03-19T22:00:00Z').getTime(); // 3 PM PDT / 6 PM EDT (UTC-4)
       const now = new Date().getTime();
       const difference = targetDate - now;
 

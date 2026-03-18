@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Compass } from 'lucide-react';
 
-const LAUNCH_DATE = '2026-03-19T23:00:00Z'; // 6 PM EST (UTC-5)
+const LAUNCH_DATE = '2026-03-19T22:00:00Z'; // 3 PM PDT / 6 PM EDT (UTC-4)
 
 export default function LandingPage() {
   const [countdown, setCountdown] = useState({
@@ -61,7 +61,7 @@ export default function LandingPage() {
         {/* Countdown timer */}
         <div className="mb-16">
           <p className="text-center text-gold-300 font-cinzel text-lg mb-8">
-            Launching March 19, 2026 at 6 PM EST
+            Launching March 19, 2026 at 6 PM EDT / 3 PM PDT
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
             {[
