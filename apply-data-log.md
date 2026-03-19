@@ -4,6 +4,64 @@ Each entry records one manual run of the apply-data task.
 
 ---
 
+## Run: 2026-03-18 (Run 14) -- Launch Eve Queue Pass, No Additions
+
+**Result:** Success (no items to add)
+**Items processed:** 1 (Kearush [PARTIALLY VERIFIED] reviewed; all others skipped per [NEEDS REVIEW] rule)
+**Items added:** 0
+**Items skipped (needs review):** All active queue items (every pending item is [NEEDS REVIEW])
+**Items skipped (unconfirmed):** 0
+**Images generated:** 0
+**Images set to coming-soon placeholder:** 0
+**TypeScript build:** Clean (no changes to game-data.ts)
+
+### Added This Run
+- None
+
+### Skipped / Flagged This Run
+- All active queue items are marked [NEEDS REVIEW] and were left for human review per task rules.
+
+### Notes
+- This run processed the Run 13 queue (2026-03-18, embargo lift day). All new items flagged by Run 13 carry [NEEDS REVIEW] status: the full Kliff skill list rewrite, Falling Palm description correction, Khaled Shield collectible, Walter Lanford corrections. None could be auto-applied.
+- **Kearush [PARTIALLY VERIFIED]:** The only non-[NEEDS REVIEW] item. Run 13 confirmed region 'hernand' and element 'physical' are correct. Reward ('Slayer Claw Materials') and weakness ('fire') remain editorial placeholders with no verified replacements. No changes made.
+- **IMPORTANT -- Falling Palm queue error corrected:** The Run 13 queue entry stated Falling Palm is "Currently absent from the SKILLS array entirely." This is WRONG. Falling Palm IS in game-data.ts as `id: 'k-c1'` (branch: 'Core', cost: 'Convergence'). However, the app's description says "unlocked after mastering all three branches" which conflicts with the verified source (allthings.how, Beebom, Sportskeeda all say "any single branch"). The queue entry has been updated to reflect this. This description correction needs human approval as it updates user-visible text.
+- **Khaled Shield:** The item is verified by Pearl Abyss official FAQ (Tier 1) and would be straightforward to add (`{ name: 'Khaled Shield', location: 'Pre-Order Bonus (All Platforms)', category: 'edition' }`). However it is tagged [NEEDS REVIEW] and cannot be auto-applied. Human can approve this one directly -- no blocking issues.
+- **Skill rewrite decision pending for human:** Run 13 confirmed the full Kliff skill tree from multiple Tier 2 sources. Many existing Kliff skill names in the app are incorrect (editorial names, not in-game text). The full confirmed list is in data-to-add.md. This requires a human decision on whether to rewrite the SKILLS array now (pre-launch) or wait for post-launch in-game text to verify every skill.
+- The game launched March 19-20, 2026. Post-launch runs (Run 15+) should yield confirmed reward data for the 8+ pending boss entries. Recommend running this task on March 20-21 once wikis populate with launch data.
+- data-to-add.md includes Run 13 content (2026-03-18) that was not previously pushed to GitHub. This run pushes both the Run 13 queue updates and this run log entry together.
+- Workspace git state continues to show noise modifications due to OneDrive sync issue (per CLAUDE.md). All file comparisons confirmed against /tmp clone.
+
+---
+
+## Run: 2026-03-17 (Run 12) -- Verification Pass, No Additions
+
+**Result:** Partial (verification-only, corrected queue errors)
+**Items processed:** 3
+**Items added:** 0
+**Items skipped (needs review):** 3
+**Items skipped (unconfirmed):** 0
+**Images generated:** 0
+**Images set to coming-soon placeholder:** 0
+**TypeScript build:** Clean (no changes to game-data.ts)
+
+### Added This Run
+- None
+
+### Skipped / Flagged This Run
+- **Damiane's Dual Blades [CRITICAL CORRECTION]** -- REJECTED. The dexora.gg source (Tier 2) incorrectly attributed Dual Blades to Damiane. Verification against Beebom, Game8, GamesRadar, and a Director of Marketing interview confirms Damiane uses a Greatsword (plus Rapier, Musket, Pistol). Dual Blades belong to Kliff. Updated queue entry to reflect that the type name should change from "Claymore" to "Greatsword" instead. Marked [SOURCES CONFLICT -- NEEDS REVIEW].
+- **Oongka's Fists [New Weapon]** -- REJECTED. Verification confirms fists/unarmed is a universal combat system for all characters, not an Oongka-specific equipped weapon. Oongka's actual weapons are Axes, Warhammer (already in app), and Arm Cannon (missing). Marked [NEEDS REVIEW].
+- **Prixia Swords [Named Weapon/Faction Item]** -- Skipped. Tier 3 source only (YouTube transcript). Body text already says "Needs review."
+
+### Notes
+- This run found ZERO items that could be cleanly added to game-data.ts. All pending items are either [NEEDS REVIEW], blocked by missing required fields, or failed source verification.
+- IMPORTANT FINDING: The dexora.gg weapons guide (used as a Tier 2 source in Run 11) contains incorrect weapon-character assignments. It attributed Dual Blades to Damiane and Fists as Oongka-specific. Both are wrong per multiple higher-quality sources. Recommend downgrading dexora.gg to Tier 3 for weapon data and requiring cross-verification for any future entries sourced from it.
+- The Damiane weapon entry ("Damiane's Claymore") is close to correct but should be renamed to "Damiane's Greatsword" with type 'Greatsword'. This is a minor correction that needs human approval since it changes a user-visible weapon name.
+- The app is missing several confirmed weapons: Damiane's Rapier, Damiane's Musket, Damiane's Pistol, Oongka's Axes, Oongka's Arm Cannon. These should be added post-launch with confirmed stats.
+- Game launches March 19, 2026. The next productive data run should be March 20-21, 2026 when wiki reward/stat data becomes available to unblock the 8+ pending boss entries.
+- The workspace git state shows game-data.ts as modified (OneDrive merge state issue per CLAUDE.md), but a diff against the remote confirms the file matches GitHub. The Run 11 abort was due to this false positive. Future runs should use the /tmp clone comparison method to verify actual uncommitted changes.
+
+---
+
 ## Run: 2026-03-16 (Run 11) -- Aborted: Uncommitted Changes in game-data.ts
 
 **Result:** Aborted
