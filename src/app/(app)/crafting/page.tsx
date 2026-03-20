@@ -112,6 +112,19 @@ export default function CraftingPage() {
                 <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Effect</p>
                 <p className="text-sm text-green-400 italic">{recipe.effect}</p>
               </div>
+
+              <div className="pt-2 border-t border-pywel-border">
+                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Recipe Found</p>
+                <p className={`text-sm ${
+                  recipe.recipeLocation === 'Unknown'
+                    ? 'text-gray-500 italic'
+                    : recipe.recipeLocation === 'At Start of Game'
+                    ? 'text-blue-400'
+                    : 'text-amber-300'
+                }`}>
+                  {recipe.recipeLocation === 'Unknown' ? '? Unknown location' : recipe.recipeLocation}
+                </p>
+              </div>
             </div>
           </div>
         ))}
