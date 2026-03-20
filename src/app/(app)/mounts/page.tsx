@@ -23,7 +23,6 @@ const CATEGORY_OPTIONS: { label: string; value: MountCategory }[] = [
 
 const REGION_OPTIONS: { label: string; value: Region | 'multiple' | 'abyss' }[] = [
   ...REGIONS.map(r => ({ label: r.name, value: r.id as Region | 'multiple' | 'abyss' })),
-  { label: 'Abyss', value: 'abyss' as Region | 'multiple' | 'abyss' },
   { label: 'Multiple', value: 'multiple' as Region | 'multiple' | 'abyss' },
 ];
 
@@ -37,6 +36,7 @@ const getCategoryIcon = (cat: MountCategory): string => {
     mechanical: '\u2699\uFE0F',
     dinosaur: '\uD83E\uDD95',
     exotic: '\u2728',
+    wolf: '\uD83D\uDC3A',
   };
   return icons[cat];
 };
@@ -51,6 +51,7 @@ const getCategoryLabel = (cat: MountCategory): string => {
     mechanical: 'Mechanical',
     dinosaur: 'Dinosaur',
     exotic: 'Exotic',
+    wolf: 'Wolf',
   };
   return labels[cat];
 };

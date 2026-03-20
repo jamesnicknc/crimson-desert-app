@@ -10,7 +10,8 @@ export type QuestType = 'main' | 'side' | 'faction' | 'character' | 'liberation'
 export type QuestStatus = 'not-started' | 'active' | 'complete';
 export type CollectibleCategory = 'artifact' | 'gear' | 'recipe' | 'lore' | 'fast-travel' | 'edition';
 export type CraftingType = 'cooking' | 'alchemy' | 'blacksmith' | 'dye' | 'camp-upgrade';
-export type MountCategory = 'horse' | 'bear' | 'raptor' | 'lizard' | 'wyvern' | 'mechanical' | 'dinosaur' | 'exotic';
+export type MountCategory = 'horse' | 'bear' | 'raptor' | 'lizard' | 'wyvern' | 'mechanical' | 'dinosaur' | 'exotic' | 'wolf';
+export type TrophyRarity = 'platinum' | 'gold' | 'silver' | 'bronze';
 export type ActivityCategory = 'gathering' | 'farming' | 'combat' | 'social';
 export type PinCategory = 'collectible' | 'boss' | 'npc' | 'poi' | 'custom';
 export type ScrapedSource = 'wiki' | 'news' | 'guide' | 'map';
@@ -39,6 +40,8 @@ export interface Boss {
   reward: string;
   element: Element;
   weakness?: Element;
+  location?: string;
+  mechanics?: string;
 }
 
 export interface Enemy {
@@ -66,10 +69,19 @@ export interface CampFacility {
   upgrades: { tier: number; effect: string; materials: string[] }[];
 }
 
+export interface QuestStep {
+  step: number;
+  instruction: string;
+  tip?: string;
+}
+
 export interface Quest {
   name: string;
   description: string;
   type: QuestType;
+  region?: string;
+  rewards?: string[];
+  walkthrough?: QuestStep[];
 }
 
 export interface SignatureAbility {
@@ -87,6 +99,7 @@ export interface Weapon {
   spd: number;
   rng: number;
   character: Character;
+  description?: string;
   signatureAbility?: SignatureAbility;
 }
 
@@ -108,6 +121,11 @@ export interface Mount {
   acquisition: string;
 }
 
+export interface RegionPOI {
+  name: string;
+  type: 'town' | 'dungeon' | 'landmark' | 'stronghold' | 'ruins' | 'arena' | 'camp' | 'shrine' | 'other';
+}
+
 export interface RegionInfo {
   id: Region;
   name: string;
@@ -115,6 +133,7 @@ export interface RegionInfo {
   description: string;
   color: string;
   features: string[];
+  pois: RegionPOI[];
 }
 
 export interface MapPin {
@@ -157,6 +176,14 @@ export interface GroupMember {
   questsCompleted: number;
 }
 
+export interface Trophy {
+  id: string;
+  name: string;
+  rarity: TrophyRarity;
+  description: string;
+  category: string;
+}
+
 export interface ScrapedContent {
   id: string;
   source: ScrapedSource;
@@ -166,3 +193,40 @@ export interface ScrapedContent {
   metadata: Record<string, unknown>;
   scrapedAt: string;
 }
+
+export interface RecommendedBuild {
+  id: string;
+  name: string;
+  character: Character;
+  weapons: string[];
+  keySkills: string[];
+  abyssCores: string[];
+  playstyle: string;
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  description: string;
+}
+
+export interface AbyssArtifact {
+  id: string;
+  name: string;
+  region: Region | string;
+  location: string;
+  challengeType: string;
+}
+
+export interface NPCCharacter {
+  name: string;
+  role: string;
+  faction: string;
+  description: string;
+  voiceActor?: string;
+}
+
+export interface GuideSection {
+  id: string;
+  title: string;
+  content: string;
+  subsections?: { title: string; content: string }[];
+}
+
+export type BossLocation = string;
