@@ -288,36 +288,36 @@ export const WEAPONS: Weapon[] = [
 
 export const RECIPES: Recipe[] = [
   // Cooking (bonfire recipes)
-  { name: 'Hearty Stew', type: 'cooking', ingredients: ['Venison x2', 'Root Vegetables x3', 'Salt x1'], effect: '+30% Max Health for 10 min' },
-  { name: "Hunter's Feast", type: 'cooking', ingredients: ['Wild Boar x1', 'Forest Mushrooms x3', 'Herbs x2'], effect: '+20% Attack for 10 min' },
-  { name: 'Frozen Berry Tart', type: 'cooking', ingredients: ['Snow Berries x4', 'Flour x2', 'Honey x1'], effect: '+25% Stamina Regen for 10 min' },
-  { name: 'Spiced Desert Jerky', type: 'cooking', ingredients: ['Desert Lizard x2', 'Red Spice x3'], effect: '+15% Heat Resistance' },
-  { name: "Warrior's Broth", type: 'cooking', ingredients: ['Bone Marrow x2', 'Garlic x3', 'Spring Water x1'], effect: '+15% Attack & +10% Defense for 8 min' },
+  { name: 'Hearty Stew', type: 'cooking', ingredients: ['Venison x2', 'Root Vegetables x3', 'Salt x1'], effect: '+30% Max Health for 10 min', recipeLocation: 'Greymane Camp' },
+  { name: "Hunter's Feast", type: 'cooking', ingredients: ['Wild Boar x1', 'Forest Mushrooms x3', 'Herbs x2'], effect: '+20% Attack for 10 min', recipeLocation: 'Hernand Inn' },
+  { name: 'Frozen Berry Tart', type: 'cooking', ingredients: ['Snow Berries x4', 'Flour x2', 'Honey x1'], effect: '+25% Stamina Regen for 10 min', recipeLocation: 'Pailune Settlement' },
+  { name: 'Spiced Desert Jerky', type: 'cooking', ingredients: ['Desert Lizard x2', 'Red Spice x3'], effect: '+15% Heat Resistance', recipeLocation: 'Crimson Desert Outpost' },
+  { name: "Warrior's Broth", type: 'cooking', ingredients: ['Bone Marrow x2', 'Garlic x3', 'Spring Water x1'], effect: '+15% Attack & +10% Defense for 8 min', recipeLocation: 'Demeniss Barracks' },
   // Alchemy
-  { name: 'Healing Salve', type: 'alchemy', ingredients: ['Healing Herb x3', 'Spring Water x1', 'Beeswax x1'], effect: 'Restores 50% HP over time' },
-  { name: 'Stamina Elixir', type: 'alchemy', ingredients: ['Ginseng Root x2', 'Crystal Water x1'], effect: 'Full Stamina Restore' },
-  { name: 'Fire Resistance Tonic', type: 'alchemy', ingredients: ['Fire Bloom x2', 'Ice Moss x1', 'Vial x1'], effect: '+40% Fire Resistance for 15 min' },
-  { name: 'Strength Draught', type: 'alchemy', ingredients: ['Bear Claw x1', 'Iron Dust x2', 'Alcohol x1'], effect: '+25% Strength for 8 min' },
+  { name: 'Healing Salve', type: 'alchemy', ingredients: ['Healing Herb x3', 'Spring Water x1', 'Beeswax x1'], effect: 'Restores 50% HP over time', recipeLocation: 'Herb Gatherer NPC, Hernand' },
+  { name: 'Stamina Elixir', type: 'alchemy', ingredients: ['Ginseng Root x2', 'Crystal Water x1'], effect: 'Full Stamina Restore', recipeLocation: 'Delesyia Alchemist' },
+  { name: 'Fire Resistance Tonic', type: 'alchemy', ingredients: ['Fire Bloom x2', 'Ice Moss x1', 'Vial x1'], effect: '+40% Fire Resistance for 15 min', recipeLocation: 'Crimson Desert Alchemist' },
+  { name: 'Strength Draught', type: 'alchemy', ingredients: ['Bear Claw x1', 'Iron Dust x2', 'Alcohol x1'], effect: '+25% Strength for 8 min', recipeLocation: 'Pailune Herbalist' },
   // Blacksmithing
-  { name: 'Weapon Refinement I', type: 'blacksmith', ingredients: ['Iron Ore x5', 'Coal x3'], effect: 'Weapon ATK +10' },
-  { name: 'Weapon Refinement II', type: 'blacksmith', ingredients: ['Steel Ingot x3', 'Rare Coal x2', 'Gold Dust x1'], effect: 'Weapon ATK +25' },
-  { name: 'Armor Reinforcement', type: 'blacksmith', ingredients: ['Leather x4', 'Iron Plates x2'], effect: 'DEF +15' },
-  { name: 'Abyss Gear Socket', type: 'blacksmith', ingredients: ['Abyss Shard x1', 'Mithril x2'], effect: 'Adds gear socket to weapon' },
+  { name: 'Weapon Refinement I', type: 'blacksmith', ingredients: ['Iron Ore x5', 'Coal x3'], effect: 'Weapon ATK +10', recipeLocation: 'At Start of Game' },
+  { name: 'Weapon Refinement II', type: 'blacksmith', ingredients: ['Steel Ingot x3', 'Rare Coal x2', 'Gold Dust x1'], effect: 'Weapon ATK +25', recipeLocation: 'Upgraded Forge (Camp Upgrade required)' },
+  { name: 'Armor Reinforcement', type: 'blacksmith', ingredients: ['Leather x4', 'Iron Plates x2'], effect: 'DEF +15', recipeLocation: 'At Start of Game' },
+  { name: 'Abyss Gear Socket', type: 'blacksmith', ingredients: ['Abyss Shard x1', 'Mithril x2'], effect: 'Adds gear socket to weapon', recipeLocation: 'Unknown' },
   // Alchemy - Potions & Medicine (alchemy covers all consumable crafting)
-  { name: 'Healing Potion', type: 'alchemy', ingredients: ['Moonpetal x2', 'Purified Water x1'], effect: 'Instant 40% HP restore' },
-  { name: 'Antidote', type: 'alchemy', ingredients: ['Charcoal x1', 'Swamp Lily x2', 'Vial x1'], effect: 'Cures poison and venom effects' },
-  { name: 'Combat Stimulant', type: 'alchemy', ingredients: ['Crimson Root x1', 'Adrenaline Gland x1', 'Alcohol x1'], effect: '+30% Attack Speed for 60 seconds' },
-  { name: 'Spirit Restoration Draught', type: 'alchemy', ingredients: ['Abyss Dewdrop x2', 'Silver Dust x1'], effect: 'Restores Spirit gauge used for Abyss Magic' },
+  { name: 'Healing Potion', type: 'alchemy', ingredients: ['Moonpetal x2', 'Purified Water x1'], effect: 'Instant 40% HP restore', recipeLocation: 'At Start of Game' },
+  { name: 'Antidote', type: 'alchemy', ingredients: ['Charcoal x1', 'Swamp Lily x2', 'Vial x1'], effect: 'Cures poison and venom effects', recipeLocation: 'Unknown' },
+  { name: 'Combat Stimulant', type: 'alchemy', ingredients: ['Crimson Root x1', 'Adrenaline Gland x1', 'Alcohol x1'], effect: '+30% Attack Speed for 60 seconds', recipeLocation: 'Unknown' },
+  { name: 'Spirit Restoration Draught', type: 'alchemy', ingredients: ['Abyss Dewdrop x2', 'Silver Dust x1'], effect: 'Restores Spirit gauge used for Abyss Magic', recipeLocation: 'Unknown' },
   // Dye Crafting
-  { name: 'Crimson Dye', type: 'dye', ingredients: ['Red Desert Flower x4', 'Mordant x1'], effect: 'Deep red armor/clothing color' },
-  { name: 'Midnight Black Dye', type: 'dye', ingredients: ['Squid Ink x3', 'Charcoal x2', 'Mordant x1'], effect: 'Pure black armor/clothing color' },
-  { name: 'Royal Gold Dye', type: 'dye', ingredients: ['Gold Dust x2', 'Saffron x3', 'Mordant x1'], effect: 'Metallic gold armor/clothing color' },
-  { name: 'Forest Green Dye', type: 'dye', ingredients: ['Green Moss x4', 'Copper Sulfate x1'], effect: 'Deep green armor/clothing color' },
+  { name: 'Crimson Dye', type: 'dye', ingredients: ['Red Desert Flower x4', 'Mordant x1'], effect: 'Deep red armor/clothing color', recipeLocation: "Naira's Quest Chain, Greymane Camp" },
+  { name: 'Midnight Black Dye', type: 'dye', ingredients: ['Squid Ink x3', 'Charcoal x2', 'Mordant x1'], effect: 'Pure black armor/clothing color', recipeLocation: "Naira's Quest Chain, Greymane Camp" },
+  { name: 'Royal Gold Dye', type: 'dye', ingredients: ['Gold Dust x2', 'Saffron x3', 'Mordant x1'], effect: 'Metallic gold armor/clothing color', recipeLocation: "Naira's Quest Chain, Greymane Camp" },
+  { name: 'Forest Green Dye', type: 'dye', ingredients: ['Green Moss x4', 'Copper Sulfate x1'], effect: 'Deep green armor/clothing color', recipeLocation: "Naira's Quest Chain, Greymane Camp" },
   // Camp Upgrades
-  { name: 'Reinforced Palisade', type: 'camp-upgrade', ingredients: ['Timber x10', 'Iron Nails x5', 'Rope x3'], effect: 'Increases camp defense; reduces raid damage' },
-  { name: 'Watchtower', type: 'camp-upgrade', ingredients: ['Timber x15', 'Stone Block x8', 'Iron Fittings x3'], effect: 'Early warning of incoming attacks; extends minimap range at camp' },
-  { name: 'Expanded Stables', type: 'camp-upgrade', ingredients: ['Timber x8', 'Hay x10', 'Leather x4'], effect: 'Stores up to 4 additional mounts at camp' },
-  { name: 'Upgraded Forge', type: 'camp-upgrade', ingredients: ['Firebrick x6', 'Bellows x1', 'Steel Ingot x4'], effect: 'Unlocks Tier 2 blacksmithing recipes' },
+  { name: 'Reinforced Palisade', type: 'camp-upgrade', ingredients: ['Timber x10', 'Iron Nails x5', 'Rope x3'], effect: 'Increases camp defense; reduces raid damage', recipeLocation: 'Greymane Camp Blueprint Board' },
+  { name: 'Watchtower', type: 'camp-upgrade', ingredients: ['Timber x15', 'Stone Block x8', 'Iron Fittings x3'], effect: 'Early warning of incoming attacks; extends minimap range at camp', recipeLocation: 'Greymane Camp Blueprint Board' },
+  { name: 'Expanded Stables', type: 'camp-upgrade', ingredients: ['Timber x8', 'Hay x10', 'Leather x4'], effect: 'Stores up to 4 additional mounts at camp', recipeLocation: 'Greymane Camp Blueprint Board' },
+  { name: 'Upgraded Forge', type: 'camp-upgrade', ingredients: ['Firebrick x6', 'Bellows x1', 'Steel Ingot x4'], effect: 'Unlocks Tier 2 blacksmithing recipes', recipeLocation: 'Greymane Camp Blueprint Board' },
 ];
 
 // ═══════════════════════════════════════

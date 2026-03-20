@@ -94,6 +94,7 @@ export interface Recipe {
   type: CraftingType;
   ingredients: string[];
   effect: string;
+  recipeLocation: string;
 }
 
 export interface Mount {
