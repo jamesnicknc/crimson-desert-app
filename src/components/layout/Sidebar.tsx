@@ -50,7 +50,7 @@ const navSections: NavSection[] = [
   {
     label: 'World',
     items: [
-      { label: 'World Map', href: '/map', icon: <Globe className="w-5 h-5" />, comingSoon: true },
+      { label: 'World Map', href: '/map', icon: <Globe className="w-5 h-5" />},
       { label: 'Characters', href: '/characters', icon: <Users className="w-5 h-5" /> },
       { label: 'Mounts', href: '/mounts', icon: <Footprints className="w-5 h-5" /> },
       { label: 'Greymane Camp', href: '/camp', icon: <Tent className="w-5 h-5" /> },
@@ -89,7 +89,7 @@ const navSections: NavSection[] = [
   {
     label: 'Social',
     items: [
-      { label: 'Group', href: '/group', icon: <Users2 className="w-5 h-5" />, comingSoon: true },
+      { label: 'Group', href: '/group', icon: <Users2 className="w-5 h-5" />},
       { label: 'Build Planner', href: '/planner', icon: <Wrench className="w-5 h-5" /> },
       { label: 'Shared Builds', href: '/builds', icon: <Share2 className="w-5 h-5" /> },
     ],
