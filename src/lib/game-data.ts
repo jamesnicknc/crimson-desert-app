@@ -595,8 +595,8 @@ export const BOSSES: Boss[] = [
     mechanics: 'Wields spear. Lightning attacks.' },
 ];
 
-// Knowledge Codex contains 76 total named bosses. Above list contains 30 confirmed.
-// Remaining ~46 bosses exist but are not yet fully documented post-launch.
+// Knowledge Codex contains 75 total named bosses. Above list contains 30 confirmed.
+// Remaining ~45 bosses exist but are not yet fully documented post-launch.
 
 // ═══════════════════════════════════════
 // ENEMIES / BESTIARY
