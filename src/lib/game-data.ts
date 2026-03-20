@@ -46,75 +46,155 @@ export const REGIONS: RegionInfo[] = [
 // ═══════════════════════════════════════
 
 export const SKILLS: Skill[] = [
-  // Kliff - Sword Mastery
-  { id: 'k-s1', name: 'Quick Slash Combo', cost: '1 Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'A rapid three-hit sword combo. Fast and reliable for building momentum.' },
-  { id: 'k-s2', name: 'Shield Counter', cost: '1 Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'Block an incoming attack and immediately counter with a powerful shield bash.' },
-  { id: 'k-s3', name: 'Whirlwind Strike', cost: '2 Artifacts', branch: 'Sword Mastery', character: 'kliff', description: 'Spin with your sword, hitting all enemies in a 360-degree arc around you.' },
-  { id: 'k-s4', name: 'Perfect Parry', cost: '2 Artifacts', branch: 'Sword Mastery', character: 'kliff', description: 'Time your block perfectly to stagger the enemy and open them to a critical follow-up.' },
-  { id: 'k-s5', name: 'Blade Storm Finisher', cost: '3 Artifacts', branch: 'Sword Mastery', character: 'kliff', description: 'Unleash a devastating flurry of slashes, dealing massive damage to a single target.' },
-  // Kliff - Unarmed
-  { id: 'k-u1', name: 'Wrestling Grapple', cost: '1 Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'Grab an enemy and throw them to the ground, temporarily stunning them.' },
-  { id: 'k-u2', name: 'Body Slam', cost: '1 Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'Launch yourself at an enemy with a full-body tackle, dealing heavy impact damage.' },
-  { id: 'k-u3', name: 'Belly Slam (Observed)', cost: 'Observe', branch: 'Unarmed Combat', character: 'kliff', description: 'A technique learned by observing a sumo wrestler. Devastating belly-first slam.' },
-  { id: 'k-u4', name: 'Pile-Driver Finisher', cost: '2 Artifacts', branch: 'Unarmed Combat', character: 'kliff', description: 'Lift an enemy overhead and drive them headfirst into the ground.' },
-  { id: 'k-u5', name: 'Throw Combo Chain', cost: '2 Artifacts', branch: 'Unarmed Combat', character: 'kliff', description: 'Chain multiple grapple throws together, tossing enemies into each other.' },
-  // Kliff - Ranged
-  { id: 'k-r1', name: 'Aimed Shot', cost: '1 Artifact', branch: 'Ranged & Bow', character: 'kliff', description: 'Hold to carefully aim your bow for increased damage and accuracy.' },
-  { id: 'k-r2', name: 'Rain of Arrows', cost: '2 Artifacts', branch: 'Ranged & Bow', character: 'kliff', description: 'Fire a volley of arrows into the sky that rain down on a target area.' },
-  { id: 'k-r3', name: 'Explosive Arrow', cost: '2 Artifacts', branch: 'Ranged & Bow', character: 'kliff', description: 'Fire an arrow rigged with blackpowder that explodes on impact.' },
-  { id: 'k-r4', name: 'Quickdraw Volley', cost: '3 Artifacts', branch: 'Ranged & Bow', character: 'kliff', description: 'Rapidly fire three arrows in quick succession at the cost of reduced accuracy.' },
-  // Kliff - Abyss Magic
-  { id: 'k-m1', name: 'Flame Imbue', cost: '1 Artifact', branch: 'Abyss Magic', character: 'kliff', description: 'Enchant your weapon with fire, adding burn damage to attacks for 30 seconds.' },
-  { id: 'k-m2', name: 'Frost Imbue', cost: '1 Artifact', branch: 'Abyss Magic', character: 'kliff', description: 'Enchant your weapon with ice, slowing enemies hit for 30 seconds.' },
-  { id: 'k-m3', name: 'Gravity Shift', cost: '2 Artifacts', branch: 'Abyss Magic', character: 'kliff', description: 'Manipulate gravity in a small area, pulling enemies together.' },
-  { id: 'k-m4', name: 'Weightless Lift', cost: '2 Artifacts', branch: 'Abyss Magic', character: 'kliff', description: 'Launch yourself into the air using gravity magic for aerial combos.' },
-  { id: 'k-m5', name: 'Stun Burst', cost: '3 Artifacts', branch: 'Abyss Magic', character: 'kliff', description: 'Release a pulse of Abyss energy that stuns all nearby enemies briefly.' },
-  // Kliff - Vitality
-  { id: 'k-v1', name: 'Health Boost I', cost: '1 Artifact', branch: 'Vitality', character: 'kliff', description: 'Permanently increase maximum health by 10%.' },
-  { id: 'k-v2', name: 'Health Boost II', cost: '2 Artifacts', branch: 'Vitality', character: 'kliff', description: 'Permanently increase maximum health by an additional 15%.' },
-  { id: 'k-v3', name: 'Stamina Boost I', cost: '1 Artifact', branch: 'Vitality', character: 'kliff', description: 'Permanently increase maximum stamina by 10%.' },
-  { id: 'k-v4', name: 'Stamina Boost II', cost: '2 Artifacts', branch: 'Vitality', character: 'kliff', description: 'Permanently increase maximum stamina by an additional 15%.' },
-  // Kliff - Observed Skills (integrated into existing branches)
-  { id: 'k-o1', name: 'Force Palm (Observed)', cost: 'Observe', branch: 'Unarmed Combat', character: 'kliff', description: 'Learned by observing a holographic projection. A devastating open-palm strike that sends enemies flying.' },
-  // Damiane - Blade Arts
-  { id: 'd-b1', name: 'Rapier Lunge', cost: '1 Artifact', branch: 'Blade Arts', character: 'damiane', description: 'A swift forward thrust with the rapier, closing distance instantly.' },
-  { id: 'd-b2', name: 'Claymore Sweep', cost: '1 Artifact', branch: 'Blade Arts', character: 'damiane', description: 'A wide horizontal sweep with the claymore, hitting multiple enemies.' },
-  { id: 'd-b3', name: 'Riposte Counter', cost: '2 Artifacts', branch: 'Blade Arts', character: 'damiane', description: 'Deflect an attack and immediately counter with a precise rapier strike.' },
-  { id: 'd-b4', name: 'Shadow Step Slash', cost: '2 Artifacts', branch: 'Blade Arts', character: 'damiane', description: 'Dash through shadows to appear behind an enemy, striking their back.' },
-  { id: 'd-b5', name: 'Death Blossom', cost: '3 Artifacts', branch: 'Blade Arts', character: 'damiane', description: 'Spin with dual blades in a deadly dance, hitting everything in range.' },
-  // Damiane - Gunplay
-  { id: 'd-g1', name: 'Pistol Quick Draw', cost: '1 Artifact', branch: 'Gunplay', character: 'damiane', description: 'Draw and fire your pistol in a single fluid motion. Fast but moderate damage.' },
-  { id: 'd-g2', name: 'Musket Precision', cost: '1 Artifact', branch: 'Gunplay', character: 'damiane', description: 'Steady your musket for a high-damage precision shot. Slow but devastating.' },
-  { id: 'd-g3', name: 'Explosive Round', cost: '2 Artifacts', branch: 'Gunplay', character: 'damiane', description: 'Load a special round that explodes on impact, dealing area damage.' },
-  { id: 'd-g4', name: 'Fan the Hammer', cost: '3 Artifacts', branch: 'Gunplay', character: 'damiane', description: 'Rapidly fan the pistol hammer, emptying the cylinder in seconds.' },
-  // Damiane - Evasion
-  { id: 'd-e1', name: 'Dodge Roll', cost: '1 Artifact', branch: 'Evasion', character: 'damiane', description: 'A quick evasive roll with invincibility frames. Essential for survival.' },
-  { id: 'd-e2', name: 'Phase Dash', cost: '2 Artifacts', branch: 'Evasion', character: 'damiane', description: 'Dash forward while becoming intangible, passing through enemies and attacks.' },
-  { id: 'd-e3', name: 'Smoke Bomb', cost: '2 Artifacts', branch: 'Evasion', character: 'damiane', description: 'Deploy a smoke cloud that blinds enemies and grants temporary invisibility.' },
-  { id: 'd-e4', name: 'Vanishing Strike', cost: '3 Artifacts', branch: 'Evasion', character: 'damiane', description: 'Disappear completely and reappear with a devastating backstab.' },
-  // Damiane - Abyss Spells
-  { id: 'd-m1', name: 'Arcane Bolt', cost: '1 Artifact', branch: 'Abyss Spells', character: 'damiane', description: 'Fire a concentrated bolt of Abyss energy at a single target.' },
-  { id: 'd-m2', name: 'Shield Ward', cost: '2 Artifacts', branch: 'Abyss Spells', character: 'damiane', description: 'Conjure a magical barrier that absorbs a set amount of incoming damage.' },
-  { id: 'd-m3', name: 'Chain Lightning', cost: '3 Artifacts', branch: 'Abyss Spells', character: 'damiane', description: 'Launch a bolt of lightning that chains between up to 4 nearby enemies.' },
-  // Oongka - Axe Fury
-  { id: 'o-a1', name: 'Cleave', cost: '1 Artifact', branch: 'Axe Fury', character: 'oongka', description: 'A powerful downward chop that splits enemy defenses.' },
-  { id: 'o-a2', name: 'Spinning Axe', cost: '1 Artifact', branch: 'Axe Fury', character: 'oongka', description: 'Whirl your greataxe in a circle, hitting all enemies around you.' },
-  { id: 'o-a3', name: 'Ground Shatter', cost: '2 Artifacts', branch: 'Axe Fury', character: 'oongka', description: 'Slam your axe into the ground, creating a shockwave that staggers enemies.' },
-  { id: 'o-a4', name: 'Berserker Rage', cost: '2 Artifacts', branch: 'Axe Fury', character: 'oongka', description: 'Enter a frenzy that increases attack speed and damage but reduces defense.' },
-  { id: 'o-a5', name: 'Earthquake Slam', cost: '3 Artifacts', branch: 'Axe Fury', character: 'oongka', description: 'Leap into the air and slam down with earth-shattering force.' },
-  // Oongka - Wrist Cannon
-  { id: 'o-c1', name: 'Cannon Blast', cost: '1 Artifact', branch: 'Wrist Cannon', character: 'oongka', description: 'Fire a heavy cannonball that deals explosive damage at medium range.' },
-  { id: 'o-c2', name: 'Scatter Shot', cost: '2 Artifacts', branch: 'Wrist Cannon', character: 'oongka', description: 'Fire a spread of shrapnel, hitting multiple enemies in a cone.' },
-  { id: 'o-c3', name: 'Explosive Barrage', cost: '3 Artifacts', branch: 'Wrist Cannon', character: 'oongka', description: 'Rapidly fire three explosive rounds in succession.' },
-  // Oongka - Fortitude
-  { id: 'o-f1', name: 'Iron Skin', cost: '1 Artifact', branch: 'Fortitude', character: 'oongka', description: 'Harden your body, reducing all incoming damage by 25% for 15 seconds.' },
-  { id: 'o-f2', name: 'War Cry', cost: '1 Artifact', branch: 'Fortitude', character: 'oongka', description: 'Let out a battle cry that boosts nearby allies\' attack by 10% for 20 seconds.' },
-  { id: 'o-f3', name: 'Regeneration', cost: '2 Artifacts', branch: 'Fortitude', character: 'oongka', description: 'Slowly regenerate health over time for 30 seconds.' },
-  { id: 'o-f4', name: 'Unstoppable Force', cost: '3 Artifacts', branch: 'Fortitude', character: 'oongka', description: 'Become immune to stagger and knockback for 10 seconds.' },
-  // Oongka - Vitality
-  { id: 'o-v1', name: 'Health Boost I', cost: '1 Artifact', branch: 'Vitality', character: 'oongka', description: 'Permanently increase maximum health by 10%.' },
-  { id: 'o-v2', name: 'Health Boost II', cost: '2 Artifacts', branch: 'Vitality', character: 'oongka', description: 'Permanently increase maximum health by an additional 15%.' },
-  { id: 'o-v3', name: 'Stamina Boost I', cost: '1 Artifact', branch: 'Vitality', character: 'oongka', description: 'Permanently increase maximum stamina by 10%.' },
+  // ─── KLIFF ──────────────────────────────────────────────────────────────────
+  // KLIFF — STAMINA BRANCH (Blue) — Armed Combat cluster
+  { id: 'k-a1', name: 'Armed Combat Rank 1', cost: '1 Artifact', branch: 'Stamina', cluster: 'Armed Combat', character: 'kliff', description: 'Basic weapon strikes with sword and shield.' },
+  { id: 'k-a2', name: 'Armed Combat Rank 2', cost: '1 Artifact', branch: 'Stamina', cluster: 'Armed Combat', character: 'kliff', description: 'Unlocks Evasive Slash — cancel a dodge into a cutting strike.' },
+  { id: 'k-a3', name: 'Armed Combat Rank 3', cost: '1 Artifact', branch: 'Stamina', cluster: 'Armed Combat', character: 'kliff', description: 'Unlocks Charge — shield rush that staggers enemies.' },
+  { id: 'k-a4', name: 'Armed Combat Rank 4', cost: '1 Artifact', branch: 'Stamina', cluster: 'Armed Combat', character: 'kliff', description: 'Enhanced follow-up attack combos.' },
+  { id: 'k-a5', name: 'Armed Combat Rank 5', cost: '1 Artifact', branch: 'Stamina', cluster: 'Armed Combat', character: 'kliff', description: 'Unlocks Rush — powerful counter strike executed after blocking.' },
+  { id: 'k-a6', name: 'Forward Slash', cost: '1 Artifact', branch: 'Stamina', cluster: 'Armed Combat', character: 'kliff', description: 'Heavy forward swing (3 ranks). Each rank adds a follow-up strike for a 3-hit combo.' },
+  { id: 'k-a7', name: 'Shield Bash', cost: '1 Artifact', branch: 'Stamina', cluster: 'Armed Combat', character: 'kliff', description: 'Counter with a powerful shield bash to stagger enemies and open attack windows.' },
+  { id: 'k-a8', name: 'Turning Slash', cost: '1 Artifact', branch: 'Stamina', cluster: 'Armed Combat', character: 'kliff', description: 'Spinning power attack (3 ranks). Costs 10 Spirit. Higher ranks extend the spin arc.' },
+  { id: 'k-a9', name: 'Stab', cost: '1 Artifact', branch: 'Stamina', cluster: 'Armed Combat', character: 'kliff', description: 'Thrust that inflicts Bleed (3 ranks). Higher ranks increase Bleed duration and damage.' },
+  { id: 'k-a10', name: 'Sword Flurry', cost: '2 Artifacts', branch: 'Stamina', cluster: 'Armed Combat', character: 'kliff', description: 'Leaping AoE spin slash (2 ranks). Costs 30 Stamina.' },
+  { id: 'k-a11', name: 'Blinding Flash', cost: '1 Artifact', branch: 'Stamina', cluster: 'Armed Combat', character: 'kliff', description: 'Reflects light off your blade to temporarily blind nearby enemies.' },
+  { id: 'k-a12', name: 'Blinding Flash Finisher', cost: '1 Artifact', branch: 'Stamina', cluster: 'Armed Combat', character: 'kliff', description: 'Rapid flurry of strikes that can only be used against blinded enemies.' },
+  // KLIFF — STAMINA BRANCH (Blue) — Unarmed Combat cluster
+  { id: 'k-u1', name: 'Unarmed Combat', cost: '1 Artifact', branch: 'Stamina', cluster: 'Unarmed Combat', character: 'kliff', description: 'Bare-fist strikes (5 ranks). Each rank adds combo extensions, grappling, trip kicks, and throw combos.' },
+  { id: 'k-u2', name: 'Grappling', cost: '1 Artifact', branch: 'Stamina', cluster: 'Unarmed Combat', character: 'kliff', description: 'Grab attacks (5 ranks). Rank 2: Throw. Rank 3: Restrain (hostage-hold). Rank 5: Lariat.' },
+  { id: 'k-u3', name: 'Pump Kick', cost: '1 Artifact', branch: 'Stamina', cluster: 'Unarmed Combat', character: 'kliff', description: 'A forward kick that pushes enemies back.' },
+  { id: 'k-u4', name: 'Dropkick', cost: '1 Artifact', branch: 'Stamina', cluster: 'Unarmed Combat', character: 'kliff', description: 'Full-body forward kick with knockback.' },
+  { id: 'k-u5', name: 'Vault', cost: '1 Artifact', branch: 'Stamina', cluster: 'Unarmed Combat', character: 'kliff', description: 'Leap over enemies using 40 Stamina.' },
+  { id: 'k-u6', name: 'Flying Kick', cost: '1 Artifact', branch: 'Stamina', cluster: 'Unarmed Combat', character: 'kliff', description: 'Midair double kick that launches you forward.' },
+  { id: 'k-u7', name: 'Meteor Kick', cost: '1 Artifact', branch: 'Stamina', cluster: 'Unarmed Combat', character: 'kliff', description: 'Altitude foot slam from the air. Costs 10 Spirit.' },
+  { id: 'k-u8', name: 'Clothesline', cost: '2 Artifacts', branch: 'Stamina', cluster: 'Unarmed Combat', character: 'kliff', description: 'Running grab-slam that sends enemies into the ground. Costs 60 Stamina.' },
+  { id: 'k-u9', name: 'Body Slam', cost: '2 Artifacts', branch: 'Stamina', cluster: 'Unarmed Combat', character: 'kliff', description: 'Aerial slam with AoE impact on landing. Costs 60 Stamina.' },
+  // KLIFF — STAMINA BRANCH (Blue) — Archery cluster
+  { id: 'k-ar1', name: 'Archery', cost: '1 Artifact', branch: 'Stamina', cluster: 'Archery', character: 'kliff', description: 'Core bow attack (5 ranks). Each rank improves draw speed, damage, and range.' },
+  { id: 'k-ar2', name: 'Multishot', cost: '2 Artifacts', branch: 'Stamina', cluster: 'Archery', character: 'kliff', description: 'Fire a 10-arrow cone spread. Costs 10 Spirit.' },
+  { id: 'k-ar3', name: 'Evasive Shot', cost: '1 Artifact', branch: 'Stamina', cluster: 'Archery', character: 'kliff', description: 'Slide-dodge while firing (3 ranks). Rank 2: fires two arrows. Rank 3 (Explosive Evasive Shot): launches you airborne.' },
+  { id: 'k-ar4', name: 'Charged Shot', cost: '2 Artifacts', branch: 'Stamina', cluster: 'Archery', character: 'kliff', description: 'Hold to charge a devastating powered arrow shot.' },
+  // KLIFF — SPIRIT BRANCH (Green) — Nature's Arts cluster
+  { id: 'k-sp1', name: "Nature's Echo", cost: '1 Artifact', branch: 'Spirit', cluster: "Nature's Arts", character: 'kliff', description: "Summons phantom clones (3 ranks). Rank 1: clone mimics Forward Slash. Rank 2: Spinning Slash. Rank 3: Stab." },
+  { id: 'k-sp2', name: "Nature's Snare", cost: '1 Artifact', branch: 'Spirit', cluster: "Nature's Arts", character: 'kliff', description: "Projectile-blocking rotating barrier (3 ranks). Costs 2 Spirit/sec. Higher ranks expand range and rotation speed." },
+  { id: 'k-sp3', name: "Nature's Grasp", cost: 'Story Unlock', branch: 'Spirit', cluster: "Nature's Arts", character: 'kliff', description: 'Lift and move heavy objects using Axiom Force. Unlocked through story progression.' },
+  // KLIFF — SPIRIT BRANCH (Green) — Keen Senses & Evasion cluster
+  { id: 'k-sp4', name: 'Keen Senses', cost: '1 Artifact', branch: 'Spirit', cluster: 'Keen Senses & Evasion', character: 'kliff', description: 'Enhanced perception (3 ranks). Rank 1: Parry (perfect block). Rank 2: Backstep (perfect dodge). Rank 3: Counter attack.' },
+  { id: 'k-sp5', name: 'Evasive Roll', cost: '1 Artifact', branch: 'Spirit', cluster: 'Keen Senses & Evasion', character: 'kliff', description: 'Perfect-timed roll with invincibility frames. Costs 10 Spirit.' },
+  { id: 'k-sp6', name: 'Double Jump', cost: '1 Artifact', branch: 'Spirit', cluster: 'Keen Senses & Evasion', character: 'kliff', description: 'A second midair jump that consumes Spirit.' },
+  // KLIFF — SPIRIT BRANCH (Green) — Focus cluster
+  { id: 'k-sp7', name: 'Focus', cost: '1 Artifact', branch: 'Spirit', cluster: 'Focus', character: 'kliff', description: 'Slow down time (3 ranks). Costs 5 Spirit/sec. Rank 3 unlocks Focused Insight parry.' },
+  { id: 'k-sp8', name: 'Focus Shot', cost: '1 Artifact', branch: 'Spirit', cluster: 'Focus', character: 'kliff', description: 'Slow-motion precision aiming with multi-arrow volley (3 ranks). Higher ranks fire more arrows.' },
+  // KLIFF — SPIRIT BRANCH (Green) — Force Palm cluster
+  { id: 'k-sp9',  name: 'Force Palm Rank 1', cost: '1 Artifact', branch: 'Spirit', cluster: 'Force Palm', character: 'kliff', description: 'Open-palm energy strike that staggers enemies.' },
+  { id: 'k-sp10', name: 'Force Palm Rank 2', cost: '1 Artifact', branch: 'Spirit', cluster: 'Force Palm', character: 'kliff', description: 'Unlocks Aerial Force Palm — perform Force Palm while airborne.' },
+  { id: 'k-sp11', name: 'Force Palm Rank 3', cost: '1 Artifact', branch: 'Spirit', cluster: 'Force Palm', character: 'kliff', description: 'Unlocks Healing Force Palm — regain Spirit on successful hit.' },
+  { id: 'k-sp12', name: 'Force Palm Rank 4', cost: '1 Artifact', branch: 'Spirit', cluster: 'Force Palm', character: 'kliff', description: 'Additional Palm Strikes I — chain a second consecutive palm strike.' },
+  { id: 'k-sp13', name: 'Force Palm Rank 5', cost: '1 Artifact', branch: 'Spirit', cluster: 'Force Palm', character: 'kliff', description: 'Additional Palm Strikes II — chain up to three consecutive palm strikes.' },
+  { id: 'k-sp14', name: 'Force Palm Pulse', cost: '1 Artifact', branch: 'Spirit', cluster: 'Force Palm', character: 'kliff', description: 'A swift follow-up attack immediately after a Force Palm strike.' },
+  { id: 'k-sp15', name: 'Focused Palm', cost: '1 Artifact', branch: 'Spirit', cluster: 'Force Palm', character: 'kliff', description: "Charged Force Palm that targets an enemy's inner core for bonus damage." },
+  { id: 'k-sp16', name: 'Light Falling Palm', cost: '2 Artifacts', branch: 'Spirit', cluster: 'Force Palm', character: 'kliff', description: 'A ground slam powered by Axiom Force.' },
+  { id: 'k-sp17', name: 'Force Current', cost: '2 Artifacts', branch: 'Spirit', cluster: 'Force Palm', character: 'kliff', description: 'A long-range stagger-building energy pulse.' },
+  // KLIFF — HEALTH BRANCH (Red) — Elemental Arts cluster
+  { id: 'k-hp1', name: 'Imbue Elements Rank 1', cost: '1 Artifact', branch: 'Health', cluster: 'Elemental Arts', character: 'kliff', description: 'Elemental affinity via radial quick-select menu (4 ranks total). Rank 1: adds elemental Turning Slash.' },
+  { id: 'k-hp2', name: 'Imbue Elements Rank 2', cost: '1 Artifact', branch: 'Health', cluster: 'Elemental Arts', character: 'kliff', description: 'Second element slot — access two affinities.' },
+  { id: 'k-hp3', name: 'Imbue Elements Rank 3', cost: '1 Artifact', branch: 'Health', cluster: 'Elemental Arts', character: 'kliff', description: 'Third element slot — enhanced elemental switching speed.' },
+  { id: 'k-hp4', name: 'Imbue Elements Rank 4', cost: '1 Artifact', branch: 'Health', cluster: 'Elemental Arts', character: 'kliff', description: 'Full elemental mastery — all four elements accessible at once.' },
+  { id: 'k-hp5', name: 'Fist of Flame', cost: '2 Artifacts', branch: 'Health', cluster: 'Elemental Arts', character: 'kliff', description: 'Fire-imbued charging punch. Costs 10 Spirit.' },
+  { id: 'k-hp6', name: 'Veil of Fog', cost: '2 Artifacts', branch: 'Health', cluster: 'Elemental Arts', character: 'kliff', description: 'Creates a fog area that breaks enemy line-of-sight. Costs 10 Spirit.' },
+  { id: 'k-hp7', name: 'Mantle of Frost', cost: '2 Artifacts', branch: 'Health', cluster: 'Elemental Arts', character: 'kliff', description: 'Freezing barrier that absorbs one incoming hit. Costs 10 Spirit.' },
+  { id: 'k-hp8', name: 'Surge of Sparks', cost: '2 Artifacts', branch: 'Health', cluster: 'Elemental Arts', character: 'kliff', description: 'AoE electric shock zone centered on Kliff. Costs 10 Spirit.' },
+  // KLIFF — HEALTH BRANCH (Red) — Axiom Force cluster
+  { id: 'k-hp9',  name: 'Axiom Force', cost: 'Story Unlock', branch: 'Health', cluster: 'Axiom Force', character: 'kliff', description: 'Magical telekinetic hand (3 ranks). Extends range and lifting capacity each rank. Unlocked via story.' },
+  { id: 'k-hp10', name: 'Mystical Storage', cost: 'Story Unlock', branch: 'Health', cluster: 'Axiom Force', character: 'kliff', description: 'Seal objects in the Kuku Iron Pot using Axiom Force. Unlocked via story.' },
+  { id: 'k-hp11', name: 'Winch', cost: '2 Artifacts', branch: 'Health', cluster: 'Axiom Force', character: 'kliff', description: 'Pull enemies toward you with Axiom Force, then slam them into the ground.' },
+  // KLIFF — HEALTH BRANCH (Red) — Flight & Mobility cluster
+  { id: 'k-hp12', name: 'Flight', cost: 'Story Unlock', branch: 'Health', cluster: 'Flight & Mobility', character: 'kliff', description: 'Stamina-consuming glide (2 ranks). Rank 2 (Swift Flight) greatly increases speed. Unlocked via story.' },
+  { id: 'k-hp13', name: 'Aerial Roll', cost: '1 Artifact', branch: 'Health', cluster: 'Flight & Mobility', character: 'kliff', description: 'High-speed midair dash for aerial repositioning and dodging.' },
+  // KLIFF — ULTIMATE
+  { id: 'k-ult', name: 'Falling Palm', cost: 'Complete One Branch', branch: 'Ultimate', cluster: 'Ultimate', character: 'kliff', description: 'Activated while falling at full speed — consumes all remaining Stamina for a ground-impact AoE strike. Unlocks after fully completing any one branch.' },
+
+  // ─── DAMIANE ────────────────────────────────────────────────────────────────
+  // DAMIANE — STAMINA BRANCH (Blue) — Rapier Combat cluster
+  { id: 'd-a1', name: 'Rapier Combat', cost: '1 Artifact', branch: 'Stamina', cluster: 'Rapier Combat', character: 'damiane', description: 'Core rapier attacks (5 ranks). Each rank adds combo extensions, precision follow-ups, and new guard-break mechanics.' },
+  { id: 'd-a2', name: 'Lunge Rank 1', cost: '1 Artifact', branch: 'Stamina', cluster: 'Rapier Combat', character: 'damiane', description: 'Quick forward thrust that closes distance instantly.' },
+  { id: 'd-a3', name: 'Lunge Rank 2', cost: '1 Artifact', branch: 'Stamina', cluster: 'Rapier Combat', character: 'damiane', description: 'Extended reach lunge — travels further and deals more damage.' },
+  { id: 'd-a4', name: 'Lunge Rank 3', cost: '1 Artifact', branch: 'Stamina', cluster: 'Rapier Combat', character: 'damiane', description: 'Triple-lunge combo — immediately chains three consecutive thrusts.' },
+  { id: 'd-a5', name: 'Piercing Light', cost: '2 Artifacts', branch: 'Stamina', cluster: 'Rapier Combat', character: 'damiane', description: 'Light-infused stab that penetrates armor and bypasses enemy blocks.' },
+  { id: 'd-a6', name: 'Parry & Riposte', cost: '1 Artifact', branch: 'Stamina', cluster: 'Rapier Combat', character: 'damiane', description: 'Perfect-timed block instantly counters with a precise rapier thrust.' },
+  // DAMIANE — STAMINA BRANCH (Blue) — Pistol Combat cluster
+  { id: 'd-a7', name: 'Pistol Combat', cost: '1 Artifact', branch: 'Stamina', cluster: 'Pistol Combat', character: 'damiane', description: 'Core pistol attacks (5 ranks). Improves reload speed, damage, and unlocks new firing stances.' },
+  { id: 'd-a8', name: 'Quick Draw', cost: '1 Artifact', branch: 'Stamina', cluster: 'Pistol Combat', character: 'damiane', description: 'Draw and fire in a single fluid motion with no wind-up delay.' },
+  { id: 'd-a9', name: 'Smiting Bolt', cost: '2 Artifacts', branch: 'Stamina', cluster: 'Pistol Combat', character: 'damiane', description: 'Spirit-charged pistol shot that deals bonus damage to staggered enemies.' },
+  { id: 'd-a10', name: 'Sure Hit', cost: '2 Artifacts', branch: 'Stamina', cluster: 'Pistol Combat', character: 'damiane', description: 'Locked-on precision shot that tracks enemies and always connects.' },
+  // DAMIANE — SPIRIT BRANCH (Green) — Shield Arts cluster
+  { id: 'd-sp1', name: 'Shield Toss Rank 1', cost: '1 Artifact', branch: 'Spirit', cluster: 'Shield Arts', character: 'damiane', description: 'Throw the shield as a projectile that returns to hand.' },
+  { id: 'd-sp2', name: 'Shield Toss Rank 2', cost: '1 Artifact', branch: 'Spirit', cluster: 'Shield Arts', character: 'damiane', description: 'Bouncing ricochet — shield hits up to three enemies before returning.' },
+  { id: 'd-sp3', name: 'Shield Toss Rank 3', cost: '1 Artifact', branch: 'Spirit', cluster: 'Shield Arts', character: 'damiane', description: 'Multi-target chain throw — pierces through groups of enemies.' },
+  { id: 'd-sp4', name: 'Shield Sentinel', cost: '2 Artifacts', branch: 'Spirit', cluster: 'Shield Arts', character: 'damiane', description: 'Deploy shield as a floating autonomous turret sentry that fires at nearby enemies.' },
+  // DAMIANE — SPIRIT BRANCH (Green) — Evasion & Mobility cluster
+  { id: 'd-sp5', name: 'Evasive Step', cost: '1 Artifact', branch: 'Spirit', cluster: 'Evasion & Mobility', character: 'damiane', description: 'Quick dodge step with invincibility frames.' },
+  { id: 'd-sp6', name: 'Phase Dash', cost: '2 Artifacts', branch: 'Spirit', cluster: 'Evasion & Mobility', character: 'damiane', description: 'Become intangible and dash forward through enemies and projectiles.' },
+  { id: 'd-sp7', name: 'Counter Stance', cost: '2 Artifacts', branch: 'Spirit', cluster: 'Evasion & Mobility', character: 'damiane', description: 'Perfect-timed dodge triggers a powerful automatic counter-attack.' },
+  { id: 'd-sp8', name: 'Double Jump', cost: '1 Artifact', branch: 'Spirit', cluster: 'Evasion & Mobility', character: 'damiane', description: 'A second midair jump that consumes Spirit.' },
+  // DAMIANE — SPIRIT BRANCH (Green) — Focus cluster
+  { id: 'd-sp9',  name: 'Heightened Senses', cost: '1 Artifact', branch: 'Spirit', cluster: 'Focus', character: 'damiane', description: 'Slow down time (3 ranks). Costs 5 Spirit/sec. Higher ranks reduce Spirit consumption.' },
+  { id: 'd-sp10', name: 'Aimed Focus', cost: '1 Artifact', branch: 'Spirit', cluster: 'Focus', character: 'damiane', description: 'Precision aiming mode that increases critical hit chance on the next attack.' },
+  // DAMIANE — HEALTH BRANCH (Red) — Abyss Arts cluster
+  { id: 'd-hp1', name: 'Rend Armor Rank 1', cost: '1 Artifact', branch: 'Health', cluster: 'Abyss Arts', character: 'damiane', description: 'Strike that strips enemy defenses, reducing their armor rating.' },
+  { id: 'd-hp2', name: 'Rend Armor Rank 2', cost: '1 Artifact', branch: 'Health', cluster: 'Abyss Arts', character: 'damiane', description: 'Deeper armor penetration — higher defense reduction and longer duration.' },
+  { id: 'd-hp3', name: 'Rend Armor Rank 3', cost: '1 Artifact', branch: 'Health', cluster: 'Abyss Arts', character: 'damiane', description: 'Maximum defense reduction — especially devastating against armored bosses.' },
+  { id: 'd-hp4', name: 'Arcane Bolt Rank 1', cost: '1 Artifact', branch: 'Health', cluster: 'Abyss Arts', character: 'damiane', description: 'Concentrated Abyss energy projectile that deals high single-target damage.' },
+  { id: 'd-hp5', name: 'Arcane Bolt Rank 2', cost: '1 Artifact', branch: 'Health', cluster: 'Abyss Arts', character: 'damiane', description: 'Faster and stronger bolt — reduced cast time, increased damage.' },
+  { id: 'd-hp6', name: 'Arcane Bolt Rank 3', cost: '2 Artifacts', branch: 'Health', cluster: 'Abyss Arts', character: 'damiane', description: 'Chain bolt — arcs between up to three nearby enemies on impact.' },
+  { id: 'd-hp7', name: 'Abyss Ward', cost: '2 Artifacts', branch: 'Health', cluster: 'Abyss Arts', character: 'damiane', description: 'Magical barrier that absorbs a set amount of incoming damage (2 ranks).' },
+  // DAMIANE — HEALTH BRANCH (Red) — Mobility cluster
+  { id: 'd-hp8', name: 'Smoke Screen', cost: '1 Artifact', branch: 'Health', cluster: 'Mobility', character: 'damiane', description: 'Deploy a blinding smoke cloud that breaks enemy line-of-sight.' },
+  { id: 'd-hp9', name: 'Phase Step', cost: '2 Artifacts', branch: 'Health', cluster: 'Mobility', character: 'damiane', description: 'Become briefly intangible, causing the next hit against you to pass through.' },
+  { id: 'd-hp10', name: 'Aerial Dash', cost: '1 Artifact', branch: 'Health', cluster: 'Mobility', character: 'damiane', description: 'High-speed midair dash for repositioning during airborne combat.' },
+  // DAMIANE — ULTIMATE
+  { id: 'd-ult', name: 'Rending Waltz', cost: 'Complete One Branch', branch: 'Ultimate', cluster: 'Ultimate', character: 'damiane', description: 'A devastating dance of blade and pistol that depletes all Spirit for a massive multi-hit AoE. Unlocks after fully completing any one branch.' },
+
+  // ─── OONGKA ─────────────────────────────────────────────────────────────────
+  // OONGKA — STAMINA BRANCH (Blue) — Axe Mastery cluster
+  { id: 'o-a1', name: 'Axe Combat', cost: '1 Artifact', branch: 'Stamina', cluster: 'Axe Mastery', character: 'oongka', description: 'Core axe attacks (5 ranks). Each rank increases combo reach, adds new swing patterns, and improves stagger output.' },
+  { id: 'o-a2', name: 'Cleave Rank 1', cost: '1 Artifact', branch: 'Stamina', cluster: 'Axe Mastery', character: 'oongka', description: 'Wide horizontal swing that hits multiple enemies in front.' },
+  { id: 'o-a3', name: 'Cleave Rank 2', cost: '1 Artifact', branch: 'Stamina', cluster: 'Axe Mastery', character: 'oongka', description: 'Extended arc cleave — larger sweep radius and added knockback.' },
+  { id: 'o-a4', name: 'Cleave Rank 3', cost: '1 Artifact', branch: 'Stamina', cluster: 'Axe Mastery', character: 'oongka', description: 'Full 360° cleave with knockdown — hits all surrounding enemies.' },
+  { id: 'o-a5', name: 'Rampage Rank 1', cost: '1 Artifact', branch: 'Stamina', cluster: 'Axe Mastery', character: 'oongka', description: 'Berserker charge that bulldozes through enemy groups dealing AoE damage.' },
+  { id: 'o-a6', name: 'Rampage Rank 2', cost: '1 Artifact', branch: 'Stamina', cluster: 'Axe Mastery', character: 'oongka', description: 'Faster and wider rampage — covers more ground, hits more targets.' },
+  { id: 'o-a7', name: 'Rampage Rank 3', cost: '2 Artifacts', branch: 'Stamina', cluster: 'Axe Mastery', character: 'oongka', description: 'Unstoppable rampage with super armor — cannot be interrupted while charging.' },
+  // OONGKA — STAMINA BRANCH (Blue) — Heavy Attacks cluster
+  { id: 'o-a8',  name: 'Ground Shatter Rank 1', cost: '1 Artifact', branch: 'Stamina', cluster: 'Heavy Attacks', character: 'oongka', description: 'Slam the axe into the ground, creating a shockwave that staggers nearby enemies.' },
+  { id: 'o-a9',  name: 'Ground Shatter Rank 2', cost: '1 Artifact', branch: 'Stamina', cluster: 'Heavy Attacks', character: 'oongka', description: 'Extended shockwave radius and increased stagger duration.' },
+  { id: 'o-a10', name: 'Quaking Fury Rank 1', cost: '2 Artifacts', branch: 'Stamina', cluster: 'Heavy Attacks', character: 'oongka', description: 'Massive ground slam that sends tremors rippling outward in a wide AoE.' },
+  { id: 'o-a11', name: 'Quaking Fury Rank 2', cost: '2 Artifacts', branch: 'Stamina', cluster: 'Heavy Attacks', character: 'oongka', description: 'Full-power earth-splitting slam — especially effective against armored bosses (Rend Armor effect).' },
+  // OONGKA — SPIRIT BRANCH (Green) — Cannon Combat cluster
+  { id: 'o-sp1', name: 'Cannon Combat', cost: '1 Artifact', branch: 'Spirit', cluster: 'Cannon Combat', character: 'oongka', description: 'Core wrist cannon attacks (5 ranks). Improves fire rate, explosion radius, and unlocks new firing modes.' },
+  { id: 'o-sp2', name: 'Scatter Shot Rank 1', cost: '1 Artifact', branch: 'Spirit', cluster: 'Cannon Combat', character: 'oongka', description: 'Spread shot that fires a cone of explosive pellets hitting multiple enemies.' },
+  { id: 'o-sp3', name: 'Scatter Shot Rank 2', cost: '1 Artifact', branch: 'Spirit', cluster: 'Cannon Combat', character: 'oongka', description: 'Wider spread pattern with more pellets and increased individual damage.' },
+  { id: 'o-sp4', name: 'Scatter Shot Rank 3', cost: '2 Artifacts', branch: 'Spirit', cluster: 'Cannon Combat', character: 'oongka', description: 'Maximum spread with explosive pellets — devastating close-range AoE.' },
+  { id: 'o-sp5', name: 'Explosive Barrage Rank 1', cost: '2 Artifacts', branch: 'Spirit', cluster: 'Cannon Combat', character: 'oongka', description: 'Rapid-fire burst of explosive rounds in quick succession.' },
+  { id: 'o-sp6', name: 'Explosive Barrage Rank 2', cost: '2 Artifacts', branch: 'Spirit', cluster: 'Cannon Combat', character: 'oongka', description: 'Three consecutive explosive rounds fired at maximum power.' },
+  // OONGKA — SPIRIT BRANCH (Green) — Rage cluster
+  { id: 'o-sp7', name: 'Rage Rank 1', cost: '1 Artifact', branch: 'Spirit', cluster: 'Rage', character: 'oongka', description: 'Super armor mode that absorbs hits without interrupting attacks.' },
+  { id: 'o-sp8', name: 'Rage Rank 2', cost: '1 Artifact', branch: 'Spirit', cluster: 'Rage', character: 'oongka', description: 'Extended rage duration and increased damage while active.' },
+  { id: 'o-sp9', name: 'Rage Rank 3', cost: '2 Artifacts', branch: 'Spirit', cluster: 'Rage', character: 'oongka', description: 'Unstoppable rage with damage boost — immune to knockback and stagger.' },
+  { id: 'o-sp10', name: 'Battle Cry', cost: '1 Artifact', branch: 'Spirit', cluster: 'Rage', character: 'oongka', description: 'War shout that boosts attack for Oongka and nearby allies for 20 seconds.' },
+  // OONGKA — HEALTH BRANCH (Red) — Fortitude cluster
+  { id: 'o-hp1', name: 'Iron Skin Rank 1', cost: '1 Artifact', branch: 'Health', cluster: 'Fortitude', character: 'oongka', description: 'Harden the body, reducing all incoming damage by 15%.' },
+  { id: 'o-hp2', name: 'Iron Skin Rank 2', cost: '1 Artifact', branch: 'Health', cluster: 'Fortitude', character: 'oongka', description: 'Reduce incoming damage by 25% and resist minor staggers.' },
+  { id: 'o-hp3', name: 'Iron Skin Rank 3', cost: '1 Artifact', branch: 'Health', cluster: 'Fortitude', character: 'oongka', description: 'Maximum damage resistance — dramatically reduces impact from heavy blows.' },
+  { id: 'o-hp4', name: 'Rend Armor Rank 1', cost: '1 Artifact', branch: 'Health', cluster: 'Fortitude', character: 'oongka', description: 'Defense-shattering strike that permanently reduces enemy armor rating.' },
+  { id: 'o-hp5', name: 'Rend Armor Rank 2', cost: '2 Artifacts', branch: 'Health', cluster: 'Fortitude', character: 'oongka', description: 'Maximum armor penetration — especially devastating against armored bosses.' },
+  { id: 'o-hp6', name: 'Regeneration', cost: '2 Artifacts', branch: 'Health', cluster: 'Fortitude', character: 'oongka', description: 'Slowly restore health over 30 seconds after taking a heavy hit.' },
+  // OONGKA — HEALTH BRANCH (Red) — Endurance cluster
+  { id: 'o-hp7', name: 'War Cry Rank 1', cost: '1 Artifact', branch: 'Health', cluster: 'Endurance', character: 'oongka', description: 'Battle shout that boosts attack by 10% for 20 seconds.' },
+  { id: 'o-hp8', name: 'War Cry Rank 2', cost: '1 Artifact', branch: 'Health', cluster: 'Endurance', character: 'oongka', description: 'Enhanced shout with wider range — affects a larger area of allies.' },
+  { id: 'o-hp9', name: 'Unstoppable', cost: '3 Artifacts', branch: 'Health', cluster: 'Endurance', character: 'oongka', description: 'Become immune to knockback and stagger for 10 seconds. Cannot be cancelled.' },
+  // OONGKA — ULTIMATE
+  { id: 'o-ult', name: 'Quaking Slam', cost: 'Complete One Branch', branch: 'Ultimate', cluster: 'Ultimate', character: 'oongka', description: 'Oongka leaps high and slams down with devastating force, creating massive AoE shockwaves that knock down all nearby enemies. Unlocks after fully completing any one branch.' },
 ];
 
 export const COLLECTIBLES: Record<CollectibleCategory, Collectible[]> = {

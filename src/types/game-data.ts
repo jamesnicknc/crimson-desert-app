@@ -20,6 +20,7 @@ export interface Skill {
   name: string;
   cost: string;
   branch: string;
+  cluster?: string;
   character: Character;
   description?: string;
 }
