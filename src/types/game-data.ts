@@ -39,6 +39,8 @@ export interface Boss {
   reward: string;
   element: Element;
   weakness?: Element;
+  location?: string;
+  mechanics?: string;
 }
 
 export interface Enemy {
@@ -96,6 +98,7 @@ export interface Weapon {
   spd: number;
   rng: number;
   character: Character;
+  description?: string;
   signatureAbility?: SignatureAbility;
 }
 
@@ -189,3 +192,40 @@ export interface ScrapedContent {
   metadata: Record<string, unknown>;
   scrapedAt: string;
 }
+
+export interface RecommendedBuild {
+  id: string;
+  name: string;
+  character: Character;
+  weapons: string[];
+  keySkills: string[];
+  abyssCores: string[];
+  playstyle: string;
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  description: string;
+}
+
+export interface AbyssArtifact {
+  id: string;
+  name: string;
+  region: Region | string;
+  location: string;
+  challengeType: string;
+}
+
+export interface NPCCharacter {
+  name: string;
+  role: string;
+  faction: string;
+  description: string;
+  voiceActor?: string;
+}
+
+export interface GuideSection {
+  id: string;
+  title: string;
+  content: string;
+  subsections?: { title: string; content: string }[];
+}
+
+export type BossLocation = string;

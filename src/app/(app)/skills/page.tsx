@@ -89,6 +89,14 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     enhancement: 'Armed Combat Lv. 3',
     source: 'Artifact',
   },
+  'spinning-slash': {
+    name: 'Spinning Slash',
+    description: 'A wide spinning attack that hits all surrounding enemies.',
+    maxLevel: 2,
+    branch: 'Sword Mastery',
+    enhancement: 'Stab Lv. 2',
+    source: 'Artifact',
+  },
   'sword-flurry': {
     name: 'Sword Flurry',
     description: 'Unleash a rapid flurry of sword strikes in quick succession.',
@@ -119,6 +127,22 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     maxLevel: 1,
     branch: 'Armed Combat',
     enhancement: 'Armed Combat Lv. 2',
+    source: 'Artifact',
+  },
+  'aerial-stab': {
+    name: 'Aerial Stab',
+    description: 'Stab downward from the air while jumping or falling.',
+    maxLevel: 1,
+    branch: 'Armed Combat',
+    enhancement: 'Armed Combat Lv. 3',
+    source: 'Artifact',
+  },
+  'charge': {
+    name: 'Charge',
+    description: 'Rush forward with your weapon, closing distance and hitting hard.',
+    maxLevel: 1,
+    branch: 'Armed Combat',
+    enhancement: 'Armed Combat Lv. 4',
     source: 'Artifact',
   },
 
@@ -229,6 +253,22 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     enhancement: 'Charged Shot',
     source: 'Artifact',
   },
+  'marksmanship': {
+    name: 'Marksmanship',
+    description: 'Improve ranged accuracy and damage. Passive skill for all ranged attacks.',
+    maxLevel: 3,
+    branch: 'Archery',
+    enhancement: 'Archery Lv. 5',
+    source: 'Artifact',
+  },
+  'elemental-charged-shot': {
+    name: 'Elemental Charged Shot',
+    description: 'Fire an elemental-imbued arrow that explodes on impact.',
+    maxLevel: 1,
+    branch: 'Elemental Power',
+    enhancement: 'Imbue Elements Lv. 2, Charged Shot',
+    source: 'Artifact',
+  },
 
   // ── GREEN BRANCH: SPIRIT ──────────────────────────────────────────────────
   'spirit': {
@@ -255,6 +295,30 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     enhancement: 'Spirit Lv. 5',
     source: 'Artifact',
   },
+  'natures-grasp': {
+    name: "Nature's Grasp",
+    description: 'Roots erupt from the ground, holding enemies in place longer than Snare.',
+    maxLevel: 2,
+    branch: 'Spirit Arts',
+    enhancement: "Nature's Snare Lv. 2",
+    source: 'Artifact',
+  },
+  'natures-retribution': {
+    name: "Nature's Retribution",
+    description: 'After being hit, channel nature energy to strike back automatically.',
+    maxLevel: 1,
+    branch: 'Spirit Arts',
+    enhancement: "Nature's Echo Lv. 3",
+    source: 'Artifact',
+  },
+  'natures-veil': {
+    name: "Nature's Veil",
+    description: 'Become partially invisible, reducing enemy detection.',
+    maxLevel: 1,
+    branch: 'Spirit Arts',
+    enhancement: 'Focus Lv. 3',
+    source: 'Artifact',
+  },
   'keen-senses': {
     name: 'Keen Senses',
     description: 'Heighten awareness to detect hidden enemies and avoid ambushes. Enables Parry and Counter.',
@@ -278,6 +342,14 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     branch: 'Spirit Arts',
     enhancement: 'Focus Lv. 2',
     source: 'Observe hologram',
+  },
+  'healing-force-palm': {
+    name: 'Healing Force Palm',
+    description: 'A variant of Force Palm that heals the user on hit.',
+    maxLevel: 3,
+    branch: 'Spirit Arts',
+    enhancement: 'Force Palm Lv. 3',
+    source: 'Artifact',
   },
   'parry': {
     name: 'Parry',
@@ -345,6 +417,14 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     enhancement: 'Imbue Elements Lv. 2',
     source: 'Artifact',
   },
+  'frost-mantle': {
+    name: 'Frost Mantle',
+    description: 'Extended frost armor that also damages nearby enemies.',
+    maxLevel: 1,
+    branch: 'Elemental Power',
+    enhancement: 'Mantle of Frost',
+    source: 'Artifact',
+  },
   'surge-of-sparks': {
     name: 'Surge of Sparks',
     description: 'Release a crackling surge of lightning that chains across nearby enemies.',
@@ -353,12 +433,36 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     enhancement: 'Imbue Elements Lv. 3',
     source: 'Artifact',
   },
+  'lightning-surge': {
+    name: 'Lightning Surge',
+    description: 'Channel lightning through the ground in a line ahead.',
+    maxLevel: 1,
+    branch: 'Elemental Power',
+    enhancement: 'Surge of Sparks',
+    source: 'Artifact',
+  },
   'imbue-elements': {
     name: 'Imbue Elements',
     description: 'Infuse your weapon with elemental power. Higher levels unlock Elemental Turning Slash and more.',
     maxLevel: 4,
     branch: 'Elemental Power',
     enhancement: 'Health Lv. 5',
+    source: 'Artifact',
+  },
+  'flame-strike': {
+    name: 'Flame Strike',
+    description: 'A fiery overhead slam that leaves burning ground.',
+    maxLevel: 1,
+    branch: 'Elemental Power',
+    enhancement: 'Fist of Flame',
+    source: 'Artifact',
+  },
+  'storm-veil': {
+    name: 'Storm Veil',
+    description: 'Summon a storm that damages all nearby enemies with wind and lightning.',
+    maxLevel: 1,
+    branch: 'Elemental Power',
+    enhancement: 'Imbue Elements Lv. 4',
     source: 'Artifact',
   },
   'mystical-storage': {
@@ -391,6 +495,22 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     maxLevel: 1,
     branch: 'Axiom',
     enhancement: 'Axiom Force Lv. 2',
+    source: 'Artifact',
+  },
+  'aerial-roll': {
+    name: 'Aerial Roll',
+    description: 'Perform evasive rolls while airborne.',
+    maxLevel: 1,
+    branch: 'Axiom',
+    enhancement: 'Flight Lv. 2',
+    source: 'Artifact',
+  },
+  'swift-flight': {
+    name: 'Swift Flight',
+    description: 'Increase flight speed and maneuverability.',
+    maxLevel: 2,
+    branch: 'Axiom',
+    enhancement: 'Aerial Maneuver',
     source: 'Artifact',
   },
   'aerial-swing': {
@@ -437,14 +557,17 @@ const KLIFF_NODES: TreeNode[] = [
   { id: 'n-stamina', x: 50, y: 26, size: 'lg', branch: 'blue', connections: ['n-armed-combat', 'n-unarmed-combat', 'n-archery'], skill: SKILL_DATA['stamina'] },
 
   // Left arm: Armed Combat / Sword Mastery
-  { id: 'n-armed-combat', x: 32, y: 20, size: 'md', branch: 'blue', connections: ['n-evasive-slash', 'n-forward-slash', 'n-shield-bash'], skill: SKILL_DATA['armed-combat'] },
+  { id: 'n-armed-combat', x: 32, y: 20, size: 'md', branch: 'blue', connections: ['n-evasive-slash', 'n-forward-slash', 'n-shield-bash', 'n-aerial-stab', 'n-charge'], skill: SKILL_DATA['armed-combat'] },
   { id: 'n-evasive-slash', x: 22, y: 14, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['evasive-slash'] },
   { id: 'n-forward-slash', x: 24, y: 26, size: 'md', branch: 'blue', connections: ['n-turning-slash', 'n-stab'], skill: SKILL_DATA['forward-slash'] },
   { id: 'n-turning-slash', x: 14, y: 22, size: 'sm', branch: 'blue', connections: ['n-sword-flurry'], skill: SKILL_DATA['turning-slash'] },
-  { id: 'n-stab', x: 14, y: 30, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['stab'] },
+  { id: 'n-stab', x: 14, y: 30, size: 'sm', branch: 'blue', connections: ['n-spinning-slash'], skill: SKILL_DATA['stab'] },
+  { id: 'n-spinning-slash', x: 8, y: 30, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['spinning-slash'] },
   { id: 'n-sword-flurry', x: 7, y: 17, size: 'sm', branch: 'blue', connections: ['n-blinding-flash'], skill: SKILL_DATA['sword-flurry'] },
   { id: 'n-blinding-flash', x: 5, y: 10, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['blinding-flash'] },
   { id: 'n-shield-bash', x: 38, y: 12, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['shield-bash'] },
+  { id: 'n-aerial-stab', x: 28, y: 10, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['aerial-stab'] },
+  { id: 'n-charge', x: 32, y: 8, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['charge'] },
 
   // Center arm: Unarmed Combat
   { id: 'n-unarmed-combat', x: 50, y: 15, size: 'md', branch: 'blue', connections: ['n-pump-kick', 'n-grappling'], skill: SKILL_DATA['unarmed-combat'] },
@@ -459,18 +582,22 @@ const KLIFF_NODES: TreeNode[] = [
   { id: 'n-clothesline', x: 64, y: 10, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['clothesline'] },
 
   // Right arm: Archery / Ranged
-  { id: 'n-archery', x: 68, y: 20, size: 'md', branch: 'blue', connections: ['n-evasive-shot', 'n-charged-shot', 'n-multishot'], skill: SKILL_DATA['archery'] },
+  { id: 'n-archery', x: 68, y: 20, size: 'md', branch: 'blue', connections: ['n-evasive-shot', 'n-charged-shot', 'n-multishot', 'n-marksmanship'], skill: SKILL_DATA['archery'] },
   { id: 'n-evasive-shot', x: 78, y: 14, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['evasive-shot'] },
   { id: 'n-charged-shot', x: 76, y: 26, size: 'sm', branch: 'blue', connections: ['n-focus-shot'], skill: SKILL_DATA['charged-shot'] },
   { id: 'n-focus-shot', x: 86, y: 22, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['focus-shot'] },
   { id: 'n-multishot', x: 86, y: 14, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['multishot'] },
+  { id: 'n-marksmanship', x: 78, y: 20, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['marksmanship'] },
 
   // ── GREEN BRANCH (SPIRIT) - Bottom Left ───────────────────────────────────
   { id: 'n-spirit', x: 26, y: 68, size: 'lg', branch: 'green', connections: ['n-natures-echo', 'n-keen-senses', 'n-natures-snare'], skill: SKILL_DATA['spirit'] },
 
-  { id: 'n-natures-echo', x: 16, y: 62, size: 'md', branch: 'green', connections: ['n-focus-g', 'n-force-palm'], skill: SKILL_DATA['natures-echo'] },
-  { id: 'n-focus-g', x: 8, y: 56, size: 'sm', branch: 'green', connections: [], skill: SKILL_DATA['focus'] },
-  { id: 'n-force-palm', x: 8, y: 66, size: 'sm', branch: 'green', connections: [], skill: SKILL_DATA['force-palm'] },
+  { id: 'n-natures-echo', x: 16, y: 62, size: 'md', branch: 'green', connections: ['n-focus-g', 'n-force-palm', 'n-natures-retribution'], skill: SKILL_DATA['natures-echo'] },
+  { id: 'n-focus-g', x: 8, y: 56, size: 'sm', branch: 'green', connections: ['n-natures-veil'], skill: SKILL_DATA['focus'] },
+  { id: 'n-natures-veil', x: 4, y: 50, size: 'sm', branch: 'green', connections: [], skill: SKILL_DATA['natures-veil'] },
+  { id: 'n-force-palm', x: 8, y: 66, size: 'sm', branch: 'green', connections: ['n-healing-force-palm'], skill: SKILL_DATA['force-palm'] },
+  { id: 'n-healing-force-palm', x: 4, y: 72, size: 'sm', branch: 'green', connections: [], skill: SKILL_DATA['healing-force-palm'] },
+  { id: 'n-natures-retribution', x: 12, y: 56, size: 'sm', branch: 'green', connections: [], skill: SKILL_DATA['natures-retribution'] },
 
   { id: 'n-keen-senses', x: 14, y: 74, size: 'md', branch: 'green', connections: ['n-parry', 'n-evasive-roll'], skill: SKILL_DATA['keen-senses'] },
   { id: 'n-parry', x: 6, y: 70, size: 'sm', branch: 'green', connections: ['n-counter'], skill: SKILL_DATA['parry'] },
@@ -478,25 +605,35 @@ const KLIFF_NODES: TreeNode[] = [
   { id: 'n-evasive-roll', x: 10, y: 82, size: 'sm', branch: 'green', connections: ['n-double-jump'], skill: SKILL_DATA['evasive-roll'] },
   { id: 'n-double-jump', x: 6, y: 88, size: 'sm', branch: 'green', connections: [], skill: SKILL_DATA['double-jump'] },
 
-  { id: 'n-natures-snare', x: 22, y: 80, size: 'sm', branch: 'green', connections: [], skill: SKILL_DATA['natures-snare'] },
+  { id: 'n-natures-snare', x: 22, y: 80, size: 'sm', branch: 'green', connections: ['n-natures-grasp'], skill: SKILL_DATA['natures-snare'] },
+  { id: 'n-natures-grasp', x: 30, y: 84, size: 'sm', branch: 'green', connections: [], skill: SKILL_DATA['natures-grasp'] },
 
   // ── RED BRANCH (HEALTH / ELEMENTAL) - Bottom Right ────────────────────────
   { id: 'n-health', x: 74, y: 68, size: 'lg', branch: 'red', connections: ['n-imbue-elements', 'n-mystical-storage', 'n-axiom-force', 'n-winch'], skill: SKILL_DATA['health'] },
 
-  { id: 'n-imbue-elements', x: 84, y: 62, size: 'md', branch: 'red', connections: ['n-fist-of-flame', 'n-mantle-of-frost', 'n-surge-of-sparks'], skill: SKILL_DATA['imbue-elements'] },
-  { id: 'n-fist-of-flame', x: 92, y: 56, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['fist-of-flame'] },
-  { id: 'n-mantle-of-frost', x: 94, y: 64, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['mantle-of-frost'] },
-  { id: 'n-surge-of-sparks', x: 92, y: 72, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['surge-of-sparks'] },
+  { id: 'n-imbue-elements', x: 84, y: 62, size: 'md', branch: 'red', connections: ['n-fist-of-flame', 'n-mantle-of-frost', 'n-surge-of-sparks', 'n-storm-veil'], skill: SKILL_DATA['imbue-elements'] },
+  { id: 'n-fist-of-flame', x: 92, y: 56, size: 'sm', branch: 'red', connections: ['n-flame-strike'], skill: SKILL_DATA['fist-of-flame'] },
+  { id: 'n-flame-strike', x: 98, y: 52, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['flame-strike'] },
+  { id: 'n-mantle-of-frost', x: 94, y: 64, size: 'sm', branch: 'red', connections: ['n-frost-mantle'], skill: SKILL_DATA['mantle-of-frost'] },
+  { id: 'n-frost-mantle', x: 100, y: 66, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['frost-mantle'] },
+  { id: 'n-surge-of-sparks', x: 92, y: 72, size: 'sm', branch: 'red', connections: ['n-lightning-surge'], skill: SKILL_DATA['surge-of-sparks'] },
+  { id: 'n-lightning-surge', x: 98, y: 76, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['lightning-surge'] },
+  { id: 'n-storm-veil', x: 84, y: 50, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['storm-veil'] },
 
   { id: 'n-mystical-storage', x: 82, y: 74, size: 'sm', branch: 'red', connections: ['n-veil-of-fog'], skill: SKILL_DATA['mystical-storage'] },
   { id: 'n-veil-of-fog', x: 90, y: 80, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['veil-of-fog'] },
 
   { id: 'n-axiom-force', x: 72, y: 78, size: 'md', branch: 'red', connections: ['n-flight', 'n-aerial-maneuver'], skill: SKILL_DATA['axiom-force'] },
-  { id: 'n-flight', x: 78, y: 86, size: 'sm', branch: 'red', connections: ['n-aerial-swing'], skill: SKILL_DATA['flight'] },
+  { id: 'n-flight', x: 78, y: 86, size: 'sm', branch: 'red', connections: ['n-aerial-swing', 'n-aerial-roll'], skill: SKILL_DATA['flight'] },
   { id: 'n-aerial-swing', x: 86, y: 90, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['aerial-swing'] },
+  { id: 'n-aerial-roll', x: 82, y: 92, size: 'sm', branch: 'red', connections: ['n-swift-flight'], skill: SKILL_DATA['aerial-roll'] },
+  { id: 'n-swift-flight', x: 78, y: 96, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['swift-flight'] },
   { id: 'n-aerial-maneuver', x: 66, y: 86, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['aerial-maneuver'] },
 
   { id: 'n-winch', x: 64, y: 74, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['winch'] },
+
+  // Elemental Charged Shot (bridging Archery and Elemental)
+  { id: 'n-elemental-charged-shot', x: 86, y: 30, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['elemental-charged-shot'] },
 ];
 
 // Build a lookup map
@@ -686,7 +823,7 @@ function SkillPopup({ node, unlocked, onClose, onToggle }: PopupProps) {
         </button>
 
         <p className="text-center text-xs text-gray-600 mt-3">
-          Source: pre-launch preview
+          Data verified from Beebom, Game8, Fextralife
         </p>
       </div>
     </div>

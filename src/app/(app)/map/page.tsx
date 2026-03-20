@@ -2,11 +2,12 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { REGIONS, BOSSES, MOUNTS, COLLECTIBLES } from '@/lib/game-data';
+import { REGIONS, BOSSES, MOUNTS, COLLECTIBLES, ABYSS_ARTIFACTS } from '@/lib/game-data';
 import {
   Skull, Footprints, Sparkles, Shield, X, MapPin,
   Swords, Flame, Zap, Snowflake, Ghost, Star,
   Castle, Tent, Landmark, Pickaxe, Dices, Trees,
+  Compass,
 } from 'lucide-react';
 import type { Region, Difficulty, Element, RegionPOI } from '@/types/game-data';
 
@@ -90,6 +91,10 @@ const getRegionCollectibles = (regionId: string) => {
   return results;
 };
 
+const getRegionArtifacts = (regionId: Region) => {
+  return ABYSS_ARTIFACTS.filter(a => a.region === regionId);
+};
+
 const getDifficultyRange = (regionId: Region): string => {
   const bosses = getRegionBosses(regionId);
   if (bosses.length === 0) return 'No bosses';
@@ -102,10 +107,155 @@ const getDifficultyRange = (regionId: Region): string => {
 };
 
 // ═══════════════════════════════════════
+// INTERACTIVE SVG MAP
+// ═══════════════════════════════════════
+
+interface InteractiveMapProps {
+  selectedRegion: Region | null;
+  onSelectRegion: (region: Region) => void;
+}
+
+function InteractiveWorldMap({ selectedRegion, onSelectRegion }: InteractiveMapProps) {
+  const [hoveredRegion, setHoveredRegion] = useState<Region | null>(null);
+
+  const regionData: Record<Region, { color: string; hoverColor: string; polygon: string }> = {
+    hernand: {
+      color: '#5BAA5B',
+      hoverColor: '#6FD56F',
+      polygon: 'M 150 200 L 280 180 L 300 260 L 200 280 Z',
+    },
+    pailune: {
+      color: '#5B8FA8',
+      hoverColor: '#7AB3D6',
+      polygon: 'M 200 50 L 350 40 L 360 150 L 280 140 Z',
+    },
+    demeniss: {
+      color: '#8B7530',
+      hoverColor: '#B39D61',
+      polygon: 'M 320 200 L 420 190 L 440 280 L 330 290 Z',
+    },
+    delesyia: {
+      color: '#7B5EA7',
+      hoverColor: '#A67FD6',
+      polygon: 'M 450 180 L 560 170 L 580 260 L 460 270 Z',
+    },
+    desert: {
+      color: '#C0392B',
+      hoverColor: '#E74C3C',
+      polygon: 'M 200 300 L 450 310 L 480 450 L 150 460 Z',
+    },
+    abyss: {
+      color: '#2C1B47',
+      hoverColor: '#45326B',
+      polygon: 'M 500 50 L 580 45 L 600 120 L 520 125 Z',
+    },
+  };
+
+  return (
+    <div className="bg-pywel-card rounded-lg border border-pywel-border overflow-hidden p-6 space-y-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-cinzel font-bold text-gold-400 flex items-center gap-2">
+            <Compass className="w-6 h-6" />
+            World Map of Pywel
+          </h2>
+          <p className="text-sm text-gray-400 mt-1">Click on a region to view details</p>
+        </div>
+      </div>
+
+      {/* SVG Map Container */}
+      <div className="bg-black/40 rounded-lg p-4 border border-pywel-border/50">
+        <svg
+          viewBox="0 0 600 500"
+          className="w-full h-auto"
+          style={{ maxHeight: '500px' }}
+        >
+          {/* Map background with decorative elements */}
+          <defs>
+            <pattern id="diagonal-hatch" x="4" y="4" width="8" height="8" patternUnits="userSpaceOnUse">
+              <path d="M-2,2 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="#ffffff" strokeWidth="0.5" opacity="0.05" />
+            </pattern>
+          </defs>
+
+          {/* Background */}
+          <rect width="600" height="500" fill="#1a1a2e" />
+          <rect width="600" height="500" fill="url(#diagonal-hatch)" opacity="0.3" />
+
+          {/* Regions */}
+          {Object.entries(regionData).map(([regionId, data]) => (
+            <g key={regionId}>
+              {/* Region polygon */}
+              <polygon
+                points={data.polygon}
+                fill={hoveredRegion === regionId || selectedRegion === regionId ? data.hoverColor : data.color}
+                fillOpacity={hoveredRegion === regionId || selectedRegion === regionId ? 0.8 : 0.6}
+                stroke={selectedRegion === regionId ? '#FFCC00' : '#ffffff'}
+                strokeWidth={selectedRegion === regionId ? '2.5' : '1.5'}
+                opacity={0.9}
+                className="cursor-pointer transition-all duration-200"
+                onMouseEnter={() => setHoveredRegion(regionId as Region)}
+                onMouseLeave={() => setHoveredRegion(null)}
+                onClick={() => onSelectRegion(regionId as Region)}
+              />
+
+              {/* Region label - adjusted positions */}
+              {hoveredRegion === regionId || selectedRegion === regionId ? (
+                <text
+                  x={data.polygon.match(/M (\d+)/)?.[1] || '250'}
+                  y={data.polygon.match(/M \d+ (\d+)/)?.[1] || '150'}
+                  textAnchor="middle"
+                  className="font-cinzel font-bold text-sm pointer-events-none"
+                  fill="#ffffff"
+                  dy={15}
+                  stroke="#000000"
+                  strokeWidth="2"
+                  paintOrder="stroke"
+                >
+                  {REGIONS.find(r => r.id === regionId)?.name}
+                </text>
+              ) : null}
+            </g>
+          ))}
+
+          {/* Compass rose decoration */}
+          <g opacity="0.3">
+            <circle cx="50" cy="50" r="30" fill="none" stroke="#FFCC00" strokeWidth="1" />
+            <line x1="50" y1="25" x2="50" y2="5" stroke="#FFCC00" strokeWidth="1.5" />
+            <polygon points="50,5 48,15 52,15" fill="#FFCC00" />
+            <text x="50" y="30" textAnchor="middle" fill="#FFCC00" className="text-xs" fontSize="10">N</text>
+          </g>
+        </svg>
+      </div>
+
+      {/* Legend */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-xs">
+        {REGIONS.map(region => (
+          <button
+            key={region.id}
+            onClick={() => onSelectRegion(region.id)}
+            className={`flex items-center gap-2 p-2 rounded-lg border transition-all ${
+              selectedRegion === region.id
+                ? 'bg-pywel-secondary border-gold-400 text-gold-400'
+                : 'bg-pywel-secondary/50 border-pywel-border/50 text-gray-300 hover:border-pywel-border hover:text-gold-300'
+            }`}
+          >
+            <div
+              className="w-3 h-3 rounded-sm"
+              style={{ backgroundColor: region.color }}
+            />
+            <span className="font-medium">{region.name}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════
 // REGION MODAL
 // ═══════════════════════════════════════
 
-type Tab = 'pois' | 'bosses' | 'mounts' | 'collectibles';
+type Tab = 'pois' | 'bosses' | 'mounts' | 'collectibles' | 'artifacts';
 
 function RegionModal({ regionId, onClose }: { regionId: Region; onClose: () => void }) {
   const [activeTab, setActiveTab] = useState<Tab>('pois');
@@ -114,6 +264,7 @@ function RegionModal({ regionId, onClose }: { regionId: Region; onClose: () => v
   const bosses      = getRegionBosses(regionId);
   const mounts      = getRegionMounts(regionId);
   const collectibles = getRegionCollectibles(regionId);
+  const artifacts   = getRegionArtifacts(regionId);
   const pois        = region.pois;
 
   const tabs: { key: Tab; label: string; count: number }[] = [
@@ -121,6 +272,7 @@ function RegionModal({ regionId, onClose }: { regionId: Region; onClose: () => v
     { key: 'bosses',      label: 'Bosses',       count: bosses.length },
     { key: 'mounts',      label: 'Mounts',       count: mounts.length },
     { key: 'collectibles',label: 'Collectibles', count: collectibles.length },
+    { key: 'artifacts',   label: 'Abyss Artifacts', count: artifacts.length },
   ];
 
   return (
@@ -208,12 +360,12 @@ function RegionModal({ regionId, onClose }: { regionId: Region; onClose: () => v
           <div className="flex-1 flex flex-col min-h-0 min-w-0">
 
             {/* Tab bar */}
-            <div className="flex-shrink-0 flex border-b border-pywel-border px-4 pt-2 gap-1">
+            <div className="flex-shrink-0 flex border-b border-pywel-border px-4 pt-2 gap-1 overflow-x-auto">
               {tabs.map(tab => (
                 <button
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key)}
-                  className={`flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium rounded-t-lg transition-colors border-b-2 -mb-px ${
+                  className={`flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium rounded-t-lg transition-colors border-b-2 -mb-px whitespace-nowrap ${
                     activeTab === tab.key
                       ? 'text-gold-400 border-gold-400 bg-pywel-secondary/50'
                       : 'text-gray-400 border-transparent hover:text-gray-200'
@@ -350,6 +502,30 @@ function RegionModal({ regionId, onClose }: { regionId: Region; onClose: () => v
                 </div>
               )}
 
+              {/* ABYSS ARTIFACTS TAB */}
+              {activeTab === 'artifacts' && (
+                <div className="space-y-3">
+                  {artifacts.length === 0 ? (
+                    <p className="text-sm text-gray-500 italic">No sealed artifacts found in this region.</p>
+                  ) : (
+                    artifacts.map(artifact => (
+                      <div key={artifact.id} className="p-4 bg-pywel-secondary rounded-lg space-y-2 border-l-2 border-purple-500">
+                        <div className="flex items-start justify-between gap-2">
+                          <p className="font-cinzel font-semibold text-purple-300">{artifact.name}</p>
+                          <span className="text-xs font-bold uppercase tracking-wider text-purple-400 px-2 py-0.5 bg-purple-400/10 border border-purple-400/30 rounded-full">
+                            {artifact.challengeType}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-gray-400">
+                          <MapPin className="w-3.5 h-3.5 text-purple-400" />
+                          <span>{artifact.location}</span>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              )}
+
             </div>
           </div>
         </div>
@@ -369,35 +545,14 @@ export default function MapPage() {
     <div className="space-y-6">
       <div className="text-center">
         <h1 className="text-3xl font-cinzel font-bold text-gold-400 mb-2">World Map</h1>
-        <p className="text-gray-400">Explore the regions of Pywel. Select a region to view locations, bosses, mounts, and collectibles.</p>
+        <p className="text-gray-400">Explore the regions of Pywel. Click on the map or select a region below to view locations, bosses, mounts, collectibles, and sealed artifacts.</p>
       </div>
 
-      {/* Map image */}
-      <div className="bg-pywel-card rounded-lg border border-pywel-border overflow-hidden">
-        <div className="relative overflow-hidden" style={{ aspectRatio: '1270 / 847' }}>
-          <Image
-            src="/assets/pywel-map.webp"
-            alt="Map of Pywel"
-            width={1587}
-            height={2245}
-            className="absolute opacity-70"
-            style={{
-              width: '125%',
-              maxWidth: 'none',
-              height: 'auto',
-              top: '-33.55%',
-              left: '-12.52%',
-            }}
-            priority
-          />
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/30">
-            <h2 className="text-4xl md:text-5xl font-cinzel font-bold text-gold-300 mb-4">
-              Interactive Map
-            </h2>
-            <p className="text-xl text-gold-400/80 font-cinzel">Coming Soon</p>
-          </div>
-        </div>
-      </div>
+      {/* Interactive SVG Map */}
+      <InteractiveWorldMap
+        selectedRegion={selectedRegion}
+        onSelectRegion={setSelectedRegion}
+      />
 
       {/* Region cards */}
       <div>
@@ -407,6 +562,7 @@ export default function MapPage() {
             const bosses     = getRegionBosses(region.id);
             const mounts     = getRegionMounts(region.id);
             const collectibles = getRegionCollectibles(region.id);
+            const artifacts   = getRegionArtifacts(region.id);
 
             return (
               <button
@@ -426,7 +582,7 @@ export default function MapPage() {
                   <p className="text-sm text-gray-300 line-clamp-2">{region.description}</p>
 
                   {/* Stats row */}
-                  <div className="flex items-center gap-4 text-xs text-gray-400">
+                  <div className="flex items-center gap-4 text-xs text-gray-400 flex-wrap">
                     <div className="flex items-center gap-1">
                       <Skull className="w-3.5 h-3.5 text-red-400" />
                       <span>{bosses.length} boss{bosses.length !== 1 ? 'es' : ''}</span>
@@ -443,6 +599,12 @@ export default function MapPage() {
                       <MapPin className="w-3.5 h-3.5 text-emerald-400" />
                       <span>{region.pois.length} POIs</span>
                     </div>
+                    {artifacts.length > 0 && (
+                      <div className="flex items-center gap-1">
+                        <Ghost className="w-3.5 h-3.5 text-purple-400" />
+                        <span>{artifacts.length} artifacts</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Feature tags */}

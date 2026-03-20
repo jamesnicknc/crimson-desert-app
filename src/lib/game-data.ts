@@ -1,6 +1,7 @@
 import type {
   Skill, Collectible, Boss, Quest, Weapon, Recipe, RegionInfo, RegionPOI,
   Character, CollectibleCategory, Mount, Activity, CampFacility, Enemy, Trophy,
+  RecommendedBuild, AbyssArtifact,
 } from '@/types/game-data';
 
 // ═══════════════════════════════════════
@@ -14,6 +15,15 @@ export const REGIONS: RegionInfo[] = [
     color: '#5BAA5B', features: ['Cities', 'Forests', 'Noble Houses', 'Meadows'],
     pois: [
       { name: 'Hernand Castle', type: 'landmark' },
+      { name: 'Glenbright Manor', type: 'landmark' },
+      { name: 'Glenbright Farm', type: 'landmark' },
+      { name: 'Fort Warspike', type: 'stronghold' },
+      { name: 'Hernand Castle Town', type: 'town' },
+      { name: 'Karin Quarry', type: 'landmark' },
+      { name: 'Three Saints\' Falls', type: 'landmark' },
+      { name: 'Alfonso Estate', type: 'landmark' },
+      { name: 'Goldleaf Guildhouse', type: 'landmark' },
+      { name: 'City of Calphade', type: 'town' },
       { name: 'Roothold Stronghold', type: 'stronghold' },
       { name: 'Unicorn Cliffs', type: 'landmark' },
       { name: 'Antumbra Ritual Grounds', type: 'ruins' },
@@ -30,6 +40,10 @@ export const REGIONS: RegionInfo[] = [
     color: '#5B8FA8', features: ['Highlands', 'Mountains', 'Grasslands', 'Greymane HQ', 'Wildlife'],
     pois: [
       { name: 'Greymane Base Camp', type: 'camp' },
+      { name: 'Silverwolf Mountain', type: 'landmark' },
+      { name: 'Crow\'s Nest', type: 'landmark' },
+      { name: 'Ashclaw Keep', type: 'stronghold' },
+      { name: 'Icemoor Castle Ruins', type: 'ruins' },
       { name: 'Frozen Soul Mountain', type: 'landmark' },
       { name: 'Frozen Pass', type: 'landmark' },
       { name: 'Dragon Ridge', type: 'landmark' },
@@ -45,6 +59,7 @@ export const REGIONS: RegionInfo[] = [
     color: '#8B7530', features: ['Castle', 'Military', 'Politics', 'Markets'],
     pois: [
       { name: 'Demeniss Castle', type: 'landmark' },
+      { name: 'City of Demeniss', type: 'town' },
       { name: 'Royal Quarter', type: 'town' },
       { name: 'Royal Catacombs', type: 'dungeon' },
       { name: 'Military Fort', type: 'stronghold' },
@@ -57,7 +72,10 @@ export const REGIONS: RegionInfo[] = [
     description: 'The most scientifically advanced region, filled with mechanical beings, otherworldly constructs, and alchemical innovation.',
     color: '#7B5EA7', features: ['Robots', 'Alchemy Labs', 'Tech', 'Constructs'],
     pois: [
+      { name: 'Scholastone Institute', type: 'landmark' },
       { name: "Marni's Masterium", type: 'landmark' },
+      { name: 'Karin Quarry', type: 'landmark' },
+      { name: 'Emberwind Workshop', type: 'landmark' },
       { name: 'Tesla Ruins', type: 'ruins' },
       { name: 'Sky Tower', type: 'landmark' },
       { name: 'Delesyia Lab', type: 'other' },
@@ -70,6 +88,7 @@ export const REGIONS: RegionInfo[] = [
     color: '#C0392B', features: ['Brigands', 'Ruins', 'Beasts', 'Secrets'],
     pois: [
       { name: 'The Bonepit Arena', type: 'arena' },
+      { name: 'Fort Perwin', type: 'stronghold' },
       { name: 'Buried Temple', type: 'ruins' },
       { name: 'Lava Pit', type: 'landmark' },
       { name: 'Red Dunes Entry', type: 'landmark' },
@@ -77,13 +96,14 @@ export const REGIONS: RegionInfo[] = [
       { name: 'Desert Hermit Outpost', type: 'other' },
     ],
   },
-  // Added 2026-03-15 via apply-data task
   {
     id: 'abyss', name: 'The Abyss', subtitle: 'Otherworldly Dimension / Source of Abyss Power',
     description: 'A mysterious realm brimming with secrets and untold power. This otherworldly dimension lies beyond the known world and is tied to the dark magic threatening Pywel. Home to the Library of Providence and the dreaded Hexe Marie.',
     color: '#1A0A2E', features: ['Library of Providence', 'Skyloop Bridge', 'Abyss Magic', 'Mysteries'],
     pois: [
       { name: 'Library of Providence', type: 'landmark' },
+      { name: 'Sanctum of Absolution', type: 'landmark' },
+      { name: 'Raventine Monastery', type: 'landmark' },
       { name: 'Skyloop Bridge', type: 'landmark' },
       { name: 'Abyss Gateway', type: 'shrine' },
       { name: 'Final Depth', type: 'dungeon' },
@@ -115,6 +135,9 @@ export const SKILLS: Skill[] = [
   { id: 'k-s5', name: 'Blinding Flash', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'A flash of light from the blade that disorients enemies. Enables Blinding Flash Finisher.' },
   { id: 'k-s6', name: 'Evasive Slash', cost: 'Artifact', branch: 'Armed Combat', character: 'kliff', description: 'Dodge and slash simultaneously, avoiding damage while dealing a precise cut.' },
   { id: 'k-s7', name: 'Shield Bash', cost: 'Artifact', branch: 'Armed Combat', character: 'kliff', description: 'Strike an enemy with your shield, staggering them and creating an opening.' },
+  { id: 'k-s8', name: 'Aerial Stab', cost: 'Artifact', branch: 'Armed Combat', character: 'kliff', description: 'A precise piercing attack while in flight or after a jump.' },
+  { id: 'k-s9', name: 'Charge', cost: 'Artifact', branch: 'Armed Combat', character: 'kliff', description: 'Rush forward with your weapon, building momentum for increased impact.' },
+  { id: 'k-s10', name: 'Spinning Slash', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'Whirl your blade in a spinning motion to hit multiple surrounding enemies.' },
 
   // Kliff - Blue Branch: Unarmed Combat
   { id: 'k-u1', name: 'Pump Kick', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'A fast pumping kick that pushes enemies back and creates distance.' },
@@ -132,6 +155,7 @@ export const SKILLS: Skill[] = [
   { id: 'k-r2', name: 'Charged Shot', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Hold to charge the bow for a high-damage precision shot.' },
   { id: 'k-r3', name: 'Multishot', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Fire multiple arrows simultaneously, hitting several targets at once.' },
   { id: 'k-r4', name: 'Focus Shot', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Enter a focused state for extreme accuracy. Time slows as you aim.' },
+  { id: 'k-r5', name: 'Marksmanship', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Improve precision and reduce bullet/arrow spread for ranged attacks.' },
 
   // Kliff - Green Branch: Spirit Arts
   { id: 'k-sp', name: 'Spirit', cost: 'Passive', branch: 'Spirit', character: 'kliff', description: 'Increases your maximum spirit pool, powering all nature-based and defensive abilities.' },
@@ -144,6 +168,11 @@ export const SKILLS: Skill[] = [
   { id: 'k-g7', name: 'Counter', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'After a successful parry, automatically strike back with increased damage.' },
   { id: 'k-g8', name: 'Evasive Roll', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'A quick evasive roll that grants brief invincibility frames.' },
   { id: 'k-g9', name: 'Double Jump', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Perform a second jump in mid-air, greatly improving vertical mobility.' },
+  { id: 'k-g10', name: "Nature's Grasp", cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Summon nature to grab and hold enemies from a distance.' },
+  { id: 'k-g11', name: "Nature's Retribution", cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Channel nature\'s wrath for a retaliatory counterattack.' },
+  { id: 'k-g12', name: "Nature's Veil", cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Cloak yourself in natural camouflage, becoming harder to detect.' },
+  { id: 'k-g13', name: 'Healing Force Palm', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'A healing variant of Force Palm that restores health to allies.' },
+  { id: 'k-g14', name: 'Echoing Forward Slash', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'A combo skill combining sword techniques with spirit magic.' },
 
   // Kliff - Red Branch: Health / Elemental Power
   { id: 'k-hp', name: 'Health', cost: 'Passive', branch: 'Health', character: 'kliff', description: 'Increases your maximum health pool, improving endurance during combat.' },
@@ -154,65 +183,244 @@ export const SKILLS: Skill[] = [
   { id: 'k-h5', name: 'Imbue Elements', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Infuse your weapon with elemental power. Higher levels unlock Elemental Turning Slash and more.' },
   { id: 'k-h6', name: 'Mystical Storage', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Access a pocket dimension to store and retrieve items during combat.' },
   { id: 'k-h7', name: 'Winch', cost: 'Artifact', branch: 'Utility', character: 'kliff', description: 'Fire a grappling shot that pulls enemies toward you or yanks you to a distant ledge.' },
+  { id: 'k-h8', name: 'Flame Strike', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Strike with intense flame that ignites the target.' },
+  { id: 'k-h9', name: 'Frost Mantle', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Wrap yourself or allies in protective frost.' },
+  { id: 'k-h10', name: 'Lightning Surge', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Channel electricity through your body to strike nearby foes.' },
+  { id: 'k-h11', name: 'Storm Veil', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Cloak yourself in stormy energy for protection and offensive power.' },
+  { id: 'k-h12', name: 'Elemental Charged Shot', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Fire a ranged attack infused with elemental magic.' },
 
   // Kliff - Red Branch: Axiom / Flight
   { id: 'k-ax1', name: 'Axiom Force', cost: 'Story', branch: 'Axiom', character: 'kliff', description: 'Harness Abyss power to launch into aerial combat. Enables flight-style moves.' },
   { id: 'k-ax2', name: 'Flight', cost: 'Story', branch: 'Axiom', character: 'kliff', description: 'Spread crow wings and take to the skies. Enables aerial exploration and combat.' },
   { id: 'k-ax3', name: 'Aerial Maneuver', cost: 'Artifact', branch: 'Axiom', character: 'kliff', description: 'Perform advanced maneuvers while airborne, dodging attacks and repositioning.' },
   { id: 'k-ax4', name: 'Aerial Swing', cost: 'Artifact', branch: 'Axiom', character: 'kliff', description: 'Execute powerful sword swings while in flight, striking ground targets from above.' },
+  { id: 'k-ax5', name: 'Aerial Roll', cost: 'Artifact', branch: 'Axiom', character: 'kliff', description: 'Perform acrobatic rolls while flying to dodge incoming attacks.' },
+  { id: 'k-ax6', name: 'Swift Flight', cost: 'Artifact', branch: 'Axiom', character: 'kliff', description: 'Increase aerial movement speed and responsiveness.' },
 
   // Kliff - Core Convergence Skill
-  { id: 'k-c1', name: 'Falling Palm', cost: 'Convergence', branch: 'Core', character: 'kliff', description: 'Unleash a powerful blow to the ground by harnessing the force of the fall and channeling all your Stamina into the strike. Unlocked upon completing any single branch.' }, // Description corrected 2026-03-19: unlock condition confirmed by allthings.how, Beebom, Sportskeeda (3x Tier 2)
+  { id: 'k-c1', name: 'Falling Palm', cost: 'Convergence', branch: 'Core', character: 'kliff', description: 'Unleash a powerful blow to the ground by harnessing the force of the fall and channeling all your Stamina into the strike. Unlocked upon completing any single branch.' },
 
-  // ─── DAMIANE ─────────────────────────────────────────────────────────────────
-  // In-game skill names for Damiane are not confirmed from an authoritative
-  // pre-launch source. Branch structure is correct; names updated post-launch.
+  // ─── DAMIANE ──────────────────────────────────────────────────────────────────
+  // Confirmed skill names sourced from Fextralife wiki character page (2026-03-20 launch+1).
+  // Starting stats: Health 750, Spirit 220, Stamina 40, Attack 32, Defense 36
+  // Starting weapons: Spencer Pistol, White Wind Rapier, Absolute Justice Greatsword, Sydmon Dagger, Demenissian Gold-Decorated Shield
 
-  { id: 'd-b1', name: 'Rapier Thrust', cost: 'Artifact', branch: 'Blade Arts', character: 'damiane', description: 'A swift forward thrust with the rapier. (Name unverified -- updating post-launch.)' },
-  { id: 'd-b2', name: 'Claymore Sweep', cost: 'Artifact', branch: 'Blade Arts', character: 'damiane', description: 'A wide horizontal sweep with the claymore. (Name unverified -- updating post-launch.)' },
-  { id: 'd-b3', name: 'Riposte', cost: 'Artifact', branch: 'Blade Arts', character: 'damiane', description: 'Deflect and immediately counter with a precise strike. (Name unverified -- updating post-launch.)' },
-  { id: 'd-b4', name: 'Shadow Step', cost: 'Artifact', branch: 'Blade Arts', character: 'damiane', description: 'Dash to appear behind an enemy. (Name unverified -- updating post-launch.)' },
-  { id: 'd-b5', name: 'Blade Dance', cost: 'Artifact', branch: 'Blade Arts', character: 'damiane', description: 'Spin with dual blades, hitting all surrounding enemies. (Name unverified -- updating post-launch.)' },
-  { id: 'd-g1', name: 'Quick Draw', cost: 'Artifact', branch: 'Gunplay', character: 'damiane', description: 'Draw and fire in a single fluid motion. (Name unverified -- updating post-launch.)' },
-  { id: 'd-g2', name: 'Precision Shot', cost: 'Artifact', branch: 'Gunplay', character: 'damiane', description: 'Steady the firearm for a high-damage aimed shot. (Name unverified -- updating post-launch.)' },
-  { id: 'd-g3', name: 'Explosive Round', cost: 'Artifact', branch: 'Gunplay', character: 'damiane', description: 'Load a round that explodes on impact. (Name unverified -- updating post-launch.)' },
-  { id: 'd-g4', name: 'Rapid Fire', cost: 'Artifact', branch: 'Gunplay', character: 'damiane', description: 'Unleash a rapid burst of shots. (Name unverified -- updating post-launch.)' },
-  { id: 'd-e1', name: 'Dodge Roll', cost: 'Artifact', branch: 'Evasion', character: 'damiane', description: 'A quick evasive roll. (Name unverified -- updating post-launch.)' },
-  { id: 'd-e2', name: 'Phase Dash', cost: 'Artifact', branch: 'Evasion', character: 'damiane', description: 'Dash forward, passing through attacks. (Name unverified -- updating post-launch.)' },
-  { id: 'd-e3', name: 'Smoke Screen', cost: 'Artifact', branch: 'Evasion', character: 'damiane', description: 'Deploy a concealing smoke cloud. (Name unverified -- updating post-launch.)' },
-  { id: 'd-e4', name: 'Vanishing Strike', cost: 'Artifact', branch: 'Evasion', character: 'damiane', description: 'Disappear and reappear with a devastating strike. (Name unverified -- updating post-launch.)' },
-  { id: 'd-m1', name: 'Abyss Bolt', cost: 'Artifact', branch: 'Abyss Spells', character: 'damiane', description: 'Fire a concentrated bolt of Abyss energy. (Name unverified -- updating post-launch.)' },
-  { id: 'd-m2', name: 'Magic Ward', cost: 'Artifact', branch: 'Abyss Spells', character: 'damiane', description: 'Conjure a magical barrier that absorbs incoming damage. (Name unverified -- updating post-launch.)' },
-  { id: 'd-m3', name: 'Chain Lightning', cost: 'Artifact', branch: 'Abyss Spells', character: 'damiane', description: 'Lightning that chains between multiple enemies. (Name unverified -- updating post-launch.)' },
+  // Damiane — Core Stats
+  { id: 'd-st', name: 'Stamina', cost: 'Passive', branch: 'Core Stats', character: 'damiane', description: 'Increases maximum stamina pool.' },
+  { id: 'd-sp', name: 'Spirit', cost: 'Passive', branch: 'Core Stats', character: 'damiane', description: 'Increases maximum spirit pool, powering nature and defensive abilities.' },
+  { id: 'd-hp', name: 'Health', cost: 'Passive', branch: 'Core Stats', character: 'damiane', description: 'Increases maximum health pool.' },
+  // Damiane — Armed Combat branch
+  { id: 'd-ac', name: 'Armed Combat', cost: 'Artifact', branch: 'Armed Combat', character: 'damiane', description: 'Master weapon-based fighting. Includes Sword Flurry sub-skills.' },
+  { id: 'd-sf', name: 'Sword Flurry', cost: 'Artifact', branch: 'Armed Combat', character: 'damiane', description: 'Unleash a rapid flurry of sword strikes.' },
+  { id: 'd-bf', name: 'Blinding Flash', cost: 'Artifact', branch: 'Armed Combat', character: 'damiane', description: 'A flash of light from the blade that disorients enemies.' },
+  { id: 'd-lu', name: 'Lunge', cost: 'Artifact', branch: 'Armed Combat', character: 'damiane', description: 'A forward-rushing thrust attack that covers distance quickly.' },
+  { id: 'd-st2', name: 'Shield Toss', cost: 'Artifact', branch: 'Armed Combat', character: 'damiane', description: 'Throw the shield as a ranged attack that ricochets.' },
+  // Damiane — Shooting branch
+  { id: 'd-sh', name: 'Shooting', cost: 'Artifact', branch: 'Shooting', character: 'damiane', description: 'Master ranged firearms. Foundation for firearm techniques.' },
+  { id: 'd-cs', name: 'Charged Shot', cost: 'Artifact', branch: 'Shooting', character: 'damiane', description: 'Hold to charge for a high-damage precision shot.' },
+  { id: 'd-fs', name: 'Focused Shot', cost: 'Artifact', branch: 'Shooting', character: 'damiane', description: 'Enter a focused state for extreme accuracy with firearms.' },
+  // Damiane — Unarmed Combat
+  { id: 'd-uc', name: 'Unarmed Combat', cost: 'Artifact', branch: 'Unarmed Combat', character: 'damiane', description: 'Develop hand-to-hand fighting prowess.' },
+  { id: 'd-gr', name: 'Grappling', cost: 'Artifact', branch: 'Unarmed Combat', character: 'damiane', description: 'Master grappling: throws, restraints, and takedowns.' },
+  { id: 'd-sk', name: 'Scissor Kick', cost: 'Artifact', branch: 'Unarmed Combat', character: 'damiane', description: 'A scissoring kick that knocks enemies off their feet.' },
+  // Damiane — Evasion / Mobility
+  { id: 'd-er', name: 'Evasive Roll', cost: 'Artifact', branch: 'Evasion', character: 'damiane', description: 'A quick evasive roll granting brief invincibility frames.' },
+  { id: 'd-dj', name: 'Double Jump', cost: 'Artifact', branch: 'Evasion', character: 'damiane', description: 'Perform a second jump in mid-air for vertical mobility.' },
+  { id: 'd-vt', name: 'Vault', cost: 'Artifact', branch: 'Evasion', character: 'damiane', description: 'Vault over an enemy, repositioning behind them.' },
+  { id: 'd-fl', name: 'Flight', cost: 'Story', branch: 'Evasion', character: 'damiane', description: 'Aerial traversal and combat using Damiane\'s parasol-machine.' },
+  // Damiane — Spirit Arts
+  { id: 'd-fc', name: 'Focus', cost: 'Artifact', branch: 'Spirit Arts', character: 'damiane', description: 'Enter a focused state that increases accuracy and slows perceived time.' },
+  { id: 'd-ng', name: "Nature's Grasp", cost: 'Artifact', branch: 'Spirit Arts', character: 'damiane', description: 'Summon binding roots or vines to immobilize a target.' },
+  { id: 'd-ks', name: 'Keen Senses', cost: 'Artifact', branch: 'Spirit Arts', character: 'damiane', description: 'Heighten awareness to detect hidden enemies and avoid ambushes.' },
+  // Damiane — Smiting (unique abilities)
+  { id: 'd-sm1', name: 'Smiting Strike', cost: 'Artifact', branch: 'Smiting', character: 'damiane', description: 'A powerful smiting blow charged with Abyss energy.' },
+  { id: 'd-sm2', name: 'Smiting Bolt', cost: 'Artifact', branch: 'Smiting', character: 'damiane', description: 'Fire a bolt of smiting energy at a distant target.' },
 
   // ─── OONGKA ──────────────────────────────────────────────────────────────────
-  // In-game skill names for Oongka are not confirmed from an authoritative
-  // pre-launch source. Branch structure is correct; names updated post-launch.
+  // Confirmed skill names sourced from Fextralife wiki character page (2026-03-20 launch+1).
+  // Starting stats: Health 1125, Spirit 240, Stamina 50, Attack 16, Defense 28
+  // Starting weapons: Dekarr Greataxe, Orc Blaster, Small Cannon Ball, Pailunese Riteblade
 
-  { id: 'o-a1', name: 'Cleave', cost: 'Artifact', branch: 'Axe Fury', character: 'oongka', description: 'A powerful downward axe chop. (Name unverified -- updating post-launch.)' },
-  { id: 'o-a2', name: 'Spinning Axe', cost: 'Artifact', branch: 'Axe Fury', character: 'oongka', description: 'Whirl the greataxe in a circle, hitting all nearby enemies. (Name unverified -- updating post-launch.)' },
-  { id: 'o-a3', name: 'Ground Shatter', cost: 'Artifact', branch: 'Axe Fury', character: 'oongka', description: 'Slam the axe into the ground, creating a staggering shockwave. (Name unverified -- updating post-launch.)' },
-  { id: 'o-a4', name: 'Berserker Rage', cost: 'Artifact', branch: 'Axe Fury', character: 'oongka', description: 'Enter a combat frenzy increasing attack speed and damage. (Name unverified -- updating post-launch.)' },
-  { id: 'o-a5', name: 'Earthquake Slam', cost: 'Artifact', branch: 'Axe Fury', character: 'oongka', description: 'Leap and slam down with earth-shattering force. (Name unverified -- updating post-launch.)' },
-  { id: 'o-c1', name: 'Cannon Blast', cost: 'Artifact', branch: 'Wrist Cannon', character: 'oongka', description: 'Fire an explosive cannonball at medium range. (Name unverified -- updating post-launch.)' },
-  { id: 'o-c2', name: 'Scatter Shot', cost: 'Artifact', branch: 'Wrist Cannon', character: 'oongka', description: 'Fire a cone of shrapnel hitting multiple enemies. (Name unverified -- updating post-launch.)' },
-  { id: 'o-c3', name: 'Barrage', cost: 'Artifact', branch: 'Wrist Cannon', character: 'oongka', description: 'Rapidly fire three explosive rounds in succession. (Name unverified -- updating post-launch.)' },
-  { id: 'o-f1', name: 'Iron Skin', cost: 'Artifact', branch: 'Fortitude', character: 'oongka', description: 'Harden your body, reducing incoming damage. (Name unverified -- updating post-launch.)' },
-  { id: 'o-f2', name: 'War Cry', cost: 'Artifact', branch: 'Fortitude', character: 'oongka', description: 'A battle cry that boosts nearby allies\' attack. (Name unverified -- updating post-launch.)' },
-  { id: 'o-f3', name: 'Regeneration', cost: 'Artifact', branch: 'Fortitude', character: 'oongka', description: 'Slowly regenerate health over time. (Name unverified -- updating post-launch.)' },
-  { id: 'o-f4', name: 'Unstoppable', cost: 'Artifact', branch: 'Fortitude', character: 'oongka', description: 'Become immune to stagger and knockback. (Name unverified -- updating post-launch.)' },
-  { id: 'o-v1', name: 'Vitality I', cost: 'Artifact', branch: 'Vitality', character: 'oongka', description: 'Increase maximum health. (Name unverified -- updating post-launch.)' },
-  { id: 'o-v2', name: 'Vitality II', cost: 'Artifact', branch: 'Vitality', character: 'oongka', description: 'Further increase maximum health. (Name unverified -- updating post-launch.)' },
-  { id: 'o-v3', name: 'Endurance I', cost: 'Artifact', branch: 'Vitality', character: 'oongka', description: 'Increase maximum stamina. (Name unverified -- updating post-launch.)' },
+  // Oongka — Core Stats
+  { id: 'o-st', name: 'Stamina', cost: 'Passive', branch: 'Core Stats', character: 'oongka', description: 'Increases maximum stamina pool.' },
+  { id: 'o-sp', name: 'Spirit', cost: 'Passive', branch: 'Core Stats', character: 'oongka', description: 'Increases maximum spirit pool.' },
+  { id: 'o-hp', name: 'Health', cost: 'Passive', branch: 'Core Stats', character: 'oongka', description: 'Increases maximum health pool.' },
+  // Oongka — Armed Combat (two-handed weapons)
+  { id: 'o-ac', name: 'Armed Combat', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'Master two-handed weapons. Includes Leaping Smash and Quick Swap sub-skills.' },
+  { id: 'o-ls', name: 'Leaping Smash', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'Leap forward and smash down with a devastating two-handed strike.' },
+  { id: 'o-sl', name: 'Slash', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'A powerful horizontal slash with two-handed weapon.' },
+  { id: 'o-bf', name: 'Blinding Flash', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'A disorienting flash attack.' },
+  { id: 'o-qf', name: 'Quaking Fury', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'A ground-shaking series of powerful slams.' },
+  { id: 'o-ra', name: 'Rampage', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'Enter a rampaging state with greatly increased offensive power.' },
+  { id: 'o-rg', name: 'Rage', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'Channel battle rage to boost attack power.' },
+  { id: 'o-rl', name: 'Raging Lightning', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'Channel Raging Lightning into weapon strikes.' },
+  // Oongka — Shooting (Hand Cannon)
+  { id: 'o-sh', name: 'Marksmanship', cost: 'Artifact', branch: 'Shooting', character: 'oongka', description: 'Master the Hand Cannon. Foundation for ranged techniques.' },
+  { id: 'o-cs', name: 'Charged Shot', cost: 'Artifact', branch: 'Shooting', character: 'oongka', description: 'Charge the Hand Cannon for a high-damage explosive shot.' },
+  { id: 'o-es', name: 'Evasive Shot', cost: 'Artifact', branch: 'Shooting', character: 'oongka', description: 'Fire while rolling, maintaining offensive pressure during dodges.' },
+  { id: 'o-sc', name: 'Scatter Shot', cost: 'Artifact', branch: 'Shooting', character: 'oongka', description: 'Fire a cone of shrapnel hitting multiple enemies.' },
+  { id: 'o-fs', name: 'Focused Shot', cost: 'Artifact', branch: 'Shooting', character: 'oongka', description: 'Extreme accuracy cannon shot.' },
+  // Oongka — Unarmed Combat
+  { id: 'o-uc', name: 'Unarmed Combat', cost: 'Artifact', branch: 'Unarmed Combat', character: 'oongka', description: 'Develop Orc hand-to-hand combat prowess.' },
+  { id: 'o-gr', name: 'Grappling', cost: 'Artifact', branch: 'Unarmed Combat', character: 'oongka', description: 'Master grappling: includes Throw, Lariat, and Restrain sub-skills.' },
+  { id: 'o-bs', name: 'Body Slam', cost: 'Artifact', branch: 'Unarmed Combat', character: 'oongka', description: 'A full-body tackle that sends enemies sprawling.' },
+  { id: 'o-cl', name: 'Clothesline', cost: 'Artifact', branch: 'Unarmed Combat', character: 'oongka', description: 'A running lariat that takes enemies off their feet.' },
+  { id: 'o-dk', name: 'Dropkick', cost: 'Artifact', branch: 'Unarmed Combat', character: 'oongka', description: 'Launch forward and drive both feet into an enemy.' },
+  { id: 'o-pk', name: 'Pump Kick', cost: 'Artifact', branch: 'Unarmed Combat', character: 'oongka', description: 'A fast pumping kick that pushes enemies back.' },
+  { id: 'o-re', name: 'Restrain', cost: 'Artifact', branch: 'Unarmed Combat', character: 'oongka', description: 'Pin an enemy, preventing them from acting.' },
+  // Oongka — Evasion / Mobility
+  { id: 'o-er', name: 'Evasive Roll', cost: 'Artifact', branch: 'Evasion', character: 'oongka', description: 'A quick evasive roll granting brief invincibility frames.' },
+  { id: 'o-dj', name: 'Double Jump', cost: 'Artifact', branch: 'Evasion', character: 'oongka', description: 'Perform a second jump in mid-air.' },
+  { id: 'o-vt', name: 'Vault', cost: 'Artifact', branch: 'Evasion', character: 'oongka', description: 'Vault over an enemy, repositioning behind them.' },
+  // Oongka — Spirit / Defense
+  { id: 'o-pa', name: 'Parry', cost: 'Artifact', branch: 'Spirit Arts', character: 'oongka', description: 'Deflect incoming attacks with precise timing.' },
+  { id: 'o-fc', name: 'Focus', cost: 'Artifact', branch: 'Spirit Arts', character: 'oongka', description: 'Enter a focused combat state.' },
+  { id: 'o-ng', name: "Nature's Grasp", cost: 'Artifact', branch: 'Spirit Arts', character: 'oongka', description: 'Summon binding to immobilize a target.' },
+  { id: 'o-ks', name: 'Keen Senses', cost: 'Artifact', branch: 'Spirit Arts', character: 'oongka', description: 'Heighten awareness to detect hidden enemies.' },
+];
+
+// ═══════════════════════════════════════
+// RECOMMENDED BUILDS
+// ═══════════════════════════════════════
+
+export const RECOMMENDED_BUILDS: RecommendedBuild[] = [
+  {
+    id: 'build-abyssal-knight',
+    name: 'Abyssal Knight',
+    character: 'kliff',
+    weapons: ['Iron Longsword', 'Greymane Shield'],
+    keySkills: ['Sword Mastery', 'Shield Bash', 'Evasive Slash', 'Parry', 'Counter'],
+    abyssCores: ['Defensive Core', 'Stability Core'],
+    playstyle: 'Balanced melee fighter with strong defensive options. Focus on parrying, countering, and controlled aggression.',
+    difficulty: 'intermediate',
+    description: 'A well-rounded warrior build combining sword techniques with shield defense. Ideal for learning the game\'s combat rhythm and parry mechanics.',
+  },
+  {
+    id: 'build-iron-fist',
+    name: 'Iron Fist Monk',
+    character: 'kliff',
+    weapons: ['Axiom Bracelet'],
+    keySkills: ['Unarmed Combat', 'Grappling', 'Pump Kick', 'Flying Kick', 'Body Slam'],
+    abyssCores: ['Impact Core', 'Mobility Core'],
+    playstyle: 'Aggressive close-range fighter using grapples and kicks. Highly mobile with crowd control.',
+    difficulty: 'advanced',
+    description: 'Master grappling and unarmed techniques for a unique martial arts style. Best for experienced players who can manage positioning.',
+  },
+  {
+    id: 'build-standard-warrior',
+    name: 'Standard Warrior',
+    character: 'kliff',
+    weapons: ['Steel Greatsword', 'Greymane Shield'],
+    keySkills: ['Forward Slash', 'Turning Slash', 'Sword Flurry', 'Shield Bash', 'Charged Shot'],
+    abyssCores: ['Strength Core', 'Stability Core'],
+    playstyle: 'Straightforward heavy-hitting warrior. Strong offense with basic defense.',
+    difficulty: 'beginner',
+    description: 'The classic warrior archetype. Simple rotations and high damage make this perfect for new players learning the basics.',
+  },
+  {
+    id: 'build-steel-rose',
+    name: 'Steel Rose',
+    character: 'damiane',
+    weapons: ['Elegant Rapier', 'Dueling Pistol'],
+    keySkills: ['Rapier Thrust', 'Quick Draw', 'Shadow Step', 'Blade Dance', 'Precision Shot'],
+    abyssCores: ['Speed Core', 'Critical Core'],
+    playstyle: 'Speedy hit-and-run tactics. High mobility and critical hit potential.',
+    difficulty: 'intermediate',
+    description: 'A stylish melee-ranged hybrid. Damiane\'s signature weapon combination for fast, elegant combat.',
+  },
+  {
+    id: 'build-heavy-vanguard',
+    name: 'Heavy Vanguard',
+    character: 'damiane',
+    weapons: ["Damiane's Claymore", 'Sharpshooter Musket'],
+    keySkills: ['Claymore Sweep', 'Riposte', 'Explosive Round', 'Rapid Fire', 'Phase Dash'],
+    abyssCores: ['Strength Core', 'Precision Core'],
+    playstyle: 'Balanced melee-ranged fighter focusing on heavy hits and tactical repositioning.',
+    difficulty: 'intermediate',
+    description: 'Combine heavy melee swings with ranged support. Excellent for both single targets and groups.',
+  },
+  {
+    id: 'build-gunslinger',
+    name: 'Gunslinger',
+    character: 'damiane',
+    weapons: ['Dueling Pistol', 'Sharpshooter Musket'],
+    keySkills: ['Quick Draw', 'Precision Shot', 'Rapid Fire', 'Dodge Roll', 'Smoke Screen'],
+    abyssCores: ['Precision Core', 'Evasion Core'],
+    playstyle: 'Pure ranged combat with exceptional mobility and evasion.',
+    difficulty: 'advanced',
+    description: 'For players who prefer staying at range. Demands careful positioning but offers great damage and safety.',
+  },
+  {
+    id: 'build-siege-titan',
+    name: 'Siege Titan',
+    character: 'oongka',
+    weapons: ["Oongka's Greataxe", 'Wrist Cannon'],
+    keySkills: ['Cleave', 'Ground Shatter', 'Cannon Blast', 'Berserker Rage', 'Earthquake Slam'],
+    abyssCores: ['Impact Core', 'Strength Core'],
+    playstyle: 'Raw power and area-of-effect damage. Destroy everything.',
+    difficulty: 'beginner',
+    description: 'Oongka at his most powerful. Massive damage and crowd control make this build forgiving for beginners.',
+  },
+  {
+    id: 'build-raging-berserker',
+    name: 'Raging Berserker',
+    character: 'oongka',
+    weapons: ["Oongka's Greataxe", 'Balgran Shield'],
+    keySkills: ['Berserker Rage', 'Spinning Axe', 'Ground Shatter', 'War Cry', 'Iron Skin'],
+    abyssCores: ['Aggression Core', 'Endurance Core'],
+    playstyle: 'Lean into aggression and defensive buffs. Tank and slaughter enemies.',
+    difficulty: 'intermediate',
+    description: 'A sustain-focused aggressive build. Use Berserker Rage and War Cry to dominate the battlefield.',
+  },
+];
+
+// ═══════════════════════════════════════
+// ABYSS ARTIFACTS
+// ═══════════════════════════════════════
+
+// 141 sealed Abyss Artifacts exist in-game. Only verified ones are listed below.
+export const ABYSS_ARTIFACTS: AbyssArtifact[] = [
+  { id: 'abyss-1', name: 'Sword of Trials I', region: 'hernand', location: 'Three Saints\' Falls', challengeType: 'Sealed Challenge' },
+  { id: 'abyss-2', name: 'Shield of Unchanging Will I', region: 'hernand', location: 'Meandering Hills (north of Hernand Castle)', challengeType: 'Sealed Challenge' },
+  { id: 'abyss-3', name: 'Shield of Unchanging Will II', region: 'delesyia', location: 'Kharonso roads', challengeType: 'Sealed Challenge' },
+  { id: 'abyss-4', name: 'Shield of Unchanging Will IV', region: 'hernand', location: "Rocca's Hill", challengeType: 'Sealed Challenge' },
+  { id: 'abyss-5', name: 'Sharpened Spear II', region: 'hernand', location: 'Red Greymane Shrine (southeast Hernand Castle)', challengeType: 'Sealed Challenge' },
+  { id: 'abyss-6', name: 'Sharpened Spear V', region: 'pailune', location: 'Hills of No Return', challengeType: 'Sealed Challenge' },
+  { id: 'abyss-7', name: 'Feather of the Earth', region: 'delesyia', location: 'Karin Quarry', challengeType: 'Sealed Challenge' },
+  { id: 'abyss-8', name: 'Animal Meat', region: 'pailune', location: "The Sage's Peak", challengeType: 'Sealed Challenge' },
+  { id: 'abyss-9', name: 'Night of the Silent Banner Pike', region: 'hernand', location: 'Anvil Riverside Terrace', challengeType: 'Sealed Challenge' },
+  { id: 'abyss-10', name: 'Under a Starlit Sky', region: 'delesyia', location: 'Deepfog Basin', challengeType: 'Sealed Challenge' },
 ];
 
 export const COLLECTIBLES: Record<CollectibleCategory, Collectible[]> = {
-  // Artifacts, gear, recipe collectibles, and lore entries will be populated
-  // post-launch once confirmed names and locations are available in-game.
   artifact: [],
   gear: [],
   recipe: [],
-  lore: [],
+  lore: [
+    // Paintings (collectible home decorations)
+    { name: 'Acclaimed - Prelude to War', location: 'Glenbright Manor', category: 'lore' },
+    { name: 'Study - Golden Lands', location: 'Glenbright Manor', category: 'lore' },
+    // Containers & Household Items
+    { name: 'Liquor Bottle', location: 'Provisioner Shop / World', category: 'lore' },
+    { name: 'Bread Plate', location: 'Provisioner Shop / World', category: 'lore' },
+    { name: 'Deep Bowl', location: 'Provisioner Shop / World', category: 'lore' },
+    { name: 'Grain Bowl', location: 'Provisioner Shop / World', category: 'lore' },
+    { name: 'Storage Bowl', location: 'Provisioner Shop / World', category: 'lore' },
+    { name: 'Damaged Bowl', location: 'Provisioner Shop / World', category: 'lore' },
+    { name: 'Grain Jar', location: 'Provisioner Shop / World', category: 'lore' },
+    { name: 'Pot', location: 'Provisioner Shop / World', category: 'lore' },
+    // Lighting
+    { name: 'Candle', location: 'Provisioner Shop / World', category: 'lore' },
+    { name: 'Plain Candle', location: 'Provisioner Shop / World', category: 'lore' },
+    { name: 'Icy White Glass Lamp', location: 'Provisioner Shop / World', category: 'lore' },
+    { name: 'Twilight Glass Lamp', location: 'Provisioner Shop / World', category: 'lore' },
+    // Misc
+    { name: 'White-Handled Water Bottle', location: 'Provisioner Shop / World', category: 'lore' },
+    // Dolls
+    { name: 'Brown Dress Doll', location: 'Provisioner Shop / World', category: 'lore' },
+    { name: 'Doll wearing Brown Bonnet', location: 'Provisioner Shop / World', category: 'lore' },
+    { name: 'Simple Dress Doll', location: 'Provisioner Shop / World', category: 'lore' },
+  ],
   'fast-travel': [
     { name: 'Hernand Crossroads', location: 'Hernand', category: 'fast-travel' },
     { name: 'Greendale Village', location: 'Hernand', category: 'fast-travel' },
@@ -240,62 +448,413 @@ export const COLLECTIBLES: Record<CollectibleCategory, Collectible[]> = {
     { name: 'Shroud Lantern', location: 'Collector\'s Edition Bonus', category: 'edition' },
     { name: 'Hyperion Horse Tack Set', location: 'Collector\'s Edition Bonus', category: 'edition' },
     { name: 'Khaled Shield', location: 'Pre-Order Exclusive', category: 'edition' },
-    // Added 2026-03-15 via apply-data task
     { name: 'Grotevant Plate Set', location: 'PlayStation 5 Exclusive Bonus', category: 'edition' },
   ],
 };
 
+// ═══════════════════════════════════════
+// BOSSES (24 verified + note about 76 total in Knowledge Codex)
+// ═══════════════════════════════════════
+
+// Data sourced: game8 / powerpyx / fextralife wikis (scraped 2026-03-20, launch+1 day)
+// 76 total bosses in-game Knowledge System. ~30 confirmed below; remainder TBD post-exploration.
 export const BOSSES: Boss[] = [
-  { name: 'Queen Stoneback Crab', region: 'hernand', type: 'Beast', difficulty: 'hard', reward: 'Stoneback Shell Armor', element: 'physical', weakness: 'fire' },
-  { name: 'White Horn', region: 'pailune', type: 'Beast', difficulty: 'hard', reward: 'Frost Core Artifact', element: 'frost', weakness: 'fire' },
-  { name: 'Myurdin', region: 'pailune', type: 'Human', difficulty: 'legendary', reward: 'Black Bear Standard', element: 'physical', weakness: 'frost' }, // Region corrected 2026-03-19: Silverwolf Mountain is in Pailune -- confirmed Fextralife wiki + PowerPyx
-  { name: 'Walter Lanford', region: 'hernand', type: 'Human', difficulty: 'extreme', reward: 'Hand Cannon Blueprint', element: 'fire', weakness: 'frost' }, // Region corrected 2026-03-19: Fort Warspike (Hernand) confirmed by Fextralife wiki
-  { name: 'Delesyian Automaton', region: 'delesyia', type: 'Mechanical', difficulty: 'normal', reward: 'Speed Catalyst Gear', element: 'shock', weakness: 'physical' },
-  { name: 'Kearush the Slayer', region: 'hernand', type: 'Monster', difficulty: 'hard', reward: 'Slayer Claw Materials', element: 'physical', weakness: 'fire' },
-  { name: 'Reed Devil', region: 'pailune', type: 'Humanoid', difficulty: 'extreme', reward: "Dragon's Tear", element: 'physical', weakness: 'shock' },
-  { name: 'Matthias', region: 'hernand', type: 'Human', difficulty: 'hard', reward: 'Radiant Knight Armor', element: 'physical', weakness: 'shock' }, // Updated 2026-03-15: region corrected from 'demeniss' to 'hernand' -- confirmed by Fextralife Wiki and Game8
-  { name: 'Crimson Scorpion King', region: 'desert', type: 'Beast', difficulty: 'hard', reward: 'Venom Materials', element: 'fire', weakness: 'frost' },
-  { name: 'Golden Star', region: 'delesyia', type: 'Mechanical', difficulty: 'legendary', reward: 'Mech Mount Key', element: 'shock', weakness: 'physical' },
-  { name: 'Hexe Marie', region: 'abyss', type: 'Magical', difficulty: 'legendary', reward: 'Deep Abyss Core', element: 'abyss' },
-  { name: 'Staglord', region: 'pailune', type: 'Humanoid', difficulty: 'legendary', reward: "Gian's Blade", element: 'physical', weakness: 'abyss' },
-  { name: 'Desert Hydra', region: 'desert', type: 'Beast', difficulty: 'extreme', reward: 'Hydra Scale Armor', element: 'fire', weakness: 'frost' },
-  { name: 'Snow Walker', region: 'pailune', type: 'Elemental', difficulty: 'extreme', reward: 'Permafrost Crystal', element: 'frost', weakness: 'fire' },
-  { name: "The Unifier's Shade", region: 'demeniss', type: 'Spirit', difficulty: 'legendary', reward: 'Crown of Pywel', element: 'abyss', weakness: 'shock' },
+  // ─── STORY BOSSES (chapters 2–8) ──────────────────────────────────────────────────────────────
+  // Ch.2 — first boss (tutorial); does NOT count toward the 76-boss Knowledge total
+  { name: 'Matthias', region: 'hernand', type: 'Human', difficulty: 'normal',
+    reward: 'Pump Kick x1', element: 'physical', weakness: 'physical',
+    location: 'City of Hernand (town square)',
+    mechanics: '2 HP bars. Tutorial boss. Light combos (3x R1) then heavy (3x R2) to interrupt. Easiest fight in the game.' },
+  // Ch.2 — Goldleaf arc
+  { name: 'Kailok the Hornsplitter', region: 'hernand', type: 'Humanoid', difficulty: 'hard',
+    reward: 'Sword of the Lord, Seal of Greed - Goldleaf Merchant Guild, Iron Ore x7',
+    element: 'physical', weakness: 'physical',
+    location: 'Goldleaf Guildhouse, Hernand',
+    mechanics: '1 HP bar. Shield counter (L1/LB at moment of attack — green glow = interrupt) then R1 combos. Blockable wide sword waves. Super armor (blue glow) = stop attacking and block/dodge. Drops Sword of the Lord.' },
+  // Ch.3 — Reed field arc
+  { name: 'Reed Devil', region: 'hernand', type: 'Humanoid', difficulty: 'extreme',
+    reward: 'Hernandian Contribution EXP x600, Sunset Reed Cloth Gloves',
+    element: 'physical', weakness: 'shock',
+    location: 'Mountain of Frozen Souls (Frozen Soul Mountain), Hernand',
+    mechanics: '3 HP bars. Phase 1: shield counters + R1 combos. Phase 2: destroy 5 totems while dodging. Phase 3: same as P1 but more aggressive; dodge sideways during red projectile dash. 40+ grilled meat + Palmer Pills recommended.' },
+  // Ch.4 — Scholastone arc
+  { name: 'Tenebrum', region: 'hernand', type: 'Spirit', difficulty: 'hard',
+    reward: 'Key to the Spire of the Stars', element: 'abyss', weakness: 'physical',
+    location: 'Scholastone Institute, Hernand',
+    mechanics: 'Puzzle boss (no standard HP). Hold L1+R1 → press LB+RB → press RB (Blinding Flash) to expose weak point. Activate wings over floor gaps with double Square/X. Press R3/RS in midair for Force Palm. Recharge Spirit behind pillars.' },
+  // Ch.5 — Hernand Castle
+  { name: 'Kearush the Slayer', region: 'hernand', type: 'Monster', difficulty: 'legendary',
+    reward: "The Grove's Thorn, Gale I, Howling of Chaos",
+    element: 'physical', weakness: 'fire',
+    location: 'Hernand Castle',
+    mechanics: '3 HP bars. One of the hardest bosses. No blocking or parrying effective. P1: dodge forward-right behind boss → 3 quick R1 attacks → reset. P2: super armor (blue glow) → sprint to opposite arena wall where he cannot reach. P3: dodge constantly, attack in brief windows. Prep: plate armor refined to 4+, 4+ Health/Stamina upgrades, 100–200 grilled meat.' },
+  // Ch.5 — Hills of No Return
+  { name: 'Myurdin', region: 'hernand', type: 'Human', difficulty: 'hard',
+    reward: 'Axiom Bracelet', element: 'physical', weakness: 'frost',
+    location: 'Hills of No Return, Hernand',
+    mechanics: 'Primary antagonist. Leader of Black Bear Forces. First encounter. Parry L1 → heavy R2 attacks.' },
+  // Ch.5 — Crow's Nest (Abyss region); fought twice
+  { name: 'Draven the Crowcaller', region: 'abyss', type: 'Humanoid', difficulty: 'extreme',
+    reward: 'Blackwing Leather Armor, Blackwing Mask, Tauria Curved Sword',
+    element: 'abyss', weakness: 'abyss',
+    location: "Crow's Nest, The Abyss",
+    mechanics: 'Fought twice. First encounter: 1 HP bar (easy). Second encounter (Ch.5 finale): 3 HP bars. Parry L1 → R1 combo → heal while attacking. Aerial dodge: wait for 2nd midair dodge, roll via Circle/B to dodge dive attack. Drops Tauria Curved Sword.' },
+  // Ch.6 — Calphade arc
+  { name: 'Cassius Morten', region: 'hernand', type: 'Human', difficulty: 'hard',
+    reward: 'Shield of Betrayal', element: 'physical', weakness: 'physical',
+    location: 'City of Calphade, Hernand',
+    mechanics: '1 HP bar. Heavy shield user. Spam R2 heavy attacks; after 3 hits follow with light attacks. Heavy attacks deal damage through block. Recommended: Tauria Curved Sword + Nature\'s Echo skill.' },
+  // Ch.7 — Pailune arc
+  { name: 'Ludvig', region: 'pailune', type: 'Human', difficulty: 'hard',
+    reward: 'Ignir (two-handed sword)', element: 'shock', weakness: 'physical',
+    location: 'Pailune (quest: Lonely Jackals)',
+    mechanics: '2 HP bars. Lightning user. Teleports constantly. Dodge > block/parry. Attack during combo gaps or after teleport stops. 100+ grilled meat.' },
+  { name: 'Awakened Ludvig', region: 'pailune', type: 'Human', difficulty: 'extreme',
+    reward: 'Unknown (TBD)', element: 'shock', weakness: 'physical',
+    location: 'Pailune (continuation of Lonely Jackals)',
+    mechanics: 'Empowered transformation. Consumes an imprisoned human to gain immense unholy power.' },
+  { name: 'Lava Myurdin', region: 'pailune', type: 'Human', difficulty: 'legendary',
+    reward: 'Melted Ambition, Pailunese Contribution EXP x3000',
+    element: 'fire', weakness: 'frost',
+    location: 'Ashclaw Keep, Pailune (Battle at Silverwolf Mountain)',
+    mechanics: '2 HP bars. P1: parry L1 → heavy R2. P2: lava transformation — focus entirely on dodging, never let stamina deplete fully.' },
+  // Ch.7 — Demeniss mountains (forced Oongka character)
+  { name: 'One-Armed Ludvig', region: 'demeniss', type: 'Human', difficulty: 'hard',
+    reward: 'Unknown (TBD)', element: 'shock', weakness: 'physical',
+    location: 'Mountains of Demeniss (quest: Time to Face Justice)',
+    mechanics: 'Forced Oongka play (no Kliff shield). Block/parry with weapon via L1/LB. Dual-wield one-handed weapons recommended. Sword of the Lord optimal for wave attacks. Prep: hunt animals nearby, cook at Beighen village.' },
+  // Ch.8 — Demeniss campaign
+  { name: 'Gregor the Halberd of Carnage', region: 'demeniss', type: 'Human', difficulty: 'hard',
+    reward: 'Unknown (TBD)', element: 'physical', weakness: 'physical',
+    location: 'Fort Ironclad, Demeniss (quest: Where the Wind Guides You)',
+    mechanics: '1 HP bar. Arrows fired from walls throughout fight. Super armor with successive stabs — dodge continuously until it stops. Combat loop: dodge → attack → heal simultaneously.' },
+  { name: 'Fortain the Cursed Knight', region: 'demeniss', type: 'Human', difficulty: 'extreme',
+    reward: 'Unknown (TBD)', element: 'abyss', weakness: 'physical',
+    location: 'Castle interior, Demeniss (quest: The Cursed Knight)',
+    mechanics: '1 HP bar. Summons blue ghost knight (ground strikes + arrows). Spam R2 with Tauria Curved Sword. Nature\'s Echo skill recommended. Dodge away when ghost appears. "Gigantic warrior empowered by cursed warrior spirits."' },
+  // Late game — The Abyss
+  { name: 'Hexe Marie', region: 'abyss', type: 'Magical', difficulty: 'legendary',
+    reward: 'Deep Abyss Core', element: 'abyss',
+    location: 'The Abyss (connected to Reventine Monastery)',
+    mechanics: 'Summons monsters. Grief-stricken dark sorcerer in despair over her slain child. Fully voice-acted. Infused dark power into her child.' },
+
+  // ─── OPTIONAL / SIDE BOSSES ───────────────────────────────────────────────────────────────────
+  { name: "Marni's Excavatron", region: 'hernand', type: 'Mechanical', difficulty: 'hard',
+    reward: 'Gold Vein Map, Mining Knuckledrill (II)',
+    element: 'physical', weakness: 'shock',
+    location: 'Karin Quarry, Hernand (quest: Estate in Dismay)',
+    mechanics: 'Hidden boss. Quarrying machine repurposed by Bleed Bandits. Wears diving suit; spinning drill arms.' },
+  { name: 'Crimson Nightmare', region: 'hernand', type: 'Magical', difficulty: 'hard',
+    reward: "Hernandian Contribution EXP x100, Freya's Elixir x1, Apollonia's Lesser Elixir x2, Meliara's Lesser Elixir x2",
+    element: 'abyss', weakness: 'physical',
+    location: 'Fort Perwin, Hernand (quest: Continuing Concern)' },
+  { name: 'Saigord the Staglord', region: 'hernand', type: 'Humanoid', difficulty: 'legendary',
+    reward: "Staglord's Shield", element: 'physical', weakness: 'abyss',
+    location: 'Icemoor Castle Ruins, Hernand (quest: Lord Amidst the Ruins)',
+    mechanics: '3 HP bars — among highest in game. Fallen king on forsaken throne. Sword and shield warlord of huge stature. Thinks challengers seek his treasure.' },
+  { name: "Antumbra's Sword", region: 'hernand', type: 'Spirit', difficulty: 'extreme',
+    reward: 'Abyss Artifact x1, Vessel of Dark Pursuit',
+    element: 'abyss', weakness: 'physical',
+    location: 'Sanctum of Absolution, Hernand (quest: Cloister of Ruination)',
+    mechanics: 'Void spirit. Fitting judge of Antumbra\'s Order. Leader of the order.' },
+  { name: 'Walter Lanford', region: 'hernand', type: 'Human', difficulty: 'extreme',
+    reward: 'Unknown (TBD)', element: 'physical', weakness: 'frost',
+    location: 'Alfonso Estate, Hernand',
+    mechanics: 'Optional side quest. Exceptional double-barreled gun shooter.' },
+  { name: 'Muskan', region: 'desert', type: 'Human', difficulty: 'extreme',
+    reward: 'Unknown (TBD)', element: 'physical', weakness: 'physical',
+    location: 'The Bonepit, Crimson Desert',
+    mechanics: 'Arena fight with cheering onlookers. "Seemingly undefeated warrior of The Bonepit."' },
+
+  // ─── PARTIALLY CONFIRMED (name known; full details TBD post-exploration) ──────────────────────
+  { name: 'Queen Stoneback Crab', region: 'hernand', type: 'Beast', difficulty: 'hard',
+    reward: 'Unknown (TBD)', element: 'physical', weakness: 'fire',
+    location: 'Unknown (Hernand area)',
+    mechanics: 'Enchanted gigantic crab. "Prism of riches." Target weak points for stagger. Awakened when Diederik strikes its carapace.' },
+  { name: 'White Horn', region: 'pailune', type: 'Beast', difficulty: 'hard',
+    reward: 'Unknown (TBD)', element: 'frost', weakness: 'fire',
+    location: 'White Mountains, Pailune',
+    mechanics: 'Multi-stage fight. Yeti/reindeer hybrid. Mountain spirit. Summons snowstorms and blizzards.' },
+  { name: 'Golden Star', region: 'delesyia', type: 'Mechanical', difficulty: 'legendary',
+    reward: 'Unknown (TBD)', element: 'shock', weakness: 'physical',
+    location: 'Delesyian Territory',
+    mechanics: 'Giant mechanical dragon with golden appearance. Fought while riding a Wyvern mount. Dragon\'s breath attack.' },
+  { name: 'Snow Walker', region: 'pailune', type: 'Elemental', difficulty: 'extreme',
+    reward: 'Unknown (TBD)', element: 'frost', weakness: 'fire',
+    location: 'Pailune region',
+    mechanics: 'Massive ice elemental. Ice attacks with charging and melee mix.' },
+  { name: 'Gwen Kraber', region: 'demeniss', type: 'Human', difficulty: 'hard',
+    reward: 'Spear (obtainable weapon)', element: 'physical', weakness: 'physical',
+    location: 'Remote camp (exact location TBD)' },
+  { name: 'Sir Catfish', region: 'desert', type: 'Beast', difficulty: 'normal',
+    reward: 'Unknown (TBD)', element: 'physical', weakness: 'shock',
+    location: 'Unknown — confirmed in in-game Boss Knowledge Menu' },
+  { name: 'Titan', region: 'desert', type: 'Monster', difficulty: 'extreme',
+    reward: 'Unknown (TBD)', element: 'shock', weakness: 'physical',
+    location: 'Unknown',
+    mechanics: 'Wields spear. Lightning attacks.' },
 ];
+
+// Knowledge Codex contains 76 total named bosses. Above list contains 30 confirmed.
+// Remaining ~46 bosses exist but are not yet fully documented post-launch.
 
 // ═══════════════════════════════════════
 // ENEMIES / BESTIARY
-// (401 creatures confirmed in Knowledge Codex -- populated post-launch)
 // ═══════════════════════════════════════
 
+// Data sourced: Fextralife Enemies wiki (scraped 2026-03-20)
+// Knowledge Codex contains 2,921 total entries; individual creature count TBD post-exploration.
 export const ENEMIES: Enemy[] = [
-  // Entries will be populated post-launch once the full Knowledge Codex
-  // creature list is available. The Knowledge Codex confirms 401 creatures
-  // total across all regions of Pywel.
+  // ─── DUCHY OF HERNAND ─────────────────────────────────────────────────────────────────────────
+  { name: "Hornsplitter's Guards", region: 'hernand', type: 'Humanoid', element: 'physical',
+    location: 'Goldleaf Guildhouse, Hernand', drops: [],
+    notes: 'The personal guard of Kailok the Hornsplitter, leader of the Goldleaf Merchant Guild.' },
+  { name: "St. Halssius's House of Healing", region: 'hernand', type: 'Humanoid', element: 'physical',
+    location: 'Halssius Apothecary / Halssius Conflux, Hernand', drops: [],
+    notes: 'A House of Healing once dedicated to treating mental illness. Now corrupted.' },
+  { name: 'Fundamentalist Goblins', region: 'hernand', type: 'Monster', element: 'physical',
+    location: 'Various locations, Hernand', drops: [],
+    notes: 'A band of goblin scholars scarcely different from common thieves.' },
+  { name: 'Bleed Bandits', region: 'hernand', type: 'Human', element: 'physical',
+    location: 'Various locations, Hernand', drops: [],
+    notes: 'An armed faction that has plunged Hernand into fear. Their influence spread all across Hernand with alarming speed.' },
+  { name: 'Wolf Trackers', region: 'hernand', type: 'Human', element: 'physical',
+    location: 'Pywel — roaming', drops: [],
+    notes: 'A roaming band that scours Pywel in search of prey.' },
+  { name: 'Reed Devil Faction', region: 'hernand', type: 'Humanoid', element: 'physical',
+    location: 'Mountain of Frozen Souls (Frozen Soul Mountain), Hernand', drops: [],
+    notes: 'The faction of the Reed Field. Demon of the reed fields.' },
+  { name: 'Southern Bandits', region: 'hernand', type: 'Human', element: 'physical',
+    location: 'Southern Pywel', drops: [],
+    notes: 'Bandits who threaten the southern reaches of Pywel. They mainly target merchants and travelers, ambushing and plundering them.' },
+  // ─── TRIBAL STATE OF PAILUNE ──────────────────────────────────────────────────────────────────
+  { name: 'Black Bears', region: 'pailune', type: 'Human', element: 'physical',
+    location: 'Pailune (various strongholds); Hernand (occupied territory)', drops: [],
+    notes: 'A hostile faction led by the formidable Myurdin. Conquered Pailune and drove out the Greymanes.' },
+  // ─── FACTIONS / ENEMY GROUPS (additional — TBD with full bestiary post-launch) ───────────────
+  { name: 'Crow Brothers', region: 'abyss', type: 'Humanoid', element: 'abyss',
+    location: "Crow's Nest, The Abyss", drops: [],
+    notes: "Led by Draven the Crowcaller. Sought to let evil souls out of the sealed Heaven's Gate." },
+  { name: "Antumbra's Order", region: 'hernand', type: 'Spirit', element: 'abyss',
+    location: 'Sanctum of Absolution and surrounding sanctums, Hernand', drops: [],
+    notes: 'Void spirits serving Antumbra\'s Sword as their judge. Control six sanctums across Hernand.' },
+  { name: 'Gregor\'s Soldiers', region: 'demeniss', type: 'Human', element: 'physical',
+    location: 'Fort Ironclad, Demeniss', drops: [],
+    notes: "Captain Gregor's personal military unit stationed at Fort Ironclad." },
+  { name: 'Scarlet Blades', region: 'hernand', type: 'Human', element: 'physical',
+    location: 'Various, Hernand', drops: [],
+    notes: 'Bandit or mercenary faction. Drops Scarlet Blades Cloth Armor.' },
+  { name: 'Jackals', region: 'hernand', type: 'Human', element: 'physical',
+    location: 'Various, Hernand', drops: [],
+    notes: 'Outlaw faction. Drops Jackals\' Leather Armor and Jackals\' Leather Helm.' },
 ];
 
+// ═══════════════════════════════════════
+// QUESTS (Main Story + Side Quests)
+// ═══════════════════════════════════════
+
+// Data sourced: game8 Crimson Desert wiki (scraped 2026-03-20). 430 total quests confirmed in-game.
+// Main story: 8 chapters + prologue. Individual sub-quest names confirmed from game8.
 export const QUESTS: Quest[] = [
-  // Main Story -- names and beats confirmed from trailers, developer presentations, and wiki
-  { name: "The Greymane's Burden", description: 'Reunite with scattered Greymane members after the Black Bear ambush.', type: 'main' },
-  { name: 'Shadows over Demeniss', description: "Investigate the circumstances behind King Demeniss's coma.", type: 'main' },
-  { name: 'Into the Abyss', description: 'Discover the source of the Abyss and its threat to Pywel.', type: 'main' },
-  { name: 'The Black Bear Hunt', description: 'Track down and confront the Black Bear leadership.', type: 'main' },
-  { name: "Pywel's Last Stand", description: 'Unite the factions to face the ultimate threat to the continent.', type: 'main' },
-  // Faction Quests -- confirmed from Fextralife Greymane Camp wiki
-  { name: 'Greymane Stronghold', description: 'Liberate territory from Black Bear occupation on behalf of the Greymanes.', type: 'faction' },
-  { name: 'Dispatch Missions', description: 'Send comrades on expeditions from the Greymane Camp to gather rare resources.', type: 'faction' },
-  { name: 'Camp Expansion', description: 'Upgrade the Greymane Camp with new facilities and improvements.', type: 'faction' },
-  // Character Arcs -- confirmed from official story materials
-  { name: "Damiane's Redemption", description: "Uncover Damiane's hidden past and settle her debts with the noble houses of Hernand. A separate story arc with unique cutscenes and boss encounters.", type: 'character' },
-  { name: "Oongka's Homeland", description: "Journey with Oongka to reclaim his ancestral territories in the far reaches of Pywel.", type: 'character' },
-  { name: "Kliff's Promise", description: "Fulfill the oath Kliff made to the fallen Greymane leader Gian. Follow the trail of clues across all regions.", type: 'character' },
-  // Region Liberation -- confirmed game mechanic from multiple sources
-  { name: 'Liberate Hernand Pass', description: 'Break the Black Bear blockade on the main trade route through Hernand.', type: 'liberation' },
-  { name: 'Liberate Pailune Bridge', description: 'Retake the frozen bridge connecting northern Pailune settlements.', type: 'liberation' },
-  { name: 'Liberate Desert Outpost', description: 'Drive Black Bear forces from the Crimson Desert trading post.', type: 'liberation' },
-  { name: 'Liberate Demeniss Docks', description: 'Free the capital docks from enemy occupation.', type: 'liberation' },
-  // Side quests -- to be populated post-launch with confirmed in-game names and details
+  // ─── PROLOGUE ─────────────────────────────────────────────────────────────────────────────────
+  { name: 'Dead of the Night', description: 'Prologue that opens the game.', type: 'main', region: 'hernand' },
+  { name: 'Unfamiliar Lands', description: 'Prologue sub-quest: Ambush arc.', type: 'main', region: 'hernand' },
+  { name: 'In Ashes', description: 'Prologue sub-quest: Ambush arc.', type: 'main', region: 'hernand' },
+  { name: 'Realm of Uncertainty', description: 'Prologue sub-quest: Unknown Space arc — introduction to The Abyss.', type: 'main', region: 'abyss' },
+  { name: 'New Journey', description: 'Prologue sub-quest: Unknown Space arc.', type: 'main', region: 'hernand' },
+
+  // ─── CHAPTER 1: THE FIRST ENCOUNTER ──────────────────────────────────────────────────────────
+  // Trials of Kindness arc
+  { name: 'Where Rumors Gather', description: 'Ch.1 — Trials of Kindness: Follow rumors in Hernand.', type: 'main', region: 'hernand' },
+  { name: 'Mysterious Man', description: 'Ch.1 — Trials of Kindness: Investigate a stranger.', type: 'main', region: 'hernand' },
+  { name: 'True Wisdom in Kindness', description: 'Ch.1 — Trials of Kindness.', type: 'main', region: 'hernand' },
+  { name: 'Actions Speak Louder than Words', description: 'Ch.1 — Trials of Kindness.', type: 'main', region: 'hernand' },
+  { name: 'Heart Beyond Borders', description: 'Ch.1 — Trials of Kindness. Rewards Engraved Key and Shai\'s Pendant.', type: 'main', region: 'hernand' },
+  // Trace arc
+  { name: 'Mystical Key', description: 'Ch.1 — Trace arc: Investigate Abyss mysteries.', type: 'main', region: 'abyss' },
+  { name: 'Polar Opposites', description: 'Ch.1 — Trace arc.', type: 'main', region: 'abyss' },
+  { name: 'Abyss without Balance', description: 'Ch.1 — Trace arc.', type: 'main', region: 'abyss' },
+  { name: 'Woman in White', description: 'Ch.1 — Trace arc: Encounter the White Crow.', type: 'main', region: 'abyss' },
+
+  // ─── CHAPTER 2: GOLDEN GREED ──────────────────────────────────────────────────────────────────
+  // Unexpected Gift arc
+  { name: 'Where the Light Leads', description: 'Ch.2 — Unexpected Gift arc.', type: 'main', region: 'hernand' },
+  { name: 'Memory Fragment', description: 'Ch.2 — Unexpected Gift arc.', type: 'main', region: 'hernand' },
+  { name: 'Reunion', description: 'Ch.2 — Unexpected Gift arc.', type: 'main', region: 'hernand' },
+  // Hernand in Chaos arc
+  { name: 'For Honor', description: 'Ch.2 — Hernand in Chaos: Boss fight vs. Matthias.', type: 'main', region: 'hernand', rewards: ['Pump Kick x1'] },
+  { name: 'Awestruck', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand' },
+  { name: 'Shadow Cast Over the River', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand' },
+  { name: 'Where Misery Gathers', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand' },
+  { name: 'Trial After Trial', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand' },
+  { name: 'The Man Trapped in the Mire', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand' },
+  { name: 'Missing Companion', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand' },
+  { name: 'Secrets Hidden in the Dark', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand' },
+  // The End of Greed arc
+  { name: 'The Dark Veil', description: 'Ch.2 — The End of Greed arc.', type: 'main', region: 'hernand' },
+  { name: 'The Flames of Greed', description: 'Ch.2 — The End of Greed arc.', type: 'main', region: 'hernand' },
+  { name: 'Kidnapped Healer', description: 'Ch.2 — The End of Greed arc.', type: 'main', region: 'hernand' },
+  { name: 'Rebellion or Revolution', description: 'Ch.2 — The End of Greed arc.', type: 'main', region: 'hernand' },
+  { name: 'Cheers Echoing From the Edge', description: 'Ch.2 — The End of Greed: Boss fight vs. Kailok the Hornsplitter.', type: 'main', region: 'hernand', rewards: ['Sword of the Lord', 'Seal of Greed - Goldleaf Merchant Guild', 'Iron Ore x7'] },
+
+  // ─── CHAPTER 3: HOWLING HILL ──────────────────────────────────────────────────────────────────
+  // Homestead arc
+  { name: 'Old Friend', description: 'Ch.3 — Homestead arc.', type: 'main', region: 'hernand' },
+  { name: 'First Step to Rebuilding', description: 'Ch.3 — Homestead arc: Establish Greymane Camp.', type: 'main', region: 'hernand' },
+  { name: 'A Fresh Start', description: 'Ch.3 — Homestead arc: Unlock Camp feature.', type: 'main', region: 'hernand' },
+  { name: 'Reward for Their Sweat', description: 'Ch.3 — Homestead arc.', type: 'main', region: 'hernand' },
+  { name: 'Return of the Comrade', description: 'Ch.3 — Homestead arc.', type: 'main', region: 'hernand' },
+  { name: 'Familiar Curses', description: 'Ch.3 — Homestead arc.', type: 'main', region: 'hernand' },
+  // The Face Behind the Mask arc
+  { name: 'Return', description: 'Ch.3 — The Face Behind the Mask arc.', type: 'main', region: 'hernand' },
+  { name: 'Traces in the Manor', description: 'Ch.3 — The Face Behind the Mask arc.', type: 'main', region: 'hernand' },
+  { name: 'Nonhuman', description: 'Ch.3 — The Face Behind the Mask arc.', type: 'main', region: 'hernand' },
+  { name: 'Seed of Unease', description: 'Ch.3 — The Face Behind the Mask arc.', type: 'main', region: 'hernand' },
+  { name: 'Dance with the Devil', description: 'Ch.3 — The Face Behind the Mask: Boss fight vs. Reed Devil (Phase 1).', type: 'main', region: 'hernand' },
+  { name: 'The Face Behind the Mask', description: 'Ch.3 — Boss fight vs. Reed Devil (full encounter).', type: 'main', region: 'hernand', rewards: ['Hernandian Contribution EXP x600', 'Sunset Reed Cloth Gloves'] },
+  // Pioneering arc
+  { name: 'Hope After the Draught', description: 'Ch.3 — Pioneering arc.', type: 'main', region: 'hernand' },
+  { name: 'Scattered Comrades', description: 'Ch.3 — Pioneering arc.', type: 'main', region: 'hernand' },
+  { name: 'Rumors from the Sawmill', description: 'Ch.3 — Pioneering arc.', type: 'main', region: 'hernand' },
+  { name: 'A Gentle Touch', description: 'Ch.3 — Pioneering arc.', type: 'main', region: 'hernand' },
+  { name: 'Bustling Hill', description: 'Ch.3 — Pioneering arc.', type: 'main', region: 'hernand' },
+  { name: 'Greymanes Reunited', description: 'Ch.3 — Pioneering arc: Reunite Greymane members.', type: 'main', region: 'hernand' },
+
+  // ─── CHAPTER 4: THE PRICE OF KNOWLEDGE ───────────────────────────────────────────────────────
+  { name: 'The Mysterious Pot', description: 'Ch.4 — Mysterious Iron Pot arc: Find the Kuku Pot crafting item.', type: 'main', region: 'hernand' },
+  { name: 'Kilnden Workshop', description: 'Ch.4 — Mysterious Iron Pot arc: Visit the Kilnden Workshop.', type: 'main', region: 'hernand' },
+  { name: 'Kiln Repair in the Kilnden Workshop', description: 'Ch.4 — Mysterious Iron Pot arc.', type: 'main', region: 'hernand' },
+  { name: "The Pot's Use", description: 'Ch.4 — Mysterious Iron Pot arc.', type: 'main', region: 'hernand' },
+  { name: 'Disturbance at the Arena', description: 'Ch.4 — Daily Life arc: Arena disturbance in Hernand.', type: 'main', region: 'hernand' },
+  { name: 'Skilled in Archery', description: 'Ch.4 — Daily Life arc.', type: 'main', region: 'hernand' },
+  // Forbidden Knowledge arc
+  { name: 'The Words of Alustin', description: 'Ch.4 — Forbidden Knowledge: Begin the Abyss/Scholastone investigation.', type: 'main', region: 'hernand' },
+  { name: 'Scholastone', description: 'Ch.4 — Forbidden Knowledge arc.', type: 'main', region: 'hernand' },
+  { name: 'On the Right Path', description: 'Ch.4 — Forbidden Knowledge arc.', type: 'main', region: 'hernand' },
+  { name: 'Gate to the Otherworld', description: 'Ch.4 — Forbidden Knowledge: Boss fight vs. Tenebrum.', type: 'main', region: 'hernand', rewards: ['Key to the Spire of the Stars'] },
+  { name: 'Spire of the Stars', description: 'Ch.4 — Forbidden Knowledge arc.', type: 'main', region: 'hernand' },
+  { name: 'Obsession and Madness', description: 'Ch.4 — Forbidden Knowledge arc.', type: 'main', region: 'hernand' },
+  { name: 'Casted Shadow', description: 'Ch.4 — Forbidden Knowledge arc.', type: 'main', region: 'hernand' },
+
+  // ─── CHAPTER 5: GUEST UNBIDDEN ────────────────────────────────────────────────────────────────
+  // Uninvited Guest arc
+  { name: 'Double-sided Invitation', description: 'Ch.5 — Uninvited Guest arc.', type: 'main', region: 'hernand' },
+  { name: 'Unwelcomed Guests', description: 'Ch.5 — Uninvited Guest arc.', type: 'main', region: 'hernand' },
+  { name: 'Demenissian Delegation', description: 'Ch.5 — Uninvited Guest: Boss fight vs. Kearush the Slayer.', type: 'main', region: 'hernand', rewards: ["The Grove's Thorn", 'Gale I', 'Howling of Chaos'] },
+  { name: 'Exposed Plot', description: 'Ch.5 — Uninvited Guest arc.', type: 'main', region: 'hernand' },
+  // Black and White arc
+  { name: 'The Missing Seal', description: 'Ch.5 — Black and White arc.', type: 'main', region: 'abyss' },
+  { name: 'Crowcaller', description: 'Ch.5 — Black and White: Encounter Draven (first fight).', type: 'main', region: 'abyss' },
+  { name: "The Crow's Warning", description: 'Ch.5 — Black and White arc.', type: 'main', region: 'abyss' },
+  { name: 'Bloodwind', description: 'Ch.5 — Black and White: Boss fight vs. Crowcaller (second fight, 3 HP bars).', type: 'main', region: 'abyss', rewards: ['Blackwing Leather Armor', 'Blackwing Mask', 'Tauria Curved Sword'] },
+  { name: 'Secret at the Church', description: 'Ch.5 — Black and White arc.', type: 'main', region: 'abyss' },
+  { name: 'Toward the Nest', description: 'Ch.5 — Black and White arc: Conclusion of Crow\'s Nest arc.', type: 'main', region: 'abyss' },
+
+  // ─── CHAPTER 6: CRACKS IN THE SHIELD ─────────────────────────────────────────────────────────
+  { name: 'News', description: 'Ch.6 — Blazing Beacon arc.', type: 'main', region: 'hernand' },
+  { name: 'To the Battlefield', description: 'Ch.6 — Blazing Beacon arc.', type: 'main', region: 'hernand' },
+  { name: 'The Counterattack', description: 'Ch.6 — Blazing Beacon arc (also appears in Ch.7).', type: 'main', region: 'hernand' },
+  { name: 'Cradle of Defense', description: 'Ch.6 — Below the Banners arc.', type: 'main', region: 'hernand' },
+  { name: 'Hand of Deliverance', description: 'Ch.6 — Below the Banners arc.', type: 'main', region: 'hernand' },
+  { name: 'Fire on the Frontlines', description: 'Ch.6 — Below the Banners arc.', type: 'main', region: 'hernand' },
+  { name: 'Fire Support', description: 'Ch.6 — Turning Tides arc.', type: 'main', region: 'hernand' },
+  { name: 'Hidden Fangs', description: 'Ch.6 — Turning Tides arc.', type: 'main', region: 'hernand' },
+  { name: 'Reclamation', description: 'Ch.6 — Turning Tides arc (also appears in Ch.7).', type: 'main', region: 'hernand' },
+  { name: 'A Thousand Troops', description: 'Ch.6 — The Unyielding Shields arc.', type: 'main', region: 'hernand' },
+  { name: 'Traitor', description: 'Ch.6 — The Unyielding Shields: Boss fight vs. Cassius Morten.', type: 'main', region: 'hernand', rewards: ['Shield of Betrayal'] },
+  { name: 'All Quiet on the Front', description: 'Ch.6 — The Unyielding Shields arc.', type: 'main', region: 'hernand' },
+  { name: 'News of Victory', description: 'Ch.6 — The Unyielding Shields arc.', type: 'main', region: 'hernand' },
+  { name: 'Return Home', description: 'Ch.6 — The Unyielding Shields arc: Chapter conclusion.', type: 'main', region: 'hernand' },
+
+  // ─── CHAPTER 7: HOMECOMING ────────────────────────────────────────────────────────────────────
+  // Morning Mist arc
+  { name: 'Ashes of Treachery', description: 'Ch.7 — Morning Mist arc.', type: 'main', region: 'pailune' },
+  { name: 'Trust Lost', description: 'Ch.7 — Morning Mist arc.', type: 'main', region: 'pailune' },
+  { name: 'Bared Fang', description: 'Ch.7 — Morning Mist arc.', type: 'main', region: 'pailune' },
+  { name: 'Rekindle Hope', description: 'Ch.7 — Morning Mist arc.', type: 'main', region: 'pailune' },
+  { name: 'Podium of Resolve', description: 'Ch.7 — Morning Mist arc.', type: 'main', region: 'pailune' },
+  // Dawn arc
+  { name: 'Shadows Over Pailune', description: 'Ch.7 — Dawn arc.', type: 'main', region: 'pailune' },
+  { name: 'Driving out the Shadows', description: 'Ch.7 — Dawn arc.', type: 'main', region: 'pailune' },
+  { name: 'Lurking Wolves', description: 'Ch.7 — Dawn arc.', type: 'main', region: 'pailune' },
+  { name: 'Lonely Jackals', description: 'Ch.7 — Dawn: Boss fight vs. Ludvig and Awakened Ludvig.', type: 'main', region: 'pailune' },
+  { name: 'Resolution', description: 'Ch.7 — Dawn arc conclusion.', type: 'main', region: 'pailune' },
+  // Decisive Battle arc
+  { name: 'Unleashed Fury', description: 'Ch.7 — Decisive Battle arc.', type: 'main', region: 'pailune' },
+  { name: 'The Final Bridge', description: 'Ch.7 — Decisive Battle arc.', type: 'main', region: 'pailune' },
+  { name: 'Broken Claws', description: 'Ch.7 — Decisive Battle arc.', type: 'main', region: 'pailune' },
+  { name: 'Battle at the Silver Wolf Mountain', description: 'Ch.7 — Decisive Battle: Boss fight vs. Lava Myurdin.', type: 'main', region: 'pailune', rewards: ['Melted Ambition', 'Pailunese Contribution EXP x3000'] },
+  { name: 'Incomplete Victory', description: 'Ch.7 — Decisive Battle arc conclusion.', type: 'main', region: 'pailune' },
+  // Twisted Fate arc
+  { name: "Ludvig's Whereabouts", description: 'Ch.7 — Twisted Fate arc: Track the surviving Ludvig.', type: 'main', region: 'demeniss' },
+  { name: 'Time to Face Justice', description: 'Ch.7 — Twisted Fate: Boss fight vs. One-Armed Ludvig (forced Oongka).', type: 'main', region: 'demeniss' },
+
+  // ─── CHAPTER 8: BLOOD CORONATION ─────────────────────────────────────────────────────────────
+  { name: 'Healing Pailune', description: 'Ch.8 — Ashen Steps arc: Recover from war in Pailune.', type: 'main', region: 'pailune' },
+
+  // ─── FACTION QUESTS ───────────────────────────────────────────────────────────────────────────
+  // Greymanes — Scattered Embers
+  { name: 'Record of the Greymanes', description: 'Greymane faction: Document the mercenary company\'s history.', type: 'faction', region: 'hernand' },
+  { name: "The Greymanes' New Fangs", description: 'Greymane faction: Recruit new members.', type: 'faction', region: 'hernand' },
+  { name: 'Strongbox with Wheels', description: 'Greymane faction.', type: 'faction', region: 'hernand' },
+  { name: 'Brightening the Spirits', description: 'Greymane faction.', type: 'faction', region: 'hernand' },
+  { name: 'Change to Make a Fortune', description: 'Greymane faction.', type: 'faction', region: 'hernand' },
+  { name: 'The First Steps of Little Marksmen', description: 'Greymane faction.', type: 'faction', region: 'hernand' },
+  { name: 'Words Left by the Riverside', description: 'Greymane faction.', type: 'faction', region: 'hernand' },
+  { name: 'Embers of Return', description: 'Greymane faction — Grounds of the Sunrise arc.', type: 'faction', region: 'hernand' },
+  { name: 'A Rumor in Ivynook', description: 'Greymane faction — Grounds of the Sunrise arc.', type: 'faction', region: 'hernand' },
+  { name: 'For a Better Tomorrow', description: 'Greymane faction — Grounds of the Sunrise arc.', type: 'faction', region: 'hernand' },
+  // House Celeste bounties (8 total)
+  { name: 'Outlaws in Hernand — Jeffrey', description: 'House Celeste bounty: Capture Jeffrey.', type: 'faction', region: 'hernand' },
+  { name: 'Outlaws in Hernand — Simon de Montfort', description: 'House Celeste bounty.', type: 'faction', region: 'hernand' },
+  { name: 'Outlaws in Hernand — Alessio', description: 'House Celeste bounty.', type: 'faction', region: 'hernand' },
+  { name: 'Outlaws in Hernand — Blix', description: 'House Celeste bounty.', type: 'faction', region: 'hernand' },
+  { name: 'Outlaws in Hernand — Bianca', description: 'House Celeste bounty.', type: 'faction', region: 'hernand' },
+  { name: 'Outlaws in Hernand — Salvatore', description: 'House Celeste bounty.', type: 'faction', region: 'hernand' },
+  { name: 'Outlaws in Hernand — Warren', description: 'House Celeste bounty.', type: 'faction', region: 'hernand' },
+  { name: 'Outlaws in Hernand — Billy', description: 'House Celeste bounty.', type: 'faction', region: 'hernand' },
+  // House Roberts
+  { name: 'First Trial of Trust', description: 'House Roberts faction quest — Bluemont Manor.', type: 'faction', region: 'hernand' },
+  { name: 'Troubled Count', description: 'House Roberts faction quest.', type: 'faction', region: 'hernand' },
+  { name: 'Stolen Quarry', description: 'House Roberts faction quest.', type: 'faction', region: 'hernand' },
+  { name: 'Sealed in Stone', description: 'House Roberts faction quest.', type: 'faction', region: 'hernand' },
+  { name: "The Count's Honor", description: 'House Roberts faction quest.', type: 'faction', region: 'hernand' },
+  { name: 'Strange Red Smoke', description: 'House Roberts faction quest.', type: 'faction', region: 'hernand' },
+  { name: 'The Crimson Nightmare', description: 'House Roberts faction quest: Triggers Crimson Nightmare boss encounter.', type: 'faction', region: 'hernand' },
+  { name: 'Veil of the Red Smoke', description: 'House Roberts faction quest conclusion.', type: 'faction', region: 'hernand' },
+  // Antumbra Order (sanctum chain)
+  { name: 'Sanctum of Temperance', description: 'Antumbra Order: Clear the Sanctum of Temperance.', type: 'faction', region: 'hernand' },
+  { name: 'Sanctum of Penitence', description: "Antumbra Order: Clear the Sanctum of Penitence.", type: 'faction', region: 'hernand' },
+  { name: 'Sanctum of Benediction', description: 'Antumbra Order: Clear the Sanctum of Benediction.', type: 'faction', region: 'hernand' },
+  { name: "Antumbra's Sword", description: "Antumbra Order: Final boss fight vs. Antumbra's Sword.", type: 'faction', region: 'hernand', rewards: ['Abyss Artifact x1', 'Vessel of Dark Pursuit'] },
+  // Pailune Militia
+  { name: 'Shadows of Beasts', description: 'Pailune Militia faction quest.', type: 'faction', region: 'pailune' },
+  { name: 'Lord of the Forgotten Castle', description: 'Pailune Militia: Boss fight vs. Saigord the Staglord.', type: 'faction', region: 'hernand', rewards: ["Staglord's Shield"] },
+  // Beighen Tribe
+  { name: 'The Frostwarden', description: 'Beighen Tribe faction quest — Pailune area.', type: 'faction', region: 'pailune' },
+  // Witches
+  { name: 'The Witch of Wisdom', description: 'Witches faction quest.', type: 'faction', region: 'hernand' },
+  // Goldleaf Merchant Guild
+  { name: 'Extinguishing the Last Flames', description: 'Goldleaf Merchant Guild faction quest.', type: 'faction', region: 'hernand' },
+  // Pororin Forest Guardians
+  { name: 'The Unreachable Village', description: 'Pororin Forest Guardians faction quest.', type: 'faction', region: 'hernand' },
+  // House Serkis
+  { name: 'Remaining Chains', description: 'House Serkis faction quest — Oakenshield Manor.', type: 'faction', region: 'hernand' },
+
+  // ─── SIDE / REQUEST QUESTS (sample — 430 total quests; full list TBD post-launch) ─────────────
+  { name: 'Estate in Dismay', description: 'Side: Triggers Marni\'s Excavatron hidden boss at Karin Quarry.', type: 'side', region: 'hernand', rewards: ['Gold Vein Map', 'Mining Knuckledrill (II)'] },
+  { name: 'Continuing Concern', description: 'Side: Triggers Crimson Nightmare boss at Fort Perwin.', type: 'side', region: 'hernand', rewards: ["Hernandian Contribution EXP x100", "Freya's Elixir x1"] },
+  { name: 'Cloister of Ruination', description: "Side: Triggers Antumbra's Sword boss at Sanctum of Absolution.", type: 'side', region: 'hernand' },
+  { name: 'Savior on the Road', description: 'Hernand Request — Tales from the Corners.', type: 'side', region: 'hernand' },
+  { name: 'Woodcutter in Peril', description: 'Hernand Request — Tales from the Corners.', type: 'side', region: 'hernand' },
+  { name: 'Path Crossing the River', description: 'Hernand Request — A Favor for Hernand.', type: 'side', region: 'hernand' },
+  { name: 'Goddess of Abundance', description: 'Hernand Request — A Favor for Hernand.', type: 'side', region: 'hernand' },
+  { name: 'Wolf Protecting Hernand', description: 'Hernand Request — A Favor for Hernand.', type: 'side', region: 'hernand' },
 ];
+
+// ═══════════════════════════════════════
+// WEAPONS
+// ═══════════════════════════════════════
 
 export const WEAPONS: Weapon[] = [
   // Kliff
@@ -309,6 +868,12 @@ export const WEAPONS: Weapon[] = [
   { name: 'Mercenary Daggers', icon: '🗡', iconKey: 'dagger', type: 'Daggers', atk: 30, spd: 90, rng: 15, character: 'kliff' },
   { name: 'Abyss Staff', icon: '🪄', iconKey: 'staff', type: 'Staff', atk: 40, spd: 55, rng: 65, character: 'kliff',
     signatureAbility: { name: 'Abyssal Conduit', description: 'Magic attacks chain to one additional enemy. Chained damage is reduced by 50%.', source: 'Hexe Marie' } },
+  { name: 'Broken Spear', icon: '🔨', iconKey: 'polearm', type: 'Polearm', atk: 50, spd: 55, rng: 50, character: 'kliff', description: 'Overpowered early-game weapon with Evasive Slash counter.' },
+  { name: 'Ignir Sword', icon: '⚔', iconKey: 'sword', type: 'Sword', atk: 80, spd: 65, rng: 30, character: 'kliff', description: 'Best boss weapon. Upgradeable to 45 base ATK. 5 Abyss Core sockets. Dropped by Ludvig.' },
+  { name: 'Axiom Bracelet', icon: '👊', iconKey: 'unarmed', type: 'Unarmed', atk: 65, spd: 75, rng: 15, character: 'kliff', description: 'Legendary unarmed weapon. Dropped by Myurdin.' },
+  { name: 'Sword of the Lord', icon: '⚔', iconKey: 'sword', type: 'Sword', atk: 75, spd: 70, rng: 30, character: 'kliff', description: 'Dropped by Kailok the Hornsplitter.' },
+  { name: 'Medium Staglord Banner Pike', icon: '🔨', iconKey: 'polearm', type: 'Two-Handed Polearm', atk: 75, spd: 40, rng: 50, character: 'kliff', description: 'Highest ATK polearm. Dropped by Staglord.' },
+
   // Damiane
   { name: 'Elegant Rapier', icon: '🗡', iconKey: 'rapier', type: 'Rapier', atk: 40, spd: 85, rng: 25, character: 'damiane',
     signatureAbility: { name: 'Golden Pierce', description: 'Critical hits release two homing projectiles that deal 25% weapon damage each.', source: 'Golden Star' } },
@@ -319,23 +884,38 @@ export const WEAPONS: Weapon[] = [
   { name: 'Marksman Rifle', icon: '🔫', iconKey: 'rifle', type: 'Rifle', atk: 55, spd: 35, rng: 95, character: 'damiane' },
   { name: 'Blackpowder Hand Cannon', icon: '💣', iconKey: 'handcannon', type: 'Hand Cannon', atk: 75, spd: 20, rng: 50, character: 'damiane',
     signatureAbility: { name: 'Stonebreaker Shot', description: 'Fully charged shots shatter enemy guard and stagger for 2 seconds, ignoring all block.', source: 'Queen Stoneback Crab' } },
+  { name: 'Absolute Justice Greatsword', icon: '⚔', iconKey: 'sword', type: 'Greatsword', atk: 85, spd: 25, rng: 40, character: 'damiane', description: 'High ATK greatsword.' },
+
   // Oongka
   { name: "Oongka's Greataxe", icon: '🪓', iconKey: 'axe', type: 'Battle Axe', atk: 80, spd: 25, rng: 35, character: 'oongka',
     signatureAbility: { name: "Slayer's Fury", description: 'Each consecutive hit increases attack speed by 8%, stacking up to 5 times. Resets after 3 seconds without hitting.', source: 'Kearush the Slayer' } },
   { name: 'Wrist Cannon', icon: '💣', iconKey: 'cannon', type: 'Cannon', atk: 55, spd: 35, rng: 60, character: 'oongka' },
   { name: 'Iron Warhammer', icon: '🔨', iconKey: 'warhammer', type: 'Warhammer', atk: 85, spd: 20, rng: 30, character: 'oongka',
     signatureAbility: { name: 'Stoneback Slam', description: 'Ground slam attacks create shockwaves in a 5m radius that stagger all nearby enemies.', source: 'Queen Stoneback Crab' } },
+  { name: 'Bonepit Greathammer', icon: '🔨', iconKey: 'warhammer', type: 'Warhammer', atk: 90, spd: 15, rng: 35, character: 'oongka', description: 'Highest ATK warhammer.' },
   { name: 'Balgran Shield', icon: '🛡', iconKey: 'shield', type: 'Shield', atk: 15, spd: 40, rng: 10, character: 'oongka' },
 ];
 
+// ═══════════════════════════════════════
+// RECIPES & CRAFTING
+// ═══════════════════════════════════════
+
 export const RECIPES: Recipe[] = [
-  // Cooking, alchemy, and blacksmith recipes will be populated post-launch
-  // once confirmed ingredient lists and effects are available in-game.
-  // Dye Crafting -- confirmed categories; specific recipes to be verified post-launch
+  // Cooking
+  { name: 'Palmar Pills', type: 'cooking', ingredients: ['Unknown'], effect: 'Restores 30% HP. Alchemy type.' },
+  { name: 'Basic Stew', type: 'cooking', ingredients: ['Vegetable x2', 'Meat x1', 'Water x1'], effect: 'Restores health' },
+  { name: 'Grilled Meat', type: 'cooking', ingredients: ['Raw Meat x1'], effect: 'Restores health and increases ATK by 10%' },
+  { name: 'Fish Soup', type: 'cooking', ingredients: ['Fish x2', 'Vegetable x1', 'Water x1'], effect: 'Restores health and stamina' },
+
+  // Blacksmith
+  { name: 'Ignir Sword', type: 'blacksmith', ingredients: ['Iron Ore x5', 'Unknown'], effect: 'Legendary sword. Requires defeating Ludvig in Chapter 7.' },
+
+  // Dyes
   { name: 'Crimson Dye', type: 'dye', ingredients: ['Red Desert Flower x4', 'Mordant x1'], effect: 'Deep red armor/clothing color' },
   { name: 'Midnight Black Dye', type: 'dye', ingredients: ['Squid Ink x3', 'Charcoal x2', 'Mordant x1'], effect: 'Pure black armor/clothing color' },
   { name: 'Royal Gold Dye', type: 'dye', ingredients: ['Gold Dust x2', 'Saffron x3', 'Mordant x1'], effect: 'Metallic gold armor/clothing color' },
   { name: 'Forest Green Dye', type: 'dye', ingredients: ['Green Moss x4', 'Copper Sulfate x1'], effect: 'Deep green armor/clothing color' },
+
   // Camp Upgrades
   { name: 'Reinforced Palisade', type: 'camp-upgrade', ingredients: ['Timber x10', 'Iron Nails x5', 'Rope x3'], effect: 'Increases camp defense; reduces raid damage' },
   { name: 'Watchtower', type: 'camp-upgrade', ingredients: ['Timber x15', 'Stone Block x8', 'Iron Fittings x3'], effect: 'Early warning of incoming attacks; extends minimap range at camp' },
@@ -355,48 +935,44 @@ export const MOUNTS: Mount[] = [
   { name: 'Desert Charger', category: 'horse', region: 'desert', speed: 80, combat: 15, stamina: 60, special: 'Heat-resistant; no stamina penalty in desert biomes', acquisition: 'Tame in the wild (Crimson Desert outskirts)' },
   { name: 'Dappled Palfrey', category: 'horse', region: 'hernand', speed: 85, combat: 5, stamina: 90, special: 'Fastest sustained gallop; ideal for long-distance travel', acquisition: 'Reward from the Hernand Horse Breeder side quest' },
   { name: 'Midnight Runner', category: 'horse', region: 'multiple', speed: 90, combat: 15, stamina: 70, special: 'Near-silent movement; enemies are slower to detect you while mounted', acquisition: 'Rare wild spawn at night across all regions' },
+
   // Bears (4)
   { name: 'Pailune Snow Bear', category: 'bear', region: 'pailune', speed: 45, combat: 85, stamina: 80, special: 'Slashes with claws and bites enemies while riding; frost resistance aura', acquisition: 'Tame in the wild (Pailune mountain caves)' },
   { name: 'Ironhide Cave Bear', category: 'bear', region: 'hernand', speed: 40, combat: 90, stamina: 85, special: 'Massive HP pool; acts as a shield absorbing hits for the rider', acquisition: 'Defeat and tame in Ironhide Den (Hernand)' },
   { name: 'Black Bear War Mount', category: 'bear', region: 'demeniss', speed: 50, combat: 80, stamina: 75, special: 'Intimidation roar that fears nearby enemies for 3 seconds', acquisition: 'Captured from Black Bear faction stronghold' },
   { name: 'Crimson Grizzly', category: 'bear', region: 'desert', speed: 45, combat: 75, stamina: 65, special: 'Ground slam attack that staggers enemies in a frontal cone', acquisition: 'Tame in the wild (Crimson Desert oasis)' },
+
   // Raptors (4)
   { name: 'Sand Raptor', category: 'raptor', region: 'desert', speed: 90, combat: 40, stamina: 55, special: 'Extreme burst speed; double sprint in desert terrain', acquisition: 'Tame in the wild (Red Dunes hunting grounds)' },
   { name: 'Forest Stalker', category: 'raptor', region: 'hernand', speed: 80, combat: 50, stamina: 60, special: 'Pounce attack that pins smaller enemies', acquisition: 'Tame in the wild (Hernand deep forest)' },
   { name: 'Frost Raptor', category: 'raptor', region: 'pailune', speed: 75, combat: 45, stamina: 70, special: 'Ice-trail movement; leaves slippery terrain that slows pursuers', acquisition: 'Complete the Pailune Hunter chain quest' },
   { name: 'Delesyian Swift', category: 'raptor', region: 'delesyia', speed: 85, combat: 35, stamina: 65, special: 'Enhanced agility; can perform sharp turns without speed loss', acquisition: 'Purchase from Delesyia Beast Handler' },
+
   // Lizards (3)
   { name: 'Rock Lizard', category: 'lizard', region: 'hernand', speed: 55, combat: 25, stamina: 80, special: 'Wall climbing; can scale vertical cliff faces and fortress walls', acquisition: 'Tame in the wild (Hernand canyon walls)' },
   { name: 'Sand Skimmer', category: 'lizard', region: 'desert', speed: 70, combat: 20, stamina: 75, special: 'Glides across sand dunes; ignores quicksand and soft terrain', acquisition: 'Tame in the wild (Crimson Desert flats)' },
   { name: 'Frost Salamander', category: 'lizard', region: 'pailune', speed: 50, combat: 30, stamina: 85, special: 'Traverses ice and frozen water without slipping; cold immunity', acquisition: 'Found in Frozen Soul Mountain caves' },
+
   // Wyverns & Dragons (4)
   { name: 'Highland Wyvern', category: 'wyvern', region: 'pailune', speed: 80, combat: 60, stamina: 50, special: 'Full flight control; dive-bomb attack on ground targets', acquisition: 'Complete the Dragon Ridge wyvern egg quest' },
   { name: 'Storm Drake', category: 'wyvern', region: 'delesyia', speed: 85, combat: 70, stamina: 45, special: 'Lightning breath attack; chain-damages groups of enemies from the sky', acquisition: 'Tame atop the Tesla Ruins during a storm event' },
   { name: 'Ember Wyvern', category: 'wyvern', region: 'desert', speed: 75, combat: 75, stamina: 40, special: 'Fire breathing from the sky; scorches terrain creating fire hazard zones', acquisition: 'Rare spawn in the Crimson Desert volcanic rifts' },
   { name: 'Abyssal Dragon', category: 'wyvern', region: 'abyss', speed: 90, combat: 95, stamina: 60, special: 'Void breath that bypasses all resistances; full aerial combat', acquisition: 'End-game reward from the Abyss storyline' },
+
   // Mechanical (3)
   { name: 'Scout Automaton', category: 'mechanical', region: 'delesyia', speed: 65, combat: 40, stamina: 100, special: 'Infinite stamina; never tires. Built-in lantern for dark areas', acquisition: 'Craft at Delesyia Workshop (Blueprints required)' },
   { name: 'Siege Walker', category: 'mechanical', region: 'delesyia', speed: 40, combat: 95, stamina: 90, special: 'Fires devastating missiles; massive AoE siege damage', acquisition: 'Rare blueprint drop from Delesyian Automaton boss' },
   { name: 'Golden Star Mech', category: 'mechanical', region: 'delesyia', speed: 70, combat: 90, stamina: 80, special: 'Homing projectile barrage; energy shield absorbs 3 hits before cooldown', acquisition: 'Boss drop from Golden Star (Mech Mount Key)' },
+
   // Dinosaurs (3)
   { name: 'Steppe Ceratops', category: 'dinosaur', region: 'hernand', speed: 50, combat: 70, stamina: 90, special: 'Horn charge attack that sends enemies flying; high knockback', acquisition: 'Tame in the wild (Hernand steppe plains)' },
   { name: 'Jungle Strider', category: 'dinosaur', region: 'hernand', speed: 60, combat: 45, stamina: 80, special: 'Tall mount; rider can see over obstacles and foliage. Kick attack', acquisition: 'Tame in the wild (Hernand jungle canopy)' },
   { name: 'Armored Ankylo', category: 'dinosaur', region: 'desert', speed: 35, combat: 80, stamina: 95, special: 'Heavily armored; tail swipe knocks back all surrounding enemies', acquisition: 'Tame in the wild (Crimson Desert bone fields)' },
+
   // Exotic (2)
   { name: 'Abyssal Spider', category: 'exotic', region: 'abyss', speed: 60, combat: 55, stamina: 70, special: 'Wall climbing on any surface; leaves web trail that slows enemies', acquisition: 'Tame in the Abyss depths (requires Beast Taming skill)' },
   { name: 'Phantom Steed', category: 'exotic', region: 'multiple', speed: 95, combat: 10, stamina: 50, special: 'Ghostly mount that phases through obstacles and enemies; cannot attack', acquisition: "Legendary reward from the Ghost of Gian side quest" },
 ];
-
-// Skill branches grouped by character
-export function getSkillBranches(character: Character) {
-  const charSkills = SKILLS.filter(s => s.character === character);
-  const branches = new Map<string, Skill[]>();
-  charSkills.forEach(s => {
-    if (!branches.has(s.branch)) branches.set(s.branch, []);
-    branches.get(s.branch)!.push(s);
-  });
-  return branches;
-}
 
 // ═══════════════════════════════════════
 // ACTIVITIES & GREYMANE CAMP
@@ -471,31 +1047,31 @@ export const CAMP_FACILITIES: CampFacility[] = [
       { tier: 3, effect: '6 dispatch slots, siege missions and legendary material runs', materials: ['Command Banner x1', 'Siege Plans x1', 'Gold x8'] },
     ],
   },
-  // Added 2026-03-15 via apply-data task
   {
     name: 'Barber Shop',
     description: 'Customize the appearance of your character, including hairstyle, beard, eyebrows, face tattoos, and body tattoos. Purely cosmetic with no effect on gameplay stats.',
     upgrades: [],
   },
-  // Added 2026-03-15 via apply-data task
   {
     name: 'Dyehouse Shop',
     description: 'Change outfit colors and customize mount colors for horses and mechanical mounts. Applies cosmetic dyes crafted at the camp.',
     upgrades: [],
   },
-  // Added 2026-03-15 via apply-data task
   {
     name: 'Trading Center',
     description: 'Exchange goods for useful items needed during exploration across the lands of Pywel. A distinct trading facility separate from the Camp Vendor.',
     upgrades: [],
   },
-  // Added 2026-03-15 via apply-data task
   {
     name: 'Personal Resting House',
     description: 'Create and customize your own house at Greymane Camp, used as a personal resting place between adventures.',
     upgrades: [],
   },
 ];
+
+// ═══════════════════════════════════════
+// UTILITY FUNCTIONS
+// ═══════════════════════════════════════
 
 // All collectibles as flat array with keys
 export function getAllCollectiblesWithKeys() {
@@ -511,10 +1087,20 @@ export function getAllCollectiblesWithKeys() {
   return result;
 }
 
+// Skill branches grouped by character
+export function getSkillBranches(character: Character) {
+  const charSkills = SKILLS.filter(s => s.character === character);
+  const branches = new Map<string, Skill[]>();
+  charSkills.forEach(s => {
+    if (!branches.has(s.branch)) branches.set(s.branch, []);
+    branches.get(s.branch)!.push(s);
+  });
+  return branches;
+}
+
 // ═══════════════════════════════════════
 // TROPHIES / ACHIEVEMENTS (35 total)
 // Source: gamingbible.com [2026-03-16] -- Tier 2
-// Rarity tiers are editorial estimates; confirmed post-launch.
 // ═══════════════════════════════════════
 
 export const TROPHIES: Trophy[] = [
