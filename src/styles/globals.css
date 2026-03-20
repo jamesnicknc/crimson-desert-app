@@ -45,3 +45,74 @@ a {
 button {
   @apply transition-all duration-200;
 }
+
+/* ── Leaflet dark-theme overrides ──────────────────────────────────────── */
+.leaflet-container {
+  font-family: Inter, system-ui, sans-serif;
+  background: #06060A;
+}
+
+/* Strip default popup chrome so our custom div styles show */
+.leaflet-popup-content-wrapper {
+  background: transparent !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7) !important;
+  border-radius: 8px !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+}
+
+.leaflet-popup-tip-container {
+  display: none;
+}
+
+.leaflet-popup-close-button {
+  color: #9ca3af !important;
+  top: 8px !important;
+  right: 10px !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+  z-index: 10;
+}
+
+.leaflet-popup-close-button:hover {
+  color: #d4a847 !important;
+  background: transparent !important;
+}
+
+/* Dark zoom controls */
+.leaflet-bar {
+  border: 1px solid #2A2630 !important;
+  border-radius: 6px !important;
+  overflow: hidden;
+}
+
+.leaflet-control-zoom a {
+  background-color: #19191E !important;
+  border-color: #2A2630 !important;
+  color: #d4a847 !important;
+  width: 28px !important;
+  height: 28px !important;
+  line-height: 28px !important;
+  font-size: 16px !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background-color: #22222A !important;
+  color: #f0c860 !important;
+}
+
+.leaflet-control-zoom-in {
+  border-bottom: 1px solid #2A2630 !important;
+}
+
+/* Marker focus outline */
+.leaflet-marker-icon:focus {
+  outline: none;
+}
+
