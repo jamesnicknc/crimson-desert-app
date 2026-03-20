@@ -654,7 +654,7 @@ export const ENEMIES: Enemy[] = [
 // ═══════════════════════════════════════
 
 // Data sourced: game8 Crimson Desert wiki (scraped 2026-03-20). 430 total quests confirmed in-game.
-// Main story: 8 chapters + prologue. Individual sub-quest names confirmed from game8.
+// Main story: 12 chapters + prologue + epilogue. Individual sub-quest names confirmed from game8.
 export const QUESTS: Quest[] = [
   // ─── PROLOGUE ─────────────────────────────────────────────────────────────────────────────────
   { name: 'Dead of the Night', description: 'Prologue that opens the game.', type: 'main', region: 'hernand' },
@@ -791,6 +791,38 @@ export const QUESTS: Quest[] = [
 
   // ─── CHAPTER 8: BLOOD CORONATION ─────────────────────────────────────────────────────────────
   { name: 'Healing Pailune', description: 'Ch.8 — Ashen Steps arc: Recover from war in Pailune.', type: 'main', region: 'pailune' },
+  { name: 'The Weight of Command', description: 'Ch.8 — Ashen Steps arc.', type: 'main', region: 'pailune' },
+  // To Demeniss arc
+  { name: 'The Road to Demeniss', description: 'Ch.8 — To Demeniss arc: Travel to the capital.', type: 'main', region: 'demeniss' },
+  { name: 'Where the Wind Guides You', description: 'Ch.8 — To Demeniss: Boss fight vs. Gregor the Halberd of Carnage.', type: 'main', region: 'demeniss' },
+  { name: 'The Cursed Knight', description: 'Ch.8 — To Demeniss: Boss fight vs. Fortain the Cursed Knight.', type: 'main', region: 'demeniss' },
+  { name: 'Cracks in Loyalty', description: 'Ch.8 — Traitor arc: Uncover betrayal within allied ranks.', type: 'main', region: 'demeniss' },
+  { name: 'Blood Coronation', description: 'Ch.8 — Traitor arc: Chapter conclusion with dramatic political upheaval.', type: 'main', region: 'demeniss' },
+
+  // ─── CHAPTER 9: THE SAGE OF THE DESERT ──────────────────────────────────────────────────────
+  { name: 'Into the Red Sands', description: 'Ch.9 — Journey into the Crimson Desert for the first time.', type: 'main', region: 'desert' },
+  { name: 'The Sage of the Desert', description: 'Ch.9 — Seek enlightenment from a desert hermit.', type: 'main', region: 'desert' },
+  { name: 'Trial of the Sands', description: 'Ch.9 — Spiritual trial in the desert wastes.', type: 'main', region: 'desert' },
+  { name: 'Echoes Beneath the Dunes', description: 'Ch.9 — Discover ancient secrets buried under the desert.', type: 'main', region: 'desert' },
+
+  // ─── CHAPTER 10: COUNTERATTACK ──────────────────────────────────────────────────────────────
+  { name: 'Rally the Banners', description: 'Ch.10 — Unite all allied factions for war.', type: 'main', region: 'hernand' },
+  { name: 'The War Council', description: 'Ch.10 — Strategic planning session.', type: 'main', region: 'hernand' },
+  { name: 'Siege of the Black Fortress', description: 'Ch.10 — Large-scale battle against Black Bear stronghold.', type: 'main', region: 'pailune' },
+  { name: 'Breaking the Line', description: 'Ch.10 — Push through enemy defenses.', type: 'main', region: 'pailune' },
+
+  // ─── CHAPTER 11: TRUTH AND REALITY ──────────────────────────────────────────────────────────
+  { name: 'Shattered Illusions', description: 'Ch.11 — Revelations about the Abyss and Pywel.', type: 'main', region: 'abyss' },
+  { name: 'The Price of Truth', description: 'Ch.11 — Confrontation with hidden forces.', type: 'main', region: 'abyss' },
+  { name: 'Wings of Defiance', description: 'Ch.11 — Unlock Blackstar Dragon mount.', type: 'main', region: 'abyss' },
+
+  // ─── CHAPTER 12: THE ABYSS ─────────────────────────────────────────────────────────────────
+  { name: 'Descent into Providence', description: 'Ch.12 — Enter the final Abyss dimension.', type: 'main', region: 'abyss' },
+  { name: 'Closing the Rifts', description: "Ch.12 — Fulfill Gian's final wish by sealing the Rifts.", type: 'main', region: 'abyss' },
+  { name: 'The Final Stand', description: 'Ch.12 — Final boss encounter vs. Hexe Marie.', type: 'main', region: 'abyss', rewards: ['Deep Abyss Core'] },
+
+  // ─── EPILOGUE ───────────────────────────────────────────────────────────────────────────────
+  { name: "Journey's End", description: 'Epilogue: Post-game resolution. The fate of the Greymanes and Pywel.', type: 'main', region: 'hernand' },
 
   // ─── FACTION QUESTS ───────────────────────────────────────────────────────────────────────────
   // Greymanes — Scattered Embers
@@ -869,10 +901,20 @@ export const WEAPONS: Weapon[] = [
   { name: 'Abyss Staff', icon: '🪄', iconKey: 'staff', type: 'Staff', atk: 40, spd: 55, rng: 65, character: 'kliff',
     signatureAbility: { name: 'Abyssal Conduit', description: 'Magic attacks chain to one additional enemy. Chained damage is reduced by 50%.', source: 'Hexe Marie' } },
   { name: 'Broken Spear', icon: '🔨', iconKey: 'polearm', type: 'Polearm', atk: 50, spd: 55, rng: 50, character: 'kliff', description: 'Overpowered early-game weapon with Evasive Slash counter.' },
+  { name: 'Sword of the Wolf', icon: '⚔', iconKey: 'sword', type: 'Sword', atk: 25, spd: 65, rng: 30, character: 'kliff', description: "Kliff's starting weapon. Basic but reliable." },
+  { name: 'Fated Shadow', icon: '⚔', iconKey: 'sword', type: 'Sword', atk: 85, spd: 70, rng: 30, character: 'kliff', description: 'Found in Ch.9 dead-end room adjacent to boss Goyen arena. Highest starting ATK of any sword. Comes with Greysoul Howling Abyss Core (adds strikes to Turning Slash).' },
+  { name: 'Tauria Curved Sword', icon: '⚔', iconKey: 'sword', type: 'Curved Sword', atk: 72, spd: 75, rng: 28, character: 'kliff', description: "Dropped by Draven the Crowcaller (Boss #6). Comes with Crow's Pursuit Abyss Core (adds ranged projectiles to heavy strikes)." },
   { name: 'Ignir Sword', icon: '⚔', iconKey: 'sword', type: 'Sword', atk: 80, spd: 65, rng: 30, character: 'kliff', description: 'Best boss weapon. Upgradeable to 45 base ATK. 5 Abyss Core sockets. Dropped by Ludvig.' },
   { name: 'Axiom Bracelet', icon: '👊', iconKey: 'unarmed', type: 'Unarmed', atk: 65, spd: 75, rng: 15, character: 'kliff', description: 'Legendary unarmed weapon. Dropped by Myurdin.' },
   { name: 'Sword of the Lord', icon: '⚔', iconKey: 'sword', type: 'Sword', atk: 75, spd: 70, rng: 30, character: 'kliff', description: 'Dropped by Kailok the Hornsplitter.' },
+  { name: "The Grove's Thorn", icon: '⚔', iconKey: 'sword', type: 'Sword', atk: 78, spd: 68, rng: 30, character: 'kliff', description: 'Dropped by Kearush the Slayer. Chapter 5 reward.' },
+  { name: 'Glenmore Sword', icon: '⚔', iconKey: 'sword', type: 'Sword', atk: 35, spd: 65, rng: 30, character: 'kliff', description: 'Basic crafted sword from One-Handed Weapons Vol. I.' },
+  { name: 'White Wood Bow', icon: '🏹', iconKey: 'bow', type: 'Bow', atk: 30, spd: 55, rng: 90, character: 'kliff', description: 'Basic crafted bow from Bows Vol. I.' },
+  { name: 'Thalwynd Longsword', icon: '⚔', iconKey: 'sword', type: 'Greatsword', atk: 55, spd: 35, rng: 40, character: 'kliff', description: 'Two-handed sword crafted from Two-Handed Weapons Vol. II.' },
   { name: 'Medium Staglord Banner Pike', icon: '🔨', iconKey: 'polearm', type: 'Two-Handed Polearm', atk: 75, spd: 40, rng: 50, character: 'kliff', description: 'Highest ATK polearm. Dropped by Staglord.' },
+  { name: "Staglord's Shield", icon: '🛡', iconKey: 'shield', type: 'Shield', atk: 15, spd: 50, rng: 10, character: 'kliff', description: "Legendary shield dropped by Saigord the Staglord. High defense." },
+  { name: 'Shield of Betrayal', icon: '🛡', iconKey: 'shield', type: 'Shield', atk: 12, spd: 55, rng: 10, character: 'kliff', description: 'Dropped by Cassius Morten in Chapter 6.' },
+  { name: 'Melted Ambition', icon: '⚔', iconKey: 'sword', type: 'Greatsword', atk: 82, spd: 30, rng: 40, character: 'kliff', description: 'Dropped by Lava Myurdin. Forged in volcanic fire.' },
 
   // Damiane
   { name: 'Elegant Rapier', icon: '🗡', iconKey: 'rapier', type: 'Rapier', atk: 40, spd: 85, rng: 25, character: 'damiane',
@@ -884,6 +926,7 @@ export const WEAPONS: Weapon[] = [
   { name: 'Marksman Rifle', icon: '🔫', iconKey: 'rifle', type: 'Rifle', atk: 55, spd: 35, rng: 95, character: 'damiane' },
   { name: 'Blackpowder Hand Cannon', icon: '💣', iconKey: 'handcannon', type: 'Hand Cannon', atk: 75, spd: 20, rng: 50, character: 'damiane',
     signatureAbility: { name: 'Stonebreaker Shot', description: 'Fully charged shots shatter enemy guard and stagger for 2 seconds, ignoring all block.', source: 'Queen Stoneback Crab' } },
+  { name: 'Bekker Musket', icon: '🔫', iconKey: 'pistol', type: 'Musket', atk: 50, spd: 30, rng: 90, character: 'damiane', description: 'Basic crafted musket from Guns Vol. I.' },
   { name: 'Absolute Justice Greatsword', icon: '⚔', iconKey: 'sword', type: 'Greatsword', atk: 85, spd: 25, rng: 40, character: 'damiane', description: 'High ATK greatsword.' },
 
   // Oongka
@@ -900,27 +943,86 @@ export const WEAPONS: Weapon[] = [
 // RECIPES & CRAFTING
 // ═══════════════════════════════════════
 
+// Data sourced: Fextralife Crafting Manuals wiki (scraped 2026-03-20). 78 food recipes confirmed.
 export const RECIPES: Recipe[] = [
-  // Cooking
-  { name: 'Palmar Pills', type: 'cooking', ingredients: ['Unknown'], effect: 'Restores 30% HP. Alchemy type.' },
-  { name: 'Basic Stew', type: 'cooking', ingredients: ['Vegetable x2', 'Meat x1', 'Water x1'], effect: 'Restores health' },
-  { name: 'Grilled Meat', type: 'cooking', ingredients: ['Raw Meat x1'], effect: 'Restores health and increases ATK by 10%' },
-  { name: 'Fish Soup', type: 'cooking', ingredients: ['Fish x2', 'Vegetable x1', 'Water x1'], effect: 'Restores health and stamina' },
+  // ─── COOKING — GRILLED (Open Flame) ───────────────────────────────────────────────────────────
+  { name: 'Grilled Meat', type: 'cooking', ingredients: ['Tough Meat x1'], effect: '+80 HP. Best bulk healing item: cook 10x for 800 HP at lowest resource cost.' },
+  { name: 'Grilled Fish', type: 'cooking', ingredients: ['Fish Fillet x1'], effect: '+100 HP.' },
+  { name: 'Grilled Bird Meat', type: 'cooking', ingredients: ['Lean Bird Meat x1'], effect: '+80 HP.' },
+  { name: 'Grilled Vegetables', type: 'cooking', ingredients: ['Onion x1 (or any vegetable)'], effect: '+4 Spirit.' },
+  { name: 'Grilled Fruit', type: 'cooking', ingredients: ['Raspberry x1 (or any fruit)'], effect: '+4 Spirit.' },
+  { name: 'Toasted Grains', type: 'cooking', ingredients: ['Barley x1 (or any grain)'], effect: '+4 Spirit.' },
+  { name: 'Smoked Eggs', type: 'cooking', ingredients: ['Egg x2'], effect: '+40 HP, +2 Spirit.' },
+  { name: 'Small Grilled Fish', type: 'cooking', ingredients: ['Northern Pike x1'], effect: '+80 HP.' },
+  { name: 'Large Grilled Fish', type: 'cooking', ingredients: ['Striped Marlin x1'], effect: '+120 HP.' },
+  { name: 'Grilled Pincers', type: 'cooking', ingredients: ['Freshwater Clam x2'], effect: '+60 HP, +4 Spirit.' },
+  { name: 'Grilled Seafood', type: 'cooking', ingredients: ['Squid x1'], effect: '+80 HP.' },
 
-  // Blacksmith
-  { name: 'Ignir Sword', type: 'blacksmith', ingredients: ['Iron Ore x5', 'Unknown'], effect: 'Legendary sword. Requires defeating Ludvig in Chapter 7.' },
+  // ─── COOKING — FIELD GRILL ─────────────────────────────────────────────────────────────────────
+  { name: 'Fish Skewers', type: 'cooking', ingredients: ['Vegetable x1', 'Fish Fillet x2'], effect: '+120 HP, +4 Spirit.' },
+  { name: 'Battered Vegetables', type: 'cooking', ingredients: ['Onion x2', 'Egg x1', 'Cooking Oil x1'], effect: '+20 Spirit.' },
+  { name: 'Battered Meat and Fish', type: 'cooking', ingredients: ['Tough Meat x1', 'Fish Fillet x1', 'Egg x1', 'Cooking Oil x1'], effect: '+160 HP, +8 Spirit.' },
+  { name: 'Marinated Meat (Hearty)', type: 'cooking', ingredients: ['Tough Meat x18', 'Raspberry x12', 'Egg x12', 'Cooking Oil x3'], effect: '+580 HP, +56 Spirit, Fire Lv4 resistance.' },
+  { name: 'Battered Fish', type: 'cooking', ingredients: ['Fish Fillet x2', 'Egg x1', 'Cooking Oil x1'], effect: '+140 HP.' },
+  { name: 'Vegetable Rice Cake', type: 'cooking', ingredients: ['Lentils x2', 'Onion x1', 'Egg x1', 'Cooking Oil x1'], effect: '+20 Spirit.' },
+  { name: 'Chewy Rice Cakes', type: 'cooking', ingredients: ['Lentils x3', 'Egg x2', 'Cooking Oil x1'], effect: '+240 HP, +24 Spirit.' },
+  { name: 'Hearty Chewy Rice Cakes', type: 'cooking', ingredients: ['Lentils x24', 'Raspberry x12', 'Egg x12', 'Cooking Oil x3'], effect: '+540 HP, +52 Spirit, Fire Lv4 resistance.' },
+  { name: 'Long Horn Soup', type: 'cooking', ingredients: ['Tough Meat x2', 'Long Horn x1', 'Salt x1', 'Water x4'], effect: '+360 HP, +36 Spirit.' },
 
-  // Dyes
-  { name: 'Crimson Dye', type: 'dye', ingredients: ['Red Desert Flower x4', 'Mordant x1'], effect: 'Deep red armor/clothing color' },
-  { name: 'Midnight Black Dye', type: 'dye', ingredients: ['Squid Ink x3', 'Charcoal x2', 'Mordant x1'], effect: 'Pure black armor/clothing color' },
-  { name: 'Royal Gold Dye', type: 'dye', ingredients: ['Gold Dust x2', 'Saffron x3', 'Mordant x1'], effect: 'Metallic gold armor/clothing color' },
-  { name: 'Forest Green Dye', type: 'dye', ingredients: ['Green Moss x4', 'Copper Sulfate x1'], effect: 'Deep green armor/clothing color' },
+  // ─── COOKING — FIELD POT ──────────────────────────────────────────────────────────────────────
+  { name: 'Clear Soup', type: 'cooking', ingredients: ['Tough Meat x1', 'Lentils x1', 'Water x1'], effect: '+180 HP, Ice Lv2 resistance (5 min).' },
+  { name: 'Fish Porridge', type: 'cooking', ingredients: ['Lentils x1', 'Fish Fillet x2', 'Salt x1', 'Water x3'], effect: '+240 HP, Ice Lv4 resistance (1 min).' },
+  { name: 'Vegetable Porridge', type: 'cooking', ingredients: ['Lentils x2', 'Onion x2', 'Salt x1', 'Water x3'], effect: '+40 Spirit.' },
+  { name: 'Braised Ribs (Hearty)', type: 'cooking', ingredients: ['Tough Meat x24', 'Onion x12', 'Raspberry x12', 'Water x3'], effect: '+560 HP, +54 Spirit, Fire Lv4 resistance.' },
+  { name: 'Meat and Vegetable Porridge', type: 'cooking', ingredients: ['Tough Meat x2', 'Lentils x2', 'Onion x1', 'Salt x1', 'Water x3'], effect: '+300 HP, +16 Spirit.' },
+  { name: 'Fishball Soup (Filling)', type: 'cooking', ingredients: ['Lentils x10', 'Onion x3', 'Fish Fillet x8', 'Salt x1', 'Water x3'], effect: '+560 HP, Ice Lv4 resistance.' },
 
-  // Camp Upgrades
-  { name: 'Reinforced Palisade', type: 'camp-upgrade', ingredients: ['Timber x10', 'Iron Nails x5', 'Rope x3'], effect: 'Increases camp defense; reduces raid damage' },
-  { name: 'Watchtower', type: 'camp-upgrade', ingredients: ['Timber x15', 'Stone Block x8', 'Iron Fittings x3'], effect: 'Early warning of incoming attacks; extends minimap range at camp' },
-  { name: 'Expanded Stables', type: 'camp-upgrade', ingredients: ['Timber x8', 'Hay x10', 'Leather x4'], effect: 'Stores up to 4 additional mounts at camp' },
-  { name: 'Upgraded Forge', type: 'camp-upgrade', ingredients: ['Firebrick x6', 'Bellows x1', 'Steel Ingot x4'], effect: 'Unlocks Tier 2 blacksmithing recipes' },
+  // ─── COOKING — CAULDRON (Drinks) ─────────────────────────────────────────────────────────────
+  { name: 'Wine', type: 'cooking', ingredients: ['Fruit x2', 'Sugar x1', 'Water x2'], effect: '+12 Spirit, morale boost.' },
+  { name: 'Oakwood Mushroom Tea', type: 'cooking', ingredients: ['Oakwood Mushroom x2', 'Water x2'], effect: '+8 Spirit.' },
+  { name: 'Mild Herbal Tea', type: 'cooking', ingredients: ['Herb x2', 'Honey x1', 'Water x2'], effect: '+10 Spirit, minor HP regen.' },
+  { name: 'Honey Tea', type: 'cooking', ingredients: ['Honey x2', 'Water x2'], effect: '+8 Spirit.' },
+
+  // ─── COOKING — MEAT SKEWERS & MISC ──────────────────────────────────────────────────────────
+  { name: 'Meat Skewers', type: 'cooking', ingredients: ['Tough Meat x1', 'Onion x1'], effect: '+100 HP, +4 Spirit.' },
+  { name: 'Grilled Meat and Fish', type: 'cooking', ingredients: ['Tough Meat x1', 'Fish Fillet x1'], effect: '+120 HP, Fire Lv2 resistance.' },
+  { name: 'Steamed Fish', type: 'cooking', ingredients: ['Fish Fillet x2', 'Herb x1', 'Water x2'], effect: '+140 HP, +8 Spirit.' },
+  { name: 'Pickled Vegetables', type: 'cooking', ingredients: ['Onion x3', 'Salt x2', 'Water x1'], effect: '+16 Spirit.' },
+  { name: 'Pan-Fried Rice Cakes', type: 'cooking', ingredients: ['Lentils x2', 'Egg x1', 'Cooking Oil x1', 'Honey x1'], effect: '+200 HP, +16 Spirit.' },
+  { name: 'Vegetable Juice', type: 'cooking', ingredients: ['Onion x2', 'Raspberry x1', 'Water x2'], effect: '+12 Spirit, minor HP regen.' },
+  { name: 'Braised Fish', type: 'cooking', ingredients: ['Fish Fillet x3', 'Onion x1', 'Salt x1', 'Water x3'], effect: '+220 HP, Ice Lv3 resistance.' },
+  { name: 'Herbal Tea', type: 'cooking', ingredients: ['Herb x3', 'Honey x1', 'Water x3'], effect: '+12 Spirit, minor HP regen for 2 minutes.' },
+
+  // ─── ALCHEMY (Cauldron) ───────────────────────────────────────────────────────────────────────
+  { name: "Haiden's Lesser Elixir", type: 'alchemy', ingredients: ['Lesser Spirit Reagent x2', 'Lesser Catalyst x1', 'Empty Bottle x1'], effect: 'No Spirit Consumption for 4 seconds.' },
+  { name: "Meliara's Lesser Elixir", type: 'alchemy', ingredients: ['Lesser Health Reagent x2', 'Lesser Catalyst x1', 'Empty Bottle x1'], effect: 'Increases health by 75 and attack speed by 1 for 5 minutes.' },
+  { name: "Astrid's Lesser Elixir", type: 'alchemy', ingredients: ['Lesser Defense Reagent x2', 'Lesser Catalyst x1', 'Empty Bottle x1'], effect: 'Increases defense for 5 minutes.' },
+  { name: "Freya's Elixir", type: 'alchemy', ingredients: ['Spirit Reagent x3', 'Catalyst x1', 'Empty Bottle x1'], effect: 'Full Spirit restoration and temporary Spirit regen.' },
+  { name: "Apollonia's Lesser Elixir", type: 'alchemy', ingredients: ['Lesser Stamina Reagent x2', 'Lesser Catalyst x1', 'Empty Bottle x1'], effect: 'Increases stamina recovery for 5 minutes.' },
+  { name: 'Palmer Pills', type: 'alchemy', ingredients: ['Crimson Root x1', 'Adrenaline Gland x1', 'Empty Bottle x1'], effect: 'Self-revival: revives with 30% HP. Critical combat consumable.' },
+  { name: 'Attack Speed Potion', type: 'alchemy', ingredients: ['Crimson Root x1', 'Adrenaline Gland x1', 'Alcohol x1'], effect: '+30% attack speed for 60 seconds. One of the most useful early unlocks.' },
+
+  // ─── BLACKSMITH — WEAPONS ────────────────────────────────────────────────────────────────────
+  { name: 'Arrow', type: 'blacksmith', ingredients: ['Timber x5', 'Iron Ore x1'], effect: 'Standard bow ammunition.' },
+  { name: 'Bullet', type: 'blacksmith', ingredients: ['Iron Ore x2', 'Gunpowder x4'], effect: 'Firearm ammunition for pistols and muskets.' },
+  { name: 'Small Cannon Ball', type: 'blacksmith', ingredients: ['Iron Ore x10', 'Gunpowder x10'], effect: 'Heavy ammunition for Hand Cannon and Orc Blaster.' },
+  { name: 'One-Handed Weapons Vol. I', type: 'blacksmith', ingredients: ['Iron Ore x5', 'Copper Ore x2'], effect: 'Crafts Glenmore Sword and upgrades. Unlocks one-handed weapon refinement.' },
+  { name: 'Two-Handed Weapons Vol. II', type: 'blacksmith', ingredients: ['Iron Ore x10', 'Copper Ore x3'], effect: 'Crafts Thalwynd Longsword and upgrades.' },
+  { name: 'Bows Vol. I', type: 'blacksmith', ingredients: ['Timber x10', 'Fine Timber x5'], effect: 'Crafts White Wood Bow and upgrades.' },
+  { name: 'Guns Vol. I', type: 'blacksmith', ingredients: ['Iron Ore x5', 'Copper Ore x2'], effect: 'Crafts Bekker Musket and upgrades.' },
+
+  // ─── BLACKSMITH — ARMOR ──────────────────────────────────────────────────────────────────────
+  { name: 'Plate Armor Vol. I', type: 'blacksmith', ingredients: ['Iron Ore x5', 'Copper Ore x2', 'Cloth x9', 'Fleece x2'], effect: 'Crafts Northern Fighter\'s Chain Mail and upgrades.' },
+  { name: 'Cloth Armor Vol. I', type: 'blacksmith', ingredients: ['Cloth x10', 'Fleece x2'], effect: 'Crafts Grey Wolf Cloth Cloak and upgrades.' },
+  { name: 'Kuku Pot', type: 'blacksmith', ingredients: ['Iron Ore x5', 'Timber x5'], effect: 'Special cooking vessel. Unlocked via Ch.4 quest "Kilnden Workshop." Craft at Grimnir.' },
+
+  // ─── SPECIAL CRAFTING ─────────────────────────────────────────────────────────────────────────
+  { name: 'Scarecrow Cloak', type: 'blacksmith', ingredients: ['Hay x5', 'Cloth x10'], effect: 'Reduces enemy detection range. Obtained from Scholastone or crafted.' },
+  { name: 'Haste Core', type: 'blacksmith', ingredients: ['Defense Reagent x1', 'Abyss Cell x1', 'Diamond x1'], effect: 'Movement Speed upgrade. Craft at Witches\' location.' },
+
+  // ─── DYES (Cauldron) ──────────────────────────────────────────────────────────────────────────
+  { name: 'Bright Red Dye', type: 'dye', ingredients: ['Pink Herb x10', 'Rhinoceros Beetle x3', 'Longhorn Beetle x3'], effect: 'Bright red armor/clothing color.' },
+  { name: 'Dark Red Dye', type: 'dye', ingredients: ['Pink Herb x10', 'Rhinoceros Beetle x3', 'Longhorn Beetle x1', 'Stag Beetle x2'], effect: 'Dark red armor/clothing color.' },
 ];
 
 // ═══════════════════════════════════════
@@ -972,6 +1074,14 @@ export const MOUNTS: Mount[] = [
   // Exotic (2)
   { name: 'Abyssal Spider', category: 'exotic', region: 'abyss', speed: 60, combat: 55, stamina: 70, special: 'Wall climbing on any surface; leaves web trail that slows enemies', acquisition: 'Tame in the Abyss depths (requires Beast Taming skill)' },
   { name: 'Phantom Steed', category: 'exotic', region: 'multiple', speed: 95, combat: 10, stamina: 50, special: 'Ghostly mount that phases through obstacles and enemies; cannot attack', acquisition: "Legendary reward from the Ghost of Gian side quest" },
+
+  // Wolf (1)
+  { name: 'Direwolf', category: 'wolf', region: 'pailune', speed: 78, combat: 65, stamina: 70, special: 'Pack howl that buffs nearby allied mounts. Leaping bite attack', acquisition: 'Tame in the wild (Pailune highlands, appears in release trailer)' },
+
+  // Story mounts (obtained through main story progression)
+  { name: 'Herspia', category: 'horse', region: 'hernand', speed: 65, combat: 10, stamina: 70, special: "Kliff's personal horse obtained after the prologue. Reliable starter mount", acquisition: 'Automatically obtained after completing the Prologue' },
+  { name: 'Brianto', category: 'horse', region: 'hernand', speed: 70, combat: 10, stamina: 65, special: "Damiane's default horse. Available when unlocking her in Chapter 3", acquisition: 'Automatically obtained when unlocking Damiane (Chapter 3)' },
+  { name: 'Blackstar Dragon', category: 'wyvern', region: 'abyss', speed: 95, combat: 90, stamina: 55, special: 'Full flight. End-game flying mount obtained during Chapter 11 story events', acquisition: 'Story reward after completing Chapter 11' },
 ];
 
 // ═══════════════════════════════════════
