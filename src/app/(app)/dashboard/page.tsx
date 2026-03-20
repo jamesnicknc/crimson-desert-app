@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import {
   Globe,
   Users,
@@ -40,42 +39,7 @@ const CODEX_CATEGORIES = [
 
 const CODEX_TOTAL = CODEX_CATEGORIES.reduce((sum, c) => sum + c.count, 0);
 
-interface CountdownState {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
-
 export default function DashboardPage() {
-  const [countdown, setCountdown] = useState<CountdownState>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  useEffect(() => {
-    const calculateCountdown = () => {
-      const targetDate = new Date('2026-03-19T22:00:00Z').getTime(); // 3 PM PDT / 6 PM EDT (UTC-4)
-      const now = new Date().getTime();
-      const difference = targetDate - now;
-
-      if (difference > 0) {
-        setCountdown({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60),
-        });
-      }
-    };
-
-    calculateCountdown();
-    const timer = setInterval(calculateCountdown, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
 
   const stats = [
     { label: 'World Size', value: '256 km²', icon: Globe, href: '/map' },
@@ -133,45 +97,14 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-8">
-      {/* Countdown section */}
-      <section className="bg-gradient-to-r from-pywel-secondary/30 to-black/30 border border-pywel-border rounded-lg p-8">
-        <h2 className="font-cinzel text-2xl font-bold text-gold-300 mb-6">
-          Launch Countdown
-        </h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-pywel-card border border-pywel-border rounded-lg p-4 text-center">
-            <p className="text-3xl md:text-4xl font-bold text-gold-300">
-              {countdown.days}
-            </p>
-            <p className="text-xs md:text-sm text-gray-400 mt-2 font-cinzel">
-              DAYS
-            </p>
-          </div>
-          <div className="bg-pywel-card border border-pywel-border rounded-lg p-4 text-center">
-            <p className="text-3xl md:text-4xl font-bold text-gold-300">
-              {countdown.hours}
-            </p>
-            <p className="text-xs md:text-sm text-gray-400 mt-2 font-cinzel">
-              HOURS
-            </p>
-          </div>
-          <div className="bg-pywel-card border border-pywel-border rounded-lg p-4 text-center">
-            <p className="text-3xl md:text-4xl font-bold text-gold-300">
-              {countdown.minutes}
-            </p>
-            <p className="text-xs md:text-sm text-gray-400 mt-2 font-cinzel">
-              MINUTES
-            </p>
-          </div>
-          <div className="bg-pywel-card border border-pywel-border rounded-lg p-4 text-center">
-            <p className="text-3xl md:text-4xl font-bold text-gold-300">
-              {countdown.seconds}
-            </p>
-            <p className="text-xs md:text-sm text-gray-400 mt-2 font-cinzel">
-              SECONDS
-            </p>
-          </div>
-        </div>
+      {/* Game Live Banner */}
+      <section className="bg-gradient-to-r from-gold-500/20 to-gold-400/10 border border-gold-400/50 rounded-lg p-6 text-center">
+        <p className="font-cinzel text-xl font-bold text-gold-300 mb-1">
+          🎮 Crimson Desert is Now Live!
+        </p>
+        <p className="text-gray-400 text-sm">
+          Released March 19, 2026 — Track your journey across Pywel below
+        </p>
       </section>
 
       {/* Stats section */}

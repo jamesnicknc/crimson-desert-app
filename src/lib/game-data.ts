@@ -162,7 +162,7 @@ export const SKILLS: Skill[] = [
   { id: 'k-ax4', name: 'Aerial Swing', cost: 'Artifact', branch: 'Axiom', character: 'kliff', description: 'Execute powerful sword swings while in flight, striking ground targets from above.' },
 
   // Kliff - Core Convergence Skill
-  { id: 'k-c1', name: 'Falling Palm', cost: 'Convergence', branch: 'Core', character: 'kliff', description: 'Unleash a powerful blow to the ground by harnessing the force of the fall. The ultimate convergence skill unlocked after mastering all three branches.' },
+  { id: 'k-c1', name: 'Falling Palm', cost: 'Convergence', branch: 'Core', character: 'kliff', description: 'Unleash a powerful blow to the ground by harnessing the force of the fall and channeling all your Stamina into the strike. Unlocked upon completing any single branch.' }, // Description corrected 2026-03-19: unlock condition confirmed by allthings.how, Beebom, Sportskeeda (3x Tier 2)
 
   // ─── DAMIANE ─────────────────────────────────────────────────────────────────
   // In-game skill names for Damiane are not confirmed from an authoritative
@@ -248,8 +248,8 @@ export const COLLECTIBLES: Record<CollectibleCategory, Collectible[]> = {
 export const BOSSES: Boss[] = [
   { name: 'Queen Stoneback Crab', region: 'hernand', type: 'Beast', difficulty: 'hard', reward: 'Stoneback Shell Armor', element: 'physical', weakness: 'fire' },
   { name: 'White Horn', region: 'pailune', type: 'Beast', difficulty: 'hard', reward: 'Frost Core Artifact', element: 'frost', weakness: 'fire' },
-  { name: 'Myurdin', region: 'demeniss', type: 'Human', difficulty: 'legendary', reward: 'Black Bear Standard', element: 'physical', weakness: 'frost' },
-  { name: 'Walter Lanford', region: 'desert', type: 'Human', difficulty: 'extreme', reward: 'Hand Cannon Blueprint', element: 'fire', weakness: 'frost' },
+  { name: 'Myurdin', region: 'pailune', type: 'Human', difficulty: 'legendary', reward: 'Black Bear Standard', element: 'physical', weakness: 'frost' }, // Region corrected 2026-03-19: Silverwolf Mountain is in Pailune -- confirmed Fextralife wiki + PowerPyx
+  { name: 'Walter Lanford', region: 'hernand', type: 'Human', difficulty: 'extreme', reward: 'Hand Cannon Blueprint', element: 'fire', weakness: 'frost' }, // Region corrected 2026-03-19: Fort Warspike (Hernand) confirmed by Fextralife wiki
   { name: 'Delesyian Automaton', region: 'delesyia', type: 'Mechanical', difficulty: 'normal', reward: 'Speed Catalyst Gear', element: 'shock', weakness: 'physical' },
   { name: 'Kearush the Slayer', region: 'hernand', type: 'Monster', difficulty: 'hard', reward: 'Slayer Claw Materials', element: 'physical', weakness: 'fire' },
   { name: 'Reed Devil', region: 'pailune', type: 'Humanoid', difficulty: 'extreme', reward: "Dragon's Tear", element: 'physical', weakness: 'shock' },
