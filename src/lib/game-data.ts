@@ -1048,9 +1048,8 @@ export const MOUNTS: Mount[] = [
   { name: 'Black Bear War Mount', category: 'bear', region: 'demeniss', speed: 50, combat: 80, stamina: 75, special: 'Intimidation roar that fears nearby enemies for 3 seconds', acquisition: 'Captured from Black Bear faction stronghold' },
   { name: 'Crimson Grizzly', category: 'bear', region: 'desert', speed: 45, combat: 75, stamina: 65, special: 'Ground slam attack that staggers enemies in a frontal cone', acquisition: 'Tame in the wild (Crimson Desert oasis)' },
 
-  // Raptors (4)
+  // Raptors (3)
   { name: 'Sand Raptor', category: 'raptor', region: 'desert', speed: 90, combat: 40, stamina: 55, special: 'Extreme burst speed; double sprint in desert terrain', acquisition: 'Tame in the wild (Red Dunes hunting grounds)' },
-  { name: 'Forest Stalker', category: 'raptor', region: 'hernand', speed: 80, combat: 50, stamina: 60, special: 'Pounce attack that pins smaller enemies', acquisition: 'Tame in the wild (Hernand deep forest)' },
   { name: 'Frost Raptor', category: 'raptor', region: 'pailune', speed: 75, combat: 45, stamina: 70, special: 'Ice-trail movement; leaves slippery terrain that slows pursuers', acquisition: 'Complete the Pailune Hunter chain quest' },
   { name: 'Delesyian Swift', category: 'raptor', region: 'delesyia', speed: 85, combat: 35, stamina: 65, special: 'Enhanced agility; can perform sharp turns without speed loss', acquisition: 'Purchase from Delesyia Beast Handler' },
 
@@ -1075,17 +1074,10 @@ export const MOUNTS: Mount[] = [
   { name: 'Jungle Strider', category: 'dinosaur', region: 'hernand', speed: 60, combat: 45, stamina: 80, special: 'Tall mount; rider can see over obstacles and foliage. Kick attack', acquisition: 'Tame in the wild (Hernand jungle canopy)' },
   { name: 'Armored Ankylo', category: 'dinosaur', region: 'desert', speed: 35, combat: 80, stamina: 95, special: 'Heavily armored; tail swipe knocks back all surrounding enemies', acquisition: 'Tame in the wild (Crimson Desert bone fields)' },
 
-  // Exotic (2)
+  // Exotic (3)
   { name: 'Abyssal Spider', category: 'exotic', region: 'abyss', speed: 60, combat: 55, stamina: 70, special: 'Wall climbing on any surface; leaves web trail that slows enemies', acquisition: 'Tame in the Abyss depths (requires Beast Taming skill)' },
   { name: 'Phantom Steed', category: 'exotic', region: 'multiple', speed: 95, combat: 10, stamina: 50, special: 'Ghostly mount that phases through obstacles and enemies; cannot attack', acquisition: "Legendary reward from the Ghost of Gian side quest" },
-
-  // Wolf (1)
   { name: 'Direwolf', category: 'wolf', region: 'pailune', speed: 78, combat: 65, stamina: 70, special: 'Pack howl that buffs nearby allied mounts. Leaping bite attack', acquisition: 'Tame in the wild (Pailune highlands, appears in release trailer)' },
-
-  // Story mounts (obtained through main story progression)
-  { name: 'Herspia', category: 'horse', region: 'hernand', speed: 65, combat: 10, stamina: 70, special: "Kliff's personal horse obtained after the prologue. Reliable starter mount", acquisition: 'Automatically obtained after completing the Prologue' },
-  { name: 'Brianto', category: 'horse', region: 'hernand', speed: 70, combat: 10, stamina: 65, special: "Damiane's default horse. Available when unlocking her in Chapter 3", acquisition: 'Automatically obtained when unlocking Damiane (Chapter 3)' },
-  { name: 'Blackstar Dragon', category: 'wyvern', region: 'abyss', speed: 95, combat: 90, stamina: 55, special: 'Full flight. End-game flying mount obtained during Chapter 11 story events', acquisition: 'Story reward after completing Chapter 11' },
 ];
 
 // ═══════════════════════════════════════
