@@ -18,6 +18,9 @@ scraper/.env
 *.swp
 *.swo
 
+# Cowork session files
+.cowork/
+
 # OS
 .DS_Store
 Thumbs.db

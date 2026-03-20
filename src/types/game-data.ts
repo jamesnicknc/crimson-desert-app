@@ -127,6 +127,22 @@ export interface RegionPOI {
   type: 'town' | 'dungeon' | 'landmark' | 'stronghold' | 'ruins' | 'arena' | 'camp' | 'shrine' | 'other';
 }
 
+export interface Mount {
+  name: string;
+  category: MountCategory;
+  region: Region | 'multiple';
+  speed: number;
+  combat: number;
+  stamina: number;
+  special?: string;
+  acquisition: string;
+}
+
+export interface RegionPOI {
+  name: string;
+  type: 'town' | 'dungeon' | 'landmark' | 'stronghold' | 'ruins' | 'arena' | 'camp' | 'shrine' | 'other';
+}
+
 export interface RegionInfo {
   id: Region;
   name: string;
