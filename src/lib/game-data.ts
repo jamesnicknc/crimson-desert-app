@@ -661,7 +661,12 @@ export const ENEMIES: Enemy[] = [
 // Main story: 12 chapters + prologue + epilogue. Individual sub-quest names confirmed from game8.
 export const QUESTS: Quest[] = [
   // ─── PROLOGUE ─────────────────────────────────────────────────────────────────────────────────
-  { name: 'Dead of the Night', description: 'Prologue that opens the game.', type: 'main', region: 'hernand' },
+  { name: 'Dead of the Night', description: 'Prologue that opens the game.', type: 'main', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Watch the opening cinematic.' },
+      { step: 2, instruction: 'The quest completes automatically as the prologue begins.' },
+    ]
+  },
   { name: 'Unfamiliar Lands', description: 'Prologue sub-quest: Ambush arc.', type: 'main', region: 'hernand',
     walkthrough: [
       { step: 1, instruction: 'Walk down the hill toward the cabin.' },
@@ -1081,7 +1086,12 @@ export const QUESTS: Quest[] = [
   { name: 'Shadows Over Pailune', description: 'Ch.7 — Dawn arc.', type: 'main', region: 'pailune' },
   { name: 'Driving out the Shadows', description: 'Ch.7 — Dawn arc.', type: 'main', region: 'pailune' },
   { name: 'Lurking Wolves', description: 'Ch.7 — Dawn arc.', type: 'main', region: 'pailune' },
-  { name: 'Lonely Jackals', description: 'Ch.7 — Dawn: Boss fight vs. Ludvig and Awakened Ludvig.', type: 'main', region: 'pailune' },
+  { name: 'Lonely Jackals', description: 'Ch.7 — Dawn: Boss fight vs. Ludvig and Awakened Ludvig.', type: 'main', region: 'pailune',
+    walkthrough: [
+      { step: 1, instruction: 'Defeat Ludvig (Phase 1).' },
+      { step: 2, instruction: 'Defeat Awakened Ludvig (Phase 2) after the mid-fight cutscene.' },
+    ]
+  },
   { name: 'Resolution', description: 'Ch.7 — Dawn arc conclusion.', type: 'main', region: 'pailune' },
   // Decisive Battle arc
   { name: 'Unleashed Fury', description: 'Ch.7 — Decisive Battle arc.', type: 'main', region: 'pailune' },
@@ -1091,15 +1101,28 @@ export const QUESTS: Quest[] = [
   { name: 'Incomplete Victory', description: 'Ch.7 — Decisive Battle arc conclusion.', type: 'main', region: 'pailune' },
   // Twisted Fate arc
   { name: "Ludvig's Whereabouts", description: 'Ch.7 — Twisted Fate arc: Track the surviving Ludvig.', type: 'main', region: 'demeniss' },
-  { name: 'Time to Face Justice', description: 'Ch.7 — Twisted Fate: Boss fight vs. One-Armed Ludvig (forced Oongka).', type: 'main', region: 'demeniss' },
+  { name: 'Time to Face Justice', description: 'Ch.7 — Twisted Fate: Boss fight vs. One-Armed Ludvig (forced Oongka).', type: 'main', region: 'demeniss',
+    walkthrough: [
+      { step: 1, instruction: 'This fight forces you to play as Oongka — switch characters before entering if needed.' },
+      { step: 2, instruction: 'Defeat One-Armed Ludvig to complete the chapter.' },
+    ]
+  },
 
   // ─── CHAPTER 8: BLOOD CORONATION ─────────────────────────────────────────────────────────────
   { name: 'Healing Pailune', description: 'Ch.8 — Ashen Steps arc: Recover from war in Pailune.', type: 'main', region: 'pailune' },
   { name: 'The Weight of Command', description: 'Ch.8 — Ashen Steps arc.', type: 'main', region: 'pailune' },
   // To Demeniss arc
   { name: 'The Road to Demeniss', description: 'Ch.8 — To Demeniss arc: Travel to the capital.', type: 'main', region: 'demeniss' },
-  { name: 'Where the Wind Guides You', description: 'Ch.8 — To Demeniss: Boss fight vs. Gregor the Halberd of Carnage.', type: 'main', region: 'demeniss' },
-  { name: 'The Cursed Knight', description: 'Ch.8 — To Demeniss: Boss fight vs. Fortain the Cursed Knight.', type: 'main', region: 'demeniss' },
+  { name: 'Where the Wind Guides You', description: 'Ch.8 — To Demeniss: Boss fight vs. Gregor the Halberd of Carnage.', type: 'main', region: 'demeniss',
+    walkthrough: [
+      { step: 1, instruction: 'Defeat Gregor the Halberd of Carnage — watch for wide sweeping halberd attacks and dodge to his flanks.' },
+    ]
+  },
+  { name: 'The Cursed Knight', description: 'Ch.8 — To Demeniss: Boss fight vs. Fortain the Cursed Knight.', type: 'main', region: 'demeniss',
+    walkthrough: [
+      { step: 1, instruction: 'Defeat Fortain the Cursed Knight.' },
+    ]
+  },
   { name: 'Cracks in Loyalty', description: 'Ch.8 — Traitor arc: Uncover betrayal within allied ranks.', type: 'main', region: 'demeniss' },
   { name: 'Blood Coronation', description: 'Ch.8 — Traitor arc: Chapter conclusion with dramatic political upheaval.', type: 'main', region: 'demeniss' },
 
