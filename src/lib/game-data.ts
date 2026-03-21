@@ -1010,7 +1010,14 @@ export const QUESTS: Quest[] = [
       { step: 3, instruction: 'Phase 3 — One on Two: Fight the remaining Devil with a second Devil interfering; dodge the new energy wave attack; use same parry-and-combo strategy.' },
     ]
   },
-  { name: 'The Face Behind the Mask', description: 'Ch.3 — Boss fight vs. Reed Devil (full encounter).', type: 'main', region: 'hernand', rewards: ['Hernandian Contribution EXP x600', 'Sunset Reed Cloth Gloves'] },
+  { name: 'The Face Behind the Mask', description: 'Ch.3 — Boss fight vs. Reed Devil (full encounter).', type: 'main', region: 'hernand', rewards: ['Hernandian Contribution EXP x600', 'Sunset Reed Cloth Gloves'],
+    walkthrough: [
+      { step: 1, instruction: 'This is the continuation of Dance with the Devil — the fight resumes immediately after the Phase 3 cutscene.' },
+      { step: 2, instruction: 'Phase 4 — Unmasked: The Reed Devil drops its disguise. Attacks become faster; a new ground-spike eruption appears — move laterally to avoid it.' },
+      { step: 3, instruction: 'Continue the parry-and-combo strategy from Dance with the Devil. His guard-break threshold is reduced — parries charge the gauge faster.', tip: 'Save one healing item for this final phase; the speed increase is significant.' },
+      { step: 4, instruction: 'Defeat the Reed Devil to earn Hernandian Contribution EXP x600 and the Sunset Reed Cloth Gloves.' },
+    ],
+  },
   // Pioneering arc
   { name: 'Hope After the Draught', description: 'Ch.3 — Pioneering arc.', type: 'main', region: 'hernand',
     walkthrough: [
@@ -1087,296 +1094,98 @@ export const QUESTS: Quest[] = [
     ]
   },
   // Forbidden Knowledge arc
-  { name: 'The Words of Alustin', description: 'Ch.4 — Forbidden Knowledge: Begin the Abyss/Scholastone investigation.', type: 'main', region: 'hernand',
+  { name: 'The Words of Alustin', description: 'Ch.4 — Forbidden Knowledge: Begin the Abyss/Scholastone investigation.', type: 'main', region: 'hernand' },
+  { name: 'Scholastone', description: 'Ch.4 — Forbidden Knowledge arc.', type: 'main', region: 'hernand' },
+  { name: 'On the Right Path', description: 'Ch.4 — Forbidden Knowledge arc.', type: 'main', region: 'hernand' },
+  { name: 'Gate to the Otherworld', description: 'Ch.4 — Forbidden Knowledge: Boss fight vs. Tenebrum.', type: 'main', region: 'hernand', rewards: ['Key to the Spire of the Stars'],
     walkthrough: [
-      { step: 1, instruction: 'Speak with Alustin about the Abyss and Scholastone.' },
-      { step: 2, instruction: 'Follow his directions to begin investigating Scholastone.' },
-    ]
+      { step: 1, instruction: 'Reach the gate location after completing the Forbidden Knowledge investigation chain.' },
+      { step: 2, instruction: 'Boss fight: Tenebrum — an Abyss-element construct that phases in and out of visibility. Only attack when it fully materializes.' },
+      { step: 3, instruction: 'Watch for the visual shimmer that precedes its reappearance and position yourself to punish immediately after materialization.', tip: 'Abyss-resistant armor significantly reduces his phase-blast damage.' },
+      { step: 4, instruction: 'Defeat Tenebrum to receive the Key to the Spire of the Stars, required for the next quest.' },
+    ],
   },
-  { name: 'Scholastone', description: 'Ch.4 — Forbidden Knowledge arc.', type: 'main', region: 'hernand',
-    walkthrough: [
-      { step: 1, instruction: 'Travel to Scholastone in the Everfrost Basin area of Hernand.' },
-      { step: 2, instruction: 'Explore the site and gather information at the objective markers.' },
-    ]
-  },
-  { name: 'On the Right Path', description: 'Ch.4 — Forbidden Knowledge arc.', type: 'main', region: 'hernand',
-    walkthrough: [
-      { step: 1, instruction: 'Follow the investigation lead to the next objective.' },
-      { step: 2, instruction: 'Speak with the relevant NPC to advance the Forbidden Knowledge arc.' },
-    ]
-  },
-  { name: 'Gate to the Otherworld', description: 'Ch.4 — Forbidden Knowledge: Boss fight vs. Tenebrum.', type: 'main', region: 'hernand',
-    rewards: ['Key to the Spire of the Stars'],
-    walkthrough: [
-      { step: 1, instruction: 'Follow the investigation to the Gate to the Otherworld.' },
-      { step: 2, instruction: 'Defeat Tenebrum — dodge its dark energy projectiles; attack during its recovery windows.' },
-      { step: 3, instruction: 'Collect the Key to the Spire of the Stars upon victory.' },
-    ]
-  },
-  { name: 'Spire of the Stars', description: 'Ch.4 — Forbidden Knowledge arc.', type: 'main', region: 'hernand',
-    walkthrough: [
-      { step: 1, instruction: 'Use the Key to the Spire of the Stars to unlock the entrance.' },
-      { step: 2, instruction: 'Ascend the spire, navigating obstacles and enemies on each level.' },
-    ]
-  },
-  { name: 'Obsession and Madness', description: 'Ch.4 — Forbidden Knowledge arc.', type: 'main', region: 'hernand',
-    walkthrough: [
-      { step: 1, instruction: 'Proceed through the Spire of the Stars to the next objective.' },
-      { step: 2, instruction: 'Confront the obsessed NPC at the top and resolve the situation.' },
-    ]
-  },
-  { name: 'Casted Shadow', description: 'Ch.4 — Forbidden Knowledge arc.', type: 'main', region: 'hernand',
-    walkthrough: [
-      { step: 1, instruction: 'Follow the shadow — a trail or tracking mechanic leads to the final objective.' },
-      { step: 2, instruction: 'Complete the confrontation to conclude Chapter 4.' },
-    ]
-  },
+  { name: 'Spire of the Stars', description: 'Ch.4 — Forbidden Knowledge arc.', type: 'main', region: 'hernand' },
+  { name: 'Obsession and Madness', description: 'Ch.4 — Forbidden Knowledge arc.', type: 'main', region: 'hernand' },
+  { name: 'Casted Shadow', description: 'Ch.4 — Forbidden Knowledge arc.', type: 'main', region: 'hernand' },
 
   // ─── CHAPTER 5: GUEST UNBIDDEN ────────────────────────────────────────────────────────────────
   // Uninvited Guest arc
-  { name: 'Double-sided Invitation', description: 'Ch.5 — Uninvited Guest arc.', type: 'main', region: 'hernand',
+  { name: 'Double-sided Invitation', description: 'Ch.5 — Uninvited Guest arc.', type: 'main', region: 'hernand' },
+  { name: 'Unwelcomed Guests', description: 'Ch.5 — Uninvited Guest arc.', type: 'main', region: 'hernand' },
+  { name: 'Demenissian Delegation', description: 'Ch.5 — Uninvited Guest: Boss fight vs. Kearush the Slayer.', type: 'main', region: 'hernand', rewards: ["The Grove's Thorn", 'Gale I', 'Howling of Chaos'],
     walkthrough: [
-      { step: 1, instruction: 'Speak with the relevant noble or messenger to receive conflicting invitations.' },
-      { step: 2, instruction: 'Travel to the indicated location to begin the Uninvited Guest arc.' },
-    ]
+      { step: 1, instruction: 'Intercept the Demenissian Delegation at the Hernand meeting location — boss fight begins after the cutscene.' },
+      { step: 2, instruction: 'Boss fight: Kearush the Slayer — dual-blade fighter with rapid gap-closing dashes. Dodge his dash laterally, not backward.' },
+      { step: 3, instruction: 'His dash leaves a brief opening; punish with a heavy combo or burst skill immediately after.', tip: 'Frost-element attacks deal bonus damage and slow his movement.' },
+      { step: 4, instruction: 'At ~40% HP he chains his dash into a follow-up stab — dodge the stab as a separate input after the dash.' },
+      { step: 5, instruction: "Defeat Kearush to earn The Grove's Thorn, Gale I, and Howling of Chaos." },
+    ],
   },
-  { name: 'Unwelcomed Guests', description: 'Ch.5 — Uninvited Guest arc.', type: 'main', region: 'hernand',
-    walkthrough: [
-      { step: 1, instruction: 'Intercept or confront the unwelcome delegation at the objective marker.' },
-      { step: 2, instruction: 'Defeat or drive off the attackers to protect the location.' },
-    ]
-  },
-  { name: 'Demenissian Delegation', description: 'Ch.5 — Uninvited Guest: Boss fight vs. Kearush the Slayer.', type: 'main', region: 'hernand',
-    rewards: ["The Grove's Thorn", 'Gale I', 'Howling of Chaos'],
-    walkthrough: [
-      { step: 1, instruction: 'Confront the Demenissian Delegation — Kearush the Slayer initiates the boss fight.' },
-      { step: 2, instruction: 'Defeat Kearush: watch for his wide slash combos; parry and counter-attack aggressively between bursts.' },
-    ]
-  },
-  { name: 'Exposed Plot', description: 'Ch.5 — Uninvited Guest arc.', type: 'main', region: 'hernand',
-    walkthrough: [
-      { step: 1, instruction: 'Investigate the aftermath of the delegation confrontation.' },
-      { step: 2, instruction: 'Speak with allies to expose the plot and advance to the Black and White arc.' },
-    ]
-  },
+  { name: 'Exposed Plot', description: 'Ch.5 — Uninvited Guest arc.', type: 'main', region: 'hernand' },
   // Black and White arc
-  { name: 'The Missing Seal', description: 'Ch.5 — Black and White arc.', type: 'main', region: 'abyss',
+  { name: 'The Missing Seal', description: 'Ch.5 — Black and White arc.', type: 'main', region: 'abyss' },
+  { name: 'Crowcaller', description: 'Ch.5 — Black and White: Encounter Draven (first fight).', type: 'main', region: 'abyss' },
+  { name: "The Crow's Warning", description: 'Ch.5 — Black and White arc.', type: 'main', region: 'abyss' },
+  { name: 'Bloodwind', description: 'Ch.5 — Black and White: Boss fight vs. Crowcaller (second fight, 3 HP bars).', type: 'main', region: 'abyss', rewards: ['Blackwing Leather Armor', 'Blackwing Mask', 'Tauria Curved Sword'],
     walkthrough: [
-      { step: 1, instruction: 'Travel to the Abyss region to investigate the missing seal.' },
-      { step: 2, instruction: 'Follow the trail of clues to locate where the seal was taken.' },
-    ]
+      { step: 1, instruction: 'Boss fight: Draven (Crowcaller) full encounter — three HP bars. Stock healing items before this fight.' },
+      { step: 2, instruction: 'HP Bar 1: Feather projectile volleys and aerial dives. Dodge toward him (not away) on the dive to stay in melee range.', tip: 'Draven telegraphs aerial dives with a screech — begin your dodge on the audio cue.' },
+      { step: 3, instruction: 'HP Bar 2: Dark energy blade appears. Block or roll the initial slash; punish the recovery with a burst combo.' },
+      { step: 4, instruction: 'HP Bar 3: Full Abyss form with all attacks at higher speed. Use all remaining burst skills and healing items here.' },
+      { step: 5, instruction: 'Defeat Crowcaller to earn the Blackwing Leather Armor, Blackwing Mask, and Tauria Curved Sword.' },
+    ],
   },
-  { name: 'Crowcaller', description: 'Ch.5 — Black and White: Encounter Draven (first fight).', type: 'main', region: 'abyss',
-    walkthrough: [
-      { step: 1, instruction: 'Follow the objective to locate the Crowcaller.' },
-      { step: 2, instruction: 'Engage Draven in the first fight — this is an introductory encounter; survive and deal damage.' },
-    ]
-  },
-  { name: "The Crow's Warning", description: 'Ch.5 — Black and White arc.', type: 'main', region: 'abyss',
-    walkthrough: [
-      { step: 1, instruction: "Follow up on Draven's warning — travel to the next objective in the Abyss." },
-      { step: 2, instruction: 'Gather information and prepare for the second confrontation.' },
-    ]
-  },
-  { name: 'Bloodwind', description: 'Ch.5 — Black and White: Boss fight vs. Crowcaller (second fight, 3 HP bars).', type: 'main', region: 'abyss',
-    rewards: ['Blackwing Leather Armor', 'Blackwing Mask', 'Tauria Curved Sword'],
-    walkthrough: [
-      { step: 1, instruction: 'Confront the Crowcaller for the full boss fight — he has 3 HP bars.' },
-      { step: 2, instruction: 'Bar 1 & 2: Watch for his dive attacks; dodge sideways, then counter. Bar 3: He gains aerial mobility — use ranged attacks or wait for landing windows.', tip: 'Stock up on healing items before this fight.' },
-    ]
-  },
-  { name: 'Secret at the Church', description: 'Ch.5 — Black and White arc.', type: 'main', region: 'abyss',
-    walkthrough: [
-      { step: 1, instruction: 'Travel to the church indicated by the objective marker.' },
-      { step: 2, instruction: 'Investigate the secret within — use your lantern to reveal hidden clues.' },
-    ]
-  },
-  { name: 'Toward the Nest', description: "Ch.5 — Black and White arc: Conclusion of Crow's Nest arc.", type: 'main', region: 'abyss',
-    walkthrough: [
-      { step: 1, instruction: "Travel to the Crow's Nest location." },
-      { step: 2, instruction: 'Complete the final objective to conclude the Black and White arc and Chapter 5.' },
-    ]
-  },
+  { name: 'Secret at the Church', description: 'Ch.5 — Black and White arc.', type: 'main', region: 'abyss' },
+  { name: 'Toward the Nest', description: 'Ch.5 — Black and White arc: Conclusion of Crow\'s Nest arc.', type: 'main', region: 'abyss' },
 
   // ─── CHAPTER 6: CRACKS IN THE SHIELD ─────────────────────────────────────────────────────────
-  { name: 'News', description: 'Ch.6 — Blazing Beacon arc.', type: 'main', region: 'hernand',
+  { name: 'News', description: 'Ch.6 — Blazing Beacon arc.', type: 'main', region: 'hernand' },
+  { name: 'To the Battlefield', description: 'Ch.6 — Blazing Beacon arc.', type: 'main', region: 'hernand' },
+  { name: 'The Counterattack', description: 'Ch.6 — Blazing Beacon arc (also appears in Ch.7).', type: 'main', region: 'hernand' },
+  { name: 'Cradle of Defense', description: 'Ch.6 — Below the Banners arc.', type: 'main', region: 'hernand' },
+  { name: 'Hand of Deliverance', description: 'Ch.6 — Below the Banners arc.', type: 'main', region: 'hernand' },
+  { name: 'Fire on the Frontlines', description: 'Ch.6 — Below the Banners arc.', type: 'main', region: 'hernand' },
+  { name: 'Fire Support', description: 'Ch.6 — Turning Tides arc.', type: 'main', region: 'hernand' },
+  { name: 'Hidden Fangs', description: 'Ch.6 — Turning Tides arc.', type: 'main', region: 'hernand' },
+  { name: 'Reclamation', description: 'Ch.6 — Turning Tides arc (also appears in Ch.7).', type: 'main', region: 'hernand' },
+  { name: 'A Thousand Troops', description: 'Ch.6 — The Unyielding Shields arc.', type: 'main', region: 'hernand' },
+  { name: 'Traitor', description: 'Ch.6 — The Unyielding Shields: Boss fight vs. Cassius Morten.', type: 'main', region: 'hernand', rewards: ['Shield of Betrayal'],
     walkthrough: [
-      { step: 1, instruction: 'Return to camp and speak with your commanders to receive news of the front.' },
-    ]
+      { step: 1, instruction: 'Confront Cassius Morten after the betrayal reveal at the front lines — fight starts after the cutscene.' },
+      { step: 2, instruction: 'Boss fight: Cassius Morten — heavy shield-and-sword fighter who blocks most frontal attacks.' },
+      { step: 3, instruction: 'Attack from his flanks or behind; he commits to a 2-hit shield bash — sidestep and punish after the second bash.', tip: 'Guard-break charged attacks bypass his shield stance effectively.' },
+      { step: 4, instruction: 'Defeat Cassius to receive the Shield of Betrayal, a unique heavy shield.' },
+    ],
   },
-  { name: 'To the Battlefield', description: 'Ch.6 — Blazing Beacon arc.', type: 'main', region: 'hernand',
-    walkthrough: [
-      { step: 1, instruction: 'Mount your horse and ride to the battlefield indicated on the map.' },
-      { step: 2, instruction: 'Link up with allied forces at the front line to trigger the next objective.' },
-    ]
-  },
-  { name: 'The Counterattack', description: 'Ch.6 — Blazing Beacon arc (also appears in Ch.7).', type: 'main', region: 'hernand',
-    walkthrough: [
-      { step: 1, instruction: 'Lead the counterattack — defeat enemy soldiers at the objective zone.' },
-      { step: 2, instruction: 'Clear all waves of enemies to secure the area.' },
-    ]
-  },
-  { name: 'Cradle of Defense', description: 'Ch.6 — Below the Banners arc.', type: 'main', region: 'hernand',
-    walkthrough: [
-      { step: 1, instruction: 'Travel to the defensive position under your banner.' },
-      { step: 2, instruction: 'Hold the position — defeat enemies attacking the fortified area.' },
-    ]
-  },
-  { name: 'Hand of Deliverance', description: 'Ch.6 — Below the Banners arc.', type: 'main', region: 'hernand',
-    walkthrough: [
-      { step: 1, instruction: 'Rescue allied soldiers at the objective marker.' },
-      { step: 2, instruction: 'Escort or clear the area to ensure their safe retreat.' },
-    ]
-  },
-  { name: 'Fire on the Frontlines', description: 'Ch.6 — Below the Banners arc.', type: 'main', region: 'hernand',
-    walkthrough: [
-      { step: 1, instruction: 'Reach the frontline position under fire.' },
-      { step: 2, instruction: 'Eliminate enemy archers and artillery crews causing the barrage.' },
-    ]
-  },
-  { name: 'Fire Support', description: 'Ch.6 — Turning Tides arc.', type: 'main', region: 'hernand',
-    walkthrough: [
-      { step: 1, instruction: 'Move to the support position indicated on the map.' },
-      { step: 2, instruction: 'Provide fire support to allies — defeat the assigned enemy targets.' },
-    ]
-  },
-  { name: 'Hidden Fangs', description: 'Ch.6 — Turning Tides arc.', type: 'main', region: 'hernand',
-    walkthrough: [
-      { step: 1, instruction: 'Investigate reports of a hidden enemy force — track their activity using your lantern.' },
-      { step: 2, instruction: 'Locate and eliminate the hidden unit to remove the threat to your flank.' },
-    ]
-  },
-  { name: 'Reclamation', description: 'Ch.6 — Turning Tides arc (also appears in Ch.7).', type: 'main', region: 'hernand',
-    walkthrough: [
-      { step: 1, instruction: 'Push into the enemy-held zone.' },
-      { step: 2, instruction: 'Defeat all enemy forces and reclaim the area for your faction.' },
-    ]
-  },
-  { name: 'A Thousand Troops', description: 'Ch.6 — The Unyielding Shields arc.', type: 'main', region: 'hernand',
-    walkthrough: [
-      { step: 1, instruction: 'Rally with allied commanders at the mustering point.' },
-      { step: 2, instruction: 'Lead the combined force in the major assault — cut through the enemy front.' },
-    ]
-  },
-  { name: 'Traitor', description: 'Ch.6 — The Unyielding Shields: Boss fight vs. Cassius Morten.', type: 'main', region: 'hernand',
-    rewards: ['Shield of Betrayal'],
-    walkthrough: [
-      { step: 1, instruction: 'Confront Cassius Morten after his betrayal is revealed.' },
-      { step: 2, instruction: 'Defeat Cassius: he fights defensively with a shield; bait his guard break, then unleash combos. Watch for his counter-thrust.', tip: 'Use heavy attacks to break his guard.' },
-    ]
-  },
-  { name: 'All Quiet on the Front', description: 'Ch.6 — The Unyielding Shields arc.', type: 'main', region: 'hernand',
-    walkthrough: [
-      { step: 1, instruction: 'Survey the front line after the battle — speak with soldiers at key positions.' },
-    ]
-  },
-  { name: 'News of Victory', description: 'Ch.6 — The Unyielding Shields arc.', type: 'main', region: 'hernand',
-    walkthrough: [
-      { step: 1, instruction: 'Return to your commanders and receive the news of the campaign outcome.' },
-    ]
-  },
-  { name: 'Return Home', description: 'Ch.6 — The Unyielding Shields arc: Chapter conclusion.', type: 'main', region: 'hernand',
-    walkthrough: [
-      { step: 1, instruction: 'Travel back to Greymane Camp to conclude Chapter 6.' },
-      { step: 2, instruction: 'Speak with your companions — a cutscene closes the chapter.' },
-    ]
-  },
+  { name: 'All Quiet on the Front', description: 'Ch.6 — The Unyielding Shields arc.', type: 'main', region: 'hernand' },
+  { name: 'News of Victory', description: 'Ch.6 — The Unyielding Shields arc.', type: 'main', region: 'hernand' },
+  { name: 'Return Home', description: 'Ch.6 — The Unyielding Shields arc: Chapter conclusion.', type: 'main', region: 'hernand' },
 
   // ─── CHAPTER 7: HOMECOMING ────────────────────────────────────────────────────────────────────
   // Morning Mist arc
   { name: 'Ashes of Treachery', description: 'Ch.7 — Morning Mist arc.', type: 'main', region: 'pailune',
     walkthrough: [
-      { step: 1, instruction: 'Arrive in Pailune — speak with locals to learn of the treachery that occurred.' },
-      { step: 2, instruction: 'Investigate the scene of betrayal at the objective marker.' },
-    ]
-  },
-  { name: 'Trust Lost', description: 'Ch.7 — Morning Mist arc.', type: 'main', region: 'pailune',
-    walkthrough: [
-      { step: 1, instruction: 'Confront the source of the broken trust — follow the objective marker.' },
-      { step: 2, instruction: 'Complete the dialogue confrontation or defeat enemies as required.' },
-    ]
-  },
-  { name: 'Bared Fang', description: 'Ch.7 — Morning Mist arc.', type: 'main', region: 'pailune',
-    walkthrough: [
-      { step: 1, instruction: 'Respond to the ambush — defeat the attacking force at the objective.' },
-      { step: 2, instruction: 'Protect your allies until the attack is repelled.' },
-    ]
-  },
-  { name: 'Rekindle Hope', description: 'Ch.7 — Morning Mist arc.', type: 'main', region: 'pailune',
-    walkthrough: [
-      { step: 1, instruction: 'Speak with the demoralized Pailune soldiers at the camp.' },
-      { step: 2, instruction: 'Complete the task that restores morale — follow objective prompts.' },
-    ]
-  },
-  { name: 'Podium of Resolve', description: 'Ch.7 — Morning Mist arc.', type: 'main', region: 'pailune',
-    walkthrough: [
-      { step: 1, instruction: 'Travel to the rally point in Pailune.' },
-      { step: 2, instruction: 'Participate in the event that unites the forces — a cutscene concludes the Morning Mist arc.' },
-    ]
-  },
-  // Dawn arc
-  { name: 'Shadows Over Pailune', description: 'Ch.7 — Dawn arc.', type: 'main', region: 'pailune',
-    walkthrough: [
-      { step: 1, instruction: 'Travel to the afflicted area of Pailune where shadow threats have appeared.' },
-      { step: 2, instruction: 'Assess the situation and eliminate the first wave of shadow enemies.' },
-    ]
-  },
-  { name: 'Driving out the Shadows', description: 'Ch.7 — Dawn arc.', type: 'main', region: 'pailune',
-    walkthrough: [
-      { step: 1, instruction: 'Pursue the retreating shadow forces deeper into Pailune.' },
-      { step: 2, instruction: 'Clear shadow enemies from each marked location.' },
-    ]
-  },
-  { name: 'Lurking Wolves', description: 'Ch.7 — Dawn arc.', type: 'main', region: 'pailune',
-    walkthrough: [
-      { step: 1, instruction: 'Track the wolf faction operatives hiding in Pailune.' },
-      { step: 2, instruction: 'Locate and confront the lurking enemies at the objective point.' },
-    ]
-  },
-  { name: 'Lonely Jackals', description: 'Ch.7 — Dawn: Boss fight vs. Ludvig and Awakened Ludvig.', type: 'main', region: 'pailune',
-    walkthrough: [
-      { step: 1, instruction: 'Confront Ludvig at the designated location — Phase 1: defeat normal Ludvig using standard parry-and-combo tactics.' },
-      { step: 2, instruction: 'Phase 2: Ludvig awakens and gains enhanced speed and power. Dodge more aggressively and counter only after clear openings.', tip: 'Bring ample healing before this fight — Awakened Ludvig hits significantly harder.' },
-    ]
-  },
-  { name: 'Resolution', description: 'Ch.7 — Dawn arc conclusion.', type: 'main', region: 'pailune',
-    walkthrough: [
-      { step: 1, instruction: 'Speak with your allies following the confrontation with Ludvig.' },
-      { step: 2, instruction: 'A cutscene resolves the Dawn arc and sets up the Decisive Battle.' },
-    ]
+      { step: 1, instruction: 'Confront Ludvig in the Pailune highlands after clearing the Dawn arc quests.' },
+      { step: 2, instruction: 'Phase 1 — Ludvig: Fast swordsman. Bait his triple-slash combo and counter-attack after the third hit.' },
+      { step: 3, instruction: 'Phase 2 — Awakened Ludvig: Dark aura transformation with wider swing arcs. Step back during the awakening animation.', tip: 'The awakening animation lasts ~5 seconds — use the time to recover stamina and use a healing item.' },
+      { step: 4, instruction: 'In Phase 2 target the glowing aura points on his body — they take increased damage.' },
+    ],
   },
   // Decisive Battle arc
-  { name: 'Unleashed Fury', description: 'Ch.7 — Decisive Battle arc.', type: 'main', region: 'pailune',
+  { name: 'Unleashed Fury', description: 'Ch.7 — Decisive Battle arc.', type: 'main', region: 'pailune' },
+  { name: 'The Final Bridge', description: 'Ch.7 — Decisive Battle arc.', type: 'main', region: 'pailune' },
+  { name: 'Broken Claws', description: 'Ch.7 — Decisive Battle arc.', type: 'main', region: 'pailune' },
+  { name: 'Battle at the Silver Wolf Mountain', description: 'Ch.7 — Decisive Battle: Boss fight vs. Lava Myurdin.', type: 'main', region: 'pailune', rewards: ['Melted Ambition', 'Pailunese Contribution EXP x3000'],
     walkthrough: [
-      { step: 1, instruction: 'Join the assault — travel to the front line of the decisive battle.' },
-      { step: 2, instruction: 'Defeat enemy forces at each wave marker to advance.' },
-    ]
+      { step: 1, instruction: 'Reach the summit of Silver Wolf Mountain at the climax of the Decisive Battle sequence.' },
+      { step: 2, instruction: 'Boss fight: Lava Myurdin — fire-element giant with ground-slam lava pools and sweeping arm attacks.' },
+      { step: 3, instruction: 'Lava pools linger on the ground after slams — keep moving to avoid burn status.', tip: 'Frost-element weapons deal bonus damage and temporarily reduce his attack speed.' },
+      { step: 4, instruction: 'At ~50% HP he enters lava-armor phase. Wait for the armor cracks to glow — only attack through the cracks for full damage.' },
+      { step: 5, instruction: 'Defeat Lava Myurdin to earn Melted Ambition and 3000 Pailunese Contribution EXP.' },
+    ],
   },
-  { name: 'The Final Bridge', description: 'Ch.7 — Decisive Battle arc.', type: 'main', region: 'pailune',
-    walkthrough: [
-      { step: 1, instruction: 'Push to the final bridge crossing — eliminate defenders guarding it.' },
-      { step: 2, instruction: 'Secure the bridge to allow allied forces to advance.' },
-    ]
-  },
-  { name: 'Broken Claws', description: 'Ch.7 — Decisive Battle arc.', type: 'main', region: 'pailune',
-    walkthrough: [
-      { step: 1, instruction: 'Target and destroy the enemy\'s heavy units and siege weapons at the objective.' },
-      { step: 2, instruction: 'Eliminate the remaining enemy commanders to break their assault.' },
-    ]
-  },
-  { name: 'Battle at the Silver Wolf Mountain', description: 'Ch.7 — Decisive Battle: Boss fight vs. Lava Myurdin.', type: 'main', region: 'pailune',
-    rewards: ['Melted Ambition', 'Pailunese Contribution EXP x3000'],
-    walkthrough: [
-      { step: 1, instruction: 'Ascend Silver Wolf Mountain and engage Lava Myurdin.' },
-      { step: 2, instruction: 'Defeat Lava Myurdin: avoid lava pools that form during his slams; attack after he finishes heavy attacks. His flame breath covers a wide arc — sidestep and close in quickly.', tip: 'Fire resistance gear helps; bring 50+ healing items.' },
-    ]
-  },
-  { name: 'Incomplete Victory', description: 'Ch.7 — Decisive Battle arc conclusion.', type: 'main', region: 'pailune',
-    walkthrough: [
-      { step: 1, instruction: 'Regroup with allies after the battle — speak with commanders.' },
-      { step: 2, instruction: 'A cutscene reveals why the victory is incomplete and opens the Twisted Fate arc.' },
-    ]
-  },
+  { name: 'Incomplete Victory', description: 'Ch.7 — Decisive Battle arc conclusion.', type: 'main', region: 'pailune' },
   // Twisted Fate arc
   { name: "Ludvig's Whereabouts", description: 'Ch.7 — Twisted Fate arc: Track the surviving Ludvig.', type: 'main', region: 'demeniss',
     walkthrough: [
@@ -1386,9 +1195,10 @@ export const QUESTS: Quest[] = [
   },
   { name: 'Time to Face Justice', description: 'Ch.7 — Twisted Fate: Boss fight vs. One-Armed Ludvig (forced Oongka).', type: 'main', region: 'demeniss',
     walkthrough: [
-      { step: 1, instruction: 'This fight forces you to play as Oongka — adapt your playstyle to her moveset.' },
-      { step: 2, instruction: 'Defeat One-Armed Ludvig: he compensates his missing arm with faster kicks and one-handed slashes. Use Oongka\'s agility to dodge and punish.', tip: 'Familiarize yourself with Oongka\'s abilities before this fight.' },
-    ]
+      { step: 1, instruction: 'This fight forces you to play as Oongka — familiarize yourself with her moveset before engaging.' },
+      { step: 2, instruction: 'Boss fight: One-Armed Ludvig — despite fighting one-handed, his sweeping strikes have wide arcs and high damage.' },
+      { step: 3, instruction: 'Stay at mid-range to bait his long-range lunge and punish the recovery animation.', tip: "Oongka's ranged abilities are effective here; whittle his HP before spending burst skills." },
+    ],
   },
 
   // ─── CHAPTER 8: BLOOD CORONATION ─────────────────────────────────────────────────────────────
@@ -1413,28 +1223,18 @@ export const QUESTS: Quest[] = [
   },
   { name: 'Where the Wind Guides You', description: 'Ch.8 — To Demeniss: Boss fight vs. Gregor the Halberd of Carnage.', type: 'main', region: 'demeniss',
     walkthrough: [
-      { step: 1, instruction: 'Intercept Gregor the Halberd of Carnage on the road to Demeniss.' },
-      { step: 2, instruction: 'Defeat Gregor: his halberd has long reach — stay close and attack after he completes his overhead sweep. Dodge sideways to avoid his spin attack.', tip: 'Keep close to minimize his halberd advantage.' },
-    ]
+      { step: 1, instruction: 'Engage Gregor on the road to Demeniss — fight begins after the encounter cutscene.' },
+      { step: 2, instruction: 'Boss fight: Gregor the Halberd of Carnage — enormous halberd with wide horizontal sweeps and thrust attacks.' },
+      { step: 3, instruction: 'Stay inside his reach during combos — the halberd's sweep hits at the tip, so up close many attacks miss.', tip: 'Attack immediately after his 3-hit halberd combo ends for the safest damage window.' },
+    ],
   },
   { name: 'The Cursed Knight', description: 'Ch.8 — To Demeniss: Boss fight vs. Fortain the Cursed Knight.', type: 'main', region: 'demeniss',
     walkthrough: [
-      { step: 1, instruction: 'Confront Fortain the Cursed Knight blocking the path to Demeniss.' },
-      { step: 2, instruction: 'Defeat Fortain: his curse grants him dark energy — avoid the dark aura bursts; attack during the brief moments after his curse cooldown.', tip: 'Abyss resistance gear reduces damage from his curse aura.' },
-    ]
-  },
-  { name: 'Cracks in Loyalty', description: 'Ch.8 — Traitor arc: Uncover betrayal within allied ranks.', type: 'main', region: 'demeniss',
-    walkthrough: [
-      { step: 1, instruction: 'Investigate the suspicious behavior within your allied ranks — speak with soldiers and officers.' },
-      { step: 2, instruction: 'Gather evidence of the betrayal and confront the traitor.' },
-    ]
-  },
-  { name: 'Blood Coronation', description: 'Ch.8 — Traitor arc: Chapter conclusion with dramatic political upheaval.', type: 'main', region: 'demeniss',
-    walkthrough: [
-      { step: 1, instruction: 'Attend the coronation ceremony in Demeniss.' },
-      { step: 2, instruction: 'Respond to the political crisis — fight through the ensuing chaos to reach safety.' },
-      { step: 3, instruction: 'A major cutscene concludes Chapter 8 with significant political upheaval.' },
-    ]
+      { step: 1, instruction: 'Confront Fortain the Cursed Knight at the gates of Demeniss after defeating Gregor.' },
+      { step: 2, instruction: 'Boss fight: Fortain — heavily armored knight whose curse causes unpredictable attack bursts.' },
+      { step: 3, instruction: 'When his armor begins to glow, roll away immediately to dodge the AoE curse burst.', tip: 'Shock-element attacks can interrupt his curse-charge animation.' },
+      { step: 4, instruction: 'After each curse burst he is briefly stunned — use this window for a full burst combo.' },
+    ],
   },
 
   // ─── CHAPTER 9: THE SAGE OF THE DESERT ──────────────────────────────────────────────────────
@@ -1511,26 +1311,16 @@ export const QUESTS: Quest[] = [
   },
 
   // ─── CHAPTER 12: THE ABYSS ─────────────────────────────────────────────────────────────────
-  { name: 'Descent into Providence', description: 'Ch.12 — Enter the final Abyss dimension.', type: 'main', region: 'abyss',
+  { name: 'Descent into Providence', description: 'Ch.12 — Enter the final Abyss dimension.', type: 'main', region: 'abyss' },
+  { name: 'Closing the Rifts', description: "Ch.12 — Fulfill Gian's final wish by sealing the Rifts.", type: 'main', region: 'abyss' },
+  { name: 'The Final Stand', description: 'Ch.12 — Final boss encounter vs. Hexe Marie.', type: 'main', region: 'abyss', rewards: ['Deep Abyss Core'],
     walkthrough: [
-      { step: 1, instruction: 'Enter the deepest level of the Abyss — Providence.' },
-      { step: 2, instruction: 'Navigate the treacherous Abyss terrain; defeat powerful enemies guarding the path.' },
-    ]
-  },
-  { name: 'Closing the Rifts', description: "Ch.12 — Fulfill Gian's final wish by sealing the Rifts.", type: 'main', region: 'abyss',
-    walkthrough: [
-      { step: 1, instruction: 'Locate each Rift within Providence — there are multiple scattered across the area.' },
-      { step: 2, instruction: "Use the Abyss sealing mechanism at each Rift. Defend against enemies that spawn during the sealing process." },
-      { step: 3, instruction: "Seal all Rifts to fulfill Gian's final wish." },
-    ]
-  },
-  { name: 'The Final Stand', description: 'Ch.12 — Final boss encounter vs. Hexe Marie.', type: 'main', region: 'abyss',
-    rewards: ['Deep Abyss Core'],
-    walkthrough: [
-      { step: 1, instruction: 'Confront Hexe Marie — the game\'s final boss. She has multiple phases and a large health pool.' },
-      { step: 2, instruction: 'Phase 1: Hexe Marie uses wide magic sweeps — dodge through them and attack in close range.' },
-      { step: 3, instruction: 'Phase 2: She enters full Abyss form. Watch for her charged beam attack (dodge sideways); attack during the beam\'s cooldown.', tip: 'Bring maximum healing supplies and your best-upgraded gear into this fight.' },
-    ]
+      { step: 1, instruction: 'Reach Hexe Marie at the heart of the final Abyss dimension after completing Closing the Rifts. Bring maximum healing items.' },
+      { step: 2, instruction: 'Phase 1: Hexe Marie casts Abyss magic projectile volleys and melee combos. Dodge her homing orbs late — they curve and self-correct if you dodge too early.', tip: 'This is the hardest fight in the game — equip your best gear and bring all consumables.' },
+      { step: 3, instruction: 'Phase 2 (at ~65% HP): Arena expands; she adds a sweeping beam attack. Move perpendicular to the beam — not away from it.' },
+      { step: 4, instruction: 'Phase 3 (at ~30% HP): Full Abyss form with airborne dive-bomb strikes added. Save all burst skills and limit breaks for this phase.' },
+      { step: 5, instruction: 'Defeat Hexe Marie to earn the Deep Abyss Core and complete the main story of Crimson Desert.' },
+    ],
   },
 
   // ─── EPILOGUE ───────────────────────────────────────────────────────────────────────────────
