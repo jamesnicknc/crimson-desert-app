@@ -1079,13 +1079,6 @@ export const MOUNTS: Mount[] = [
   { name: 'Abyssal Spider', category: 'exotic', region: 'abyss', speed: 60, combat: 55, stamina: 70, special: 'Wall climbing on any surface; leaves web trail that slows enemies', acquisition: 'Tame in the Abyss depths (requires Beast Taming skill)' },
   { name: 'Phantom Steed', category: 'exotic', region: 'multiple', speed: 95, combat: 10, stamina: 50, special: 'Ghostly mount that phases through obstacles and enemies; cannot attack', acquisition: "Legendary reward from the Ghost of Gian side quest" },
 
-  // Wolf (1)
-  { name: 'Direwolf', category: 'wolf', region: 'pailune', speed: 78, combat: 65, stamina: 70, special: 'Pack howl that buffs nearby allied mounts. Leaping bite attack', acquisition: 'Tame in the wild (Pailune highlands, appears in release trailer)' },
-
-  // Story mounts (obtained through main story progression)
-  { name: 'Herspia', category: 'horse', region: 'hernand', speed: 65, combat: 10, stamina: 70, special: "Kliff's personal horse obtained after the prologue. Reliable starter mount", acquisition: 'Automatically obtained after completing the Prologue' },
-  { name: 'Brianto', category: 'horse', region: 'hernand', speed: 70, combat: 10, stamina: 65, special: "Damiane's default horse. Available when unlocking her in Chapter 3", acquisition: 'Automatically obtained when unlocking Damiane (Chapter 3)' },
-  { name: 'Blackstar Dragon', category: 'wyvern', region: 'abyss', speed: 95, combat: 90, stamina: 55, special: 'Full flight. End-game flying mount obtained during Chapter 11 story events', acquisition: 'Story reward after completing Chapter 11' },
 ];
 
 // ═══════════════════════════════════════
