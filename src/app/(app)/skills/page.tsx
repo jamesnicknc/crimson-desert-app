@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 import type { Character } from '@/types/game-data';
+import { SKILLS } from '@/lib/game-data';
 
 // ─── Skill data for Kliff ─────────────────────────────────────────────────────
 // Source: Beebom pre-launch preview (beebom.com/crimson-desert-skills/)
@@ -27,75 +28,71 @@ interface TreeNode {
 }
 
 // ─── Complete Kliff skill data ────────────────────────────────────────────────
+// Sources: allthings.how, Game8, Beebom, GamesRadar, GameRant, Fextralife, Xbox Wire (March 2026)
 
 const SKILL_DATA: Record<string, SkillDetail> = {
   // ── BLUE BRANCH: STAMINA ──────────────────────────────────────────────────
-  // Core stats
   'stamina': {
     name: 'Stamina',
-    description: 'Increases your maximum stamina pool, enabling more evasions and actions before tiring.',
+    description: 'Increases maximum stamina pool (16 levels). Stamina fuels dodges, sprints, gliding, and special attacks.',
     maxLevel: 16,
     branch: 'Stamina',
-    enhancement: 'Level up through combat experience',
-    source: 'Passive progression',
+    source: 'Passive — increases automatically',
   },
   'armed-combat': {
     name: 'Armed Combat',
-    description: 'Master the fundamentals of weapon-based fighting. Higher levels unlock new weapon techniques.',
+    description: 'Master weapon-based fighting. Higher levels unlock Evasive Slash, Charge, Rush, and Quick Swap sub-skills.',
     maxLevel: 5,
     branch: 'Armed Combat',
-    enhancement: 'Defeat armed enemies, complete combat trials',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'unarmed-combat': {
     name: 'Unarmed Combat',
-    description: 'Develop hand-to-hand fighting prowess. Enables grappling, kicks, and body attacks.',
+    description: 'Develop hand-to-hand fighting prowess. Unlocks Leg Sweep, Scissor Takedown, and Proficiency sub-skills.',
     maxLevel: 5,
     branch: 'Unarmed Combat',
-    enhancement: 'Observe wrestlers, complete unarmed challenges',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'archery': {
     name: 'Archery',
-    description: 'Improve bow handling and accuracy. Higher levels unlock advanced ranged techniques.',
+    description: 'Improve bow handling and accuracy. Foundation for all ranged techniques.',
     maxLevel: 5,
     branch: 'Archery',
-    enhancement: 'Practice at archery ranges, hunt wildlife',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
 
   // Sword skills
   'forward-slash': {
     name: 'Forward Slash',
-    description: 'A forward slashing attack. Can be leveled multiple times for increased potency.',
+    description: 'A forward slashing attack. Upgrades unlock Proficiency and Sure Hit variants.',
     maxLevel: 3,
     branch: 'Sword Mastery',
     enhancement: 'Armed Combat Lv. 2',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'turning-slash': {
     name: 'Turning Slash',
-    description: 'A wide turning slash that hits enemies on all sides. Upgrades into Double and Mastery variants.',
+    description: 'A wide turning slash hitting enemies on all sides. Upgrades unlock Expertise, Proficiency, and Rend Armor variants.',
     maxLevel: 3,
     branch: 'Sword Mastery',
     enhancement: 'Forward Slash Lv. 2',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'stab': {
     name: 'Stab',
-    description: 'A piercing thrust that deals concentrated damage. Upgrades into Swift Stab and Skewer.',
+    description: 'A piercing thrust with the highest single-target DPS. Upgrades include Aerial Stab, Rend Armor, Skewering Stab, and Swift Stab. Max-level Rend Armor ignores boss super armor.',
     maxLevel: 3,
     branch: 'Sword Mastery',
     enhancement: 'Armed Combat Lv. 3',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'spinning-slash': {
     name: 'Spinning Slash',
-    description: 'A wide spinning attack that hits all surrounding enemies.',
+    description: 'A wide spinning attack that hits all surrounding enemies. Upgrades include Proficiency.',
     maxLevel: 2,
     branch: 'Sword Mastery',
     enhancement: 'Stab Lv. 2',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'sword-flurry': {
     name: 'Sword Flurry',
@@ -103,47 +100,39 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     maxLevel: 2,
     branch: 'Sword Mastery',
     enhancement: 'Turning Slash Lv. 2',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'blinding-flash': {
     name: 'Blinding Flash',
-    description: 'A flash of light from the blade that disorients enemies. Enables Blinding Flash Finisher.',
+    description: 'A flash of light from the blade that stuns enemies. The Blinding Flash Finisher triggers on perfect timing for burst damage with no stamina cost.',
     maxLevel: 1,
     branch: 'Sword Mastery',
     enhancement: 'Sword Flurry Lv. 1',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'evasive-slash': {
     name: 'Evasive Slash',
-    description: 'Dodge and slash simultaneously, avoiding damage while dealing a precise cut.',
+    description: 'Dodge and slash simultaneously, maintaining offense while avoiding damage.',
     maxLevel: 1,
     branch: 'Armed Combat',
     enhancement: 'Armed Combat Lv. 1',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'shield-bash': {
     name: 'Shield Bash',
-    description: 'Strike an enemy with your shield, staggering them and creating an opening for attack.',
+    description: 'Strike an enemy with your shield, staggering them and opening a counterattack window.',
     maxLevel: 1,
     branch: 'Armed Combat',
     enhancement: 'Armed Combat Lv. 2',
-    source: 'Artifact',
-  },
-  'aerial-stab': {
-    name: 'Aerial Stab',
-    description: 'Stab downward from the air while jumping or falling.',
-    maxLevel: 1,
-    branch: 'Armed Combat',
-    enhancement: 'Armed Combat Lv. 3',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'charge': {
     name: 'Charge',
-    description: 'Rush forward with your weapon, closing distance and hitting hard.',
+    description: 'Rush forward with your weapon to close distance and land a powerful hit.',
     maxLevel: 1,
     branch: 'Armed Combat',
     enhancement: 'Armed Combat Lv. 4',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
 
   // Unarmed / kick skills
@@ -153,7 +142,7 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     maxLevel: 1,
     branch: 'Unarmed Combat',
     enhancement: 'Unarmed Combat Lv. 1',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'dropkick': {
     name: 'Dropkick',
@@ -161,7 +150,7 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     maxLevel: 1,
     branch: 'Unarmed Combat',
     enhancement: 'Pump Kick',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'vault': {
     name: 'Vault',
@@ -169,7 +158,7 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     maxLevel: 1,
     branch: 'Unarmed Combat',
     enhancement: 'Dropkick',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'flying-kick': {
     name: 'Flying Kick',
@@ -177,7 +166,7 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     maxLevel: 1,
     branch: 'Unarmed Combat',
     enhancement: 'Vault',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'meteor-kick': {
     name: 'Meteor Kick',
@@ -185,15 +174,15 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     maxLevel: 1,
     branch: 'Unarmed Combat',
     enhancement: 'Flying Kick',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'grappling': {
     name: 'Grappling',
-    description: 'Master grappling techniques including throws, restraints, and lariats.',
+    description: 'Master grappling techniques. Unlocks Restrain, Throw, Lariat, Giant Swing, Back Hang, and Lariat Follow-up sub-skills.',
     maxLevel: 5,
     branch: 'Unarmed Combat',
     enhancement: 'Unarmed Combat Lv. 3',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'body-slam': {
     name: 'Body Slam',
@@ -201,33 +190,25 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     maxLevel: 1,
     branch: 'Unarmed Combat',
     enhancement: 'Grappling Lv. 2',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'clothesline': {
     name: 'Clothesline',
-    description: 'A running lariat that takes enemies off their feet.',
+    description: 'A running lariat with AoE knockback and a shockwave on impact.',
     maxLevel: 1,
     branch: 'Unarmed Combat',
     enhancement: 'Grappling Lv. 3',
-    source: 'Artifact',
-  },
-  'belly-slam': {
-    name: 'Belly Slam',
-    description: 'A devastating belly-first impact learned by observing a master wrestler.',
-    maxLevel: 1,
-    branch: 'Unarmed Combat',
-    enhancement: 'Grappling Lv. 4',
-    source: 'Observe enemy',
+    source: 'Abyss Artifact',
   },
 
   // Ranged / bow skills
   'evasive-shot': {
     name: 'Evasive Shot',
-    description: 'Fire while rolling or evading, maintaining offensive pressure during dodges.',
+    description: 'Fire while rolling or evading, maintaining offensive pressure during dodges. Upgrades include Proficiency and Expertise variants.',
     maxLevel: 3,
     branch: 'Archery',
     enhancement: 'Archery Lv. 2',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'charged-shot': {
     name: 'Charged Shot',
@@ -235,129 +216,128 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     maxLevel: 1,
     branch: 'Archery',
     enhancement: 'Archery Lv. 3',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'multishot': {
     name: 'Multishot',
-    description: 'Fire multiple arrows simultaneously, hitting several targets at once.',
+    description: 'Fire 10 arrows simultaneously, hitting multiple targets at once.',
     maxLevel: 1,
     branch: 'Archery',
     enhancement: 'Archery Lv. 4',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'focus-shot': {
     name: 'Focus Shot',
-    description: 'Enter a focused state for extreme accuracy. Time slows as you aim.',
+    description: 'Enter a focused aiming state where time slows for extreme accuracy.',
     maxLevel: 3,
     branch: 'Archery',
     enhancement: 'Charged Shot',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'marksmanship': {
     name: 'Marksmanship',
-    description: 'Improve ranged accuracy and damage. Passive skill for all ranged attacks.',
+    description: 'Passive skill improving ranged accuracy and damage for all bow attacks.',
     maxLevel: 3,
     branch: 'Archery',
     enhancement: 'Archery Lv. 5',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'elemental-charged-shot': {
     name: 'Elemental Charged Shot',
-    description: 'Fire an elemental-imbued arrow that explodes on impact.',
+    description: 'Fire a ranged shot infused with elemental magic for explosive impact.',
     maxLevel: 1,
     branch: 'Elemental Power',
-    enhancement: 'Imbue Elements Lv. 2, Charged Shot',
-    source: 'Artifact',
+    enhancement: 'Imbue Elements Lv. 2 + Charged Shot',
+    source: 'Abyss Artifact',
   },
 
   // ── GREEN BRANCH: SPIRIT ──────────────────────────────────────────────────
   'spirit': {
     name: 'Spirit',
-    description: 'Increases your maximum spirit pool, powering all nature-based and defensive abilities.',
+    description: 'Increases maximum spirit pool (14 levels). Spirit powers nature-based and defensive abilities.',
     maxLevel: 14,
     branch: 'Spirit',
-    enhancement: 'Level up through skill usage',
-    source: 'Passive progression',
+    source: 'Passive — increases automatically',
   },
   'natures-echo': {
     name: "Nature's Echo",
-    description: 'Channel the spirit of the natural world to amplify your next attack. Unlocks echoing variants.',
+    description: 'Summon phantom clones that mimic your attacks, effectively doubling your hit output.',
     maxLevel: 3,
     branch: 'Spirit Arts',
     enhancement: 'Spirit Lv. 3',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'natures-snare': {
     name: "Nature's Snare",
-    description: 'Summon binding roots or vines that immobilize a target briefly.',
+    description: 'Create a spirit barrier that absorbs incoming projectiles. Most effective at level 3.',
     maxLevel: 3,
     branch: 'Spirit Arts',
     enhancement: 'Spirit Lv. 5',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'natures-grasp': {
     name: "Nature's Grasp",
-    description: 'Roots erupt from the ground, holding enemies in place longer than Snare.',
+    description: 'Use nature energy to move heavy objects and interact with environmental puzzles.',
     maxLevel: 2,
     branch: 'Spirit Arts',
     enhancement: "Nature's Snare Lv. 2",
-    source: 'Artifact',
-  },
-  'natures-retribution': {
-    name: "Nature's Retribution",
-    description: 'After being hit, channel nature energy to strike back automatically.',
-    maxLevel: 1,
-    branch: 'Spirit Arts',
-    enhancement: "Nature's Echo Lv. 3",
-    source: 'Artifact',
-  },
-  'natures-veil': {
-    name: "Nature's Veil",
-    description: 'Become partially invisible, reducing enemy detection.',
-    maxLevel: 1,
-    branch: 'Spirit Arts',
-    enhancement: 'Focus Lv. 3',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'keen-senses': {
     name: 'Keen Senses',
-    description: 'Heighten awareness to detect hidden enemies and avoid ambushes. Enables Parry and Counter.',
+    description: 'Heighten combat awareness. Level 3 unlocks Counter, Parry, and Perfect Dodge.',
     maxLevel: 3,
     branch: 'Spirit Arts',
     enhancement: 'Spirit Lv. 4',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'focus': {
     name: 'Focus',
-    description: 'Enter a focused state that slows perceived time and increases accuracy.',
+    description: 'Time slows around Kliff, enabling the Focused Insight parry and extreme accuracy.',
     maxLevel: 3,
     branch: 'Spirit Arts',
     enhancement: "Nature's Echo Lv. 2",
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'force-palm': {
     name: 'Force Palm',
-    description: 'A devastating open-palm strike that sends enemies flying. Can be leveled extensively.',
+    description: 'Condense energy and release it as an open-palm strike that reduces the target\'s defense.',
     maxLevel: 5,
     branch: 'Spirit Arts',
     enhancement: 'Focus Lv. 2',
-    source: 'Observe hologram',
+    source: 'Observe — holographic projection',
+  },
+  'focused-force-palm': {
+    name: 'Focused Force Palm',
+    description: 'A focused Force Palm variant required to break special rock walls blocking story and puzzle paths. Learned by observing a spirit near Fort Perwin in the Crimson Desert.',
+    maxLevel: 1,
+    branch: 'Spirit Arts',
+    enhancement: 'Force Palm',
+    source: 'Observe — spirit near Fort Perwin',
   },
   'healing-force-palm': {
     name: 'Healing Force Palm',
-    description: 'A variant of Force Palm that heals the user on hit.',
+    description: 'A Force Palm variant that restores health on hit.',
     maxLevel: 3,
     branch: 'Spirit Arts',
     enhancement: 'Force Palm Lv. 3',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
+  },
+  'force-current': {
+    name: 'Force Current',
+    description: 'A grapple-based technique used for resource gathering and environmental puzzle interactions.',
+    maxLevel: 2,
+    branch: 'Spirit Arts',
+    enhancement: 'Focus Lv. 3',
+    source: 'Abyss Artifact',
   },
   'parry': {
     name: 'Parry',
     description: 'Deflect incoming attacks with precise timing, creating a window for counterattack.',
     maxLevel: 1,
     branch: 'Spirit Arts',
-    enhancement: 'Keen Senses Lv. 1',
-    source: 'Artifact',
+    enhancement: 'Keen Senses Lv. 3',
+    source: 'Abyss Artifact',
   },
   'counter': {
     name: 'Counter',
@@ -365,33 +345,32 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     maxLevel: 1,
     branch: 'Spirit Arts',
     enhancement: 'Parry',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'evasive-roll': {
     name: 'Evasive Roll',
-    description: 'A quick evasive roll that grants brief invincibility frames.',
+    description: 'Roll to evade attacks while regaining stamina, even after taking a hit.',
     maxLevel: 1,
     branch: 'Spirit Arts',
-    enhancement: 'Keen Senses Lv. 2',
-    source: 'Artifact',
+    enhancement: 'Keen Senses Lv. 3',
+    source: 'Observe — Kailok the Hornsplitter boss (Chapter 2)',
   },
   'double-jump': {
     name: 'Double Jump',
-    description: 'Perform a second jump in mid-air, greatly improving vertical mobility.',
+    description: 'Perform a second jump in mid-air, greatly improving vertical mobility and platforming.',
     maxLevel: 1,
     branch: 'Spirit Arts',
     enhancement: 'Evasive Roll',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
 
   // ── RED BRANCH: HEALTH / ELEMENTAL ────────────────────────────────────────
   'health': {
     name: 'Health',
-    description: 'Increases your maximum health pool, improving endurance during combat.',
+    description: 'Increases maximum health pool (18 levels). The largest of the three core stat branches.',
     maxLevel: 18,
     branch: 'Health',
-    enhancement: 'Level up through combat experience',
-    source: 'Passive progression',
+    source: 'Passive — increases automatically',
   },
   'fist-of-flame': {
     name: 'Fist of Flame',
@@ -399,7 +378,7 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     maxLevel: 1,
     branch: 'Elemental Power',
     enhancement: 'Health Lv. 3',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'veil-of-fog': {
     name: 'Veil of Fog',
@@ -407,7 +386,7 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     maxLevel: 1,
     branch: 'Elemental Power',
     enhancement: 'Mystical Storage',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'mantle-of-frost': {
     name: 'Mantle of Frost',
@@ -415,7 +394,7 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     maxLevel: 1,
     branch: 'Elemental Power',
     enhancement: 'Imbue Elements Lv. 2',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'frost-mantle': {
     name: 'Frost Mantle',
@@ -423,7 +402,7 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     maxLevel: 1,
     branch: 'Elemental Power',
     enhancement: 'Mantle of Frost',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'surge-of-sparks': {
     name: 'Surge of Sparks',
@@ -431,31 +410,31 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     maxLevel: 1,
     branch: 'Elemental Power',
     enhancement: 'Imbue Elements Lv. 3',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'lightning-surge': {
     name: 'Lightning Surge',
-    description: 'Channel lightning through the ground in a line ahead.',
+    description: 'Channel lightning through the ground in a line ahead of you.',
     maxLevel: 1,
     branch: 'Elemental Power',
     enhancement: 'Surge of Sparks',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'imbue-elements': {
     name: 'Imbue Elements',
-    description: 'Infuse your weapon with elemental power. Higher levels unlock Elemental Turning Slash and more.',
+    description: 'Infuse your weapon with elemental power (up to level 4). Unlocks Elemental Turning Slash, Elemental Charged Shot, Elemental Force Palm, and Elemental Meteor Kick.',
     maxLevel: 4,
     branch: 'Elemental Power',
     enhancement: 'Health Lv. 5',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'flame-strike': {
     name: 'Flame Strike',
-    description: 'A fiery overhead slam that leaves burning ground.',
+    description: 'A fiery overhead slam that ignites the target and leaves burning ground.',
     maxLevel: 1,
     branch: 'Elemental Power',
     enhancement: 'Fist of Flame',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'storm-veil': {
     name: 'Storm Veil',
@@ -463,7 +442,7 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     maxLevel: 1,
     branch: 'Elemental Power',
     enhancement: 'Imbue Elements Lv. 4',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'mystical-storage': {
     name: 'Mystical Storage',
@@ -471,79 +450,64 @@ const SKILL_DATA: Record<string, SkillDetail> = {
     maxLevel: 1,
     branch: 'Elemental Power',
     enhancement: 'Health Lv. 4',
-    source: 'Artifact',
+    source: 'Abyss Artifact',
   },
   'axiom-force': {
     name: 'Axiom Force',
-    description: 'Harness Abyss power to launch into aerial combat. Enables flight-style moves.',
+    description: 'Harness Abyss power for aerial combat. Functions as a grappling hook — level 2 unlocks Aerial Swing, level 3 unlocks Aerial Maneuver.',
     maxLevel: 3,
     branch: 'Axiom',
-    enhancement: 'Health Lv. 8, Spirit Lv. 6',
-    source: 'Story progression',
+    enhancement: 'Story progression required',
+    source: 'Story',
   },
   'flight': {
     name: 'Flight',
-    description: 'Spread crow wings and take to the skies. Enables aerial exploration and combat.',
+    description: 'Spread crow wings and take to the skies for aerial traversal and combat.',
     maxLevel: 2,
     branch: 'Axiom',
     enhancement: 'Axiom Force Lv. 1',
-    source: 'Story progression',
+    source: 'Story',
   },
   'aerial-maneuver': {
     name: 'Aerial Maneuver',
-    description: 'Perform advanced maneuvers while airborne, dodging attacks and repositioning.',
+    description: 'Perform advanced airborne maneuvers, repositioning rapidly to dodge attacks.',
     maxLevel: 1,
     branch: 'Axiom',
-    enhancement: 'Axiom Force Lv. 2',
-    source: 'Artifact',
-  },
-  'aerial-roll': {
-    name: 'Aerial Roll',
-    description: 'Perform evasive rolls while airborne.',
-    maxLevel: 1,
-    branch: 'Axiom',
-    enhancement: 'Flight Lv. 2',
-    source: 'Artifact',
+    enhancement: 'Axiom Force Lv. 3',
+    source: 'Abyss Artifact',
   },
   'swift-flight': {
     name: 'Swift Flight',
-    description: 'Increase flight speed and maneuverability.',
+    description: 'Increase aerial movement speed and responsiveness.',
     maxLevel: 2,
     branch: 'Axiom',
-    enhancement: 'Aerial Maneuver',
-    source: 'Artifact',
+    enhancement: 'Flight Lv. 2',
+    source: 'Abyss Artifact',
   },
   'aerial-swing': {
     name: 'Aerial Swing',
     description: 'Execute powerful sword swings while in flight, striking ground targets from above.',
     maxLevel: 1,
     branch: 'Axiom',
-    enhancement: 'Flight Lv. 1',
-    source: 'Artifact',
-  },
-  'winch': {
-    name: 'Winch',
-    description: 'Fire a grappling shot that pulls enemies toward you or yanks you to a distant ledge.',
-    maxLevel: 1,
-    branch: 'Utility',
-    enhancement: 'Health Lv. 6',
-    source: 'Artifact',
+    enhancement: 'Axiom Force Lv. 2',
+    source: 'Abyss Artifact',
   },
 
   // ── CORE: Convergence ─────────────────────────────────────────────────────
   'falling-palm': {
     name: 'Falling Palm',
-    description: 'Unleash a powerful blow to the ground by harnessing the force of the fall. The ultimate convergence skill unlocked after mastering all three branches.',
+    description: 'Channel all remaining Stamina into a ground-impact strike. Unlocked by completing any one branch (Blue, Green, or Red) — not all three.',
     maxLevel: 1,
     branch: 'Core',
-    enhancement: 'Complete all three branch roots',
+    enhancement: 'Complete any one branch (Blue, Green, or Red)',
     source: 'Convergence',
   },
 };
 
 // ─── Tree node layout ─────────────────────────────────────────────────────────
-// Arranged to match the in-game Y-shaped tree: Blue (top, spreading left/right),
-// Green (bottom-left), Red (bottom-right), Core spine connecting them.
+// Y-shaped layout: Blue (top, three arms), Green (bottom-left), Red (bottom-right).
+// Core spine (Falling Palm) sits at center connecting all three branches.
+// Structure verified against allthings.how branch breakdown and gameplay footage.
 
 const KLIFF_NODES: TreeNode[] = [
   // ── CORE SPINE ────────────────────────────────────────────────────────────
@@ -553,11 +517,10 @@ const KLIFF_NODES: TreeNode[] = [
   { id: 'n-core-lower-r', x: 62, y: 60, size: 'md', branch: 'core', connections: ['n-health'], skill: undefined },
 
   // ── BLUE BRANCH (STAMINA) - Top ───────────────────────────────────────────
-  // Main trunk
   { id: 'n-stamina', x: 50, y: 26, size: 'lg', branch: 'blue', connections: ['n-armed-combat', 'n-unarmed-combat', 'n-archery'], skill: SKILL_DATA['stamina'] },
 
   // Left arm: Armed Combat / Sword Mastery
-  { id: 'n-armed-combat', x: 32, y: 20, size: 'md', branch: 'blue', connections: ['n-evasive-slash', 'n-forward-slash', 'n-shield-bash', 'n-aerial-stab', 'n-charge'], skill: SKILL_DATA['armed-combat'] },
+  { id: 'n-armed-combat', x: 32, y: 20, size: 'md', branch: 'blue', connections: ['n-evasive-slash', 'n-forward-slash', 'n-shield-bash', 'n-charge'], skill: SKILL_DATA['armed-combat'] },
   { id: 'n-evasive-slash', x: 22, y: 14, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['evasive-slash'] },
   { id: 'n-forward-slash', x: 24, y: 26, size: 'md', branch: 'blue', connections: ['n-turning-slash', 'n-stab'], skill: SKILL_DATA['forward-slash'] },
   { id: 'n-turning-slash', x: 14, y: 22, size: 'sm', branch: 'blue', connections: ['n-sword-flurry'], skill: SKILL_DATA['turning-slash'] },
@@ -566,7 +529,6 @@ const KLIFF_NODES: TreeNode[] = [
   { id: 'n-sword-flurry', x: 7, y: 17, size: 'sm', branch: 'blue', connections: ['n-blinding-flash'], skill: SKILL_DATA['sword-flurry'] },
   { id: 'n-blinding-flash', x: 5, y: 10, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['blinding-flash'] },
   { id: 'n-shield-bash', x: 38, y: 12, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['shield-bash'] },
-  { id: 'n-aerial-stab', x: 28, y: 10, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['aerial-stab'] },
   { id: 'n-charge', x: 32, y: 8, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['charge'] },
 
   // Center arm: Unarmed Combat
@@ -576,9 +538,8 @@ const KLIFF_NODES: TreeNode[] = [
   { id: 'n-vault', x: 44, y: 2, size: 'sm', branch: 'blue', connections: ['n-flying-kick'], skill: SKILL_DATA['vault'] },
   { id: 'n-flying-kick', x: 50, y: 4, size: 'sm', branch: 'blue', connections: ['n-meteor-kick'], skill: SKILL_DATA['flying-kick'] },
   { id: 'n-meteor-kick', x: 56, y: 2, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['meteor-kick'] },
-  { id: 'n-grappling', x: 56, y: 8, size: 'sm', branch: 'blue', connections: ['n-body-slam', 'n-clothesline'], skill: SKILL_DATA['grappling'] },
-  { id: 'n-body-slam', x: 60, y: 4, size: 'sm', branch: 'blue', connections: ['n-belly-slam'], skill: SKILL_DATA['body-slam'] },
-  { id: 'n-belly-slam', x: 66, y: 2, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['belly-slam'] },
+  { id: 'n-grappling', x: 56, y: 8, size: 'md', branch: 'blue', connections: ['n-body-slam', 'n-clothesline'], skill: SKILL_DATA['grappling'] },
+  { id: 'n-body-slam', x: 62, y: 4, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['body-slam'] },
   { id: 'n-clothesline', x: 64, y: 10, size: 'sm', branch: 'blue', connections: [], skill: SKILL_DATA['clothesline'] },
 
   // Right arm: Archery / Ranged
@@ -592,26 +553,30 @@ const KLIFF_NODES: TreeNode[] = [
   // ── GREEN BRANCH (SPIRIT) - Bottom Left ───────────────────────────────────
   { id: 'n-spirit', x: 26, y: 68, size: 'lg', branch: 'green', connections: ['n-natures-echo', 'n-keen-senses', 'n-natures-snare'], skill: SKILL_DATA['spirit'] },
 
-  { id: 'n-natures-echo', x: 16, y: 62, size: 'md', branch: 'green', connections: ['n-focus-g', 'n-force-palm', 'n-natures-retribution'], skill: SKILL_DATA['natures-echo'] },
-  { id: 'n-focus-g', x: 8, y: 56, size: 'sm', branch: 'green', connections: ['n-natures-veil'], skill: SKILL_DATA['focus'] },
-  { id: 'n-natures-veil', x: 4, y: 50, size: 'sm', branch: 'green', connections: [], skill: SKILL_DATA['natures-veil'] },
-  { id: 'n-force-palm', x: 8, y: 66, size: 'sm', branch: 'green', connections: ['n-healing-force-palm'], skill: SKILL_DATA['force-palm'] },
+  // Nature's Echo arm: Force Palm, Focus, Force Current
+  { id: 'n-natures-echo', x: 16, y: 62, size: 'md', branch: 'green', connections: ['n-focus-g', 'n-force-palm'], skill: SKILL_DATA['natures-echo'] },
+  { id: 'n-focus-g', x: 8, y: 56, size: 'sm', branch: 'green', connections: ['n-force-current'], skill: SKILL_DATA['focus'] },
+  { id: 'n-force-current', x: 2, y: 50, size: 'sm', branch: 'green', connections: [], skill: SKILL_DATA['force-current'] },
+  { id: 'n-force-palm', x: 8, y: 66, size: 'sm', branch: 'green', connections: ['n-healing-force-palm', 'n-focused-force-palm'], skill: SKILL_DATA['force-palm'] },
   { id: 'n-healing-force-palm', x: 4, y: 72, size: 'sm', branch: 'green', connections: [], skill: SKILL_DATA['healing-force-palm'] },
-  { id: 'n-natures-retribution', x: 12, y: 56, size: 'sm', branch: 'green', connections: [], skill: SKILL_DATA['natures-retribution'] },
+  { id: 'n-focused-force-palm', x: 2, y: 62, size: 'sm', branch: 'green', connections: [], skill: SKILL_DATA['focused-force-palm'] },
 
+  // Keen Senses arm: Parry, Counter, Evasive Roll, Double Jump
   { id: 'n-keen-senses', x: 14, y: 74, size: 'md', branch: 'green', connections: ['n-parry', 'n-evasive-roll'], skill: SKILL_DATA['keen-senses'] },
   { id: 'n-parry', x: 6, y: 70, size: 'sm', branch: 'green', connections: ['n-counter'], skill: SKILL_DATA['parry'] },
   { id: 'n-counter', x: 4, y: 76, size: 'sm', branch: 'green', connections: [], skill: SKILL_DATA['counter'] },
   { id: 'n-evasive-roll', x: 10, y: 82, size: 'sm', branch: 'green', connections: ['n-double-jump'], skill: SKILL_DATA['evasive-roll'] },
   { id: 'n-double-jump', x: 6, y: 88, size: 'sm', branch: 'green', connections: [], skill: SKILL_DATA['double-jump'] },
 
+  // Nature's Snare / Grasp arm
   { id: 'n-natures-snare', x: 22, y: 80, size: 'sm', branch: 'green', connections: ['n-natures-grasp'], skill: SKILL_DATA['natures-snare'] },
   { id: 'n-natures-grasp', x: 30, y: 84, size: 'sm', branch: 'green', connections: [], skill: SKILL_DATA['natures-grasp'] },
 
   // ── RED BRANCH (HEALTH / ELEMENTAL) - Bottom Right ────────────────────────
-  { id: 'n-health', x: 74, y: 68, size: 'lg', branch: 'red', connections: ['n-imbue-elements', 'n-mystical-storage', 'n-axiom-force', 'n-winch'], skill: SKILL_DATA['health'] },
+  { id: 'n-health', x: 74, y: 68, size: 'lg', branch: 'red', connections: ['n-imbue-elements', 'n-mystical-storage', 'n-axiom-force'], skill: SKILL_DATA['health'] },
 
-  { id: 'n-imbue-elements', x: 84, y: 62, size: 'md', branch: 'red', connections: ['n-fist-of-flame', 'n-mantle-of-frost', 'n-surge-of-sparks', 'n-storm-veil'], skill: SKILL_DATA['imbue-elements'] },
+  // Imbue Elements arm: elemental sub-skills
+  { id: 'n-imbue-elements', x: 84, y: 62, size: 'md', branch: 'red', connections: ['n-fist-of-flame', 'n-mantle-of-frost', 'n-surge-of-sparks', 'n-storm-veil', 'n-elemental-charged-shot'], skill: SKILL_DATA['imbue-elements'] },
   { id: 'n-fist-of-flame', x: 92, y: 56, size: 'sm', branch: 'red', connections: ['n-flame-strike'], skill: SKILL_DATA['fist-of-flame'] },
   { id: 'n-flame-strike', x: 98, y: 52, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['flame-strike'] },
   { id: 'n-mantle-of-frost', x: 94, y: 64, size: 'sm', branch: 'red', connections: ['n-frost-mantle'], skill: SKILL_DATA['mantle-of-frost'] },
@@ -619,21 +584,18 @@ const KLIFF_NODES: TreeNode[] = [
   { id: 'n-surge-of-sparks', x: 92, y: 72, size: 'sm', branch: 'red', connections: ['n-lightning-surge'], skill: SKILL_DATA['surge-of-sparks'] },
   { id: 'n-lightning-surge', x: 98, y: 76, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['lightning-surge'] },
   { id: 'n-storm-veil', x: 84, y: 50, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['storm-veil'] },
+  { id: 'n-elemental-charged-shot', x: 86, y: 30, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['elemental-charged-shot'] },
 
+  // Mystical Storage arm
   { id: 'n-mystical-storage', x: 82, y: 74, size: 'sm', branch: 'red', connections: ['n-veil-of-fog'], skill: SKILL_DATA['mystical-storage'] },
   { id: 'n-veil-of-fog', x: 90, y: 80, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['veil-of-fog'] },
 
-  { id: 'n-axiom-force', x: 72, y: 78, size: 'md', branch: 'red', connections: ['n-flight', 'n-aerial-maneuver'], skill: SKILL_DATA['axiom-force'] },
-  { id: 'n-flight', x: 78, y: 86, size: 'sm', branch: 'red', connections: ['n-aerial-swing', 'n-aerial-roll'], skill: SKILL_DATA['flight'] },
-  { id: 'n-aerial-swing', x: 86, y: 90, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['aerial-swing'] },
-  { id: 'n-aerial-roll', x: 82, y: 92, size: 'sm', branch: 'red', connections: ['n-swift-flight'], skill: SKILL_DATA['aerial-roll'] },
-  { id: 'n-swift-flight', x: 78, y: 96, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['swift-flight'] },
+  // Axiom Force arm: Flight (→ Swift Flight), Aerial Swing (Lv.2), Aerial Maneuver (Lv.3)
+  { id: 'n-axiom-force', x: 72, y: 78, size: 'md', branch: 'red', connections: ['n-flight', 'n-aerial-swing', 'n-aerial-maneuver'], skill: SKILL_DATA['axiom-force'] },
+  { id: 'n-flight', x: 78, y: 86, size: 'sm', branch: 'red', connections: ['n-swift-flight'], skill: SKILL_DATA['flight'] },
+  { id: 'n-swift-flight', x: 78, y: 94, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['swift-flight'] },
+  { id: 'n-aerial-swing', x: 86, y: 84, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['aerial-swing'] },
   { id: 'n-aerial-maneuver', x: 66, y: 86, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['aerial-maneuver'] },
-
-  { id: 'n-winch', x: 64, y: 74, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['winch'] },
-
-  // Elemental Charged Shot (bridging Archery and Elemental)
-  { id: 'n-elemental-charged-shot', x: 86, y: 30, size: 'sm', branch: 'red', connections: [], skill: SKILL_DATA['elemental-charged-shot'] },
 ];
 
 // Build a lookup map
@@ -823,9 +785,95 @@ function SkillPopup({ node, unlocked, onClose, onToggle }: PopupProps) {
         </button>
 
         <p className="text-center text-xs text-gray-600 mt-3">
-          Data verified from Beebom, Game8, Fextralife
+          Verified: allthings.how, Game8, Beebom, Fextralife, Xbox Wire (March 2026)
         </p>
       </div>
+    </div>
+  );
+}
+
+// ─── Companion skill list (Damiane / Oongka) ──────────────────────────────────
+
+const COMPANION_BRANCH_ORDER: Record<string, string[]> = {
+  damiane: ['Core Stats', 'Armed Combat', 'Shooting', 'Unarmed Combat', 'Evasion', 'Spirit Arts', 'Smiting'],
+  oongka:  ['Core Stats', 'Armed Combat', 'Shooting', 'Unarmed Combat', 'Evasion', 'Spirit Arts'],
+};
+
+const COMPANION_INFO: Record<string, { subtitle: string; note: string; color: string }> = {
+  damiane: {
+    subtitle: 'Glass cannon — rapier, dual blades, pistol/musket',
+    note: 'Unlocked in Chapter 3 after "A Fresh Start" quest at Howling Hill. Uses a mechanical propeller parasol for flight.',
+    color: '#a78bfa',
+  },
+  oongka: {
+    subtitle: 'Tank / bruiser — axes, staves, blaster cannon',
+    note: 'Unlocked in Chapter 7 during "Twisted Fate" quest at Ashclaw Keep. Complete "Gentle Sound of Flowing River" side quest for permanent access. Uses a jetpack for flight.',
+    color: '#fb923c',
+  },
+};
+
+const COST_BADGE: Record<string, string> = {
+  Passive:     'bg-gray-800 text-gray-400 border-gray-700',
+  Artifact:    'bg-amber-950/60 text-amber-400 border-amber-800/50',
+  Observe:     'bg-teal-950/60 text-teal-400 border-teal-800/50',
+  Story:       'bg-purple-950/60 text-purple-400 border-purple-800/50',
+  Convergence: 'bg-yellow-950/60 text-yellow-300 border-yellow-700/50',
+};
+
+function CompanionSkills({ character }: { character: Character }) {
+  const info = COMPANION_INFO[character];
+  const branchOrder = COMPANION_BRANCH_ORDER[character] ?? [];
+  const skills = SKILLS.filter(s => s.character === character);
+
+  const byBranch = branchOrder.reduce<Record<string, typeof skills>>((acc, b) => {
+    acc[b] = skills.filter(s => s.branch === b);
+    return acc;
+  }, {});
+
+  return (
+    <div className="space-y-6">
+      {/* Character header */}
+      <div className="bg-pywel-card rounded-xl p-5 border border-pywel-border">
+        <p className="text-sm font-cinzel mb-1" style={{ color: info.color }}>{info.subtitle}</p>
+        <p className="text-xs text-gray-500 leading-relaxed">{info.note}</p>
+      </div>
+
+      {/* Warning: shared artifact pool */}
+      <div className="bg-amber-950/30 border border-amber-800/40 rounded-lg p-3 flex gap-2 items-start">
+        <span className="text-amber-400 text-sm mt-0.5">⚠</span>
+        <p className="text-xs text-amber-300/80">All three characters share the same Abyss Artifact pool. Investing in companions reduces what is available for Kliff, who is required for all story bosses.</p>
+      </div>
+
+      {/* Skills by branch */}
+      {branchOrder.map(branch => {
+        const branchSkills = byBranch[branch];
+        if (!branchSkills?.length) return null;
+        return (
+          <div key={branch}>
+            <h3 className="text-xs font-cinzel font-bold text-gray-500 tracking-widest uppercase mb-3 pl-1">{branch}</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {branchSkills.map(skill => (
+                <div key={skill.id}
+                  className="bg-pywel-card rounded-lg p-3 border border-pywel-border hover:border-pywel-border/70 transition-colors">
+                  <div className="flex items-start justify-between gap-2 mb-1">
+                    <span className="text-sm font-cinzel font-semibold text-gold-300">{skill.name}</span>
+                    <span className={`text-[10px] font-cinzel px-1.5 py-0.5 rounded border whitespace-nowrap flex-shrink-0 ${COST_BADGE[skill.cost] ?? COST_BADGE['Artifact']}`}>
+                      {skill.cost}
+                    </span>
+                  </div>
+                  {skill.description && (
+                    <p className="text-xs text-gray-400 leading-relaxed">{skill.description}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+
+      <p className="text-center text-xs text-gray-600">
+        Skill data sourced from Fextralife, Game8, and GameSpot (verified March 2026)
+      </p>
     </div>
   );
 }
@@ -890,22 +938,9 @@ export default function SkillsPage() {
         ))}
       </div>
 
-      {/* Damiane / Oongka placeholder */}
+      {/* Damiane / Oongka skill listings */}
       {selectedChar !== 'kliff' ? (
-        <div className="flex flex-col items-center justify-center py-24 text-center space-y-4">
-          <div className="w-20 h-20 rounded-full bg-pywel-card border border-pywel-border flex items-center justify-center mb-2">
-            <svg className="w-10 h-10 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-            </svg>
-          </div>
-          <h2 className="text-2xl font-cinzel font-bold text-gold-300">Skills Coming Soon</h2>
-          <p className="text-gray-400 max-w-sm">
-            {selectedChar === 'damiane' ? "Damiane's" : "Oongka's"} skill tree will be
-            mapped out once the game launches and confirmed skill names are available.
-          </p>
-          <p className="text-xs text-gray-600 font-cinzel">Available from March 19, 2026</p>
-        </div>
+        <CompanionSkills character={selectedChar} />
       ) : (
         <>
           {/* Progress summary */}
@@ -1054,7 +1089,7 @@ export default function SkillsPage() {
           )}
 
           <p className="text-center text-xs text-gray-600">
-            Skill data sourced from pre-launch preview footage. Details may change after launch.
+            Skill data sourced from allthings.how, Game8, Beebom, GamesRadar, Fextralife, and Xbox Wire (verified March 2026)
           </p>
         </>
       )}

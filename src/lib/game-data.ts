@@ -114,169 +114,173 @@ export const REGIONS: RegionInfo[] = [
 // ═══════════════════════════════════════
 // SKILLS PER CHARACTER
 // ═══════════════════════════════════════
+// Sources: allthings.how, Game8, Beebom, GamesRadar, GameRant, Fextralife wiki,
+//          Xbox Wire/Pearl Abyss official tips, DualShockers, WCCFTech (verified March 2026)
+// Unlock methods: Abyss Artifacts (skill points), Observation (boss/NPC watching), Story progression
+// Respec: Faded Abyss Artifact resets the full tree (Observe skills are permanent and not refunded)
+// Note: All three characters share the same Abyss Artifact pool — spending on companions reduces Kliff's supply
 
 export const SKILLS: Skill[] = [
   // ─── KLIFF ───────────────────────────────────────────────────────────────────
-  // Skill names sourced from Beebom skills article (beebom.com/crimson-desert-skills/)
-  // and cross-referenced with gameplay preview footage. Full tree to be
-  // verified and completed post-launch with in-game text.
+  // Primary protagonist. Available from game start. Only character playable in main story bosses.
+  // Three branches: Blue (Stamina, 16 levels), Green (Spirit, 14 levels), Red (Health, 18 levels)
 
-  // Kliff - Blue Branch: Stamina / Core Stats
-  { id: 'k-st', name: 'Stamina', cost: 'Passive', branch: 'Stamina', character: 'kliff', description: 'Increases your maximum stamina pool, enabling more evasions and actions before tiring.' },
-  { id: 'k-ac', name: 'Armed Combat', cost: 'Artifact', branch: 'Armed Combat', character: 'kliff', description: 'Master the fundamentals of weapon-based fighting. Higher levels unlock new weapon techniques.' },
-  { id: 'k-uc', name: 'Unarmed Combat', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'Develop hand-to-hand fighting prowess. Enables grappling, kicks, and body attacks.' },
-  { id: 'k-ar', name: 'Archery', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Improve bow handling and accuracy. Higher levels unlock advanced ranged techniques.' },
-
-  // Kliff - Blue Branch: Sword Mastery
-  { id: 'k-s1', name: 'Forward Slash', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'A forward slashing attack. Can be leveled multiple times for increased potency.' },
-  { id: 'k-s2', name: 'Turning Slash', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'A wide turning slash that hits enemies on all sides. Upgrades into Double and Mastery variants.' },
-  { id: 'k-s3', name: 'Stab', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'A piercing thrust that deals concentrated damage. Upgrades into Swift Stab and Skewer.' },
-  { id: 'k-s4', name: 'Sword Flurry', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'Unleash a rapid flurry of sword strikes in quick succession.' },
-  { id: 'k-s5', name: 'Blinding Flash', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'A flash of light from the blade that disorients enemies. Enables Blinding Flash Finisher.' },
-  { id: 'k-s6', name: 'Evasive Slash', cost: 'Artifact', branch: 'Armed Combat', character: 'kliff', description: 'Dodge and slash simultaneously, avoiding damage while dealing a precise cut.' },
-  { id: 'k-s7', name: 'Shield Bash', cost: 'Artifact', branch: 'Armed Combat', character: 'kliff', description: 'Strike an enemy with your shield, staggering them and creating an opening.' },
-  { id: 'k-s8', name: 'Aerial Stab', cost: 'Artifact', branch: 'Armed Combat', character: 'kliff', description: 'A precise piercing attack while in flight or after a jump.' },
-  { id: 'k-s9', name: 'Charge', cost: 'Artifact', branch: 'Armed Combat', character: 'kliff', description: 'Rush forward with your weapon, building momentum for increased impact.' },
-  { id: 'k-s10', name: 'Spinning Slash', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'Whirl your blade in a spinning motion to hit multiple surrounding enemies.' },
-
-  // Kliff - Blue Branch: Unarmed Combat
+  // Kliff — Blue Branch: Stamina (16 levels)
+  { id: 'k-st', name: 'Stamina', cost: 'Passive', branch: 'Stamina', character: 'kliff', description: 'Increases maximum stamina pool (16 levels). Stamina fuels dodges, sprints, gliding, and special attacks.' },
+  // Armed Combat + Sword Mastery
+  { id: 'k-ac', name: 'Armed Combat', cost: 'Artifact', branch: 'Armed Combat', character: 'kliff', description: 'Master weapon-based fighting. Higher levels unlock Evasive Slash, Charge, Rush, and Quick Swap sub-skills.' },
+  { id: 'k-s1', name: 'Forward Slash', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'A forward slashing attack. Upgrades unlock Proficiency and Sure Hit variants.' },
+  { id: 'k-s2', name: 'Turning Slash', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'A wide turning slash hitting enemies on all sides. Upgrades unlock Expertise, Proficiency, and Rend Armor variants.' },
+  { id: 'k-s3', name: 'Stab', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'A piercing thrust with the highest single-target DPS. Upgrades include Aerial Stab, Rend Armor, Skewering Stab, and Swift Stab. Max-level Rend Armor ignores boss super armor.' },
+  { id: 'k-s4', name: 'Spinning Slash', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'A wide spinning attack hitting all surrounding enemies. Upgrades include Proficiency.' },
+  { id: 'k-s5', name: 'Blinding Flash', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'A flash of light from the blade that stuns enemies. The Blinding Flash Finisher triggers on perfect timing for burst damage with no stamina cost.' },
+  { id: 'k-s6', name: 'Sword Flurry', cost: 'Artifact', branch: 'Sword Mastery', character: 'kliff', description: 'Unleash a rapid flurry of sword strikes in quick succession.' },
+  { id: 'k-s7', name: 'Evasive Slash', cost: 'Artifact', branch: 'Armed Combat', character: 'kliff', description: 'Dodge and slash simultaneously, maintaining offense while avoiding damage.' },
+  { id: 'k-s8', name: 'Shield Bash', cost: 'Artifact', branch: 'Armed Combat', character: 'kliff', description: 'Strike an enemy with your shield, staggering them and opening a counterattack window.' },
+  { id: 'k-s9', name: 'Charge', cost: 'Artifact', branch: 'Armed Combat', character: 'kliff', description: 'Rush forward with your weapon to close distance and land a powerful hit.' },
+  // Unarmed Combat
+  { id: 'k-uc', name: 'Unarmed Combat', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'Develop hand-to-hand fighting prowess. Unlocks Leg Sweep, Scissor Takedown, and Proficiency sub-skills.' },
   { id: 'k-u1', name: 'Pump Kick', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'A fast pumping kick that pushes enemies back and creates distance.' },
   { id: 'k-u2', name: 'Dropkick', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'Launch forward and drive both feet into an enemy with devastating force.' },
   { id: 'k-u3', name: 'Vault', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'Vault over an enemy, repositioning behind them for a follow-up strike.' },
   { id: 'k-u4', name: 'Flying Kick', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'A leaping kick that covers distance and knocks enemies off-balance.' },
   { id: 'k-u5', name: 'Meteor Kick', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'A devastating aerial heel drop that slams enemies into the ground.' },
-  { id: 'k-u6', name: 'Grappling', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'Master grappling techniques including throws, restraints, and lariats.' },
+  { id: 'k-u6', name: 'Grappling', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'Master grappling techniques. Unlocks Restrain, Throw, Lariat, Giant Swing, Back Hang, and Lariat Follow-up sub-skills.' },
   { id: 'k-u7', name: 'Body Slam', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'A full-body tackle that sends enemies sprawling.' },
-  { id: 'k-u8', name: 'Clothesline', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'A running lariat that takes enemies off their feet.' },
-  { id: 'k-u9', name: 'Belly Slam', cost: 'Observe', branch: 'Unarmed Combat', character: 'kliff', description: 'Learned by observing a master wrestler. A devastating belly-first impact.' },
-
-  // Kliff - Blue Branch: Ranged & Bow
-  { id: 'k-r1', name: 'Evasive Shot', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Fire while rolling or evading, maintaining offensive pressure during dodges.' },
+  { id: 'k-u8', name: 'Clothesline', cost: 'Artifact', branch: 'Unarmed Combat', character: 'kliff', description: 'A running lariat with AoE knockback and a shockwave on impact.' },
+  // Archery / Ranged
+  { id: 'k-ar', name: 'Archery', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Improve bow handling and accuracy. Foundation for all ranged techniques.' },
+  { id: 'k-r1', name: 'Evasive Shot', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Fire while rolling or evading, maintaining offensive pressure during dodges. Upgrades include Proficiency and Expertise variants.' },
   { id: 'k-r2', name: 'Charged Shot', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Hold to charge the bow for a high-damage precision shot.' },
-  { id: 'k-r3', name: 'Multishot', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Fire multiple arrows simultaneously, hitting several targets at once.' },
-  { id: 'k-r4', name: 'Focus Shot', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Enter a focused state for extreme accuracy. Time slows as you aim.' },
-  { id: 'k-r5', name: 'Marksmanship', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Improve precision and reduce bullet/arrow spread for ranged attacks.' },
+  { id: 'k-r3', name: 'Multishot', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Fire 10 arrows simultaneously, hitting multiple targets at once.' },
+  { id: 'k-r4', name: 'Focused Shot', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Enter a focused aiming state where time slows for extreme accuracy.' },
+  { id: 'k-r5', name: 'Marksmanship', cost: 'Artifact', branch: 'Archery', character: 'kliff', description: 'Passive skill improving ranged accuracy and damage for all bow attacks.' },
 
-  // Kliff - Green Branch: Spirit Arts
-  { id: 'k-sp', name: 'Spirit', cost: 'Passive', branch: 'Spirit', character: 'kliff', description: 'Increases your maximum spirit pool, powering all nature-based and defensive abilities.' },
-  { id: 'k-g1', name: "Nature's Echo", cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Channel the spirit of the natural world to amplify your next attack. Unlocks echoing variants.' },
-  { id: 'k-g2', name: "Nature's Snare", cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Summon binding roots or vines that immobilize a target briefly.' },
-  { id: 'k-g3', name: 'Keen Senses', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Heighten awareness to detect hidden enemies and avoid ambushes. Enables Parry and Counter.' },
-  { id: 'k-g4', name: 'Focus', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Enter a focused state that slows perceived time and increases accuracy.' },
-  { id: 'k-g5', name: 'Force Palm', cost: 'Observe', branch: 'Spirit Arts', character: 'kliff', description: 'A devastating open-palm strike that sends enemies flying. Learned by observing a holographic projection.' },
+  // Kliff — Green Branch: Spirit (14 levels)
+  { id: 'k-sp', name: 'Spirit', cost: 'Passive', branch: 'Spirit', character: 'kliff', description: 'Increases maximum spirit pool (14 levels). Spirit powers nature-based and defensive abilities.' },
+  { id: 'k-g1', name: "Nature's Echo", cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Summon phantom clones that mimic your attacks, effectively doubling your hit output.' },
+  { id: 'k-g2', name: "Nature's Snare", cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Create a spirit barrier that absorbs incoming projectiles. Most effective at level 3.' },
+  { id: 'k-g3', name: 'Keen Senses', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Heighten combat awareness. Level 3 unlocks Counter, Parry, and Perfect Dodge.' },
+  { id: 'k-g4', name: 'Focus', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Time slows around Kliff, enabling the Focused Insight parry and extreme accuracy.' },
+  { id: 'k-g5', name: 'Force Palm', cost: 'Observe', branch: 'Spirit Arts', character: 'kliff', description: 'Condense energy and release it as an open-palm strike that reduces the target\'s defense. Learned by observing a holographic projection.' },
+  { id: 'k-g5b', name: 'Focused Force Palm', cost: 'Observe', branch: 'Spirit Arts', character: 'kliff', description: 'A focused Force Palm variant required to break special rock walls blocking story and puzzle paths. Learned by observing a spirit near Fort Perwin in the Crimson Desert.' },
+  { id: 'k-g5c', name: 'Healing Force Palm', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'A Force Palm variant that restores health on hit.' },
   { id: 'k-g6', name: 'Parry', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Deflect incoming attacks with precise timing, creating a window for counterattack.' },
   { id: 'k-g7', name: 'Counter', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'After a successful parry, automatically strike back with increased damage.' },
-  { id: 'k-g8', name: 'Evasive Roll', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'A quick evasive roll that grants brief invincibility frames.' },
-  { id: 'k-g9', name: 'Double Jump', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Perform a second jump in mid-air, greatly improving vertical mobility.' },
-  { id: 'k-g10', name: "Nature's Grasp", cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Summon nature to grab and hold enemies from a distance.' },
-  { id: 'k-g11', name: "Nature's Retribution", cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Channel nature\'s wrath for a retaliatory counterattack.' },
-  { id: 'k-g12', name: "Nature's Veil", cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Cloak yourself in natural camouflage, becoming harder to detect.' },
-  { id: 'k-g13', name: 'Healing Force Palm', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'A healing variant of Force Palm that restores health to allies.' },
-  { id: 'k-g14', name: 'Echoing Forward Slash', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'A combo skill combining sword techniques with spirit magic.' },
+  { id: 'k-g8', name: 'Evasive Roll', cost: 'Observe', branch: 'Spirit Arts', character: 'kliff', description: 'Roll to evade attacks while regaining stamina, even after taking a hit. Learned by observing Kailok the Hornsplitter boss in Chapter 2.' },
+  { id: 'k-g9', name: 'Double Jump', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Perform a second jump in mid-air, greatly improving vertical mobility and platforming.' },
+  { id: 'k-g10', name: "Nature's Grasp", cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'Use nature energy to move heavy objects and interact with environmental puzzles.' },
+  { id: 'k-gfc', name: 'Force Current', cost: 'Artifact', branch: 'Spirit Arts', character: 'kliff', description: 'A grapple-based technique used for resource gathering and environmental puzzle interactions.' },
 
-  // Kliff - Red Branch: Health / Elemental Power
-  { id: 'k-hp', name: 'Health', cost: 'Passive', branch: 'Health', character: 'kliff', description: 'Increases your maximum health pool, improving endurance during combat.' },
+  // Kliff — Red Branch: Health (18 levels)
+  { id: 'k-hp', name: 'Health', cost: 'Passive', branch: 'Health', character: 'kliff', description: 'Increases maximum health pool (18 levels). The largest of the three core stat branches.' },
+  { id: 'k-h5', name: 'Imbue Elements', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Infuse your weapon with elemental power (up to level 4). Unlocks Elemental Turning Slash, Elemental Charged Shot, Elemental Force Palm, and Elemental Meteor Kick.' },
   { id: 'k-h1', name: 'Fist of Flame', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Imbue your fists with fire, adding burn damage to unarmed strikes.' },
-  { id: 'k-h2', name: 'Veil of Fog', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Shroud yourself in concealing fog, reducing enemy detection range.' },
+  { id: 'k-h8', name: 'Flame Strike', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'A fiery overhead slam that ignites the target and leaves burning ground.' },
   { id: 'k-h3', name: 'Mantle of Frost', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Wrap yourself in frost that slows enemies who strike you in melee.' },
+  { id: 'k-h9', name: 'Frost Mantle', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Extended frost armor that also damages nearby enemies.' },
   { id: 'k-h4', name: 'Surge of Sparks', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Release a crackling surge of lightning that chains across nearby enemies.' },
-  { id: 'k-h5', name: 'Imbue Elements', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Infuse your weapon with elemental power. Higher levels unlock Elemental Turning Slash and more.' },
+  { id: 'k-h10', name: 'Lightning Surge', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Channel lightning through the ground in a line ahead of you.' },
+  { id: 'k-h2', name: 'Veil of Fog', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Shroud yourself in concealing fog, reducing enemy detection range.' },
+  { id: 'k-h11', name: 'Storm Veil', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Summon a storm that damages all nearby enemies with wind and lightning.' },
   { id: 'k-h6', name: 'Mystical Storage', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Access a pocket dimension to store and retrieve items during combat.' },
-  { id: 'k-h7', name: 'Winch', cost: 'Artifact', branch: 'Utility', character: 'kliff', description: 'Fire a grappling shot that pulls enemies toward you or yanks you to a distant ledge.' },
-  { id: 'k-h8', name: 'Flame Strike', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Strike with intense flame that ignites the target.' },
-  { id: 'k-h9', name: 'Frost Mantle', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Wrap yourself or allies in protective frost.' },
-  { id: 'k-h10', name: 'Lightning Surge', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Channel electricity through your body to strike nearby foes.' },
-  { id: 'k-h11', name: 'Storm Veil', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Cloak yourself in stormy energy for protection and offensive power.' },
-  { id: 'k-h12', name: 'Elemental Charged Shot', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Fire a ranged attack infused with elemental magic.' },
-
-  // Kliff - Red Branch: Axiom / Flight
-  { id: 'k-ax1', name: 'Axiom Force', cost: 'Story', branch: 'Axiom', character: 'kliff', description: 'Harness Abyss power to launch into aerial combat. Enables flight-style moves.' },
-  { id: 'k-ax2', name: 'Flight', cost: 'Story', branch: 'Axiom', character: 'kliff', description: 'Spread crow wings and take to the skies. Enables aerial exploration and combat.' },
-  { id: 'k-ax3', name: 'Aerial Maneuver', cost: 'Artifact', branch: 'Axiom', character: 'kliff', description: 'Perform advanced maneuvers while airborne, dodging attacks and repositioning.' },
-  { id: 'k-ax4', name: 'Aerial Swing', cost: 'Artifact', branch: 'Axiom', character: 'kliff', description: 'Execute powerful sword swings while in flight, striking ground targets from above.' },
-  { id: 'k-ax5', name: 'Aerial Roll', cost: 'Artifact', branch: 'Axiom', character: 'kliff', description: 'Perform acrobatic rolls while flying to dodge incoming attacks.' },
+  { id: 'k-h12', name: 'Elemental Charged Shot', cost: 'Artifact', branch: 'Elemental Power', character: 'kliff', description: 'Fire a ranged shot infused with elemental magic for explosive impact.' },
+  // Axiom / Flight (unlocked through story)
+  { id: 'k-ax1', name: 'Axiom Force', cost: 'Story', branch: 'Axiom', character: 'kliff', description: 'Harness Abyss power for aerial combat. Functions as a grappling hook — level 2 unlocks Aerial Swing, level 3 unlocks Aerial Maneuver.' },
+  { id: 'k-ax2', name: 'Flight', cost: 'Story', branch: 'Axiom', character: 'kliff', description: 'Spread crow wings and take to the skies for aerial traversal and combat.' },
+  { id: 'k-ax3', name: 'Aerial Maneuver', cost: 'Artifact', branch: 'Axiom', character: 'kliff', description: 'Perform advanced airborne maneuvers, repositioning rapidly to dodge attacks.' },
+  { id: 'k-ax4', name: 'Aerial Swing', cost: 'Artifact', branch: 'Axiom', character: 'kliff', description: 'Execute powerful sword swings in flight, striking ground targets from above.' },
   { id: 'k-ax6', name: 'Swift Flight', cost: 'Artifact', branch: 'Axiom', character: 'kliff', description: 'Increase aerial movement speed and responsiveness.' },
 
-  // Kliff - Core Convergence Skill
-  { id: 'k-c1', name: 'Falling Palm', cost: 'Convergence', branch: 'Core', character: 'kliff', description: 'Unleash a powerful blow to the ground by harnessing the force of the fall and channeling all your Stamina into the strike. Unlocked upon completing any single branch.' },
+  // Kliff — Core Convergence
+  { id: 'k-c1', name: 'Falling Palm', cost: 'Convergence', branch: 'Core', character: 'kliff', description: 'Channel all remaining Stamina into a ground-impact strike. Unlocked by completing any one of the three branches (Blue, Green, or Red).' },
 
   // ─── DAMIANE ──────────────────────────────────────────────────────────────────
-  // Confirmed skill names sourced from Fextralife wiki character page (2026-03-20 launch+1).
-  // Starting stats: Health 750, Spirit 220, Stamina 40, Attack 32, Defense 36
-  // Starting weapons: Spencer Pistol, White Wind Rapier, Absolute Justice Greatsword, Sydmon Dagger, Demenissian Gold-Decorated Shield
+  // Unlocked at Chapter 3 after completing "A Fresh Start" quest at Howling Hill.
+  // Archetype: glass cannon. Weapons: rapier, dual blades, pistol/musket.
+  // Starting stats: Health 750, Spirit 220, Stamina 40, Attack 32, Defense 36.
+  // Flight uses a mechanical propeller parasol instead of wings.
 
-  // Damiane — Core Stats
+  // Core Stats
   { id: 'd-st', name: 'Stamina', cost: 'Passive', branch: 'Core Stats', character: 'damiane', description: 'Increases maximum stamina pool.' },
-  { id: 'd-sp', name: 'Spirit', cost: 'Passive', branch: 'Core Stats', character: 'damiane', description: 'Increases maximum spirit pool, powering nature and defensive abilities.' },
+  { id: 'd-sp', name: 'Spirit', cost: 'Passive', branch: 'Core Stats', character: 'damiane', description: 'Increases maximum spirit pool.' },
   { id: 'd-hp', name: 'Health', cost: 'Passive', branch: 'Core Stats', character: 'damiane', description: 'Increases maximum health pool.' },
-  // Damiane — Armed Combat branch
-  { id: 'd-ac', name: 'Armed Combat', cost: 'Artifact', branch: 'Armed Combat', character: 'damiane', description: 'Master weapon-based fighting. Includes Sword Flurry sub-skills.' },
-  { id: 'd-sf', name: 'Sword Flurry', cost: 'Artifact', branch: 'Armed Combat', character: 'damiane', description: 'Unleash a rapid flurry of sword strikes.' },
-  { id: 'd-bf', name: 'Blinding Flash', cost: 'Artifact', branch: 'Armed Combat', character: 'damiane', description: 'A flash of light from the blade that disorients enemies.' },
-  { id: 'd-lu', name: 'Lunge', cost: 'Artifact', branch: 'Armed Combat', character: 'damiane', description: 'A forward-rushing thrust attack that covers distance quickly.' },
-  { id: 'd-st2', name: 'Shield Toss', cost: 'Artifact', branch: 'Armed Combat', character: 'damiane', description: 'Throw the shield as a ranged attack that ricochets.' },
-  // Damiane — Shooting branch
-  { id: 'd-sh', name: 'Shooting', cost: 'Artifact', branch: 'Shooting', character: 'damiane', description: 'Master ranged firearms. Foundation for firearm techniques.' },
-  { id: 'd-cs', name: 'Charged Shot', cost: 'Artifact', branch: 'Shooting', character: 'damiane', description: 'Hold to charge for a high-damage precision shot.' },
-  { id: 'd-fs', name: 'Focused Shot', cost: 'Artifact', branch: 'Shooting', character: 'damiane', description: 'Enter a focused state for extreme accuracy with firearms.' },
-  // Damiane — Unarmed Combat
-  { id: 'd-uc', name: 'Unarmed Combat', cost: 'Artifact', branch: 'Unarmed Combat', character: 'damiane', description: 'Develop hand-to-hand fighting prowess.' },
-  { id: 'd-gr', name: 'Grappling', cost: 'Artifact', branch: 'Unarmed Combat', character: 'damiane', description: 'Master grappling: throws, restraints, and takedowns.' },
+  // Armed Combat
+  { id: 'd-ac', name: 'Armed Combat', cost: 'Artifact', branch: 'Armed Combat', character: 'damiane', description: 'Master rapier and blade techniques.' },
+  { id: 'd-sf', name: 'Sword Flurry', cost: 'Artifact', branch: 'Armed Combat', character: 'damiane', description: 'Unleash a rapid flurry of rapier strikes.' },
+  { id: 'd-bf', name: 'Blinding Flash', cost: 'Artifact', branch: 'Armed Combat', character: 'damiane', description: 'A flash of light from the blade that stuns and disorients enemies.' },
+  { id: 'd-lu', name: 'Lunge', cost: 'Artifact', branch: 'Armed Combat', character: 'damiane', description: 'A forward-rushing thrust that covers distance quickly.' },
+  { id: 'd-st2', name: 'Shield Toss', cost: 'Artifact', branch: 'Armed Combat', character: 'damiane', description: 'Throw the shield as a ricocheting ranged attack.' },
+  // Shooting (Firearms)
+  { id: 'd-sh', name: 'Shooting', cost: 'Artifact', branch: 'Shooting', character: 'damiane', description: 'Master firearm techniques. Foundation for pistol and musket skills.' },
+  { id: 'd-cs', name: 'Charged Shot', cost: 'Artifact', branch: 'Shooting', character: 'damiane', description: 'Charge a high-damage precision shot with the pistol.' },
+  { id: 'd-fs', name: 'Focused Shot', cost: 'Artifact', branch: 'Shooting', character: 'damiane', description: 'Enter a focused aiming state for extreme firearm accuracy.' },
+  // Unarmed Combat
+  { id: 'd-uc', name: 'Unarmed Combat', cost: 'Artifact', branch: 'Unarmed Combat', character: 'damiane', description: 'Hand-to-hand fighting techniques.' },
+  { id: 'd-gr', name: 'Grappling', cost: 'Artifact', branch: 'Unarmed Combat', character: 'damiane', description: 'Master grappling throws and restraints.' },
   { id: 'd-sk', name: 'Scissor Kick', cost: 'Artifact', branch: 'Unarmed Combat', character: 'damiane', description: 'A scissoring kick that knocks enemies off their feet.' },
-  // Damiane — Evasion / Mobility
+  // Evasion / Mobility
   { id: 'd-er', name: 'Evasive Roll', cost: 'Artifact', branch: 'Evasion', character: 'damiane', description: 'A quick evasive roll granting brief invincibility frames.' },
   { id: 'd-dj', name: 'Double Jump', cost: 'Artifact', branch: 'Evasion', character: 'damiane', description: 'Perform a second jump in mid-air for vertical mobility.' },
   { id: 'd-vt', name: 'Vault', cost: 'Artifact', branch: 'Evasion', character: 'damiane', description: 'Vault over an enemy, repositioning behind them.' },
-  { id: 'd-fl', name: 'Flight', cost: 'Story', branch: 'Evasion', character: 'damiane', description: 'Aerial traversal and combat using Damiane\'s parasol-machine.' },
-  // Damiane — Spirit Arts
-  { id: 'd-fc', name: 'Focus', cost: 'Artifact', branch: 'Spirit Arts', character: 'damiane', description: 'Enter a focused state that increases accuracy and slows perceived time.' },
-  { id: 'd-ng', name: "Nature's Grasp", cost: 'Artifact', branch: 'Spirit Arts', character: 'damiane', description: 'Summon binding roots or vines to immobilize a target.' },
-  { id: 'd-ks', name: 'Keen Senses', cost: 'Artifact', branch: 'Spirit Arts', character: 'damiane', description: 'Heighten awareness to detect hidden enemies and avoid ambushes.' },
-  // Damiane — Smiting (unique abilities)
-  { id: 'd-sm1', name: 'Smiting Strike', cost: 'Artifact', branch: 'Smiting', character: 'damiane', description: 'A powerful smiting blow charged with Abyss energy.' },
-  { id: 'd-sm2', name: 'Smiting Bolt', cost: 'Artifact', branch: 'Smiting', character: 'damiane', description: 'Fire a bolt of smiting energy at a distant target.' },
+  { id: 'd-sk2', name: 'Skystep', cost: 'Artifact', branch: 'Evasion', character: 'damiane', description: 'A unique aerial dash for rapid repositioning in combat.' },
+  { id: 'd-fl', name: 'Flight', cost: 'Story', branch: 'Evasion', character: 'damiane', description: 'Aerial traversal using Damiane\'s mechanical propeller parasol. Unlocked through story.' },
+  // Spirit Arts
+  { id: 'd-fc', name: 'Focus', cost: 'Artifact', branch: 'Spirit Arts', character: 'damiane', description: 'Enter a focused state increasing accuracy and reaction speed.' },
+  { id: 'd-ng', name: "Nature's Grasp", cost: 'Artifact', branch: 'Spirit Arts', character: 'damiane', description: 'Summon nature energy to immobilize a target.' },
+  { id: 'd-ks', name: 'Keen Senses', cost: 'Artifact', branch: 'Spirit Arts', character: 'damiane', description: 'Heighten combat awareness to detect and react to threats.' },
+  // Smiting (unique to Damiane)
+  { id: 'd-sm1', name: 'Smiting Strike', cost: 'Artifact', branch: 'Smiting', character: 'damiane', description: 'A powerful melee blow charged with Abyss energy.' },
+  { id: 'd-sm2', name: 'Smiting Bolt', cost: 'Artifact', branch: 'Smiting', character: 'damiane', description: 'Fire a bolt of smiting Abyss energy at a distant target.' },
+  { id: 'd-pl', name: 'Piercing Light', cost: 'Artifact', branch: 'Smiting', character: 'damiane', description: 'A piercing beam of Abyss light that passes through multiple enemies.' },
+  { id: 'd-ss', name: 'Shield Sentinel', cost: 'Artifact', branch: 'Smiting', character: 'damiane', description: 'Deploy a floating shield sentry turret that autonomously attacks nearby enemies.' },
 
   // ─── OONGKA ──────────────────────────────────────────────────────────────────
-  // Confirmed skill names sourced from Fextralife wiki character page (2026-03-20 launch+1).
-  // Starting stats: Health 1125, Spirit 240, Stamina 50, Attack 16, Defense 28
-  // Starting weapons: Dekarr Greataxe, Orc Blaster, Small Cannon Ball, Pailunese Riteblade
+  // Unlocked in Chapter 7 during "Twisted Fate" quest at Ashclaw Keep (after Myurdin fight).
+  // Also requires "Gentle Sound of Flowing River" side quest for permanent availability.
+  // Archetype: tank/bruiser. Weapons: one-handed axes, two-handed staves, blaster cannon.
+  // Starting stats: Health 1125, Spirit 240, Stamina 50, Attack 16, Defense 28.
+  // Flight uses a jetpack (Vertical Flight) instead of wings.
 
-  // Oongka — Core Stats
+  // Core Stats
   { id: 'o-st', name: 'Stamina', cost: 'Passive', branch: 'Core Stats', character: 'oongka', description: 'Increases maximum stamina pool.' },
   { id: 'o-sp', name: 'Spirit', cost: 'Passive', branch: 'Core Stats', character: 'oongka', description: 'Increases maximum spirit pool.' },
-  { id: 'o-hp', name: 'Health', cost: 'Passive', branch: 'Core Stats', character: 'oongka', description: 'Increases maximum health pool.' },
-  // Oongka — Armed Combat (two-handed weapons)
-  { id: 'o-ac', name: 'Armed Combat', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'Master two-handed weapons. Includes Leaping Smash and Quick Swap sub-skills.' },
+  { id: 'o-hp', name: 'Health', cost: 'Passive', branch: 'Core Stats', character: 'oongka', description: 'Increases maximum health pool. Orc constitution enables massive health totals.' },
+  // Armed Combat (two-handed weapons)
+  { id: 'o-ac', name: 'Armed Combat', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'Master two-handed axes and staves with Sure Hit and Quick Swap sub-skills.' },
   { id: 'o-ls', name: 'Leaping Smash', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'Leap forward and smash down with a devastating two-handed strike.' },
-  { id: 'o-sl', name: 'Slash', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'A powerful horizontal slash with two-handed weapon.' },
-  { id: 'o-bf', name: 'Blinding Flash', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'A disorienting flash attack.' },
-  { id: 'o-qf', name: 'Quaking Fury', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'A ground-shaking series of powerful slams.' },
-  { id: 'o-ra', name: 'Rampage', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'Enter a rampaging state with greatly increased offensive power.' },
-  { id: 'o-rg', name: 'Rage', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'Channel battle rage to boost attack power.' },
-  { id: 'o-rl', name: 'Raging Lightning', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'Channel Raging Lightning into weapon strikes.' },
-  // Oongka — Shooting (Hand Cannon)
-  { id: 'o-sh', name: 'Marksmanship', cost: 'Artifact', branch: 'Shooting', character: 'oongka', description: 'Master the Hand Cannon. Foundation for ranged techniques.' },
+  { id: 'o-sl', name: 'Slash', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'A powerful horizontal slash with a two-handed weapon, with a Rend Armor upgrade.' },
+  { id: 'o-bf', name: 'Blinding Flash', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'A disorienting flash that staggers enemies.' },
+  { id: 'o-qf', name: 'Quaking Fury', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'A ground-shaking series of powerful slams with Rend Armor capability.' },
+  { id: 'o-ra', name: 'Rampage', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'Enter a rampaging state with greatly increased offensive power and a Sure Hit modifier.' },
+  { id: 'o-rg', name: 'Rage', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'Channel battle rage granting super armor, preventing stagger from enemy attacks.' },
+  { id: 'o-rl', name: 'Raging Lightning', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'Infuse weapon strikes with raging electrical energy.' },
+  { id: 'o-ex', name: 'Explosive Strike', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'A devastating blow that detonates on impact, dealing area damage.' },
+  { id: 'o-dwm', name: 'Dual Wielding Mastery', cost: 'Artifact', branch: 'Armed Combat', character: 'oongka', description: 'Unique to Oongka — enables wielding two-handed weapons single-handed for dual-wielding.' },
+  // Shooting (Hand Cannon / Blaster)
+  { id: 'o-sh', name: 'Marksmanship', cost: 'Artifact', branch: 'Shooting', character: 'oongka', description: 'Master the Hand Cannon and Blaster. Foundation for all ranged techniques.' },
   { id: 'o-cs', name: 'Charged Shot', cost: 'Artifact', branch: 'Shooting', character: 'oongka', description: 'Charge the Hand Cannon for a high-damage explosive shot.' },
   { id: 'o-es', name: 'Evasive Shot', cost: 'Artifact', branch: 'Shooting', character: 'oongka', description: 'Fire while rolling, maintaining offensive pressure during dodges.' },
-  { id: 'o-sc', name: 'Scatter Shot', cost: 'Artifact', branch: 'Shooting', character: 'oongka', description: 'Fire a cone of shrapnel hitting multiple enemies.' },
-  { id: 'o-fs', name: 'Focused Shot', cost: 'Artifact', branch: 'Shooting', character: 'oongka', description: 'Extreme accuracy cannon shot.' },
-  // Oongka — Unarmed Combat
-  { id: 'o-uc', name: 'Unarmed Combat', cost: 'Artifact', branch: 'Unarmed Combat', character: 'oongka', description: 'Develop Orc hand-to-hand combat prowess.' },
-  { id: 'o-gr', name: 'Grappling', cost: 'Artifact', branch: 'Unarmed Combat', character: 'oongka', description: 'Master grappling: includes Throw, Lariat, and Restrain sub-skills.' },
+  { id: 'o-sc', name: 'Scatter Shot', cost: 'Artifact', branch: 'Shooting', character: 'oongka', description: 'Fire a cone of shrapnel hitting multiple enemies simultaneously.' },
+  { id: 'o-fs', name: 'Focused Shot', cost: 'Artifact', branch: 'Shooting', character: 'oongka', description: 'An extreme accuracy cannon shot for single-target damage.' },
+  // Unarmed Combat
+  { id: 'o-uc', name: 'Unarmed Combat', cost: 'Artifact', branch: 'Unarmed Combat', character: 'oongka', description: 'Orc hand-to-hand combat. Raw strength enables devastating grapples and slams.' },
+  { id: 'o-gr', name: 'Grappling', cost: 'Artifact', branch: 'Unarmed Combat', character: 'oongka', description: 'Master Orc grappling techniques: Throw, Lariat, and Restrain.' },
   { id: 'o-bs', name: 'Body Slam', cost: 'Artifact', branch: 'Unarmed Combat', character: 'oongka', description: 'A full-body tackle that sends enemies sprawling.' },
   { id: 'o-cl', name: 'Clothesline', cost: 'Artifact', branch: 'Unarmed Combat', character: 'oongka', description: 'A running lariat that takes enemies off their feet.' },
   { id: 'o-dk', name: 'Dropkick', cost: 'Artifact', branch: 'Unarmed Combat', character: 'oongka', description: 'Launch forward and drive both feet into an enemy.' },
   { id: 'o-pk', name: 'Pump Kick', cost: 'Artifact', branch: 'Unarmed Combat', character: 'oongka', description: 'A fast pumping kick that pushes enemies back.' },
   { id: 'o-re', name: 'Restrain', cost: 'Artifact', branch: 'Unarmed Combat', character: 'oongka', description: 'Pin an enemy, preventing them from acting.' },
-  // Oongka — Evasion / Mobility
+  // Evasion / Mobility
   { id: 'o-er', name: 'Evasive Roll', cost: 'Artifact', branch: 'Evasion', character: 'oongka', description: 'A quick evasive roll granting brief invincibility frames.' },
-  { id: 'o-dj', name: 'Double Jump', cost: 'Artifact', branch: 'Evasion', character: 'oongka', description: 'Perform a second jump in mid-air.' },
+  { id: 'o-dj', name: 'Double Jump', cost: 'Artifact', branch: 'Evasion', character: 'oongka', description: 'A second mid-air jump for surprising vertical mobility from a giant Orc.' },
   { id: 'o-vt', name: 'Vault', cost: 'Artifact', branch: 'Evasion', character: 'oongka', description: 'Vault over an enemy, repositioning behind them.' },
-  // Oongka — Spirit / Defense
-  { id: 'o-pa', name: 'Parry', cost: 'Artifact', branch: 'Spirit Arts', character: 'oongka', description: 'Deflect incoming attacks with precise timing.' },
-  { id: 'o-fc', name: 'Focus', cost: 'Artifact', branch: 'Spirit Arts', character: 'oongka', description: 'Enter a focused combat state.' },
-  { id: 'o-ng', name: "Nature's Grasp", cost: 'Artifact', branch: 'Spirit Arts', character: 'oongka', description: 'Summon binding to immobilize a target.' },
-  { id: 'o-ks', name: 'Keen Senses', cost: 'Artifact', branch: 'Spirit Arts', character: 'oongka', description: 'Heighten awareness to detect hidden enemies.' },
+  { id: 'o-vf', name: 'Vertical Flight', cost: 'Story', branch: 'Evasion', character: 'oongka', description: 'Aerial traversal using Oongka\'s jetpack. Unlocked through story progression.' },
+  // Spirit Arts
+  { id: 'o-pa', name: 'Parry', cost: 'Artifact', branch: 'Spirit Arts', character: 'oongka', description: 'Deflect incoming attacks with precise timing for a counterattack window.' },
+  { id: 'o-fc', name: 'Focus', cost: 'Artifact', branch: 'Spirit Arts', character: 'oongka', description: 'Enter a focused combat state for increased precision.' },
+  { id: 'o-ng', name: "Nature's Grasp", cost: 'Artifact', branch: 'Spirit Arts', character: 'oongka', description: 'Summon binding energy to immobilize a target.' },
+  { id: 'o-ks', name: 'Keen Senses', cost: 'Artifact', branch: 'Spirit Arts', character: 'oongka', description: 'Heighten awareness to detect hidden enemies and avoid ambushes.' },
 ];
 
 // ═══════════════════════════════════════
@@ -1489,9 +1493,8 @@ export const MOUNTS: Mount[] = [
   { name: 'Black Bear War Mount', category: 'bear', region: 'demeniss', speed: 50, combat: 80, stamina: 75, special: 'Intimidation roar that fears nearby enemies for 3 seconds', acquisition: 'Captured from Black Bear faction stronghold' },
   { name: 'Crimson Grizzly', category: 'bear', region: 'desert', speed: 45, combat: 75, stamina: 65, special: 'Ground slam attack that staggers enemies in a frontal cone', acquisition: 'Tame in the wild (Crimson Desert oasis)' },
 
-  // Raptors (4)
+  // Raptors (3)
   { name: 'Sand Raptor', category: 'raptor', region: 'desert', speed: 90, combat: 40, stamina: 55, special: 'Extreme burst speed; double sprint in desert terrain', acquisition: 'Tame in the wild (Red Dunes hunting grounds)' },
-  { name: 'Forest Stalker', category: 'raptor', region: 'hernand', speed: 80, combat: 50, stamina: 60, special: 'Pounce attack that pins smaller enemies', acquisition: 'Tame in the wild (Hernand deep forest)' },
   { name: 'Frost Raptor', category: 'raptor', region: 'pailune', speed: 75, combat: 45, stamina: 70, special: 'Ice-trail movement; leaves slippery terrain that slows pursuers', acquisition: 'Complete the Pailune Hunter chain quest' },
   { name: 'Delesyian Swift', category: 'raptor', region: 'delesyia', speed: 85, combat: 35, stamina: 65, special: 'Enhanced agility; can perform sharp turns without speed loss', acquisition: 'Purchase from Delesyia Beast Handler' },
 
@@ -1516,17 +1519,10 @@ export const MOUNTS: Mount[] = [
   { name: 'Jungle Strider', category: 'dinosaur', region: 'hernand', speed: 60, combat: 45, stamina: 80, special: 'Tall mount; rider can see over obstacles and foliage. Kick attack', acquisition: 'Tame in the wild (Hernand jungle canopy)' },
   { name: 'Armored Ankylo', category: 'dinosaur', region: 'desert', speed: 35, combat: 80, stamina: 95, special: 'Heavily armored; tail swipe knocks back all surrounding enemies', acquisition: 'Tame in the wild (Crimson Desert bone fields)' },
 
-  // Exotic (2)
+  // Exotic (3)
   { name: 'Abyssal Spider', category: 'exotic', region: 'abyss', speed: 60, combat: 55, stamina: 70, special: 'Wall climbing on any surface; leaves web trail that slows enemies', acquisition: 'Tame in the Abyss depths (requires Beast Taming skill)' },
   { name: 'Phantom Steed', category: 'exotic', region: 'multiple', speed: 95, combat: 10, stamina: 50, special: 'Ghostly mount that phases through obstacles and enemies; cannot attack', acquisition: "Legendary reward from the Ghost of Gian side quest" },
-
-  // Wolf (1)
   { name: 'Direwolf', category: 'wolf', region: 'pailune', speed: 78, combat: 65, stamina: 70, special: 'Pack howl that buffs nearby allied mounts. Leaping bite attack', acquisition: 'Tame in the wild (Pailune highlands, appears in release trailer)' },
-
-  // Story mounts (obtained through main story progression)
-  { name: 'Herspia', category: 'horse', region: 'hernand', speed: 65, combat: 10, stamina: 70, special: "Kliff's personal horse obtained after the prologue. Reliable starter mount", acquisition: 'Automatically obtained after completing the Prologue' },
-  { name: 'Brianto', category: 'horse', region: 'hernand', speed: 70, combat: 10, stamina: 65, special: "Damiane's default horse. Available when unlocking her in Chapter 3", acquisition: 'Automatically obtained when unlocking Damiane (Chapter 3)' },
-  { name: 'Blackstar Dragon', category: 'wyvern', region: 'abyss', speed: 95, combat: 90, stamina: 55, special: 'Full flight. End-game flying mount obtained during Chapter 11 story events', acquisition: 'Story reward after completing Chapter 11' },
 ];
 
 // ═══════════════════════════════════════
