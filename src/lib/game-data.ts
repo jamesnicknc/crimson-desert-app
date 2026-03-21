@@ -658,67 +658,367 @@ export const ENEMIES: Enemy[] = [
 export const QUESTS: Quest[] = [
   // ─── PROLOGUE ─────────────────────────────────────────────────────────────────────────────────
   { name: 'Dead of the Night', description: 'Prologue that opens the game.', type: 'main', region: 'hernand' },
-  { name: 'Unfamiliar Lands', description: 'Prologue sub-quest: Ambush arc.', type: 'main', region: 'hernand' },
-  { name: 'In Ashes', description: 'Prologue sub-quest: Ambush arc.', type: 'main', region: 'hernand' },
-  { name: 'Realm of Uncertainty', description: 'Prologue sub-quest: Unknown Space arc — introduction to The Abyss.', type: 'main', region: 'abyss' },
-  { name: 'New Journey', description: 'Prologue sub-quest: Unknown Space arc.', type: 'main', region: 'hernand' },
+  { name: 'Unfamiliar Lands', description: 'Prologue sub-quest: Ambush arc.', type: 'main', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Walk down the hill toward the cabin.' },
+      { step: 2, instruction: 'Speak with Oongka (optional) outside the cabin.' },
+      { step: 3, instruction: 'Speak with Marius (follow the red X on the minimap).' },
+      { step: 4, instruction: 'Speak with Ross (leaning against a tree).' },
+      { step: 5, instruction: 'Enter the cabin to complete the quest.' },
+    ]
+  },
+  { name: 'In Ashes', description: 'Prologue sub-quest: Ambush arc.', type: 'main', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Defeat the 5 initial Black Bear enemies (combat tutorial).' },
+      { step: 2, instruction: 'Help Naira — travel to the north marker and defeat 8 enemies.' },
+      { step: 3, instruction: 'Help Oongka — travel to the east marker and defeat enemies.' },
+      { step: 4, instruction: 'Help Yann — travel to the west marker, defeat enemies, and face boss Myurdin. Outcome does not affect progression.' },
+    ]
+  },
+  { name: 'Realm of Uncertainty', description: 'Prologue sub-quest: Unknown Space arc — introduction to The Abyss.', type: 'main', region: 'abyss',
+    walkthrough: [
+      { step: 1, instruction: 'Move forward through the corridor.' },
+      { step: 2, instruction: 'Get a running start and jump across the gap.' },
+      { step: 3, instruction: 'Use the aim system to jump between pillars.' },
+      { step: 4, instruction: 'Climb walls by approaching and pressing jump while moving toward them.' },
+      { step: 5, instruction: 'Crouch through a hole at the top.' },
+      { step: 6, instruction: 'Learn the Blinding Flash ability and use it to open light-locked doors.' },
+      { step: 7, instruction: 'Navigate water platforms by timing your jumps.' },
+      { step: 8, instruction: 'Light your way through darkness with a lantern to find the exit.' },
+      { step: 9, instruction: 'Reach the diamond-shaped platform — a cutscene triggers to complete the quest.' },
+    ]
+  },
+  { name: 'New Journey', description: 'Prologue sub-quest: Unknown Space arc.', type: 'main', region: 'hernand',
+    rewards: ['Standard Inventory Expansion Tool x1', 'Oats x10', 'Blackberry x5'],
+    walkthrough: [
+      { step: 1, instruction: 'Find Sebastian by the river; hold the button to follow him automatically.' },
+      { step: 2, instruction: 'After the cutscene, defeat 2 guards — they attack immediately so start blocking right away.' },
+      { step: 3, instruction: 'Travel to Hernand following Sebastian.' },
+      { step: 4, instruction: 'Mount a horse and follow Sebastian to House Celeste — a cutscene completes the quest.' },
+    ]
+  },
 
   // ─── CHAPTER 1: THE FIRST ENCOUNTER ──────────────────────────────────────────────────────────
   // Trials of Kindness arc
-  { name: 'Where Rumors Gather', description: 'Ch.1 — Trials of Kindness: Follow rumors in Hernand.', type: 'main', region: 'hernand' },
-  { name: 'Mysterious Man', description: 'Ch.1 — Trials of Kindness: Investigate a stranger.', type: 'main', region: 'hernand' },
-  { name: 'True Wisdom in Kindness', description: 'Ch.1 — Trials of Kindness.', type: 'main', region: 'hernand' },
-  { name: 'Actions Speak Louder than Words', description: 'Ch.1 — Trials of Kindness.', type: 'main', region: 'hernand' },
-  { name: 'Heart Beyond Borders', description: 'Ch.1 — Trials of Kindness. Rewards Engraved Key and Shai\'s Pendant.', type: 'main', region: 'hernand' },
+  { name: 'Where Rumors Gather', description: 'Ch.1 — Trials of Kindness: Follow rumors in Hernand.', type: 'main', region: 'hernand',
+    rewards: ['Coins'],
+    walkthrough: [
+      { step: 1, instruction: 'Enter the Hernand Tavern by traveling south to the marker.' },
+      { step: 2, instruction: 'Approach the arm wrestler and initiate a challenge.' },
+      { step: 3, instruction: 'Win by rapidly pressing the action button to fill the meter; complete any QTE prompts.' },
+    ]
+  },
+  { name: 'Mysterious Man', description: 'Ch.1 — Trials of Kindness: Investigate a stranger.', type: 'main', region: 'hernand',
+    rewards: ['Standard Inventory Expansion Tool x1'],
+    walkthrough: [
+      { step: 1, instruction: 'Exit the tavern and turn left; find the elderly beggar behind the low wall of the tavern\'s front yard.' },
+      { step: 2, instruction: 'Lock on and interact — choose "Give Alms" to offer a coin.' },
+      { step: 3, instruction: 'The beggar relocates, revealing a hatch with a ladder for the next quest.' },
+    ]
+  },
+  { name: 'True Wisdom in Kindness', description: 'Ch.1 — Trials of Kindness.', type: 'main', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Interact with the trap door where the beggar was and climb down into the sewer.' },
+      { step: 2, instruction: 'Navigate the sewer, jumping across broken floor sections.' },
+      { step: 3, instruction: 'Find the kneeling woman at the tunnel\'s end; lock on and untie her.' },
+    ]
+  },
+  { name: 'Actions Speak Louder than Words', description: 'Ch.1 — Trials of Kindness.', type: 'main', region: 'hernand',
+    rewards: ['Standard Inventory Expansion Tool x1', 'Lentils x10', 'Apples x5'],
+    walkthrough: [
+      { step: 1, instruction: 'Speak with the distressed couple at the mission marker.' },
+      { step: 2, instruction: 'Take the broom from the scene automatically during dialogue.' },
+      { step: 3, instruction: 'Climb boxes at the back of the house to reach the roof.' },
+      { step: 4, instruction: 'Equip the broom from inventory; stand directly on top of the chimney and use the clean prompt. Standing to the side will not work.', tip: 'You must stand directly on top of the chimney, not beside it.' },
+    ]
+  },
+  { name: 'Heart Beyond Borders', description: 'Ch.1 — Trials of Kindness. Rewards Engraved Key and Shai\'s Pendant.', type: 'main', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Speak with the child in the courtyard wearing a green cloak.' },
+      { step: 2, instruction: 'Climb nearby rooftops to locate a cat; carry it back to the child.' },
+      { step: 3, instruction: 'After the cutscene, pick up the pendant the child drops.', tip: 'Ring the bell in the tower above to reveal the Hernand region on the map.' },
+    ]
+  },
   // Trace arc
-  { name: 'Mystical Key', description: 'Ch.1 — Trace arc: Investigate Abyss mysteries.', type: 'main', region: 'abyss' },
-  { name: 'Polar Opposites', description: 'Ch.1 — Trace arc.', type: 'main', region: 'abyss' },
-  { name: 'Abyss without Balance', description: 'Ch.1 — Trace arc.', type: 'main', region: 'abyss' },
-  { name: 'Woman in White', description: 'Ch.1 — Trace arc: Encounter the White Crow.', type: 'main', region: 'abyss' },
+  { name: 'Mystical Key', description: 'Ch.1 — Trace arc: Investigate Abyss mysteries.', type: 'main', region: 'abyss',
+    walkthrough: [
+      { step: 1, instruction: 'Open your inventory and examine the engraved key closely (zoom in on the tip).' },
+      { step: 2, instruction: 'Equip the "Hernandian Attire" from inventory; approach the castle gates — soldiers grant entry.' },
+      { step: 3, instruction: 'Head to the second floor, turn right down the corridor; enter the first door on the left (the alchemist\'s chamber).' },
+      { step: 4, instruction: 'Approach and interact with the glowing gate to complete the quest.' },
+    ]
+  },
+  { name: 'Polar Opposites', description: 'Ch.1 — Trace arc.', type: 'main', region: 'abyss',
+    walkthrough: [
+      { step: 1, instruction: 'Activate the Abyss Nexus by standing on the sky platform.' },
+      { step: 2, instruction: 'Walk forward following the cutscene.' },
+      { step: 3, instruction: 'Solve the floor plate puzzle: shine your lantern to reveal yellow outlines; use Axiom Force to pull/push plates while rotating until the yellow lines align with the wires.' },
+      { step: 4, instruction: 'Enter the structure; walk down the hallway to meet Alustin.' },
+    ]
+  },
+  { name: 'Abyss without Balance', description: 'Ch.1 — Trace arc.', type: 'main', region: 'abyss',
+    walkthrough: [
+      { step: 1, instruction: 'Navigate the Abyss Nexus using Axiom Force on gates; manipulate totems to glow blue to create paths.' },
+      { step: 2, instruction: 'Stand on the circular floor plate (white ring) to activate a teleport point.' },
+      { step: 3, instruction: 'Solve the cube puzzle: use Axiom Force to move a floating blue cube onto the right pedestal to remove a barrier.' },
+      { step: 4, instruction: 'Place a power cell, then strike it into the wall using Force Palm to synthesize it.' },
+      { step: 5, instruction: 'Climb to the large circular cog and use Force Palm to activate it.' },
+      { step: 6, instruction: 'Head up the stairs to automatically collect the glowing Abyss Artifact.' },
+    ]
+  },
+  { name: 'Woman in White', description: 'Ch.1 — Trace arc: Encounter the White Crow.', type: 'main', region: 'abyss',
+    rewards: ['Faded Abyss Artifact x1', 'Palmar Pill x1'],
+    walkthrough: [
+      { step: 1, instruction: 'Walk forward to trigger the cutscene with White Crow (the Woman in White).' },
+      { step: 2, instruction: 'Complete the quick-time event when prompted.' },
+      { step: 3, instruction: 'Use wings to glide down to Hernand, managing your stamina carefully.', tip: 'Watch your stamina gauge while gliding — land early if needed.' },
+    ]
+  },
 
   // ─── CHAPTER 2: GOLDEN GREED ──────────────────────────────────────────────────────────────────
   // Unexpected Gift arc
-  { name: 'Where the Light Leads', description: 'Ch.2 — Unexpected Gift arc.', type: 'main', region: 'hernand' },
-  { name: 'Memory Fragment', description: 'Ch.2 — Unexpected Gift arc.', type: 'main', region: 'hernand' },
-  { name: 'Reunion', description: 'Ch.2 — Unexpected Gift arc.', type: 'main', region: 'hernand' },
+  { name: 'Where the Light Leads', description: 'Ch.2 — Unexpected Gift arc.', type: 'main', region: 'hernand',
+    rewards: ['Arrows x10'],
+    walkthrough: [
+      { step: 1, instruction: 'Travel to Lioncrest Watchtower (may be fog-obscured on the map).' },
+      { step: 2, instruction: 'Defeat approximately 10 bandits in the courtyard; prioritize archers first.' },
+      { step: 3, instruction: 'Ascend the watchtower — use fire arrows on shrubbery blocking the door, or use Focused Light ability, or three consecutive Force Palms mid-jump to reach the roof.', tip: 'There are three ways up: fire arrows on the shrubs, Focused Light ability, or Force Palm jumps.' },
+      { step: 4, instruction: 'Collect the Visione Helmet at the top floor — this triggers the next quest.' },
+    ]
+  },
+  { name: 'Memory Fragment', description: 'Ch.2 — Unexpected Gift arc.', type: 'main', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'At the top of Lioncrest Watchtower, pick up the golden helmet among the treasure — it auto-equips.' },
+      { step: 2, instruction: 'View the memory: access the armor menu (D-pad Left > select helm > Play > Delysia > "Visione"), or hold the Options button and select the bottom icon.' },
+    ]
+  },
+  { name: 'Reunion', description: 'Ch.2 — Unexpected Gift arc.', type: 'main', region: 'hernand',
+    rewards: ['Standard Inventory Expansion Tool x1', 'Palmar Pill x1'],
+    walkthrough: [
+      { step: 1, instruction: 'Speak with the child; exit the Watchtower courtyard through the archway — a cutscene plays.' },
+      { step: 2, instruction: 'Hold the interaction button to follow the cat over river portions and rock ledges.' },
+      { step: 3, instruction: 'Speak to the hologram of the child at the ruins.' },
+      { step: 4, instruction: 'Watch and learn the Nature\'s Grasp ability.' },
+      { step: 5, instruction: 'Use Nature\'s Grasp on a rock wall, then tap the action button to lift it; enter where the child meditates and learn Focus.' },
+      { step: 6, instruction: 'Solve the ancient ruins puzzle: use Force Palm on three round wall platforms in sequence — middle, left, right.' },
+      { step: 7, instruction: 'Exit the cave and speak to the child outside; collect the Abyss Artifact from the pillar.' },
+    ]
+  },
   // Hernand in Chaos arc
-  { name: 'For Honor', description: 'Ch.2 — Hernand in Chaos: Boss fight vs. Matthias.', type: 'main', region: 'hernand', rewards: ['Pump Kick x1'] },
-  { name: 'Awestruck', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand' },
-  { name: 'Shadow Cast Over the River', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand' },
-  { name: 'Where Misery Gathers', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand' },
-  { name: 'Trial After Trial', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand' },
-  { name: 'The Man Trapped in the Mire', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand' },
-  { name: 'Missing Companion', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand' },
-  { name: 'Secrets Hidden in the Dark', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand' },
+  { name: 'For Honor', description: 'Ch.2 — Hernand in Chaos: Boss fight vs. Matthias.', type: 'main', region: 'hernand',
+    rewards: ['Pump Kick x1'],
+    walkthrough: [
+      { step: 1, instruction: 'Travel to Hernand Square.' },
+      { step: 2, instruction: 'Lock on to the knight Matthias (sitting surrounded by three people) and talk to him.' },
+      { step: 3, instruction: 'Duel Matthias — he has two health bars. Use 3-hit light attack combos followed by heavy attacks. Healing items can be used mid-fight.', tip: 'Use healing items freely — this is an intended challenge fight.' },
+    ]
+  },
+  { name: 'Awestruck', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'After the duel with Matthias, locate Barden Middler (a knight without a helmet) in the crowd in Hernand Square.' },
+      { step: 2, instruction: 'Approach him — a cutscene triggers and completes the quest.' },
+    ]
+  },
+  { name: 'Shadow Cast Over the River', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand',
+    rewards: ['Standard Inventory Expansion Tool x1', 'Toasted Grains x10', 'Grilled Fruit x5'],
+    walkthrough: [
+      { step: 1, instruction: 'Travel to the Springtide Mill/bridge area in the Hernand region.' },
+      { step: 2, instruction: 'Engage and defeat all Bleed Bandits around the bridge and floodgate.' },
+      { step: 3, instruction: 'Check the nearby encampment if enemies remain.', tip: 'Be cautious of the bandit on horseback — use arrows to avoid harming the horse, as harming it triggers a bounty.' },
+    ]
+  },
+  { name: 'Where Misery Gathers', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Travel to the notice board at Springtide Mill.' },
+      { step: 2, instruction: 'Collect and examine four flyers: Missing Cows (top left), Horn Thief (top middle), Missing Wooly (top right), Strange Noises from the Cave (bottom left).', tip: 'Completing this unlocks four follow-up quests completable in any order.' },
+    ]
+  },
+  { name: 'Trial After Trial', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand',
+    rewards: ['Coins', 'Standard Inventory Expansion Tool x1', 'Thin Hide x5'],
+    walkthrough: [
+      { step: 1, instruction: 'Speak with Bremer at the farm (man in a blue shirt).' },
+      { step: 2, instruction: 'Speak to the Herbalist witness at the marked location — costs 1 Copper coin.' },
+      { step: 3, instruction: 'Mount your horse and follow the Herbalist to a specific location.' },
+      { step: 4, instruction: 'Defeat bandits at the camp; use your lantern to track memory fragments and learn "The Missing Cow".' },
+      { step: 5, instruction: 'Return to Bremer.' },
+    ]
+  },
+  { name: 'The Man Trapped in the Mire', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand',
+    rewards: ['Coins', 'Standard Inventory Expansion Tool x1', 'Cloth Pieces x5'],
+    walkthrough: [
+      { step: 1, instruction: 'Speak with Ibano (the enraged rancher at the objective marker).' },
+      { step: 2, instruction: 'Head east to the marked location; defeat 3 bandits; use your lantern to find memory fragments — learn "Hornless Goat".' },
+      { step: 3, instruction: 'Pick up the "Mysterious Elixir" from a rock at the campsite.' },
+      { step: 4, instruction: 'Return to Ibano at his farm — a cutscene completes the quest.' },
+    ]
+  },
+  { name: 'Missing Companion', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand',
+    rewards: ['Standard Inventory Expansion Tool x1', 'Fleece x5'],
+    walkthrough: [
+      { step: 1, instruction: 'Speak with crying child Willian at Bloomwood Ranch.' },
+      { step: 2, instruction: 'Head south to the three-way intersection and gather information from the other children.' },
+      { step: 3, instruction: 'Cross the street to find herders; gather information from them.' },
+      { step: 4, instruction: 'Travel south across the river to the bandit camp; defeat all bandits; locate sheep Wooly in the pen and pick her up.' },
+      { step: 5, instruction: 'Carry Wooly back to Willian (by the road near a tree) — a cutscene completes the quest.' },
+    ]
+  },
+  { name: 'Secrets Hidden in the Dark', description: 'Ch.2 — Hernand in Chaos arc.', type: 'main', region: 'hernand',
+    rewards: ['Standard Inventory Expansion Tool x1', 'Grilled Meat x5', 'Grilled Fruit x5'],
+    walkthrough: [
+      { step: 1, instruction: 'Find the two men harassing drunkard Boris near Bloomwood Ranch.' },
+      { step: 2, instruction: 'Call your horse; follow Boris on horseback to a cave with bandits.' },
+      { step: 3, instruction: 'Clear enemies and reach the cave\'s back section; use lantern to view blue ghosts and learn memory "Lair of the Animal Thieves".' },
+      { step: 4, instruction: 'Exit the cave.' },
+      { step: 5, instruction: 'Travel northeast to approach and speak with guards at the marked location.' },
+    ]
+  },
   // The End of Greed arc
-  { name: 'The Dark Veil', description: 'Ch.2 — The End of Greed arc.', type: 'main', region: 'hernand' },
-  { name: 'The Flames of Greed', description: 'Ch.2 — The End of Greed arc.', type: 'main', region: 'hernand' },
-  { name: 'Kidnapped Healer', description: 'Ch.2 — The End of Greed arc.', type: 'main', region: 'hernand' },
-  { name: 'Rebellion or Revolution', description: 'Ch.2 — The End of Greed arc.', type: 'main', region: 'hernand' },
-  { name: 'Cheers Echoing From the Edge', description: 'Ch.2 — The End of Greed: Boss fight vs. Kailok the Hornsplitter.', type: 'main', region: 'hernand', rewards: ['Sword of the Lord', 'Seal of Greed - Goldleaf Merchant Guild', 'Iron Ore x7'] },
+  { name: 'The Dark Veil', description: 'Ch.2 — The End of Greed arc.', type: 'main', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Head to the marker in Hernand at Unicorn Cliff.' },
+      { step: 2, instruction: 'Locate merchant Shakatu and speak to him — the quest completes.' },
+    ]
+  },
+  { name: 'The Flames of Greed', description: 'Ch.2 — The End of Greed arc.', type: 'main', region: 'hernand',
+    rewards: ['Coins', 'Abyss Artifact x1'],
+    walkthrough: [
+      { step: 1, instruction: 'Speak with the distressed nun on the road.' },
+      { step: 2, instruction: 'Travel south of the Nas River by Unicorn Cliff to the healer\'s house in Windland Heights — a cutscene triggers.' },
+      { step: 3, instruction: 'You have 2 minutes: use Nature\'s Grasp to remove two large logs blocking the doorway; find Marten inside; pick him up and carry him outside to safety.', tip: 'Act fast — the 2-minute timer starts immediately after the cutscene.' },
+    ]
+  },
+  { name: 'Kidnapped Healer', description: 'Ch.2 — The End of Greed arc.', type: 'main', region: 'hernand',
+    rewards: ['Standard Inventory Expansion Tool x1'],
+    walkthrough: [
+      { step: 1, instruction: 'Travel to the bandit camp in Windland Heights. Most enemies along the way can be ridden past.' },
+      { step: 2, instruction: 'The kidnapper attacks on arrival — defeat him.' },
+      { step: 3, instruction: 'Lock on to Healer Hubert and untie him.' },
+    ]
+  },
+  { name: 'Rebellion or Revolution', description: 'Ch.2 — The End of Greed arc.', type: 'main', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Travel toward Shakatu\'s location in Hernand Highlands — you automatically dismount on approach.' },
+      { step: 2, instruction: 'Defend yourself against attacking soldiers; defeat all of them.' },
+      { step: 3, instruction: 'Shakatu appears after combat.' },
+      { step: 4, instruction: 'Follow Shakatu and talk with him as you walk — the quest completes.' },
+    ]
+  },
+  { name: 'Cheers Echoing From the Edge', description: 'Ch.2 — The End of Greed: Boss fight vs. Kailok the Hornsplitter.', type: 'main', region: 'hernand',
+    rewards: ['Sword of the Lord', 'Seal of Greed - Goldleaf Merchant Guild', 'Iron Ore x7'],
+    walkthrough: [
+      { step: 1, instruction: 'Head to the marked location in Hernand Highlands to encounter Hornsplitter (goblin boss).' },
+      { step: 2, instruction: 'Use perfect counters (when the enemy attacks and you see a green glow) followed by quick combos.' },
+      { step: 3, instruction: 'Block his sword wave attacks (stamina-consuming); avoid heavy attacks to preserve stamina.' },
+      { step: 4, instruction: 'When he enters super armor mode (blue glow), dodge instead of blocking.', tip: 'Bring 40+ healing items — cooked meat is recommended.' },
+    ]
+  },
 
   // ─── CHAPTER 3: HOWLING HILL ──────────────────────────────────────────────────────────────────
   // Homestead arc
-  { name: 'Old Friend', description: 'Ch.3 — Homestead arc.', type: 'main', region: 'hernand' },
-  { name: 'First Step to Rebuilding', description: 'Ch.3 — Homestead arc: Establish Greymane Camp.', type: 'main', region: 'hernand' },
-  { name: 'A Fresh Start', description: 'Ch.3 — Homestead arc: Unlock Camp feature.', type: 'main', region: 'hernand' },
-  { name: 'Reward for Their Sweat', description: 'Ch.3 — Homestead arc.', type: 'main', region: 'hernand' },
-  { name: 'Return of the Comrade', description: 'Ch.3 — Homestead arc.', type: 'main', region: 'hernand' },
-  { name: 'Familiar Curses', description: 'Ch.3 — Homestead arc.', type: 'main', region: 'hernand' },
+  { name: 'Old Friend', description: 'Ch.3 — Homestead arc.', type: 'main', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Investigate the back alleys of Hernand — locate a group of people in the alley behind the inn.' },
+      { step: 2, instruction: 'Approach them — a cutscene triggers a reunion with Marius and the quest completes.' },
+    ]
+  },
+  { name: 'First Step to Rebuilding', description: 'Ch.3 — Homestead arc: Establish Greymane Camp.', type: 'main', region: 'hernand',
+    rewards: ['Camp unlocked', 'Character: Damiane', 'Mount: Brianto', 'Formal Alliance with House Serkis and House Celeste'],
+    walkthrough: [
+      { step: 1, instruction: 'Speak with Marquis Serkis at his manor.' },
+      { step: 2, instruction: 'Follow the soldier outside, then follow them on horseback.' },
+      { step: 3, instruction: 'Speak with Marshal Middler at the campsite in Howling Hill.' },
+    ]
+  },
+  { name: 'A Fresh Start', description: 'Ch.3 — Homestead arc: Unlock Camp feature.', type: 'main', region: 'hernand',
+    rewards: ['Iron Ore x5'],
+    walkthrough: [
+      { step: 1, instruction: 'Move three sacks to the highlighted area behind your starting position.' },
+      { step: 2, instruction: 'Collect the mallet from a nearby table; strike four tent stakes three times each.' },
+      { step: 3, instruction: 'Use a pickaxe to destroy three rocks blocking a wagon; push the wagon into the tent structure.' },
+      { step: 4, instruction: 'Use Nature\'s Grasp to lift the banner from the ground and place it in its designated holder.', tip: 'All four tasks can be completed in any order.' },
+    ]
+  },
+  { name: 'Reward for Their Sweat', description: 'Ch.3 — Homestead arc.', type: 'main', region: 'hernand',
+    rewards: ['Clear Soup x10'],
+    walkthrough: [
+      { step: 1, instruction: 'Go to the cooking pot at the mission marker; examine the Clear Soup recipe on the stool to the right.' },
+      { step: 2, instruction: 'Access the cooking menu at the pot; switch to soups; locate Modest Clear Soup (requires Tough Meat x1, Barley x1, Water x1 — all on the same stool); craft at least 2 servings.' },
+      { step: 3, instruction: 'Approach the workers\' table — a cutscene triggers to complete the quest.' },
+    ]
+  },
+  { name: 'Return of the Comrade', description: 'Ch.3 — Homestead arc.', type: 'main', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Travel to Scrapfold in the Hernand region; find Marius among beggars.' },
+      { step: 2, instruction: 'Interact with Marius.' },
+      { step: 3, instruction: 'Mount your horse; Marius mounts behind you.' },
+      { step: 4, instruction: 'Ride back to the Greymane camp — auto-dismount and a cutscene complete the quest.' },
+    ]
+  },
+  { name: 'Familiar Curses', description: 'Ch.3 — Homestead arc.', type: 'main', region: 'hernand',
+    rewards: ['St. Halssius Priest Attire', "St. Halssius Priest's Cloak", "St. Halssius Priest's Leather Footwear", "St. Halssius Priest's Hat"],
+    walkthrough: [
+      { step: 1, instruction: 'Gain entry to the House of Healing — three options: sneak past guards by climbing roofs while crouched, purchase a St. Halssius Visitor Pass from the Church of Hernand, or buy the Halssius outfit from a merchant for 10 Silver.', tip: 'The easiest entry method is buying the disguise outfit from a merchant for 10 Silver.' },
+      { step: 2, instruction: 'Head to the second floor, south wing; locate the man fighting patients.' },
+      { step: 3, instruction: 'Follow Yann as he flees across roofs and into a cottage.' },
+      { step: 4, instruction: 'Board the Pywell Wagon with him; travel to the Nas River Fishing Dock and proceed to the highlighted location.' },
+    ]
+  },
   // The Face Behind the Mask arc
-  { name: 'Return', description: 'Ch.3 — The Face Behind the Mask arc.', type: 'main', region: 'hernand' },
-  { name: 'Traces in the Manor', description: 'Ch.3 — The Face Behind the Mask arc.', type: 'main', region: 'hernand' },
-  { name: 'Nonhuman', description: 'Ch.3 — The Face Behind the Mask arc.', type: 'main', region: 'hernand' },
-  { name: 'Seed of Unease', description: 'Ch.3 — The Face Behind the Mask arc.', type: 'main', region: 'hernand' },
-  { name: 'Dance with the Devil', description: 'Ch.3 — The Face Behind the Mask: Boss fight vs. Reed Devil (Phase 1).', type: 'main', region: 'hernand' },
+  { name: 'Return', description: 'Ch.3 — The Face Behind the Mask arc.', type: 'main', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Navigate to the Greymane campsite (Nas River Fishing Dock area).' },
+      { step: 2, instruction: 'Speak with Marius at the table in front of the tent — brief dialogue completes the quest.', tip: 'Stock up on ~50 grilled meat, buy plate armor, and upgrade at the blacksmith before this quest — a difficult boss fight follows in an isolated area.' },
+    ]
+  },
+  { name: 'Traces in the Manor', description: 'Ch.3 — The Face Behind the Mask arc.', type: 'main', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Travel south to Glenbright Manor in the Hernand region.' },
+      { step: 2, instruction: 'On arrival, an ambush triggers — defeat the five guards.' },
+      { step: 3, instruction: 'Head upstairs to the right; down the hallway through the forward door; find the servant in the left corner and speak with them.' },
+    ]
+  },
+  { name: 'Nonhuman', description: 'Ch.3 — The Face Behind the Mask arc.', type: 'main', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'In the upper floor of Grace Manor, use the Visione to view the "Grace Manor" memory (blue outlines visible in the room).' },
+      { step: 2, instruction: 'Exit through the window; turn right; activate your lantern to reveal a yellow tracking line.' },
+      { step: 3, instruction: 'Follow the trail toward the endpoint hut, defeating or running past enemy groups along the way.' },
+      { step: 4, instruction: 'Enter the hut — the objective completes automatically via cutscene.' },
+    ]
+  },
+  { name: 'Seed of Unease', description: 'Ch.3 — The Face Behind the Mask arc.', type: 'main', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'After the cutscene in the hut, activate your lantern and follow the yellow line to a canyon southwest.' },
+      { step: 2, instruction: 'The Reed Devil appears with other enemies — damage him until he disappears.' },
+      { step: 3, instruction: 'Continue following the linear canyon path; the Reed Devil reappears — hit him each time he appears.' },
+      { step: 4, instruction: 'After the canyon, reach the large open field to the south — this completes the quest and triggers Dance with the Devil.' },
+    ]
+  },
+  { name: 'Dance with the Devil', description: 'Ch.3 — The Face Behind the Mask: Boss fight vs. Reed Devil (Phase 1).', type: 'main', region: 'hernand',
+    rewards: ['Sunset Reed Cloth Gloves'],
+    walkthrough: [
+      { step: 1, instruction: 'Phase 1 — One on One: Learn the Devil\'s attack patterns; parry to build the gauge under the health bar; when full, break the guard and combo. Repeat until health depletes.', tip: 'Bring up to 100 Grilled Meats; upgrade plate armor with ores beforehand.' },
+      { step: 2, instruction: 'Phase 2 — Scarecrows: Destroy 5 scarecrows in the arena while avoiding attacks from 4 Devil clones; 3 clones disappear when all scarecrows are destroyed.' },
+      { step: 3, instruction: 'Phase 3 — One on Two: Fight the remaining Devil with a second Devil interfering; dodge the new energy wave attack; use same parry-and-combo strategy.' },
+    ]
+  },
   { name: 'The Face Behind the Mask', description: 'Ch.3 — Boss fight vs. Reed Devil (full encounter).', type: 'main', region: 'hernand', rewards: ['Hernandian Contribution EXP x600', 'Sunset Reed Cloth Gloves'] },
   // Pioneering arc
   { name: 'Hope After the Draught', description: 'Ch.3 — Pioneering arc.', type: 'main', region: 'hernand' },
   { name: 'Scattered Comrades', description: 'Ch.3 — Pioneering arc.', type: 'main', region: 'hernand' },
   { name: 'Rumors from the Sawmill', description: 'Ch.3 — Pioneering arc.', type: 'main', region: 'hernand' },
   { name: 'A Gentle Touch', description: 'Ch.3 — Pioneering arc.', type: 'main', region: 'hernand' },
-  { name: 'Bustling Hill', description: 'Ch.3 — Pioneering arc.', type: 'main', region: 'hernand' },
-  { name: 'Greymanes Reunited', description: 'Ch.3 — Pioneering arc: Reunite Greymane members.', type: 'main', region: 'hernand' },
+  { name: 'Bustling Hill', description: 'Ch.3 — Pioneering arc.', type: 'main', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Open the map; locate Howling Hill camp; access camp information; go to the Mission List tab; select "Howling Hill Camp Expansion"; dispatch Luke and Ronald.' },
+      { step: 2, instruction: 'Wait 18 in-game hours — rest at a bed or campfire for 12 hours, or continue other activities.', tip: 'You can continue with other quests while waiting for the camp expansion to finish.' },
+    ]
+  },
+  { name: 'Greymanes Reunited', description: 'Ch.3 — Pioneering arc: Reunite Greymane members.', type: 'main', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Head to the newly expanded camp at Howling Hill.' },
+      { step: 2, instruction: 'Enter the highlighted area — a single cutscene triggers, and Chapter 4 begins.' },
+    ]
+  },
 
   // ─── CHAPTER 4: THE PRICE OF KNOWLEDGE ───────────────────────────────────────────────────────
   { name: 'The Mysterious Pot', description: 'Ch.4 — Mysterious Iron Pot arc: Find the Kuku Pot crafting item.', type: 'main', region: 'hernand' },
@@ -827,9 +1127,11 @@ export const QUESTS: Quest[] = [
   // ─── FACTION QUESTS ───────────────────────────────────────────────────────────────────────────
   // Greymanes — Scattered Embers
   { name: 'Record of the Greymanes', description: 'Greymane faction: Document the mercenary company\'s history.', type: 'faction', region: 'hernand' },
-  { name: "The Greymanes' New Fangs", description: 'Greymane faction: Recruit new members.', type: 'faction', region: 'hernand' },
+  { name: "The Greymanes' New Fangs", description: 'Greymane faction: Pet taming tutorial — a stray dog becomes your companion.', type: 'faction', region: 'hernand' },
   { name: 'Strongbox with Wheels', description: 'Greymane faction.', type: 'faction', region: 'hernand' },
-  { name: 'Brightening the Spirits', description: 'Greymane faction.', type: 'faction', region: 'hernand' },
+  { name: 'Brightening the Spirits', description: 'Greymane faction.', type: 'faction', region: 'hernand',
+    rewards: ['Grey Dye x1'],
+  },
   { name: 'Change to Make a Fortune', description: 'Greymane faction.', type: 'faction', region: 'hernand' },
   { name: 'The First Steps of Little Marksmen', description: 'Greymane faction.', type: 'faction', region: 'hernand' },
   { name: 'Words Left by the Riverside', description: 'Greymane faction.', type: 'faction', region: 'hernand' },
@@ -837,35 +1139,178 @@ export const QUESTS: Quest[] = [
   { name: 'A Rumor in Ivynook', description: 'Greymane faction — Grounds of the Sunrise arc.', type: 'faction', region: 'hernand' },
   { name: 'For a Better Tomorrow', description: 'Greymane faction — Grounds of the Sunrise arc.', type: 'faction', region: 'hernand' },
   // House Celeste bounties (8 total)
-  { name: 'Outlaws in Hernand — Jeffrey', description: 'House Celeste bounty: Capture Jeffrey.', type: 'faction', region: 'hernand' },
-  { name: 'Outlaws in Hernand — Simon de Montfort', description: 'House Celeste bounty.', type: 'faction', region: 'hernand' },
-  { name: 'Outlaws in Hernand — Alessio', description: 'House Celeste bounty.', type: 'faction', region: 'hernand' },
-  { name: 'Outlaws in Hernand — Blix', description: 'House Celeste bounty.', type: 'faction', region: 'hernand' },
-  { name: 'Outlaws in Hernand — Bianca', description: 'House Celeste bounty.', type: 'faction', region: 'hernand' },
-  { name: 'Outlaws in Hernand — Salvatore', description: 'House Celeste bounty.', type: 'faction', region: 'hernand' },
-  { name: 'Outlaws in Hernand — Warren', description: 'House Celeste bounty.', type: 'faction', region: 'hernand' },
-  { name: 'Outlaws in Hernand — Billy', description: 'House Celeste bounty.', type: 'faction', region: 'hernand' },
+  { name: 'Outlaws in Hernand — Jeffrey', description: 'House Celeste bounty: Capture Jeffrey, a wandering pickpocket in the City of Hernand.', type: 'faction', region: 'hernand',
+    rewards: ['Silver x1', 'Mask (crime disguise) x1', 'House Celeste Contribution EXP +100'],
+    walkthrough: [
+      { step: 1, instruction: 'Speak with Guard Captain Pedro at the constabulary to learn the bounty system.' },
+      { step: 2, instruction: 'Take the bounty notice for Jeffrey.' },
+      { step: 3, instruction: 'Find Jeffrey in the City of Hernand (bounty icon on minimap).' },
+      { step: 4, instruction: 'Hit him until the tie-up prompt appears — do NOT kill him; tie him up.', tip: 'All bounties must be turned in alive for the full silver reward.' },
+      { step: 5, instruction: 'Deliver him to the constabulary.' },
+    ]
+  },
+  { name: 'Outlaws in Hernand — Simon de Montfort', description: 'House Celeste bounty: Simon de Montfort is located at Scholastone in the Everfrost Basin and will flee immediately on approach.', type: 'faction', region: 'hernand',
+    rewards: ['Silver x8'],
+    walkthrough: [
+      { step: 1, instruction: 'Collect the bounty poster in Hernand (Chapter 2+).' },
+      { step: 2, instruction: 'Travel to Scholastone, Everfrost Basin.' },
+      { step: 3, instruction: 'Sprint and tackle immediately upon reaching Simon — he runs fast and flees on sight.', tip: 'Sprint tackle immediately — do not approach slowly or he will outrun you.' },
+      { step: 4, instruction: 'Transport him by carrying or placing on a horse.' },
+      { step: 5, instruction: 'Turn him in at a guard station or jail.' },
+    ]
+  },
+  { name: 'Outlaws in Hernand — Alessio', description: 'House Celeste bounty: Alessio is located at the Ironwood Bandit Camp in Greenfield Highlands.', type: 'faction', region: 'hernand',
+    rewards: ['Silver x12'],
+    walkthrough: [
+      { step: 1, instruction: 'Collect the bounty poster (Chapter 2+).' },
+      { step: 2, instruction: 'Travel to Ironwood Bandit Camp in Greenfield Highlands — expect additional bandits in the area.' },
+      { step: 3, instruction: 'Defeat Alessio in combat.' },
+      { step: 4, instruction: 'Capture and surrender to the guard station.' },
+    ]
+  },
+  { name: 'Outlaws in Hernand — Blix', description: 'House Celeste bounty: Blix is at Unicorn Cliff with a group of goblins. Only present before 1:00 PM in-game time.', type: 'faction', region: 'hernand',
+    rewards: ['Silver x15 (alive)', 'House Celeste Contribution EXP +200'],
+    walkthrough: [
+      { step: 1, instruction: 'Collect the bounty poster near Nas Riverside (Chapter 2+).' },
+      { step: 2, instruction: 'Travel to Unicorn Cliff before 1:00 PM in-game time.', tip: 'Blix only appears before 1:00 PM in-game time. If you miss the window, rest until morning and try again.' },
+      { step: 3, instruction: 'Defeat Blix; tackle and punch until the tie option appears. Use a mask/disguise to avoid triggering immediate combat.' },
+      { step: 4, instruction: 'Transport to and surrender at the Hernand constabulary.' },
+    ]
+  },
+  { name: 'Outlaws in Hernand — Bianca', description: 'House Celeste bounty: Bianca is hiding in the kitchen of the Church of Hernand.', type: 'faction', region: 'hernand',
+    rewards: ['Silver x5', 'House Celeste Contribution EXP +300'],
+    walkthrough: [
+      { step: 1, instruction: 'Collect the bounty poster near Beggar\'s End / lamp posts (Chapter 2+).' },
+      { step: 2, instruction: 'Enter the Church of Hernand; go to the right room; proceed to the kitchen.' },
+      { step: 3, instruction: 'Bianca will flee — chase her down.' },
+      { step: 4, instruction: 'Tackle and tie her up.' },
+      { step: 5, instruction: 'Place her on your mount; deliver to the guards.' },
+    ]
+  },
+  { name: 'Outlaws in Hernand — Salvatore', description: 'House Celeste bounty: Salvatore is located in Sunset Valley at the southernmost part of Hernand.', type: 'faction', region: 'hernand',
+    rewards: ['Silver x12'],
+    walkthrough: [
+      { step: 1, instruction: 'Collect the bounty poster (Chapter 2+).' },
+      { step: 2, instruction: 'Travel to Sunset Valley.' },
+      { step: 3, instruction: 'Find and capture Salvatore.' },
+      { step: 4, instruction: 'Turn him in at a guard station.' },
+    ]
+  },
+  { name: 'Outlaws in Hernand — Warren', description: 'House Celeste bounty: Warren is in Pororin at the southern part of Deepwoods. Requires completing The Unreachable Village first.', type: 'faction', region: 'hernand',
+    rewards: ['Silver x25'],
+    walkthrough: [
+      { step: 1, instruction: 'Collect the bounty poster (Chapter 2+).' },
+      { step: 2, instruction: 'Complete "The Unreachable Village" quest to unlock access to the Pororin Forest area.', tip: 'You must complete The Unreachable Village before you can access this area.' },
+      { step: 3, instruction: 'Travel to Pororin, southern Deepwoods.' },
+      { step: 4, instruction: 'Find and restrain Warren.' },
+      { step: 5, instruction: 'Surrender to the guard station.' },
+    ]
+  },
+  { name: 'Outlaws in Hernand — Billy', description: 'House Celeste bounty.', type: 'faction', region: 'hernand',
+    rewards: ['Silver x2'],
+  },
   // House Roberts
-  { name: 'First Trial of Trust', description: 'House Roberts faction quest — Bluemont Manor.', type: 'faction', region: 'hernand' },
-  { name: 'Troubled Count', description: 'House Roberts faction quest.', type: 'faction', region: 'hernand' },
-  { name: 'Stolen Quarry', description: 'House Roberts faction quest.', type: 'faction', region: 'hernand' },
-  { name: 'Sealed in Stone', description: 'House Roberts faction quest.', type: 'faction', region: 'hernand' },
-  { name: "The Count's Honor", description: 'House Roberts faction quest.', type: 'faction', region: 'hernand' },
-  { name: 'Strange Red Smoke', description: 'House Roberts faction quest.', type: 'faction', region: 'hernand' },
-  { name: 'The Crimson Nightmare', description: 'House Roberts faction quest: Triggers Crimson Nightmare boss encounter.', type: 'faction', region: 'hernand' },
-  { name: 'Veil of the Red Smoke', description: 'House Roberts faction quest conclusion.', type: 'faction', region: 'hernand' },
-  // Antumbra Order (sanctum chain)
-  { name: 'Sanctum of Temperance', description: 'Antumbra Order: Clear the Sanctum of Temperance.', type: 'faction', region: 'hernand' },
-  { name: 'Sanctum of Penitence', description: "Antumbra Order: Clear the Sanctum of Penitence.", type: 'faction', region: 'hernand' },
-  { name: 'Sanctum of Benediction', description: 'Antumbra Order: Clear the Sanctum of Benediction.', type: 'faction', region: 'hernand' },
-  { name: "Antumbra's Sword", description: "Antumbra Order: Final boss fight vs. Antumbra's Sword.", type: 'faction', region: 'hernand', rewards: ['Abyss Artifact x1', 'Vessel of Dark Pursuit'] },
+  { name: 'First Trial of Trust', description: 'House Roberts faction quest — Bluemont Manor. Start by speaking with the House Roberts servant near Bluemont Manor, south of the Notice Board.', type: 'faction', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Speak with the man near Bluemont Manor.' },
+      { step: 2, instruction: 'Speak with the caretaker at Muckroot Ranch (sitting on a bench by a tree).' },
+      { step: 3, instruction: 'Defeat enemies around the cask house at Bluemont Cask House.' },
+    ]
+  },
+  { name: 'Troubled Count', description: 'House Roberts faction quest.', type: 'faction', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Talk to Erich outside Bluemont Manor.' },
+      { step: 2, instruction: 'Head inside, up the stairs, and speak with Count Roberts on the 2nd floor.' },
+    ]
+  },
+  { name: 'Stolen Quarry', description: 'House Roberts faction quest.', type: 'faction', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Travel north of Goldleaf Trading Post to Marni\'s Excavatron.' },
+      { step: 2, instruction: 'Defeat the Excavatron.', tip: 'Switching to Damiane is recommended for her agility in this fight.' },
+      { step: 3, instruction: 'Defeat remaining Bleed Bandits at Karin Quarry until the progress bar reaches zero.' },
+    ]
+  },
+  { name: 'Sealed in Stone', description: 'House Roberts faction quest.', type: 'faction', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Talk to Erich in Karin Quarry to receive the Crane Control Room Key.' },
+      { step: 2, instruction: 'Operate the elevator to reach the control room.' },
+      { step: 3, instruction: 'Use crane controls to extract a buried relic from stone.' },
+    ]
+  },
+  { name: "The Count's Honor", description: 'House Roberts faction quest — conclusion of the Estate in Dismay chain.', type: 'faction', region: 'hernand',
+    rewards: ['Gold Vein Map x1', 'Mining Knuckledrill x1', 'Azurite x3', 'Bloodstones x3', 'Engraved Gold Earring x1'],
+    walkthrough: [
+      { step: 1, instruction: 'Return to Count Roberts at Bluemont Manor to complete the chain.' },
+    ]
+  },
+  { name: 'Strange Red Smoke', description: 'House Roberts faction quest.', type: 'faction', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Speak with Count Roberts.' },
+      { step: 2, instruction: 'Travel to investigate the red smoke phenomenon near Fort Perwin in eastern Hernand.' },
+    ]
+  },
+  { name: 'The Crimson Nightmare', description: 'House Roberts faction quest: Boss fight vs. Crimson Nightmare at Fort Perwin.', type: 'faction', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Preparation: Farm normal enemies around Fort Perwin for a Crude Devil Mask or Scarlet Blades Gas Mask (grants Confusion Immunity). Bring Hearty Grilled Meat.', tip: 'Confusion Immunity from the mask is highly recommended for this fight.' },
+      { step: 2, instruction: 'At the boss: Ignore the Crimson Nightmare initially; defeat the surrounding foot soldiers first.' },
+      { step: 3, instruction: 'To stun the boss: Stand under it, jump, then use Force Palm — the boss cannot be damaged by regular attacks until stunned.' },
+      { step: 4, instruction: 'Once stunned, the boss falls — deal heavy damage while it is grounded.' },
+      { step: 5, instruction: 'Repeat: stun with aerial Force Palm, attack while down, until defeated.' },
+    ]
+  },
+  { name: 'Veil of the Red Smoke', description: 'House Roberts faction quest conclusion.', type: 'faction', region: 'hernand',
+    rewards: ["Freya's Elixir x1", "Apollonia's Lesser Elixir x2", "Melliara's Lesser Elixir x2", 'Bulging Copper Pouch x3'],
+  },
+  // Antumbra Order (sanctum chain) — unlock by meeting Elowen the Witch at Alfonso Estate (Chapter 5+)
+  { name: 'Sanctum of Temperance', description: 'Antumbra Order: Clear the Sanctum of Temperance. Unlock by meeting Elowen the Witch at Alfonso Estate.', type: 'faction', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Defeat religious zealots guarding the area.' },
+      { step: 2, instruction: 'Locate the missing pillar top on the southwest side, behind vine-covered tower entrance — burn vines with fire arrows or Blinding Flash ability, or walk through taking damage.' },
+      { step: 3, instruction: 'Use Axiom Force to extract the "Fusion Reactor Core: III-3" piece into your kuku pot.' },
+      { step: 4, instruction: 'Return to the pillars; slot it back into place with a jumping Force Palm.' },
+      { step: 5, instruction: 'On the north side, stand on unstable ground above a square hole; retrieve the cube below.' },
+      { step: 6, instruction: 'Force Palm the cube into place — the machine activates.' },
+    ]
+  },
+  { name: 'Sanctum of Penitence', description: 'Antumbra Order: Clear the Sanctum of Penitence.', type: 'faction', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Defeat all Antumbra worshippers at the sanctum.' },
+      { step: 2, instruction: 'Locate the missing cube top in the rubble on the south side of the ruins.' },
+      { step: 3, instruction: 'Use Axiom Force to retrieve it; position it on the broken pillar.' },
+      { step: 4, instruction: 'Climb on top and perform a jumping Force Palm to secure it.' },
+    ]
+  },
+  { name: 'Sanctum of Benediction', description: 'Antumbra Order: Clear the Sanctum of Benediction.', type: 'faction', region: 'hernand',
+    walkthrough: [
+      { step: 1, instruction: 'Clear enemies in the area.' },
+      { step: 2, instruction: 'Locate the first stone pillar top nearby; use Axiom Force to bring it to the pillar; place it on top; climb up and use Aerial Force Palm to push it into place.' },
+      { step: 3, instruction: 'Light the lantern to the right of the main entrance of the central structure to open the door.' },
+      { step: 4, instruction: 'Retrieve the second pillar top from inside.' },
+      { step: 5, instruction: 'Place it on the other incomplete pillar; use Force Palm to lock it in.' },
+    ]
+  },
+  { name: "Antumbra's Sword", description: "Antumbra Order: Final sanctum boss fight vs. Antumbra's Sword at the Sanctum of Absolution.", type: 'faction', region: 'hernand',
+    rewards: ['Abyss Artifact x1', 'Vessel of Dark Pursuit', 'Kuku weapon blueprints'],
+    walkthrough: [
+      { step: 1, instruction: 'Prepare: bring significant healing food (Hearty Grilled Meat); ensure health and stamina are leveled up.', tip: 'Do not rush this fight — it is a war of attrition.' },
+      { step: 2, instruction: 'Use stab moves for passive bleed damage.' },
+      { step: 3, instruction: 'When the boss powers up, retreat immediately — the duplicate ground pound can one-shot you.' },
+      { step: 4, instruction: 'Wait for each attack chain to end; then hit with a strong swing + stab twice.' },
+      { step: 5, instruction: 'Use perfect blocks and dodges; exploit edge positioning for stun opportunities.' },
+      { step: 6, instruction: 'After the boss, retrieve the pillar piece from the room south of the arena.' },
+      { step: 7, instruction: 'Find the power cube by smashing clay pots in the corridor.' },
+      { step: 8, instruction: 'Slam the cube into the machine to complete the sanctum.' },
+    ]
+  },
   // Pailune Militia
   { name: 'Shadows of Beasts', description: 'Pailune Militia faction quest.', type: 'faction', region: 'pailune' },
   { name: 'Lord of the Forgotten Castle', description: 'Pailune Militia: Boss fight vs. Saigord the Staglord.', type: 'faction', region: 'hernand', rewards: ["Staglord's Shield"] },
   // Beighen Tribe
   { name: 'The Frostwarden', description: 'Beighen Tribe faction quest — Pailune area.', type: 'faction', region: 'pailune' },
   // Witches
-  { name: 'The Witch of Wisdom', description: 'Witches faction quest.', type: 'faction', region: 'hernand' },
+  { name: 'The Witch of Wisdom', description: 'Witches faction quest. Meet Elowen the Witch at Alfonso Estate to begin the Antumbra sanctum chain. After completing all four sanctums, return to Elowen for the final reward.', type: 'faction', region: 'hernand',
+    rewards: ['Blue Lavender x20', 'Peony x20', 'Small Bone x20'],
+  },
   // Goldleaf Merchant Guild
   { name: 'Extinguishing the Last Flames', description: 'Goldleaf Merchant Guild faction quest.', type: 'faction', region: 'hernand' },
   // Pororin Forest Guardians
