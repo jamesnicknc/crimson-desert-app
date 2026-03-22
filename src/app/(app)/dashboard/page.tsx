@@ -29,7 +29,7 @@ const CODEX_CATEGORIES = [
   { label: 'Factions', count: 110, icon: Shield, color: 'text-purple-400' },
   { label: 'Territories', count: 573, icon: MapPin, color: 'text-green-400' },
   { label: 'Creatures', count: 401, icon: Bug, color: 'text-red-400' },
-  { label: 'Bosses', count: 75, icon: Skull, color: 'text-orange-400' },
+  { label: 'Bosses', count: 76, icon: Skull, color: 'text-orange-400' },
   { label: 'Mounts', count: 29, icon: Footprints, color: 'text-amber-400' },
   { label: 'Adventures', count: 430, icon: Compass, color: 'text-cyan-400' },
   { label: 'Gatherables', count: 150, icon: Leaf, color: 'text-emerald-400' },
@@ -44,7 +44,7 @@ export default function DashboardPage() {
   const stats = [
     { label: 'World Size', value: '256 km²', icon: Globe, href: '/map' },
     { label: 'Territories', value: '573', icon: MapPin, href: '/map' },
-    { label: 'Bosses', value: '75', icon: Skull, href: '/bosses' },
+    { label: 'Bosses', value: '76', icon: Skull, href: '/bosses' },
     { label: 'Adventures', value: '430', icon: Compass, href: '/quests' },
     { label: 'Creatures', value: '401', icon: Bug, href: '/bestiary' },
     { label: 'Codex Entries', value: CODEX_TOTAL.toLocaleString(), icon: Library, href: '/quests' },

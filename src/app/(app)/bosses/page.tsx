@@ -165,7 +165,7 @@ export default function BossesPage() {
       <div className="text-center">
         <h1 className="text-3xl font-cinzel font-bold text-gold-400 mb-2">Bosses</h1>
         <p className="text-gray-400">
-          Track defeated bosses across Pywel. {BOSSES.length} named bosses confirmed — 75 total in the Knowledge Codex.
+          Track defeated bosses across Pywel. {BOSSES.length} named bosses confirmed — 76 total in the Knowledge Codex.
         </p>
       </div>
 
