@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useMemo, useEffect, useCallback, useRef } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import { MapContainer, ImageOverlay, Marker, Popup, useMapEvents } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { MAP_MARKERS, REGION_LABELS, CATEGORY_CONFIG, type MarkerCategory } from '@/lib/map-data';
+import { REGION_LABELS } from '@/lib/map-data';
 import { PIN_CATEGORIES, type MapPinWithProfile, type UpdatePinInput } from '@/hooks/use-map-pins';
 import type { PinCategory } from '@/types/game-data';
 import PinPopup from './PinPopup';
@@ -15,31 +15,7 @@ import PinCreationPanel from './PinCreationPanel';
 const MAP_BOUNDS: L.LatLngBoundsExpression = [[0, 0], [1000, 1000]];
 const MAX_BOUNDS: L.LatLngBoundsExpression = [[-50, -50], [1050, 1050]];
 
-const DIFFICULTY_COLORS: Record<string, string> = {
-  Normal: '#4ade80',
-  Hard: '#fbbf24',
-  Extreme: '#f97316',
-  Legendary: '#a855f7',
-};
-
 // ─── Icon Factories ───────────────────────────────────────────────────────────
-
-function createStaticMarkerIcon(category: MarkerCategory): L.DivIcon {
-  const { color, letter } = CATEGORY_CONFIG[category];
-  return L.divIcon({
-    html: `<div style="position:relative;width:26px;height:34px;">
-      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="34" viewBox="0 0 26 34">
-        <path d="M13 0 C5.8 0 0 5.8 0 13 C0 22.75 13 34 13 34 C13 34 26 22.75 26 13 C26 5.8 20.2 0 13 0 Z" fill="${color}"/>
-        <circle cx="13" cy="13" r="7" fill="rgba(0,0,0,0.3)"/>
-        <text x="13" y="17.5" text-anchor="middle" font-size="9" font-weight="bold" fill="white" font-family="Arial,sans-serif">${letter}</text>
-      </svg>
-    </div>`,
-    className: '',
-    iconSize: [26, 34],
-    iconAnchor: [13, 34],
-    popupAnchor: [0, -36],
-  });
-}
 
 function createUserPinIcon(pinCategory: string, isOwner: boolean): L.DivIcon {
   const cfg = PIN_CATEGORIES[pinCategory as PinCategory] ?? PIN_CATEGORIES.custom;
@@ -121,8 +97,6 @@ function CursorStyleInjector({ isPlacingPin }: { isPlacingPin: boolean }) {
 // ─── Props ────────────────────────────────────────────────────────────────────
 
 export interface InteractiveMapProps {
-  // Static marker filter state (managed by parent)
-  activeStaticCategories: Set<MarkerCategory>;
   // User pin data
   myPins: MapPinWithProfile[];
   groupPins: MapPinWithProfile[];
@@ -150,7 +124,6 @@ export interface InteractiveMapProps {
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function InteractiveMap({
-  activeStaticCategories,
   myPins,
   groupPins,
   showMyPins,
@@ -169,23 +142,6 @@ export default function InteractiveMap({
 
   useEffect(() => {
     setIsClient(true);
-  }, []);
-
-  // ── Memoized filtered static markers ──────────────────────────────────
-
-  const filteredStaticMarkers = useMemo(
-    () => MAP_MARKERS.filter(m => activeStaticCategories.has(m.category)),
-    [activeStaticCategories]
-  );
-
-  // ── Memoized static marker icons ─────────────────────────────────────
-
-  const staticIcons = useMemo(() => {
-    const icons = {} as Record<MarkerCategory, L.DivIcon>;
-    for (const cat of Object.keys(CATEGORY_CONFIG) as MarkerCategory[]) {
-      icons[cat] = createStaticMarkerIcon(cat);
-    }
-    return icons;
   }, []);
 
   // ── Memoized region labels ────────────────────────────────────────────
@@ -241,7 +197,7 @@ export default function InteractiveMap({
             opacity={0.95}
           />
 
-          {/* ── Layer 1: Region name labels ──────────────────────────── */}
+          {/* ── Region name labels ────────────────────────────────────── */}
           {regionLabelMarkers.map(r => (
             <Marker
               key={`region-${r.id}`}
@@ -251,82 +207,7 @@ export default function InteractiveMap({
             />
           ))}
 
-          {/* ── Layer 2: Static world markers ────────────────────────── */}
-          {filteredStaticMarkers.map(marker => (
-            <Marker
-              key={`static-${marker.id}`}
-              position={marker.coords}
-              icon={staticIcons[marker.category]}
-            >
-              <Popup className="pywel-popup" maxWidth={268} minWidth={200}>
-                <div
-                  style={{
-                    background: '#19191E',
-                    border: '1px solid #2A2630',
-                    borderRadius: '8px',
-                    padding: '12px 14px',
-                    fontFamily: 'Inter, system-ui, sans-serif',
-                    color: '#e5e5e5',
-                  }}
-                >
-                  <div
-                    style={{
-                      fontFamily: 'Cinzel, Georgia, serif',
-                      fontSize: '14px',
-                      fontWeight: '700',
-                      color: '#d4a847',
-                      marginBottom: '7px',
-                      lineHeight: '1.3',
-                    }}
-                  >
-                    {marker.name}
-                  </div>
-
-                  <div style={{ display: 'flex', gap: '6px', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap' }}>
-                    <span
-                      style={{
-                        background: CATEGORY_CONFIG[marker.category].color,
-                        color: '#000',
-                        padding: '2px 9px',
-                        borderRadius: '999px',
-                        fontSize: '11px',
-                        fontWeight: '600',
-                      }}
-                    >
-                      {CATEGORY_CONFIG[marker.category].label}
-                    </span>
-                    {marker.difficulty && (
-                      <span
-                        style={{
-                          color: DIFFICULTY_COLORS[marker.difficulty] ?? '#aaa',
-                          fontSize: '11px',
-                          fontWeight: '600',
-                        }}
-                      >
-                        {marker.difficulty}
-                      </span>
-                    )}
-                  </div>
-
-                  {marker.description && (
-                    <p style={{ fontSize: '12px', color: '#9ca3af', lineHeight: '1.55', margin: '0 0 8px 0' }}>
-                      {marker.description}
-                    </p>
-                  )}
-
-                  <div style={{ fontSize: '11px', color: '#4b5563', textTransform: 'capitalize' }}>
-                    {marker.region === 'desert'
-                      ? 'Crimson Desert'
-                      : marker.region === 'abyss'
-                        ? 'The Abyss'
-                        : marker.region.charAt(0).toUpperCase() + marker.region.slice(1)}
-                  </div>
-                </div>
-              </Popup>
-            </Marker>
-          ))}
-
-          {/* ── Layer 3: User's own pins ─────────────────────────────── */}
+          {/* ── User's own pins ───────────────────────────────────────── */}
           {showMyPins &&
             myPins.map(pin => (
               <Marker
@@ -354,7 +235,7 @@ export default function InteractiveMap({
               </Marker>
             ))}
 
-          {/* ── Layer 4: Group member pins ────────────────────────────── */}
+          {/* ── Group member pins ──────────────────────────────────────── */}
           {showGroupPins &&
             groupPins.map(pin => (
               <Marker

@@ -1,13 +1,12 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback } from 'react';
 import { useUser } from '@/hooks/use-user';
-import { useMapPins, type CreatePinInput } from '@/hooks/use-map-pins';
-import { MAP_MARKERS, CATEGORY_CONFIG, type MarkerCategory } from '@/lib/map-data';
+import { useMapPins, PIN_CATEGORIES } from '@/hooks/use-map-pins';
 import MapFilterBar from '@/components/map/MapFilterBar';
 import SignInPrompt from '@/components/SignInPrompt';
-import { Globe, MapPin, Users, Loader2 } from 'lucide-react';
+import { Globe, MapPin, Users } from 'lucide-react';
 import type { PinCategory } from '@/types/game-data';
 
 // ── Dynamic import (Leaflet needs browser APIs) ─────────────────────────────
@@ -27,13 +26,6 @@ const InteractiveMap = dynamic(() => import('@/components/map/InteractiveMap'), 
   ),
 });
 
-// ── Precompute static marker counts ─────────────────────────────────────────
-
-const STATIC_COUNTS: Record<MarkerCategory, number> = {} as Record<MarkerCategory, number>;
-for (const cat of Object.keys(CATEGORY_CONFIG) as MarkerCategory[]) {
-  STATIC_COUNTS[cat] = MAP_MARKERS.filter(m => m.category === cat).length;
-}
-
 // ── Page Component ──────────────────────────────────────────────────────────
 
 export default function MapPage() {
@@ -42,25 +34,8 @@ export default function MapPage() {
 
   // ── Filter state ────────────────────────────────────────────────────────
 
-  const [activeStaticCategories, setActiveStaticCategories] = useState<Set<MarkerCategory>>(
-    new Set(['town', 'boss', 'dungeon', 'poi', 'fast-travel'])
-  );
   const [showMyPins, setShowMyPins] = useState(true);
   const [showGroupPins, setShowGroupPins] = useState(true);
-
-  const toggleStaticCategory = useCallback((cat: MarkerCategory) => {
-    setActiveStaticCategories(prev => {
-      const next = new Set(prev);
-      if (next.has(cat)) next.delete(cat);
-      else next.add(cat);
-      return next;
-    });
-  }, []);
-
-  const visibleStaticCount = useMemo(
-    () => MAP_MARKERS.filter(m => activeStaticCategories.has(m.category)).length,
-    [activeStaticCategories]
-  );
 
   // ── Pin placement state ─────────────────────────────────────────────────
 
@@ -71,7 +46,6 @@ export default function MapPage() {
   const togglePlacePin = useCallback(() => {
     setIsPlacingPin(prev => {
       if (prev) {
-        // Exiting placement mode, clear pending coords
         setPendingPinCoords(null);
       }
       return !prev;
@@ -105,7 +79,6 @@ export default function MapPage() {
 
   const handleCancelNewPin = useCallback(() => {
     setPendingPinCoords(null);
-    // Stay in placement mode so user can click again
   }, []);
 
   // ── Render ──────────────────────────────────────────────────────────────
@@ -120,7 +93,7 @@ export default function MapPage() {
             World Map
           </h1>
           <p className="text-gray-400 text-sm">
-            Explore Pywel, find locations, and drop pins to share discoveries with your group.
+            Explore Pywel and drop pins to share discoveries with your group.
           </p>
         </div>
 
@@ -149,9 +122,6 @@ export default function MapPage() {
       {/* Filter bar */}
       <div className="bg-pywel-card rounded-lg border border-pywel-border p-3">
         <MapFilterBar
-          activeStaticCategories={activeStaticCategories}
-          onToggleStaticCategory={toggleStaticCategory}
-          staticCounts={STATIC_COUNTS}
           showMyPins={showMyPins}
           onToggleMyPins={() => setShowMyPins(p => !p)}
           showGroupPins={showGroupPins}
@@ -161,14 +131,11 @@ export default function MapPage() {
           isPlacingPin={isPlacingPin}
           onTogglePlacePin={togglePlacePin}
           isLoggedIn={!!user}
-          visibleStaticCount={visibleStaticCount}
-          totalStaticCount={MAP_MARKERS.length}
         />
       </div>
 
       {/* Map */}
       <InteractiveMap
-        activeStaticCategories={activeStaticCategories}
         myPins={myPins}
         groupPins={groupPins}
         showMyPins={showMyPins}
@@ -186,7 +153,7 @@ export default function MapPage() {
 
       {/* Legend */}
       <div className="flex flex-wrap gap-x-5 gap-y-1.5">
-        {(Object.entries(CATEGORY_CONFIG) as [MarkerCategory, typeof CATEGORY_CONFIG[MarkerCategory]][]).map(
+        {(Object.entries(PIN_CATEGORIES) as [PinCategory, typeof PIN_CATEGORIES[PinCategory]][]).map(
           ([cat, cfg]) => (
             <div key={cat} className="flex items-center gap-1.5 text-xs text-gray-400">
               <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: cfg.color }} />
@@ -197,11 +164,11 @@ export default function MapPage() {
         )}
         <div className="w-px h-4 bg-pywel-border mx-1 self-center" />
         <div className="flex items-center gap-1.5 text-xs text-gray-400">
-          <div className="w-2.5 h-2.5 rounded-full flex-shrink-0 border-2 border-emerald-500" style={{ background: '#a855f7' }} />
+          <div className="w-2.5 h-2.5 rounded-full flex-shrink-0 border-2 border-emerald-500 bg-gray-600" />
           <span className="text-emerald-400 font-bold">My Pin</span>
         </div>
         <div className="flex items-center gap-1.5 text-xs text-gray-400">
-          <div className="w-2.5 h-2.5 rounded-full flex-shrink-0 border-2 border-sky-500" style={{ background: '#a855f7' }} />
+          <div className="w-2.5 h-2.5 rounded-full flex-shrink-0 border-2 border-sky-500 bg-gray-600" />
           <span className="text-sky-400 font-bold">Group Pin</span>
         </div>
       </div>
