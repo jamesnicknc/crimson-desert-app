@@ -141,7 +141,7 @@ export default function InteractiveMap() {
           zoomControl={true}
         >
           <ImageOverlay
-            url="/assets/pywel-map.webp"
+            url="/assets/pywel-map-real.jpg"
             bounds={MAP_BOUNDS}
             opacity={0.95}
           />
