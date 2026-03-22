@@ -1,14 +1,19 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
-import { MapContainer, ImageOverlay, Marker, Popup } from 'react-leaflet';
+import { useState, useMemo, useEffect, useCallback, useRef } from 'react';
+import { MapContainer, ImageOverlay, Marker, Popup, useMapEvents } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { MAP_MARKERS, REGION_LABELS, CATEGORY_CONFIG, type MarkerCategory } from '@/lib/map-data';
+import { PIN_CATEGORIES, type MapPinWithProfile, type UpdatePinInput } from '@/hooks/use-map-pins';
+import type { PinCategory } from '@/types/game-data';
+import PinPopup from './PinPopup';
+import PinCreationPanel from './PinCreationPanel';
 
-// Map coordinate bounds: [0,0] (south-west) to [1000,1000] (north-east) in CRS.Simple
+// ─── Constants ────────────────────────────────────────────────────────────────
+
 const MAP_BOUNDS: L.LatLngBoundsExpression = [[0, 0], [1000, 1000]];
-const MAX_BOUNDS: L.LatLngBoundsExpression = [[-30, -30], [1030, 1030]];
+const MAX_BOUNDS: L.LatLngBoundsExpression = [[-50, -50], [1050, 1050]];
 
 const DIFFICULTY_COLORS: Record<string, string> = {
   Normal: '#4ade80',
@@ -17,14 +22,57 @@ const DIFFICULTY_COLORS: Record<string, string> = {
   Legendary: '#a855f7',
 };
 
-function createMarkerIcon(category: MarkerCategory): L.DivIcon {
+// ─── Icon Factories ───────────────────────────────────────────────────────────
+
+function createStaticMarkerIcon(category: MarkerCategory): L.DivIcon {
   const { color, letter } = CATEGORY_CONFIG[category];
   return L.divIcon({
-    html: `<div style="position:relative;width:26px;height:34px;"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="34" viewBox="0 0 26 34"><path d="M13 0 C5.8 0 0 5.8 0 13 C0 22.75 13 34 13 34 C13 34 26 22.75 26 13 C26 5.8 20.2 0 13 0 Z" fill="${color}"/><circle cx="13" cy="13" r="7" fill="rgba(0,0,0,0.3)"/><text x="13" y="17.5" text-anchor="middle" font-size="9" font-weight="bold" fill="white" font-family="Arial,sans-serif">${letter}</text></svg></div>`,
+    html: `<div style="position:relative;width:26px;height:34px;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="34" viewBox="0 0 26 34">
+        <path d="M13 0 C5.8 0 0 5.8 0 13 C0 22.75 13 34 13 34 C13 34 26 22.75 26 13 C26 5.8 20.2 0 13 0 Z" fill="${color}"/>
+        <circle cx="13" cy="13" r="7" fill="rgba(0,0,0,0.3)"/>
+        <text x="13" y="17.5" text-anchor="middle" font-size="9" font-weight="bold" fill="white" font-family="Arial,sans-serif">${letter}</text>
+      </svg>
+    </div>`,
     className: '',
     iconSize: [26, 34],
     iconAnchor: [13, 34],
     popupAnchor: [0, -36],
+  });
+}
+
+function createUserPinIcon(pinCategory: string, isOwner: boolean): L.DivIcon {
+  const cfg = PIN_CATEGORIES[pinCategory as PinCategory] ?? PIN_CATEGORIES.custom;
+  const borderColor = isOwner ? '#10b981' : '#0ea5e9';
+  return L.divIcon({
+    html: `<div style="position:relative;width:28px;height:36px;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36">
+        <path d="M14 0 C6.3 0 0 6.3 0 14 C0 24.5 14 36 14 36 C14 36 28 24.5 28 14 C28 6.3 21.7 0 14 0 Z" fill="${cfg.color}" stroke="${borderColor}" stroke-width="2"/>
+        <circle cx="14" cy="14" r="8" fill="rgba(0,0,0,0.25)"/>
+        <text x="14" y="18.5" text-anchor="middle" font-size="10" font-weight="bold" fill="white" font-family="Arial,sans-serif">${cfg.letter}</text>
+      </svg>
+    </div>`,
+    className: '',
+    iconSize: [28, 36],
+    iconAnchor: [14, 36],
+    popupAnchor: [0, -38],
+  });
+}
+
+function createPlacementIcon(): L.DivIcon {
+  return L.divIcon({
+    html: `<div style="position:relative;width:28px;height:36px;animation:bounce 0.6s ease-in-out infinite alternate;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36">
+        <path d="M14 0 C6.3 0 0 6.3 0 14 C0 24.5 14 36 14 36 C14 36 28 24.5 28 14 C28 6.3 21.7 0 14 0 Z" fill="#d4a847" stroke="#fff" stroke-width="2" opacity="0.9"/>
+        <circle cx="14" cy="14" r="5" fill="rgba(255,255,255,0.5)"/>
+        <line x1="14" y1="8" x2="14" y2="20" stroke="white" stroke-width="2"/>
+        <line x1="8" y1="14" x2="20" y2="14" stroke="white" stroke-width="2"/>
+      </svg>
+    </div>`,
+    className: '',
+    iconSize: [28, 36],
+    iconAnchor: [14, 36],
+    popupAnchor: [0, -38],
   });
 }
 
@@ -37,37 +85,110 @@ function createRegionLabelIcon(name: string, color: string): L.DivIcon {
   });
 }
 
-export default function InteractiveMap() {
-  const [activeCategories, setActiveCategories] = useState<Set<MarkerCategory>>(
-    new Set(['town', 'boss', 'dungeon', 'poi', 'fast-travel'])
-  );
+// ─── Map Click Handler ────────────────────────────────────────────────────────
+
+interface MapClickHandlerProps {
+  isPlacingPin: boolean;
+  onMapClick: (latlng: L.LatLng) => void;
+}
+
+function MapClickHandler({ isPlacingPin, onMapClick }: MapClickHandlerProps) {
+  useMapEvents({
+    click(e: L.LeafletMouseEvent) {
+      if (isPlacingPin) {
+        onMapClick(e.latlng);
+      }
+    },
+  });
+  return null;
+}
+
+// ─── Cursor style injector ────────────────────────────────────────────────────
+
+function CursorStyleInjector({ isPlacingPin }: { isPlacingPin: boolean }) {
+  useEffect(() => {
+    const mapEl = document.querySelector('.leaflet-container') as HTMLElement | null;
+    if (mapEl) {
+      mapEl.style.cursor = isPlacingPin ? 'crosshair' : '';
+    }
+    return () => {
+      if (mapEl) mapEl.style.cursor = '';
+    };
+  }, [isPlacingPin]);
+  return null;
+}
+
+// ─── Props ────────────────────────────────────────────────────────────────────
+
+export interface InteractiveMapProps {
+  // Static marker filter state (managed by parent)
+  activeStaticCategories: Set<MarkerCategory>;
+  // User pin data
+  myPins: MapPinWithProfile[];
+  groupPins: MapPinWithProfile[];
+  showMyPins: boolean;
+  showGroupPins: boolean;
+  // Pin placement
+  isPlacingPin: boolean;
+  onPinPlaced: (coords: [number, number]) => void;
+  // Pin CRUD
+  userId: string | null;
+  onUpdatePin: (pinId: string, input: UpdatePinInput) => Promise<boolean>;
+  onDeletePin: (pinId: string) => Promise<boolean>;
+  // Creation panel
+  pendingPinCoords: [number, number] | null;
+  onSaveNewPin: (data: {
+    label: string;
+    category: PinCategory;
+    notes: string;
+    isShared: boolean;
+  }) => Promise<void>;
+  onCancelNewPin: () => void;
+  savingNewPin: boolean;
+}
+
+// ─── Main Component ───────────────────────────────────────────────────────────
+
+export default function InteractiveMap({
+  activeStaticCategories,
+  myPins,
+  groupPins,
+  showMyPins,
+  showGroupPins,
+  isPlacingPin,
+  onPinPlaced,
+  userId,
+  onUpdatePin,
+  onDeletePin,
+  pendingPinCoords,
+  onSaveNewPin,
+  onCancelNewPin,
+  savingNewPin,
+}: InteractiveMapProps) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  const toggleCategory = (cat: MarkerCategory) => {
-    setActiveCategories(prev => {
-      const next = new Set(prev);
-      if (next.has(cat)) next.delete(cat);
-      else next.add(cat);
-      return next;
-    });
-  };
+  // ── Memoized filtered static markers ──────────────────────────────────
 
-  const filteredMarkers = useMemo(
-    () => MAP_MARKERS.filter(m => activeCategories.has(m.category)),
-    [activeCategories]
+  const filteredStaticMarkers = useMemo(
+    () => MAP_MARKERS.filter(m => activeStaticCategories.has(m.category)),
+    [activeStaticCategories]
   );
 
-  const markerIcons = useMemo(() => {
+  // ── Memoized static marker icons ─────────────────────────────────────
+
+  const staticIcons = useMemo(() => {
     const icons = {} as Record<MarkerCategory, L.DivIcon>;
     for (const cat of Object.keys(CATEGORY_CONFIG) as MarkerCategory[]) {
-      icons[cat] = createMarkerIcon(cat);
+      icons[cat] = createStaticMarkerIcon(cat);
     }
     return icons;
   }, []);
+
+  // ── Memoized region labels ────────────────────────────────────────────
 
   const regionLabelMarkers = useMemo(
     () => REGION_LABELS.map(r => ({
@@ -77,57 +198,26 @@ export default function InteractiveMap() {
     []
   );
 
-  const visibleCount = filteredMarkers.length;
+  // ── Placement icon ────────────────────────────────────────────────────
+
+  const placementIcon = useMemo(() => createPlacementIcon(), []);
+
+  // ── Map click handler ─────────────────────────────────────────────────
+
+  const handleMapClick = useCallback(
+    (latlng: L.LatLng) => {
+      onPinPlaced([latlng.lat, latlng.lng]);
+    },
+    [onPinPlaced]
+  );
 
   if (!isClient) return null;
 
   return (
-    <div>
-      {/* Filter bar */}
-      <div className="flex flex-wrap items-center gap-2 mb-3">
-        <span className="text-xs text-gray-500 font-semibold uppercase tracking-wider">Show:</span>
-        {(Object.entries(CATEGORY_CONFIG) as [MarkerCategory, typeof CATEGORY_CONFIG[MarkerCategory]][]).map(
-          ([cat, cfg]) => {
-            const isActive = activeCategories.has(cat);
-            const count = MAP_MARKERS.filter(m => m.category === cat).length;
-            return (
-              <button
-                key={cat}
-                onClick={() => toggleCategory(cat)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all border ${
-                  isActive
-                    ? 'border-transparent text-black'
-                    : 'border-pywel-border text-gray-400 bg-pywel-secondary hover:border-gray-500'
-                }`}
-                style={isActive ? { backgroundColor: cfg.color } : {}}
-              >
-                <span
-                  className="w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-bold border border-current/40"
-                  style={isActive ? { color: 'rgba(0,0,0,0.7)' } : { color: cfg.color }}
-                >
-                  {cfg.letter}
-                </span>
-                {cfg.label}
-                <span
-                  className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${
-                    isActive ? 'bg-black/20 text-black/80' : 'bg-pywel-bg text-gray-500'
-                  }`}
-                >
-                  {count}
-                </span>
-              </button>
-            );
-          }
-        )}
-        <span className="ml-auto text-xs text-gray-500 tabular-nums">
-          {visibleCount} of {MAP_MARKERS.length} markers
-        </span>
-      </div>
-
-      {/* Map */}
+    <div className="relative">
       <div
-        className="rounded-lg overflow-hidden border border-pywel-border relative"
-        style={{ height: '65vh', minHeight: '520px' }}
+        className="rounded-lg overflow-hidden border border-pywel-border"
+        style={{ height: '70vh', minHeight: '520px' }}
       >
         <MapContainer
           crs={L.CRS.Simple}
@@ -140,28 +230,33 @@ export default function InteractiveMap() {
           attributionControl={false}
           zoomControl={true}
         >
+          {/* Click handler + cursor */}
+          <MapClickHandler isPlacingPin={isPlacingPin} onMapClick={handleMapClick} />
+          <CursorStyleInjector isPlacingPin={isPlacingPin} />
+
+          {/* Base map image */}
           <ImageOverlay
             url="/assets/pywel-map-real.jpg"
             bounds={MAP_BOUNDS}
             opacity={0.95}
           />
 
-          {/* Region name labels */}
+          {/* ── Layer 1: Region name labels ──────────────────────────── */}
           {regionLabelMarkers.map(r => (
             <Marker
-              key={r.id}
+              key={`region-${r.id}`}
               position={r.coords as [number, number]}
               icon={r.icon}
               interactive={false}
             />
           ))}
 
-          {/* Location markers */}
-          {filteredMarkers.map(marker => (
+          {/* ── Layer 2: Static world markers ────────────────────────── */}
+          {filteredStaticMarkers.map(marker => (
             <Marker
-              key={marker.id}
+              key={`static-${marker.id}`}
               position={marker.coords}
-              icon={markerIcons[marker.category]}
+              icon={staticIcons[marker.category]}
             >
               <Popup className="pywel-popup" maxWidth={268} minWidth={200}>
                 <div
@@ -208,26 +303,18 @@ export default function InteractiveMap() {
                           fontWeight: '600',
                         }}
                       >
-                        ⚔ {marker.difficulty}
+                        {marker.difficulty}
                       </span>
                     )}
                   </div>
 
                   {marker.description && (
-                    <p
-                      style={{
-                        fontSize: '12px',
-                        color: '#9ca3af',
-                        lineHeight: '1.55',
-                        margin: '0 0 8px 0',
-                      }}
-                    >
+                    <p style={{ fontSize: '12px', color: '#9ca3af', lineHeight: '1.55', margin: '0 0 8px 0' }}>
                       {marker.description}
                     </p>
                   )}
 
                   <div style={{ fontSize: '11px', color: '#4b5563', textTransform: 'capitalize' }}>
-                    📍{' '}
                     {marker.region === 'desert'
                       ? 'Crimson Desert'
                       : marker.region === 'abyss'
@@ -238,6 +325,71 @@ export default function InteractiveMap() {
               </Popup>
             </Marker>
           ))}
+
+          {/* ── Layer 3: User's own pins ─────────────────────────────── */}
+          {showMyPins &&
+            myPins.map(pin => (
+              <Marker
+                key={`my-${pin.id}`}
+                position={[pin.lat, pin.lng]}
+                icon={createUserPinIcon(pin.category, true)}
+              >
+                <Popup className="pywel-popup" maxWidth={300} minWidth={220}>
+                  <div
+                    style={{
+                      background: '#19191E',
+                      border: '1px solid #2A2630',
+                      borderRadius: '8px',
+                      padding: '12px 14px',
+                    }}
+                  >
+                    <PinPopup
+                      pin={pin}
+                      isOwner={true}
+                      onUpdate={onUpdatePin}
+                      onDelete={onDeletePin}
+                    />
+                  </div>
+                </Popup>
+              </Marker>
+            ))}
+
+          {/* ── Layer 4: Group member pins ────────────────────────────── */}
+          {showGroupPins &&
+            groupPins.map(pin => (
+              <Marker
+                key={`group-${pin.id}`}
+                position={[pin.lat, pin.lng]}
+                icon={createUserPinIcon(pin.category, false)}
+              >
+                <Popup className="pywel-popup" maxWidth={300} minWidth={220}>
+                  <div
+                    style={{
+                      background: '#19191E',
+                      border: '1px solid #2A2630',
+                      borderRadius: '8px',
+                      padding: '12px 14px',
+                    }}
+                  >
+                    <PinPopup
+                      pin={pin}
+                      isOwner={false}
+                      onUpdate={onUpdatePin}
+                      onDelete={onDeletePin}
+                    />
+                  </div>
+                </Popup>
+              </Marker>
+            ))}
+
+          {/* ── Pending pin placement marker ──────────────────────────── */}
+          {pendingPinCoords && (
+            <Marker
+              position={pendingPinCoords}
+              icon={placementIcon}
+              interactive={false}
+            />
+          )}
         </MapContainer>
 
         {/* Compass rose overlay */}
@@ -246,22 +398,26 @@ export default function InteractiveMap() {
           style={{ fontSize: '10px', color: 'rgba(212,168,71,0.7)', lineHeight: 1, textAlign: 'center' }}
         >
           <div style={{ fontSize: '13px', color: 'rgba(212,168,71,0.85)' }}>N</div>
-          <div style={{ fontSize: '8px', marginTop: '1px', color: 'rgba(212,168,71,0.5)' }}>↑</div>
+          <div style={{ fontSize: '8px', marginTop: '1px', color: 'rgba(212,168,71,0.5)' }}>&#8593;</div>
         </div>
-      </div>
 
-      {/* Legend */}
-      <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5">
-        {(Object.entries(CATEGORY_CONFIG) as [MarkerCategory, typeof CATEGORY_CONFIG[MarkerCategory]][]).map(
-          ([cat, cfg]) => (
-            <div key={cat} className="flex items-center gap-1.5 text-xs text-gray-400">
-              <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: cfg.color }} />
-              <span style={{ color: cfg.color }} className="font-bold">{cfg.letter}</span>
-              <span>— {cfg.label}</span>
-            </div>
-          )
+        {/* Placement mode banner */}
+        {isPlacingPin && !pendingPinCoords && (
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 z-[1100] bg-gold-900/90 border border-gold-600/50 rounded-full px-5 py-2 text-sm text-gold-200 font-cinzel font-semibold shadow-lg backdrop-blur-sm">
+            Click anywhere on the map to place your pin
+          </div>
         )}
       </div>
+
+      {/* Pin creation panel (overlaid on map) */}
+      {pendingPinCoords && (
+        <PinCreationPanel
+          coords={pendingPinCoords}
+          onSave={onSaveNewPin}
+          onCancel={onCancelNewPin}
+          saving={savingNewPin}
+        />
+      )}
     </div>
   );
 }
