@@ -453,6 +453,18 @@ export const COLLECTIBLES: Record<CollectibleCategory, Collectible[]> = {
     { name: 'Hyperion Horse Tack Set', location: 'Collector\'s Edition Bonus', category: 'edition' },
     { name: 'Khaled Shield', location: 'Pre-Order Exclusive', category: 'edition' },
     { name: 'Grotevant Plate Set', location: 'PlayStation 5 Exclusive Bonus', category: 'edition' },
+    // Added 2026-03-20 via apply-data task
+    { name: 'Blue Scout Lantern', location: 'Twitch Drop Week 1 (60 min)', category: 'edition' },
+    { name: 'Blue Scout Earring', location: 'Twitch Drop Week 1 (120 min)', category: 'edition' },
+    { name: 'Blue Scout Necklace', location: 'Twitch Drop Week 1 (120 min)', category: 'edition' },
+    { name: 'Blue Scout Ring', location: 'Twitch Drop Week 1 (120 min)', category: 'edition' },
+    { name: 'Blue Scout Shield', location: 'Twitch Drop Week 1 (180 min)', category: 'edition' },
+    { name: 'Blue Scout Cloak', location: 'Twitch Drop Week 1 (300 min)', category: 'edition' },
+    { name: 'Blue Scout Armor', location: 'Twitch Drop Week 1 (300 min)', category: 'edition' },
+    { name: 'Blue Scout Hat', location: 'Twitch Drop Week 1 (300 min)', category: 'edition' },
+    { name: 'Blue Scout Stirrups', location: 'Twitch Drop Week 2 (60 min)', category: 'edition' },
+    { name: 'Blue Scout Champron', location: 'Twitch Drop Week 2 (120 min)', category: 'edition' },
+    { name: 'Blue Scout Saddle', location: 'Twitch Drop Week 2 (180 min)', category: 'edition' },
   ],
 };
 
@@ -1225,7 +1237,7 @@ export const QUESTS: Quest[] = [
     walkthrough: [
       { step: 1, instruction: 'Engage Gregor on the road to Demeniss — fight begins after the encounter cutscene.' },
       { step: 2, instruction: 'Boss fight: Gregor the Halberd of Carnage — enormous halberd with wide horizontal sweeps and thrust attacks.' },
-      { step: 3, instruction: 'Stay inside his reach during combos — the halberd's sweep hits at the tip, so up close many attacks miss.', tip: 'Attack immediately after his 3-hit halberd combo ends for the safest damage window.' },
+      { step: 3, instruction: "Stay inside his reach during combos — the halberd's sweep hits at the tip, so up close many attacks miss.", tip: 'Attack immediately after his 3-hit halberd combo ends for the safest damage window.' },
     ],
   },
   { name: 'The Cursed Knight', description: 'Ch.8 — To Demeniss: Boss fight vs. Fortain the Cursed Knight.', type: 'main', region: 'demeniss',
