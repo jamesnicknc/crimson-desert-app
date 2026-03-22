@@ -4,6 +4,49 @@ Each entry records one manual run of the apply-data task.
 
 ---
 
+## Run: 2026-03-20 (Run 16) -- Post-Launch Day 2 / Twitch Drops Pass
+
+**Result:** Success
+**Items processed:** 14
+**Items added:** 11 (Twitch Drop collectibles)
+**Items skipped (needs review):** 0
+**Items skipped (already in app):** 3 (Kailok, Marni's Excavatron, Walter Lanford corrections)
+**Items skipped (unconfirmed):** 0
+**Images generated:** 0
+**Images set to coming-soon placeholder:** 0
+**TypeScript build:** Clean (only pre-existing errors in InteractiveMap.tsx for missing react-leaflet types, unrelated to game-data.ts)
+
+### Added This Run
+- Blue Scout Lantern -- Collectible (edition / Twitch Drop Week 1)
+- Blue Scout Earring -- Collectible (edition / Twitch Drop Week 1)
+- Blue Scout Necklace -- Collectible (edition / Twitch Drop Week 1)
+- Blue Scout Ring -- Collectible (edition / Twitch Drop Week 1)
+- Blue Scout Shield -- Collectible (edition / Twitch Drop Week 1)
+- Blue Scout Cloak -- Collectible (edition / Twitch Drop Week 1)
+- Blue Scout Armor -- Collectible (edition / Twitch Drop Week 1)
+- Blue Scout Hat -- Collectible (edition / Twitch Drop Week 1)
+- Blue Scout Stirrups -- Collectible (edition / Twitch Drop Week 2)
+- Blue Scout Champron -- Collectible (edition / Twitch Drop Week 2)
+- Blue Scout Saddle -- Collectible (edition / Twitch Drop Week 2)
+
+### Skipped / Flagged This Run
+- Kailok the Hornsplitter [READY TO ADD] -- Already present in BOSSES array with full data (region hernand, reward Sword of the Lord, etc.). Queue entry marked as already in app.
+- Marni's Excavatron [READY TO ADD] -- Already present in BOSSES array (region hernand, reward Mining Knuckledrill). Queue entry marked as already in app.
+- Walter Lanford corrections (region desert->hernand, element fire->physical) -- Already applied in a prior run. Queue entry marked as already applied.
+- Myurdin region correction -- STALE. Queue says current value is 'demeniss' but actual value is 'hernand'. A separate 'Lava Myurdin' entry already exists with region 'pailune'. Human review needed to determine if base Myurdin should also be 'pailune' or if first encounter is indeed in Hernand.
+- Fortain the Cursed Knight reward (Unknown TBD -> Shackle of Might) -- Only 1 source (PowerPyx). Corrections require 2+ sources per task rules. Left as [NEEDS REVIEW].
+- Fortain element (abyss -> physical) -- Same single-source issue. Left as [NEEDS REVIEW].
+- All other items marked [NEEDS REVIEW] in the queue were left untouched per task rules.
+
+### Notes
+- **Queue data correction:** The original Twitch Drops queue entry listed 8 items with incorrect watch times (e.g., 180 min instead of 120 min for accessories). Verification against game8 (Tier 1) and web search (multiple sources) revealed 11 cosmetic items total. Three items were missing from the queue: Blue Scout Lantern (Week 1, 60 min), and Week 2 had 3 separate horse tack items (Stirrups/Champron/Saddle) not 1 "Horse Armor." The consumable "10x Modest Braised Meat" was excluded as it is not a cosmetic collectible.
+- **Significant queue items already applied:** Between Run 14 and Run 16, a nightly run (Run 15) added many items to game-data.ts including Kailok, Marni's Excavatron, Lava Myurdin, all story bosses through Chapter 8, Draven the Crowcaller, recipe data, weapon data, and more. The queue entries for these items were not updated to reflect their addition. This run updated the queue status for the items it encountered.
+- **Human attention needed on Myurdin:** The base Myurdin entry (first encounter) has region 'hernand' and element 'physical' with reward 'Axiom Bracelet'. The Lava Myurdin entry (fire transformation) has region 'pailune', element 'fire', reward 'Melted Ambition'. The queue correction about changing Myurdin region from 'demeniss' to 'pailune' is stale since the value is now 'hernand'. Determine whether the first encounter location (Hills of No Return) is in Hernand or Pailune. Chapter 5 context and map UI would resolve this.
+- **TypeScript baseline note:** The project has 2 pre-existing TS errors in InteractiveMap.tsx (missing @types/react-leaflet and @types/leaflet). These errors predate this run and are unrelated to game-data.ts. All game-data changes compile cleanly.
+- Backup file game-data.ts.bak could not be removed (OneDrive filesystem lock -- Operation not permitted). It remains in the workspace but is harmless.
+
+---
+
 ## Run: 2026-03-18 (Run 14) -- Launch Eve Queue Pass, No Additions
 
 **Result:** Success (no items to add)
@@ -378,5 +421,39 @@ All sub-location entries (Calphade, Hernand sub-locations, Unicorn Cliffs, Marni
 ---
 
 ---
+
+---
+
+## Run: 2026-03-21 (Run 17) -- Post-Launch Day 3 / Queue Audit Pass
+
+**Result:** No Changes (all processable items already in app or blocked)
+**Items processed:** 12 (queue items assessed for actionability)
+**Items added:** 0
+**Items skipped (already in app):** 1 (Grilled Meat recipe -- marked in queue)
+**Items skipped (needs review):** 0 new flags (existing NEEDS REVIEW items unchanged)
+**Items skipped (unconfirmed):** 0
+**Images generated:** 0
+**Images set to coming-soon placeholder:** 0
+**TypeScript build:** Not run (no changes to game-data.ts)
+
+### Added This Run
+(none)
+
+### Skipped / Flagged This Run
+- Grilled Meat recipe -- Already in RECIPES array (line 961) as `Grilled Meat` with `Tough Meat x1`. Queue entry used pre-launch "Raw Meat" name. Marked [ALREADY IN APP] in queue.
+- Sword of the Lord weapon -- POST-LAUNCH CONFIRMED but missing numeric atk/spd/rng stats (required by Weapon interface). Cannot add without stats.
+- Tauria Curved Sword weapon -- Same blocker as Sword of the Lord.
+- Full Main Quest List rewrite -- 23 confirmed quest names available, but applying them requires deleting/rewriting existing entries (violates "do not delete" constraint). Flagged for human decision.
+- Trophy rarity corrections -- TROPHIES array has all 35 entries but rarity assignments are significantly wrong (app: 1P/5G/16S/13B vs confirmed: 1P/4G/10S/20B). Only PowerPyx provides explicit rarity classifications (single Tier 1 source). No second source with rarity data found despite checking Beebom, game8, Insider Gaming, keengamer, PSNProfiles. Blocked by 2-source requirement for corrections. Detailed discrepancy list added to queue.
+- Trophy descriptions -- App uses generic editorial descriptions; Beebom + PowerPyx + game8 confirm actual in-game descriptions are different. 3 sources available but this is a batch correction of 34 entries. Flagged for human review.
+- All remaining boss entries (Tenebrum, Ludvig, One-Armed Ludvig, Gregor, Split Horn, Muskan, Gwen Kraber, Titan, Desert Ancient, Fortain) -- Still [NEEDS REVIEW] due to missing required fields (region, reward, difficulty).
+- All NPC entries -- No NPCCharacter data structure exported in game-data.ts. Blocked.
+- Wolf/Vehicle mounts -- Missing stats and MountCategory type updates. Blocked.
+
+### Notes
+- This run found no new items to add. The queue has been thoroughly processed by Runs 14-16. The remaining backlog consists entirely of items blocked by missing required fields or items requiring human decisions (quest rewrite, trophy corrections, NPC data structure creation).
+- The most impactful action a human could take now: (1) Apply trophy rarity corrections (PowerPyx data is almost certainly correct but only 1 source), (2) Rewrite QUESTS array with confirmed quest names, (3) Add missing weapon stats from game8 weapons pages (Sword of the Lord, Tauria Curved Sword), (4) Decide on NPC data structure.
+- Pre-flight notes: TypeScript has pre-existing errors in InteractiveMap.tsx (missing react-leaflet types) unrelated to game data. Workspace git shows game-data.ts as modified, but this is a known phantom due to OneDrive sync issues per CLAUDE.md.
+- Backup file game-data.ts.bak was created but no changes were made to game-data.ts. Backup can be removed.
 
 ---

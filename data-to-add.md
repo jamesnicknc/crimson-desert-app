@@ -57,7 +57,7 @@ Run 13 (2026-03-18) sourced the FULL CONFIRMED skill list for Kliff from allthin
   ```
   Note: element 'abyss' inferred from darkness/raven/particle abilities -- single source quality, not confirmed by stat sheet. Mark as editorial pending in-game element display confirmation.
 
-#### Kailok, the HornSplitter -- ALL FIELDS CONFIRMED [READY TO ADD] -- Updated: 2026-03-20 (Run 15)
+#### Kailok, the HornSplitter -- ALL FIELDS CONFIRMED [ALREADY IN APP -- verified 2026-03-20 Run 16] -- Updated: 2026-03-20 (Run 15)
 - All fields now confirmed:
   - **REGION CONFIRMED: 'hernand'** -- Goldleaf Guildhouse, Unicorn Cliff, Chapter 2. game8 confirms: "Goldleaf Guildhouse during Chapter 2." Unicorn Cliff is within Hernand territory (Split Horn is also at Unicorn Cliffs, Hernand). Two Tier 1 sources confirm Hernand.
   - **Reward: "Sword of the Lord"** + Seal of Greed - Goldleaf Merchant Guild + Iron Ore x7 (game8 Tier 1). The primary named reward is Sword of the Lord.
@@ -231,7 +231,7 @@ The following bosses were confirmed by authoritative sources but are NOT present
 - Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Run 4) -- element now confirmed as 'shock'; region and reward still needed
 - Researched: 2026-03-16 (Run 9) -- No new data. No source names a region or reward. Re-run post-launch.
 
-#### Marni's Excavatron [Hernand Mechanical Boss] [READY TO ADD] -- Updated: 2026-03-20 (Run 15)
+#### Marni's Excavatron [Hernand Mechanical Boss] [ALREADY IN APP -- verified 2026-03-20 Run 16] -- Updated: 2026-03-20 (Run 15)
 - Type: Mechanical
 - **Region: 'hernand'** -- CONFIRMED by game8 [2026-03-20] Tier 1 and deltiasgaming.com [2026-03-20] Tier 2. Fight is at Karin Quarry in Hernand. CORRECTION: The original research doc (Run 11) placed this in "Delesyia (Marni's Masterium sub-zone)" -- this was WRONG.
   - The machine was CREATED by Marni (inventor from Delesyia) but the boss fight is in Hernand's Karin Quarry, where the Bleed Bandits (Walter Lanford's gang) used it to oppress House Roberts' quarry.
@@ -310,13 +310,12 @@ The following bosses were confirmed by authoritative sources but are NOT present
 - Stats unknown. Add with stats TBD.
 - Source: PowerPyx boss guide [2026-03-19] -- Tier 1
 
-#### Grilled Meat [Consumable / Primary Healing Item] [POST-LAUNCH CONFIRMED] -- Flagged: 2026-03-19 (Run 14)
+#### Grilled Meat [Consumable / Primary Healing Item] [ALREADY IN APP -- verified 2026-03-21 Run 17] -- Flagged: 2026-03-19 (Run 14)
 - The primary combat healing consumable in Crimson Desert.
 - Effect: Restores 80 HP per use.
 - Crafting: 1 unit of raw meat at any bonfire. Extremely cheap to craft.
 - Use: PowerPyx recommends bringing 100-200 per boss fight. It is the standard healing item referenced in all guides and strategies.
-- Not in RECIPES array (or any consumable list in game-data.ts).
-- Add as a cooking recipe entry: `{ name: 'Grilled Meat', type: 'cooking', ingredients: ['Raw Meat x1'], effect: 'Restores 80 HP' }`
+- **Run 17 note (2026-03-21):** Already present in RECIPES array as `{ name: 'Grilled Meat', type: 'cooking', ingredients: ['Tough Meat x1'], effect: '+80 HP. Best bulk healing item...' }`. The ingredient is listed as "Tough Meat" (in-game name) rather than "Raw Meat" (pre-launch source). No action needed.
 - Source: PowerPyx boss guide + tips [2026-03-19] -- Tier 1
 
 #### Damiane's Weapon Type [CORRECTION -- GREATSWORD NOT DUAL BLADES] [SOURCES CONFLICT -- NEEDS REVIEW] -- Flagged: 2026-03-17 (Run 11), Updated: 2026-03-17 (Run 12)
@@ -446,32 +445,10 @@ The minigame / side activity list (betting, horse racing, target shooting, arm w
 - Flagged: 2026-03-15 (Run 2)
 - Needs review: May be an alternate name for Abyss Artifacts. Requires launch confirmation before adding a separate CollectibleCategory entry. Do not duplicate if confirmed identical to artifacts.
 
-#### Twitch Drop Collectibles [POST-LAUNCH] -- Flagged: 2026-03-19 (Run 14)
-- A Twitch Drop campaign runs in two waves: Week 1 (March 19–25, 2026) and Week 2 (March 26–April 1, 2026).
-- **Week 1 drops (5 hours total watch time required):**
-  - Blue Scout Earring (180 min watch time)
-  - Blue Scout Ring (180 min watch time)
-  - Blue Scout Necklace (180 min watch time)
-  - Blue Scout Shield (300 min watch time)
-  - Blue Scout Cloak (300+ min watch time)
-  - Blue Scout Armor (300+ min watch time)
-  - Blue Scout Hat (300+ min watch time)
-- **Week 2 drop (3 hours total watch time required):**
-  - Blue Scout Horse Armor (Week 2 only)
-- Category: 'edition' (same category as other promotional gear -- Kairos Plate, Grotevant Plate, etc.)
-- None of these items are currently in the COLLECTIBLES['edition'] array.
-- Source: Pearl Abyss official Drops site (event.pearlabyss.com/en-US/CrimsonDesert/Drops), GamesRadar Twitch drops article, Keengamer, Insider Gaming [2026-03-19] -- Tier 1
-- Action: Add all 8 items to COLLECTIBLES['edition'] with `location: 'Twitch Drop (Week 1, March 19-25 2026)'` or `'Week 2'` as applicable. May also want a new 'twitch-drop' CollectibleCategory -- human design decision required.
-  ```json
-  { "name": "Blue Scout Earring", "location": "Twitch Drop Week 1 (180 min)", "category": "edition" },
-  { "name": "Blue Scout Ring", "location": "Twitch Drop Week 1 (180 min)", "category": "edition" },
-  { "name": "Blue Scout Necklace", "location": "Twitch Drop Week 1 (180 min)", "category": "edition" },
-  { "name": "Blue Scout Shield", "location": "Twitch Drop Week 1 (300 min)", "category": "edition" },
-  { "name": "Blue Scout Cloak", "location": "Twitch Drop Week 1 (300+ min)", "category": "edition" },
-  { "name": "Blue Scout Armor", "location": "Twitch Drop Week 1 (300+ min)", "category": "edition" },
-  { "name": "Blue Scout Hat", "location": "Twitch Drop Week 1 (300+ min)", "category": "edition" },
-  { "name": "Blue Scout Horse Armor", "location": "Twitch Drop Week 2 (March 26–Apr 1 2026)", "category": "edition" }
-  ```
+#### Twitch Drop Collectibles [ADDED -- 2026-03-20 (Run 16)] -- Flagged: 2026-03-19 (Run 14)
+- [ADDED -- 2026-03-20] 11 Twitch Drop cosmetic items added to COLLECTIBLES['edition']. Watch times and item names verified against game8 Twitch Drops page (Tier 1) and web search corroboration (GamesRadar, Keengamer, PCGamer, ScreenRant all confirmed).
+- NOTE: The original queue entry listed 8 items with incorrect watch times. Verification found 11 cosmetic items total with corrected watch times. The "10x Modest Braised Meat" consumable from Week 1 was not added (not a cosmetic collectible). The queue's "Blue Scout Horse Armor" was actually 3 separate horse tack items (Stirrups, Champron, Saddle). "Blue Scout Lantern" was also missing from the original queue entry.
+- Source: game8 Twitch Drops page [2026-03-20] -- Tier 1; web search corroboration (multiple Tier 1/2 sources) [2026-03-20]
 
 #### Khaled Shield [Pre-Order Bonus Collectible] [ADDED -- 2026-03-19 (Run 14 verification)]
 - VERIFIED ALREADY IN APP: game-data.ts COLLECTIBLES['edition'] includes `{ name: 'Khaled Shield', location: 'Pre-Order Exclusive', category: 'edition' }`.
@@ -678,18 +655,17 @@ No new specific builds were found that warrant adding to the app's data layer, a
 
 ## Outdated / Incorrect Entries to Fix
 
-### Myurdin -- Region Wrong: 'demeniss' Should Be 'pailune' [CONFIRMED -- APPLY NOW] -- Flagged: 2026-03-19 (Run 14)
+### Myurdin -- Region Wrong: 'demeniss' Should Be 'pailune' [STALE -- SEE NOTE] -- Flagged: 2026-03-19 (Run 14), Reviewed: 2026-03-20 (Run 16)
 - Current app value: `{ name: 'Myurdin', region: 'demeniss', ... }`
 - Post-launch confirmation: Myurdin is "Leader of Black Bear Forces causing turmoil in Pailune" (Fextralife wiki, Tier 1). Boss fight quest is "Battle at Silverwolf Mountain" -- Silverwolf Mountain is in Pailune.
 - Action: Change `region: 'demeniss'` to `region: 'pailune'` in BOSSES array.
 - Source: Fextralife wiki Bosses page [2026-03-19] -- Tier 1; PowerPyx quest structure -- Tier 1
 - Confidence: High. Two independent Tier 1 sources confirm Pailune.
+- **Run 16 note (2026-03-20):** This correction is STALE. The base Myurdin entry in game-data.ts now has `region: 'hernand'` (not 'demeniss'). A separate `Lava Myurdin` entry already exists with `region: 'pailune'`, `element: 'fire'`, and `reward: 'Melted Ambition'`. The two-entry split may be intentional (first encounter vs fire transformation). Human review needed to decide: should the base Myurdin also be 'pailune', or does the first encounter actually occur in Hernand? The Hills of No Return location listed for base Myurdin may be in Hernand or Pailune depending on chapter context.
 
-### Walter Lanford -- Element Wrong: 'fire' Should Be 'physical' [CONFIRMED -- APPLY NOW] -- Flagged: 2026-03-19 (Run 14)
-- Current app value: `{ name: 'Walter Lanford', region: 'desert', element: 'fire', reward: 'Hand Cannon Blueprint' }`
-- Post-launch confirmation: His confirmed attack set (Double Barrel Shot, Double Barrel Barrage, Scattershot, Shrapnel Shower) is entirely ballistic/physical. No fire attribute exists on any of his attacks per Fextralife wiki.
-- Action: Change `element: 'fire'` to `element: 'physical'` immediately. This is a confirmed factual error.
-- Region ('desert') and reward ('Hand Cannon Blueprint') remain incorrect per prior flagging but need further post-launch wiki updates to resolve.
+### Walter Lanford -- Element Wrong: 'fire' Should Be 'physical' [ALREADY APPLIED -- verified 2026-03-20 Run 16] -- Flagged: 2026-03-19 (Run 14)
+- Current app value (as of Run 16): `{ name: 'Walter Lanford', region: 'hernand', element: 'physical', reward: 'Unknown (TBD)' }`
+- Both the region correction (desert -> hernand) and element correction (fire -> physical) were already applied in a prior run. Reward field remains 'Unknown (TBD)' pending confirmation.
 - Source: Fextralife Walter Lanford wiki (Tier 1); PowerPyx walkthrough [2026-03-19] -- Tier 1
 
 ### Reed Devil - Region Mismatch [RESOLVED -- CONFIRMED CORRECT]
@@ -764,6 +740,14 @@ No new specific builds were found that warrant adding to the app's data layer, a
   - "Navigator of the Stars" and "Conqueror of Spires" imply Constellation and Spire challenge types -- not currently represented in app.
 - Source: PowerPyx trophy guide [2026-03-19] -- Tier 1
 - Action: Consider adding a Trophies/Achievements section to the app (currently flagged as a 35-trophy feature gap from Run 10). Full data is now available to populate it.
+- **Run 17 note (2026-03-21): TROPHIES array already exists in game-data.ts (line 1228) with all 35 entries. However, RARITY ASSIGNMENTS ARE WRONG.** The app has 1P/5G/16S/13B but the confirmed distribution is 1P/4G/10S/20B. Multiple trophies have incorrect rarity tiers. Additionally, trophy descriptions in the app are editorial/generic and do not match the confirmed in-game text from Beebom and PowerPyx. Specific discrepancies:
+  - Trophies incorrectly listed as Gold in app (should be Silver): Grand Collector of Arms, Tamer of Legends, Natural Collector
+  - Trophy incorrectly listed as Gold (should be Bronze): Conqueror of Spires
+  - Trophies incorrectly listed as Silver (should be Gold): Expert Storyteller, Expert Explorer, Unvanquished Strategist
+  - Trophies incorrectly listed as Silver (should be Bronze): Master of Swords, Master of Shields, Master of Bows, Master of Spears, Master of Two-Handed Weapons, Master of Artillery, Master of Rapiers, Master of Firearms, Master Camper, Battlefield Conqueror, The Golden Merchant, Shadowlord, Lord of Honor
+  - Trophies incorrectly listed as Bronze (should be Silver): Proud Returnee, Pilgrim of Wonders, Puzzle Solver, Lightbringer, True Gamer, Protector of Pailune
+  - Name mismatch: App has "Natural Collector" -- Beebom has "Natural Hunter." PowerPyx and game8 have "Natural Collector." Likely "Natural Collector" is correct (2 vs 1 source).
+  - BLOCKED from auto-correction: Rarity assignments only confirmed by PowerPyx (single Tier 1 source). No second source found with explicit rarity classifications. Requires human review or a second rarity source before applying corrections.
 
 ### Knowledge Codex Data Not Represented [NEEDS REVIEW]
 - The app does not currently surface the Knowledge Codex system or its 2,921-entry breakdown (467 people, 573 territories, 401 creatures, 76 bosses, 110 factions, 355 crafting manuals, 29 mount types). This is a significant game mechanic that could be surfaced as an activity or progress tracker in the app.
