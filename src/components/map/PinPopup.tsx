@@ -182,7 +182,12 @@ export default function PinPopup({ pin, isOwner, onUpdate, onDelete }: PinPopupP
 
       {/* Attribution */}
       <div style={{ fontSize: '11px', color: '#4b5563', marginBottom: isOwner ? '8px' : '0' }}>
-        {isOwner ? 'Placed by you' : `Placed by ${pin.display_name}`} · {timeAgo(pin.created_at)}
+        {pin.is_system
+          ? <span style={{ color: '#d4a847' }}>World Pin</span>
+          : isOwner
+            ? 'Placed by you'
+            : `Placed by ${pin.display_name}`}
+        {!pin.is_system && <> · {timeAgo(pin.created_at)}</>}
       </div>
 
       {/* Owner actions */}

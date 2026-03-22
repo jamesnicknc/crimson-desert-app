@@ -35,6 +35,24 @@ function createUserPinIcon(pinCategory: string, isOwner: boolean): L.DivIcon {
   });
 }
 
+function createSystemPinIcon(pinCategory: string): L.DivIcon {
+  const cfg = PIN_CATEGORIES[pinCategory as PinCategory] ?? PIN_CATEGORIES.custom;
+  const borderColor = '#d4a847'; // gold border for system/world pins
+  return L.divIcon({
+    html: `<div style="position:relative;width:24px;height:32px;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="32" viewBox="0 0 24 32">
+        <path d="M12 0 C5.4 0 0 5.4 0 12 C0 21 12 32 12 32 C12 32 24 21 24 12 C24 5.4 18.6 0 12 0 Z" fill="${cfg.color}" stroke="${borderColor}" stroke-width="2" opacity="0.9"/>
+        <circle cx="12" cy="12" r="7" fill="rgba(0,0,0,0.25)"/>
+        <text x="12" y="16" text-anchor="middle" font-size="9" font-weight="bold" fill="white" font-family="Arial,sans-serif">${cfg.letter}</text>
+      </svg>
+    </div>`,
+    className: '',
+    iconSize: [24, 32],
+    iconAnchor: [12, 32],
+    popupAnchor: [0, -34],
+  });
+}
+
 function createPlacementIcon(): L.DivIcon {
   return L.divIcon({
     html: `<div style="position:relative;width:28px;height:36px;animation:bounce 0.6s ease-in-out infinite alternate;">
@@ -97,11 +115,13 @@ function CursorStyleInjector({ isPlacingPin }: { isPlacingPin: boolean }) {
 // ─── Props ────────────────────────────────────────────────────────────────────
 
 export interface InteractiveMapProps {
-  // User pin data
+  // Pin data
   myPins: MapPinWithProfile[];
   groupPins: MapPinWithProfile[];
+  systemPins: MapPinWithProfile[];
   showMyPins: boolean;
   showGroupPins: boolean;
+  showSystemPins: boolean;
   // Pin placement
   isPlacingPin: boolean;
   onPinPlaced: (coords: [number, number]) => void;
@@ -126,8 +146,10 @@ export interface InteractiveMapProps {
 export default function InteractiveMap({
   myPins,
   groupPins,
+  systemPins,
   showMyPins,
   showGroupPins,
+  showSystemPins,
   isPlacingPin,
   onPinPlaced,
   userId,
@@ -242,6 +264,34 @@ export default function InteractiveMap({
                 key={`group-${pin.id}`}
                 position={[pin.lat, pin.lng]}
                 icon={createUserPinIcon(pin.category, false)}
+              >
+                <Popup className="pywel-popup" maxWidth={300} minWidth={220}>
+                  <div
+                    style={{
+                      background: '#19191E',
+                      border: '1px solid #2A2630',
+                      borderRadius: '8px',
+                      padding: '12px 14px',
+                    }}
+                  >
+                    <PinPopup
+                      pin={pin}
+                      isOwner={false}
+                      onUpdate={onUpdatePin}
+                      onDelete={onDeletePin}
+                    />
+                  </div>
+                </Popup>
+              </Marker>
+            ))}
+
+          {/* ── System / World pins ─────────────────────────────────── */}
+          {showSystemPins &&
+            systemPins.map(pin => (
+              <Marker
+                key={`sys-${pin.id}`}
+                position={[pin.lat, pin.lng]}
+                icon={createSystemPinIcon(pin.category)}
               >
                 <Popup className="pywel-popup" maxWidth={300} minWidth={220}>
                   <div

@@ -16,6 +16,7 @@ export interface MapPinRow {
   icon: string;
   notes: string | null;
   is_shared: boolean;
+  is_system?: boolean;
   created_at: string;
 }
 
@@ -57,6 +58,7 @@ export const PIN_CATEGORIES: Record<PinCategory, { label: string; color: string;
 export function useMapPins(userId: string | null) {
   const [myPins, setMyPins] = useState<MapPinWithProfile[]>([]);
   const [groupPins, setGroupPins] = useState<MapPinWithProfile[]>([]);
+  const [systemPins, setSystemPins] = useState<MapPinWithProfile[]>([]);
   const [loading, setLoading] = useState(true);
   const supabaseRef = useRef(createClient());
   const supabase = supabaseRef.current;
@@ -64,6 +66,23 @@ export function useMapPins(userId: string | null) {
   // ── Fetch all visible pins ──────────────────────────────────────────────
 
   const loadPins = useCallback(async () => {
+    setLoading(true);
+
+    // Always fetch system pins (visible to everyone, including guests)
+    const { data: sysPins } = await supabase
+      .from('map_pins')
+      .select('*')
+      .eq('is_system', true)
+      .order('category', { ascending: true });
+
+    const systemEnrich = (pin: MapPinRow): MapPinWithProfile => ({
+      ...pin,
+      display_name: 'Crimson Companion',
+      avatar_url: null,
+    });
+
+    setSystemPins((sysPins ?? []).map(systemEnrich));
+
     if (!userId) {
       setMyPins([]);
       setGroupPins([]);
@@ -71,13 +90,12 @@ export function useMapPins(userId: string | null) {
       return;
     }
 
-    setLoading(true);
-
-    // Fetch user's own pins
+    // Fetch user's own pins (non-system only)
     const { data: ownPins } = await supabase
       .from('map_pins')
       .select('*')
       .eq('user_id', userId)
+      .neq('is_system', true)
       .order('created_at', { ascending: false });
 
     // Fetch shared pins from group members (RLS handles the filtering)
@@ -86,6 +104,7 @@ export function useMapPins(userId: string | null) {
       .select('*')
       .eq('is_shared', true)
       .neq('user_id', userId)
+      .neq('is_system', true)
       .order('created_at', { ascending: false });
 
     // Gather all unique user IDs to fetch profiles
@@ -248,7 +267,8 @@ export function useMapPins(userId: string | null) {
   return {
     myPins,
     groupPins,
-    allPins: [...myPins, ...groupPins],
+    systemPins,
+    allPins: [...myPins, ...groupPins, ...systemPins],
     loading,
     createPin,
     updatePin,

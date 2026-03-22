@@ -6,7 +6,7 @@ import { useUser } from '@/hooks/use-user';
 import { useMapPins, PIN_CATEGORIES } from '@/hooks/use-map-pins';
 import MapFilterBar from '@/components/map/MapFilterBar';
 import SignInPrompt from '@/components/SignInPrompt';
-import { Globe, MapPin, Users } from 'lucide-react';
+import { Globe, MapPin, Users, Compass } from 'lucide-react';
 import type { PinCategory } from '@/types/game-data';
 
 // ── Dynamic import (Leaflet needs browser APIs) ─────────────────────────────
@@ -30,12 +30,13 @@ const InteractiveMap = dynamic(() => import('@/components/map/InteractiveMap'), 
 
 export default function MapPage() {
   const { user, loading: userLoading } = useUser();
-  const { myPins, groupPins, loading: pinsLoading, createPin, updatePin, deletePin } = useMapPins(user?.id ?? null);
+  const { myPins, groupPins, systemPins, loading: pinsLoading, createPin, updatePin, deletePin } = useMapPins(user?.id ?? null);
 
   // ── Filter state ────────────────────────────────────────────────────────
 
   const [showMyPins, setShowMyPins] = useState(true);
   const [showGroupPins, setShowGroupPins] = useState(true);
+  const [showSystemPins, setShowSystemPins] = useState(true);
 
   // ── Pin placement state ─────────────────────────────────────────────────
 
@@ -97,19 +98,28 @@ export default function MapPage() {
           </p>
         </div>
 
-        {/* Pin stats (logged-in only) */}
-        {user && !pinsLoading && (
+        {/* Pin stats */}
+        {!pinsLoading && (
           <div className="flex items-center gap-4 text-xs text-gray-500 flex-shrink-0 pt-2">
             <div className="flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="text-emerald-300 font-semibold">{myPins.length}</span>
-              <span>my pins</span>
+              <Compass className="w-3.5 h-3.5 text-gold-400" />
+              <span className="text-gold-300 font-semibold">{systemPins.length}</span>
+              <span>world pins</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <Users className="w-3.5 h-3.5 text-sky-400" />
-              <span className="text-sky-300 font-semibold">{groupPins.length}</span>
-              <span>group pins</span>
-            </div>
+            {user && (
+              <>
+                <div className="flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="text-emerald-300 font-semibold">{myPins.length}</span>
+                  <span>my pins</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Users className="w-3.5 h-3.5 text-sky-400" />
+                  <span className="text-sky-300 font-semibold">{groupPins.length}</span>
+                  <span>group pins</span>
+                </div>
+              </>
+            )}
           </div>
         )}
       </div>
@@ -126,8 +136,11 @@ export default function MapPage() {
           onToggleMyPins={() => setShowMyPins(p => !p)}
           showGroupPins={showGroupPins}
           onToggleGroupPins={() => setShowGroupPins(p => !p)}
+          showSystemPins={showSystemPins}
+          onToggleSystemPins={() => setShowSystemPins(p => !p)}
           myPinCount={myPins.length}
           groupPinCount={groupPins.length}
+          systemPinCount={systemPins.length}
           isPlacingPin={isPlacingPin}
           onTogglePlacePin={togglePlacePin}
           isLoggedIn={!!user}
@@ -138,8 +151,10 @@ export default function MapPage() {
       <InteractiveMap
         myPins={myPins}
         groupPins={groupPins}
+        systemPins={systemPins}
         showMyPins={showMyPins}
         showGroupPins={showGroupPins}
+        showSystemPins={showSystemPins}
         isPlacingPin={isPlacingPin}
         onPinPlaced={handlePinPlaced}
         userId={user?.id ?? null}
@@ -163,6 +178,10 @@ export default function MapPage() {
           )
         )}
         <div className="w-px h-4 bg-pywel-border mx-1 self-center" />
+        <div className="flex items-center gap-1.5 text-xs text-gray-400">
+          <div className="w-2.5 h-2.5 rounded-full flex-shrink-0 border-2 border-gold-500 bg-gray-600" />
+          <span className="text-gold-400 font-bold">World Pin</span>
+        </div>
         <div className="flex items-center gap-1.5 text-xs text-gray-400">
           <div className="w-2.5 h-2.5 rounded-full flex-shrink-0 border-2 border-emerald-500 bg-gray-600" />
           <span className="text-emerald-400 font-bold">My Pin</span>

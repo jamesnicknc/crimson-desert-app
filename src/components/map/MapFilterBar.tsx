@@ -11,8 +11,11 @@ interface MapFilterBarProps {
   onToggleMyPins: () => void;
   showGroupPins: boolean;
   onToggleGroupPins: () => void;
+  showSystemPins: boolean;
+  onToggleSystemPins: () => void;
   myPinCount: number;
   groupPinCount: number;
+  systemPinCount: number;
   // Pin placement mode
   isPlacingPin: boolean;
   onTogglePlacePin: () => void;
@@ -26,8 +29,11 @@ export default function MapFilterBar({
   onToggleMyPins,
   showGroupPins,
   onToggleGroupPins,
+  showSystemPins,
+  onToggleSystemPins,
   myPinCount,
   groupPinCount,
+  systemPinCount,
   isPlacingPin,
   onTogglePlacePin,
   isLoggedIn,
@@ -37,6 +43,26 @@ export default function MapFilterBar({
       <span className="text-xs text-gray-500 font-semibold uppercase tracking-wider flex-shrink-0">
         Show:
       </span>
+
+      {/* World / System Pins toggle */}
+      <button
+        onClick={onToggleSystemPins}
+        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all border ${
+          showSystemPins
+            ? 'border-transparent bg-gold-500 text-black'
+            : 'border-pywel-border text-gray-400 bg-pywel-secondary hover:border-gray-500'
+        }`}
+      >
+        <span className="w-2 h-2 rounded-full" style={{ background: showSystemPins ? 'rgba(0,0,0,0.4)' : '#d4a847' }} />
+        World Pins
+        <span
+          className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${
+            showSystemPins ? 'bg-black/20 text-black/80' : 'bg-pywel-bg text-gray-500'
+          }`}
+        >
+          {systemPinCount}
+        </span>
+      </button>
 
       {/* My Pins toggle */}
       <button
