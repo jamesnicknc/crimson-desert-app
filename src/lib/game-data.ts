@@ -544,9 +544,9 @@ export const BOSSES: Boss[] = [
     reward: 'Unknown (TBD)', element: 'physical', weakness: 'physical',
     location: 'Fort Ironclad, Demeniss (quest: Where the Wind Guides You)',
     mechanics: '1 HP bar. Arrows fired from walls throughout fight. Super armor with successive stabs — dodge continuously until it stops. Combat loop: dodge → attack → heal simultaneously.' },
-  { name: 'Fortain the Cursed Knight', region: 'demeniss', type: 'Human', difficulty: 'extreme',
+  { name: 'Fortain the Cursed Knight', region: 'hernand', type: 'Human', difficulty: 'extreme', // Region confirmed hernand by Fextralife, PowerPyx, game8, TheGamer (4 sources)
     reward: 'Shackle of Might, Abyss Artifact x1', element: 'abyss', weakness: 'physical',
-    location: 'Thornbriar Fortress, Demeniss (quest: The Cursed Knight)',
+    location: 'Thornbriar Fortress, Hernand (quest: The Cursed Knight)',
     mechanics: '1 HP bar. Summons blue ghost knight (ground strikes + arrows). Spam R2 with Tauria Curved Sword. Nature\'s Echo skill recommended. Dodge away when ghost appears. "Gigantic warrior empowered by cursed warrior spirits."' },
   // Late game — The Abyss
   { name: 'Hexe Marie', region: 'abyss', type: 'Magical', difficulty: 'legendary',
@@ -1240,9 +1240,9 @@ export const QUESTS: Quest[] = [
       { step: 3, instruction: "Stay inside his reach during combos — the halberd's sweep hits at the tip, so up close many attacks miss.", tip: 'Attack immediately after his 3-hit halberd combo ends for the safest damage window.' },
     ],
   },
-  { name: 'The Cursed Knight', description: 'Ch.8 — To Demeniss: Boss fight vs. Fortain the Cursed Knight.', type: 'main', region: 'demeniss',
+  { name: 'The Cursed Knight', description: 'Ch.8 — To Demeniss: Boss fight vs. Fortain the Cursed Knight at Thornbriar Fortress.', type: 'main', region: 'hernand',
     walkthrough: [
-      { step: 1, instruction: 'Confront Fortain the Cursed Knight at the gates of Demeniss after defeating Gregor.' },
+      { step: 1, instruction: 'Confront Fortain the Cursed Knight at Thornbriar Fortress, Hernand.' },
       { step: 2, instruction: 'Boss fight: Fortain — heavily armored knight whose curse causes unpredictable attack bursts.' },
       { step: 3, instruction: 'When his armor begins to glow, roll away immediately to dodge the AoE curse burst.', tip: 'Shock-element attacks can interrupt his curse-charge animation.' },
       { step: 4, instruction: 'After each curse burst he is briefly stunned — use this window for a full burst combo.' },
