@@ -522,8 +522,8 @@ export const BOSSES: Boss[] = [
     mechanics: '1 HP bar. Heavy shield user. Spam R2 heavy attacks; after 3 hits follow with light attacks. Heavy attacks deal damage through block. Recommended: Tauria Curved Sword + Nature\'s Echo skill.' },
   // Ch.7 — Pailune arc
   { name: 'Ludvig', region: 'pailune', type: 'Human', difficulty: 'hard',
-    reward: 'Ignir (two-handed sword)', element: 'shock', weakness: 'physical',
-    location: 'Pailune (quest: Lonely Jackals)',
+    reward: 'Hungering Fang Leather Cloak, Hungering Fang Leather Boots', element: 'shock', weakness: 'physical', // Fixed 2026-03-24: game8 Tier 1 confirms these drops, not Ignir
+    location: 'Pailune Castle (quest: Dawn)',
     mechanics: '2 HP bars. Lightning user. Teleports constantly. Dodge > block/parry. Attack during combo gaps or after teleport stops. 100+ grilled meat.' },
   { name: 'Awakened Ludvig', region: 'pailune', type: 'Human', difficulty: 'extreme',
     reward: 'Unknown (TBD)', element: 'shock', weakness: 'physical',
@@ -534,10 +534,10 @@ export const BOSSES: Boss[] = [
     element: 'fire', weakness: 'frost',
     location: 'Ashclaw Keep, Pailune (Battle at Silverwolf Mountain)',
     mechanics: '2 HP bars. P1: parry L1 → heavy R2. P2: lava transformation — focus entirely on dodging, never let stamina deplete fully.' },
-  // Ch.7 — Demeniss mountains (forced Oongka character)
-  { name: 'One-Armed Ludvig', region: 'demeniss', type: 'Human', difficulty: 'hard',
+  // Ch.7 — Pailune mountains (forced Oongka character)
+  { name: 'One-Armed Ludvig', region: 'pailune', type: 'Human', difficulty: 'hard', // Fixed 2026-03-24: game8 Tier 1 confirms Pailune (Kingshield Mountain), not Demeniss
     reward: 'Unknown (TBD)', element: 'shock', weakness: 'physical',
-    location: 'Mountains of Demeniss (quest: Time to Face Justice)',
+    location: 'Kingshield Mountain, Pailune (quest: Twisted Fate)',
     mechanics: 'Forced Oongka play (no Kliff shield). Block/parry with weapon via L1/LB. Dual-wield one-handed weapons recommended. Sword of the Lord optimal for wave attacks. Prep: hunt animals nearby, cook at Beighen village.' },
   // Ch.8 — Demeniss campaign
   { name: 'Gregor the Halberd of Carnage', region: 'demeniss', type: 'Human', difficulty: 'hard',
