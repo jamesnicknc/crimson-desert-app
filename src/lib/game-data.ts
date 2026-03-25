@@ -535,14 +535,14 @@ export const BOSSES: Boss[] = [
     location: 'Ashclaw Keep, Pailune (Battle at Silverwolf Mountain)',
     mechanics: '2 HP bars. P1: parry L1 → heavy R2. P2: lava transformation — focus entirely on dodging, never let stamina deplete fully.' },
   // Ch.7 — Pailune mountains (forced Oongka character)
-  { name: 'One-Armed Ludvig', region: 'pailune', type: 'Human', difficulty: 'hard', // Fixed 2026-03-24: game8 Tier 1 confirms Pailune (Kingshield Mountain), not Demeniss
-    reward: 'Unknown (TBD)', element: 'shock', weakness: 'physical',
+  { name: 'One-Armed Ludvig', region: 'pailune', type: 'Human', difficulty: 'hard',
+    reward: 'None', element: 'shock', weakness: 'physical', // Updated 2026-03-24: game8 Tier 1 confirms no reward drop
     location: 'Kingshield Mountain, Pailune (quest: Twisted Fate)',
     mechanics: 'Forced Oongka play (no Kliff shield). Block/parry with weapon via L1/LB. Dual-wield one-handed weapons recommended. Sword of the Lord optimal for wave attacks. Prep: hunt animals nearby, cook at Beighen village.' },
   // Ch.8 — Demeniss campaign
-  { name: 'Gregor the Halberd of Carnage', region: 'demeniss', type: 'Human', difficulty: 'hard',
-    reward: 'Unknown (TBD)', element: 'physical', weakness: 'physical',
-    location: 'Fort Ironclad, Demeniss (quest: Where the Wind Guides You)',
+  { name: 'Gregor the Halberd of Carnage', region: 'hernand', type: 'Human', difficulty: 'hard', // Updated 2026-03-24: region confirmed hernand by PowerPyx + GameRant (2 sources)
+    reward: 'Golden Vanguard, Abyss Artifact x1', element: 'physical', weakness: 'physical', // Updated 2026-03-24: reward confirmed by PowerPyx Tier 1
+    location: 'Fort Ironclad, Hernand (quest: Where the Wind Guides You)', // Updated 2026-03-24: location region corrected
     mechanics: '1 HP bar. Arrows fired from walls throughout fight. Super armor with successive stabs — dodge continuously until it stops. Combat loop: dodge → attack → heal simultaneously.' },
   { name: 'Fortain the Cursed Knight', region: 'hernand', type: 'Human', difficulty: 'extreme', // Region confirmed hernand by Fextralife, PowerPyx, game8, TheGamer (4 sources)
     reward: 'Shackle of Might, Abyss Artifact x1', element: 'abyss', weakness: 'physical',
@@ -609,10 +609,41 @@ export const BOSSES: Boss[] = [
     reward: 'Unknown (TBD)', element: 'shock', weakness: 'physical',
     location: 'Unknown',
     mechanics: 'Wields spear. Lightning attacks.' },
+
+  // Added 2026-03-24 via apply-data task
+  // ─── CHAPTER 8-9 STORY BOSSES ──────────────────────────────────────────────────────────────────
+  { name: 'Lucian Bastier', region: 'hernand', type: 'Human', difficulty: 'extreme',
+    reward: "Official Knight's Plate Armor, Official Knight's Leather Boots, Official Knight's Leather Gloves, Official Knight's Plate Gloves, Spire of Clockwork",
+    element: 'fire', weakness: 'physical',
+    location: 'Chapter 8 Blood Coronation arc, Hernand (quest: A Fleeting Dream)',
+    mechanics: "2 HP bars. FORCED DAMIANE play (Kliff unavailable). P1: Shield + mace with explosive fire floor damage -- fight from distance; attack after blocked attacks. P2: Constant teleportation -- dodge and strike after teleport animation ends. Former officer who betrayed Marquis Stefan Lanford of Calphade." },
+  { name: "T'rukan the Ascended", region: 'demeniss', type: 'Human', difficulty: 'extreme',
+    reward: "Wooden Mask of Lost Justice, Wanderer of Faith Leather Gloves, T'rukan's Fighting Spirit, Abyss Artifact x1",
+    element: 'physical', weakness: 'physical',
+    location: 'Serpent Marsh, South Demeniss (quest: True Strength, Ch.9)',
+    mechanics: '1 HP bar. Extremely fast fist attacks (1-2 hits/sec). Pure dodge-based fight -- no blocking or parrying confirmed effective. Minimum prep: Health Skill Lv6 (750+ HP), gear refined to Lv6+. Patch 1.00.03 difficulty nerf applied.' },
+  { name: 'Goyen', region: 'desert', type: 'Human', difficulty: 'extreme',
+    reward: "Witch's Ring, Greymane's Earring",
+    element: 'physical', weakness: 'physical',
+    location: 'Crimson Desert region (quest: Unwavering Steps, Ch.9)',
+    mechanics: '1 HP bar. Sword + shield, similar moveset to Kliff. Hits extremely hard -- can kill in 1-2 hits with strongest attacks. Jump + shockwave slam is most dangerous move. Tip: Fated Shadow weapon found on stairs at back of arena after the fight (world item, not a drop).' },
+
+  // Added 2026-03-24 via apply-data task
+  // ─── SHACKLED GOD FACTION QUEST BOSSES ─────────────────────────────────────────────────────────
+  { name: 'Priscus the Ancient', region: 'pailune', type: 'Monster', difficulty: 'extreme',
+    reward: "Blessing of the Immortal, Ancient's Necklace, Ancient Retribution, Delesyian Contribution EXP x100, Abyss Artifact x1",
+    element: 'physical', weakness: 'physical', // element editorial: attacks include lasers, shadow, and spear projectiles; no in-game element confirmed
+    location: 'Spire of Ringing Truth, Five-Finger Mountain area, Pailune',
+    mechanics: "Optional boss. Part of the Shackled God faction quest (Delesyia). Flies and glides in midair. Use Focused Shot for ranged damage. Spawns sentry orbs that shoot lasers (block with Nature's Snare). Dive bomb attack deals heavy damage. Nature's Snare does NOT block shadow or spear attacks." },
+  { name: 'Praevus the Ancient', region: 'desert', type: 'Monster', difficulty: 'extreme',
+    reward: "Memory of Ancient Nature, Ancient Earring, Ancient Wrath, Abyss Artifact x1",
+    element: 'fire', weakness: 'physical',
+    location: 'Abyss Debris, west of Tashkalp, Crimson Desert',
+    mechanics: 'Optional boss. Part of the Shackled God faction quest. Flying boss with fire lasers and meteors. Use Focused Shot to stun and ground it. Trap against arena rocks in northern area for sustained damage. Rolling extinguishes burning status. Confirmed identity of pre-launch "Desert Ancient" placeholder.' },
 ];
 
-// Knowledge Codex contains 76 total named bosses. Above list contains 30 confirmed.
-// Remaining ~46 bosses exist but are not yet fully documented post-launch.
+// Knowledge Codex contains 76 total named bosses. Above list contains 35 confirmed.
+// Remaining ~41 bosses exist but are not yet fully documented post-launch.
 
 // ═══════════════════════════════════════
 // ENEMIES / BESTIARY

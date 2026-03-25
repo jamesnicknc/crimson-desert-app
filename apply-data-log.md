@@ -4,6 +4,58 @@ Each entry records one manual run of the apply-data task.
 
 ---
 
+## Run: 2026-03-24 (Run 19) -- Day 6 Post-Launch / Verification Pass
+
+**Result:** No Changes (all queue items flagged for human review)
+**Items processed:** 0
+**Items added:** 0
+**Items skipped (needs review):** All
+**Items skipped (unconfirmed):** 0
+**Images generated:** 0
+**Images set to coming-soon placeholder:** 0
+**TypeScript build:** Not run (no changes made to game-data.ts)
+
+### Added This Run
+- (none)
+
+### Skipped / Flagged This Run
+- All items in data-to-add.md are currently tagged with [NEEDS REVIEW], [ADDED], [BLOCKED], [SINGLE SOURCE -- NEEDS REVIEW], or [ALREADY IN APP]. Per task rules, items marked [NEEDS REVIEW] are left for the human. Zero items were eligible for automated application.
+
+### Verification Updates (new source data found this run)
+
+**Gregor, the Halberd of Carnage -- 2 sources now confirm correction:**
+- Region: 'hernand' (app has 'demeniss') -- PowerPyx Tier 1 + GameRant Tier 2
+- Reward: 'Golden Vanguard, 1 Abyss Artifact' (app has 'Unknown (TBD)') -- PowerPyx Tier 1 + GameRant Tier 2
+- This correction meets the 2-source threshold. Marked in queue for human apply.
+
+**One-Armed Ludvig -- source conflict on region:**
+- game8 (Tier 1): Kingshield Mountain, Pailune. App has 'pailune' -- matches.
+- Fextralife (Tier 1): "mountains of Demeniss" -- conflicts.
+- Reward: "None" per game8 (Tier 1). Unusual for a boss. App has 'Unknown'.
+- Chapter 7 "Homecoming" + "Protector of Pailune" trophy context favor Pailune. Noted in queue.
+
+**Titan -- still single source:**
+- game8 Pailune Region Guide does NOT list Titan.
+- Fextralife Bosses page does NOT have a Titan entry.
+- Only GameRant (Tier 2) confirms Pailune. Remains [SINGLE SOURCE -- NEEDS REVIEW].
+
+**Walter Lanford reward -- still single source:**
+- Fextralife still has no reward listed.
+- game8 boss list does not show a Walter Lanford entry.
+- Only GameRant (Tier 2) confirms Golden Piggy Bank. Remains [SINGLE SOURCE -- NEEDS REVIEW].
+
+### Pre-flight Notes
+- Git status showed game-data.ts as modified, but this is a known artifact of the broken OneDrive/git state (CLAUDE.md Class 2). Diff against GitHub showed only minor comment differences from a prior session's unpushed edits (Fortain comment wording). Not a true uncommitted change blocker.
+- TypeScript build had pre-existing errors in InteractiveMap.tsx (missing react-leaflet types), unrelated to game-data.ts. This is the same pre-existing condition noted in Run 16.
+
+### Recommendations for Human
+1. **Gregor correction is ready to apply.** Region 'demeniss' to 'hernand' and reward 'Unknown (TBD)' to 'Golden Vanguard, 1 Abyss Artifact' are confirmed by 2+ sources. Also update the quest entry and Gregor's Soldiers enemy entry.
+2. **Titan and Walter Lanford** remain blocked on second source confirmation. Check game8 and Fextralife again in a few days as wikis continue filling in.
+3. **Gregor quest entry** (line ~1236 in game-data.ts) also has `region: 'demeniss'` which should be corrected to 'hernand' at the same time as the boss correction.
+4. **Fortain quest entry** (line ~1243) still has `region: 'demeniss'` even though the boss entry was corrected to 'hernand' in Run 18. This was not caught in the prior run. Also, the walkthrough text says "Confront Fortain at the gates of Demeniss" which should be updated to reference Thornbriar Fortress, Hernand.
+
+---
+
 ## Run: 2026-03-20 (Run 16) -- Post-Launch Day 2 / Twitch Drops Pass
 
 **Result:** Success
@@ -455,5 +507,76 @@ All sub-location entries (Calphade, Hernand sub-locations, Unicorn Cliffs, Marni
 - The most impactful action a human could take now: (1) Apply trophy rarity corrections (PowerPyx data is almost certainly correct but only 1 source), (2) Rewrite QUESTS array with confirmed quest names, (3) Add missing weapon stats from game8 weapons pages (Sword of the Lord, Tauria Curved Sword), (4) Decide on NPC data structure.
 - Pre-flight notes: TypeScript has pre-existing errors in InteractiveMap.tsx (missing react-leaflet types) unrelated to game data. Workspace git shows game-data.ts as modified, but this is a known phantom due to OneDrive sync issues per CLAUDE.md.
 - Backup file game-data.ts.bak was created but no changes were made to game-data.ts. Backup can be removed.
+
+---
+
+---
+
+## Run: 2026-03-22 (Run 18) -- Day 4 Post-Launch / Correction Verification Pass
+
+**Result:** Partial
+**Items processed:** 3
+**Items added:** 1
+**Items skipped (single source -- needs review):** 2
+**Items skipped (unconfirmed):** 0
+**Images generated:** 0
+**Images set to coming-soon placeholder:** 0
+**TypeScript build:** Clean (only pre-existing errors in InteractiveMap.tsx for missing react-leaflet types, unrelated to game-data.ts)
+
+### Added This Run
+- Fortain the Cursed Knight -- Correction (region 'demeniss' -> 'hernand', location string updated). Verified by 4 independent sources: Fextralife (Tier 1), PowerPyx (Tier 1), game8 (Tier 1), Deltia's Gaming (Tier 2).
+
+### Skipped / Flagged This Run
+- Titan -- Region/reward correction (desert -> pailune, reward -> Reckoning Two-Handed Spear + Lightning Bolt Plate Armor). Only GameRant (Tier 2) confirms. game8 and Fextralife do not have Titan boss pages yet. Marked [SINGLE SOURCE -- NEEDS REVIEW].
+- Walter Lanford -- Reward correction (Unknown TBD -> Golden Piggy Bank). Only GameRant (Tier 2) confirms. Fextralife reward section still empty. PowerPyx boss guide does not include Walter Lanford. Marked [SINGLE SOURCE -- NEEDS REVIEW].
+
+### Notes
+- Pre-flight git status showed no uncommitted changes to game-data.ts specifically (only other files had modifications). Proceeded as normal.
+- Pre-existing TypeScript errors in InteractiveMap.tsx (missing react-leaflet/leaflet type declarations) are unrelated to game-data.ts and were present before and after changes. No new errors introduced.
+- The data queue (data-to-add.md) contains many items marked [NEEDS REVIEW] that are blocked by missing required fields (region, reward, difficulty, etc.) or require human decisions (full SKILLS array rewrite, full QUESTS array rewrite). These were not processed per task rules.
+- Titan and Walter Lanford corrections are likely correct but require a second independent source before automatic application. Recommend re-running verification in 2-3 days when game8/Fextralife/PowerPyx have updated their coverage of faction quest bosses.
+- The backup file game-data.ts.bak was retained since this is a partial run (not all corrections applied). Remove after next successful full run.
+
+---
+
+## Run: 2026-03-24 (Run 21) -- Day 6 Post-Launch / Apply-Data Task
+
+**Result:** Success (Partial -- 7 of 8 candidate items applied; 1 correction skipped for single source)
+**Items processed:** 8
+**Items added:** 7
+**Items skipped (needs review):** 1 (Titan correction -- single source)
+**Items skipped (unconfirmed):** 0
+**Images generated:** 0
+**Images set to coming-soon placeholder:** 0
+**TypeScript build:** Clean (only pre-existing react-leaflet errors in InteractiveMap.tsx, unrelated to game-data.ts)
+
+### Added This Run
+
+- Gregor the Halberd of Carnage -- Boss (CORRECTION: region 'demeniss' to 'hernand', reward to 'Golden Vanguard, Abyss Artifact x1', location updated. Sources: PowerPyx Tier 1, GameRant Tier 2)
+- One-Armed Ludvig -- Boss (CORRECTION: reward 'Unknown (TBD)' to 'None'. Sources: game8 Tier 1, GameRant Tier 2)
+- Lucian Bastier -- Boss (NEW: Ch.8, hernand, fire element, extreme difficulty. Sources: PowerPyx Tier 1, GameRant Tier 2, Deltia's Gaming Tier 2)
+- T'rukan the Ascended -- Boss (NEW: Ch.9, demeniss, physical element, extreme difficulty. Sources: GameRant Tier 2, thegamer.com Tier 2, Pearl Abyss Tier 1 name confirmation)
+- Goyen -- Boss (NEW: Ch.9, desert, physical element, extreme difficulty. Sources: PowerPyx Tier 1, patchcrazy.co.uk Tier 2)
+- Priscus the Ancient -- Boss (NEW: Shackled God quest, pailune, extreme difficulty. Element set to 'physical' editorially -- no in-game element confirmed. Sources: game8 Tier 1, GameRant Tier 2)
+- Praevus the Ancient -- Boss (NEW: Shackled God quest, desert, fire element, extreme difficulty. Confirmed identity of pre-launch "Desert Ancient" placeholder. Sources: GameRant Tier 2 x2)
+
+### Skipped / Flagged This Run
+
+- Titan region/reward correction -- SINGLE SOURCE (GameRant Tier 2 only). Two articles from the same publication do not constitute 2 independent sources per apply-data rules. game8, Fextralife, and PowerPyx still have no Titan boss page. Left as-is with [SINGLE SOURCE -- NEEDS REVIEW] flag.
+- Ludvig reward correction -- Marked [NEEDS HUMAN REVIEW] in queue (app has 'Hungering Fang Leather Cloak, Hungering Fang Leather Boots' which matches game8 Tier 1; no action needed as this was already corrected in a prior run).
+- Aeserion, the Shackled God -- NEEDS REVIEW (3x Tier 2 sources, no Tier 1)
+- Abyss Kutum -- NEEDS REVIEW (single source for rewards)
+- Primus the Ancient -- SINGLE SOURCE (GameRant Tier 2 only)
+- All [NEEDS REVIEW] items in the main queue (skills rewrite, quests rewrite, NPCs, mounts, recipes, etc.) -- left for human decision per task rules.
+
+### Notes
+
+- Pre-flight git status showed game-data.ts as modified, but this is a known false positive from the OneDrive filesystem issue (CLAUDE.md documents this). Proceeded with the run since the workspace git state is perpetually broken.
+- Pre-existing TypeScript errors in InteractiveMap.tsx (missing react-leaflet/leaflet type declarations) were present before and after changes. No new errors introduced.
+- Priscus the Ancient: element set to 'physical' editorially because the TypeScript Boss interface requires a non-null Element value, but no in-game element has been confirmed. Attacks include lasers, shadow, and spear projectiles. This should be revisited when in-game element data becomes available.
+- Praevus the Ancient closes the "Desert Ancient" gap that has been open since Run 2 (2026-03-15). The pre-launch placeholder is now confirmed as Praevus.
+- BOSSES array boss count updated from 30 to 35 in the source comment.
+- The backup file game-data.ts.bak could not be removed due to OneDrive filesystem permissions ("Operation not permitted"). It remains in the workspace but is harmless.
+- Remaining high-priority gaps: Kliff/Damiane/Oongka SKILLS array rewrites, QUESTS array rewrite, Titan correction, Aeserion/Primus/Abyss Kutum bosses pending additional sources.
 
 ---
