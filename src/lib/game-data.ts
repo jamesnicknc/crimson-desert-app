@@ -522,7 +522,7 @@ export const BOSSES: Boss[] = [
     mechanics: '1 HP bar. Heavy shield user. Spam R2 heavy attacks; after 3 hits follow with light attacks. Heavy attacks deal damage through block. Recommended: Tauria Curved Sword + Nature\'s Echo skill.' },
   // Ch.7 — Pailune arc
   { name: 'Ludvig', region: 'pailune', type: 'Human', difficulty: 'hard',
-    reward: 'Hungering Fang Leather Cloak, Hungering Fang Leather Boots', element: 'shock', weakness: 'physical', // Fixed 2026-03-24: game8 Tier 1 confirms these drops, not Ignir
+    reward: 'Hungering Fang Leather Cloak, Hungering Fang Leather Boots', element: 'shock', weakness: 'physical',
     location: 'Pailune Castle (quest: Dawn)',
     mechanics: '2 HP bars. Lightning user. Teleports constantly. Dodge > block/parry. Attack during combo gaps or after teleport stops. 100+ grilled meat.' },
   { name: 'Awakened Ludvig', region: 'pailune', type: 'Human', difficulty: 'extreme',
@@ -534,7 +534,7 @@ export const BOSSES: Boss[] = [
     element: 'fire', weakness: 'frost',
     location: 'Ashclaw Keep, Pailune (Battle at Silverwolf Mountain)',
     mechanics: '2 HP bars. P1: parry L1 → heavy R2. P2: lava transformation — focus entirely on dodging, never let stamina deplete fully.' },
-  // Ch.7 — Pailune mountains (forced Oongka character)
+  // Ch.7 — Demeniss mountains (forced Oongka character)
   { name: 'One-Armed Ludvig', region: 'pailune', type: 'Human', difficulty: 'hard',
     reward: 'None', element: 'shock', weakness: 'physical', // Updated 2026-03-24: game8 Tier 1 confirms no reward drop
     location: 'Kingshield Mountain, Pailune (quest: Twisted Fate)',
@@ -544,9 +544,9 @@ export const BOSSES: Boss[] = [
     reward: 'Golden Vanguard, Abyss Artifact x1', element: 'physical', weakness: 'physical', // Updated 2026-03-24: reward confirmed by PowerPyx Tier 1
     location: 'Fort Ironclad, Hernand (quest: Where the Wind Guides You)', // Updated 2026-03-24: location region corrected
     mechanics: '1 HP bar. Arrows fired from walls throughout fight. Super armor with successive stabs — dodge continuously until it stops. Combat loop: dodge → attack → heal simultaneously.' },
-  { name: 'Fortain the Cursed Knight', region: 'hernand', type: 'Human', difficulty: 'extreme', // Region confirmed hernand by Fextralife, PowerPyx, game8, TheGamer (4 sources)
+  { name: 'Fortain the Cursed Knight', region: 'hernand', type: 'Human', difficulty: 'extreme', // Updated 2026-03-22: region confirmed hernand by Fextralife, PowerPyx, game8, Deltia's Gaming (4 sources)
     reward: 'Shackle of Might, Abyss Artifact x1', element: 'abyss', weakness: 'physical',
-    location: 'Thornbriar Fortress, Hernand (quest: The Cursed Knight)',
+    location: 'Thornbriar Fortress, Hernand (quest: The Cursed Knight)', // Updated 2026-03-22: location region corrected
     mechanics: '1 HP bar. Summons blue ghost knight (ground strikes + arrows). Spam R2 with Tauria Curved Sword. Nature\'s Echo skill recommended. Dodge away when ghost appears. "Gigantic warrior empowered by cursed warrior spirits."' },
   // Late game — The Abyss
   { name: 'Hexe Marie', region: 'abyss', type: 'Magical', difficulty: 'legendary',
@@ -611,7 +611,7 @@ export const BOSSES: Boss[] = [
     mechanics: 'Wields spear. Lightning attacks.' },
 
   // Added 2026-03-24 via apply-data task
-  // ─── CHAPTER 8-9 STORY BOSSES ──────────────────────────────────────────────────────────────────
+  // ─── CHAPTER 8–9 STORY BOSSES ──────────────────────────────────────────────────────────────────
   { name: 'Lucian Bastier', region: 'hernand', type: 'Human', difficulty: 'extreme',
     reward: "Official Knight's Plate Armor, Official Knight's Leather Boots, Official Knight's Leather Gloves, Official Knight's Plate Gloves, Spire of Clockwork",
     element: 'fire', weakness: 'physical',
@@ -685,8 +685,8 @@ export const ENEMIES: Enemy[] = [
   { name: "Antumbra's Order", region: 'hernand', type: 'Spirit', element: 'abyss',
     location: 'Sanctum of Absolution and surrounding sanctums, Hernand', drops: [],
     notes: 'Void spirits serving Antumbra\'s Sword as their judge. Control six sanctums across Hernand.' },
-  { name: 'Gregor\'s Soldiers', region: 'demeniss', type: 'Human', element: 'physical',
-    location: 'Fort Ironclad, Demeniss', drops: [],
+  { name: 'Gregor\'s Soldiers', region: 'hernand', type: 'Human', element: 'physical',
+    location: 'Fort Ironclad, Hernand', drops: [],
     notes: "Captain Gregor's personal military unit stationed at Fort Ironclad." },
   { name: 'Scarlet Blades', region: 'hernand', type: 'Human', element: 'physical',
     location: 'Various, Hernand', drops: [],
@@ -1271,9 +1271,9 @@ export const QUESTS: Quest[] = [
       { step: 3, instruction: "Stay inside his reach during combos — the halberd's sweep hits at the tip, so up close many attacks miss.", tip: 'Attack immediately after his 3-hit halberd combo ends for the safest damage window.' },
     ],
   },
-  { name: 'The Cursed Knight', description: 'Ch.8 — To Demeniss: Boss fight vs. Fortain the Cursed Knight at Thornbriar Fortress.', type: 'main', region: 'hernand',
+  { name: 'The Cursed Knight', description: 'Ch.8 — To Demeniss: Boss fight vs. Fortain the Cursed Knight.', type: 'main', region: 'demeniss',
     walkthrough: [
-      { step: 1, instruction: 'Confront Fortain the Cursed Knight at Thornbriar Fortress, Hernand.' },
+      { step: 1, instruction: 'Confront Fortain the Cursed Knight at the gates of Demeniss after defeating Gregor.' },
       { step: 2, instruction: 'Boss fight: Fortain — heavily armored knight whose curse causes unpredictable attack bursts.' },
       { step: 3, instruction: 'When his armor begins to glow, roll away immediately to dodge the AoE curse burst.', tip: 'Shock-element attacks can interrupt his curse-charge animation.' },
       { step: 4, instruction: 'After each curse burst he is briefly stunned — use this window for a full burst combo.' },
@@ -1722,53 +1722,55 @@ export const RECIPES: Recipe[] = [
 
 // ═══════════════════════════════════════
 // MOUNTS (29 confirmed)
+// Verified against: game8.co, Fextralife wiki, crimsondb.gg,
+// crimsondesert.gg, PC Gamer, Steam community guides, GameSpot
 // ═══════════════════════════════════════
 
 export const MOUNTS: Mount[] = [
-  // Horses (6)
-  { name: 'Plains Stallion', category: 'horse', region: 'hernand', speed: 70, combat: 10, stamina: 75, acquisition: 'Starter mount, available at game start' },
-  { name: 'Greymane Warhorse', category: 'horse', region: 'pailune', speed: 65, combat: 30, stamina: 85, special: 'Charge attack that knocks enemies aside while galloping', acquisition: 'Greymane faction reputation reward' },
-  { name: 'Noble Destrier', category: 'horse', region: 'demeniss', speed: 75, combat: 20, stamina: 80, special: 'Increased speed on roads and paved surfaces', acquisition: 'Purchase from Demeniss Royal Stables' },
-  { name: 'Desert Charger', category: 'horse', region: 'desert', speed: 80, combat: 15, stamina: 60, special: 'Heat-resistant; no stamina penalty in desert biomes', acquisition: 'Tame in the wild (Crimson Desert outskirts)' },
-  { name: 'Dappled Palfrey', category: 'horse', region: 'hernand', speed: 85, combat: 5, stamina: 90, special: 'Fastest sustained gallop; ideal for long-distance travel', acquisition: 'Reward from the Hernand Horse Breeder side quest' },
-  { name: 'Midnight Runner', category: 'horse', region: 'multiple', speed: 90, combat: 15, stamina: 70, special: 'Near-silent movement; enemies are slower to detect you while mounted', acquisition: 'Rare wild spawn at night across all regions' },
+  // ── Permanent Horses (8) ──────────────────
+  { name: 'Herspia', category: 'horse', mountType: 'permanent', region: 'hernand', speed: 55, combat: 10, stamina: 60, special: 'Reliable starter horse; summon via whistle or [H] key', acquisition: "Story quest 'Unknown Space' after prologue; also tameable in the wild" },
+  { name: 'Brianto', category: 'horse', mountType: 'permanent', region: 'hernand', speed: 50, combat: 15, stamina: 65, special: "Damiane's default horse; well-rounded stats for early game", acquisition: "Damiane's mount from Chapter 3; also tameable in the wild" },
+  { name: 'Priden', category: 'horse', mountType: 'permanent', region: 'multiple', speed: 55, combat: 10, stamina: 60, special: 'Balanced all-purpose wild horse breed', acquisition: 'Capture in the wild and register at any stable' },
+  { name: 'Elantrima', category: 'horse', mountType: 'permanent', region: 'multiple', speed: 45, combat: 10, stamina: 75, special: 'High vitality cargo horse with extra inventory slot; learns Lateral Movement skill', acquisition: 'Tame in the wild or purchase from stables; built for carrying goods' },
+  { name: 'Numont', category: 'horse', mountType: 'permanent', region: 'multiple', speed: 55, combat: 10, stamina: 60, special: 'Standard wild horse breed with solid all-around performance', acquisition: 'Capture in the wild and register at any stable' },
+  { name: 'Royler', category: 'horse', mountType: 'permanent', region: 'pailune', speed: 90, combat: 10, stamina: 90, special: 'Legendary white horse; fastest speed and highest stamina of all horses', acquisition: 'Tame at Silverwolf Mountains in Pailune, near Snowgrass Hearth; requires Stamina level 8+' },
+  { name: 'Rokade', category: 'horse', mountType: 'permanent', region: 'hernand', speed: 70, combat: 15, stamina: 70, special: 'Legendary horse; highest health of all horses, the tankiest mount option', acquisition: 'Tame deep in the southern Steel Mountains of Grace Estate, near Spire of Insight' },
+  { name: 'Camora', category: 'horse', mountType: 'permanent', region: 'desert', speed: 70, combat: 25, stamina: 70, special: 'Legendary red horse; highest attack and defense of all horses', acquisition: 'Tame in Redtree Forest near Red River in the southern Crimson Desert' },
 
-  // Bears (4)
-  { name: 'Pailune Snow Bear', category: 'bear', region: 'pailune', speed: 45, combat: 85, stamina: 80, special: 'Slashes with claws and bites enemies while riding; frost resistance aura', acquisition: 'Tame in the wild (Pailune mountain caves)' },
-  { name: 'Ironhide Cave Bear', category: 'bear', region: 'hernand', speed: 40, combat: 90, stamina: 85, special: 'Massive HP pool; acts as a shield absorbing hits for the rider', acquisition: 'Defeat and tame in Ironhide Den (Hernand)' },
-  { name: 'Black Bear War Mount', category: 'bear', region: 'demeniss', speed: 50, combat: 80, stamina: 75, special: 'Intimidation roar that fears nearby enemies for 3 seconds', acquisition: 'Captured from Black Bear faction stronghold' },
-  { name: 'Crimson Grizzly', category: 'bear', region: 'desert', speed: 45, combat: 75, stamina: 65, special: 'Ground slam attack that staggers enemies in a frontal cone', acquisition: 'Tame in the wild (Crimson Desert oasis)' },
+  // ── Story / Special Permanent Mounts (2) ──
+  { name: 'Blackstar', category: 'dragon', mountType: 'permanent', region: 'multiple', speed: 85, combat: 90, stamina: 50, special: 'Summonable dragon with Fireball and Fire Breath attacks; 15-minute ride duration, 50-minute cooldown', acquisition: "Unlocked at end of Chapter 11 after 'Master of a Forgotten Land' mission" },
+  { name: 'ATAG', category: 'mech', mountType: 'permanent', region: 'delesyia', speed: 60, combat: 95, stamina: 80, special: 'All-Terrain Armored Gear; fires missiles and bullets, melee arm attacks', acquisition: 'Unlocked during Chapter 10 siege mission' },
 
-  // Raptors (4)
-  { name: 'Sand Raptor', category: 'raptor', region: 'desert', speed: 90, combat: 40, stamina: 55, special: 'Extreme burst speed; double sprint in desert terrain', acquisition: 'Tame in the wild (Red Dunes hunting grounds)' },
-  { name: 'Forest Stalker', category: 'raptor', region: 'hernand', speed: 80, combat: 50, stamina: 60, special: 'Pounce attack that pins smaller enemies', acquisition: 'Tame in the wild (Hernand deep forest)' },
-  { name: 'Frost Raptor', category: 'raptor', region: 'pailune', speed: 75, combat: 45, stamina: 70, special: 'Ice-trail movement; leaves slippery terrain that slows pursuers', acquisition: 'Complete the Pailune Hunter chain quest' },
-  { name: 'Delesyian Swift', category: 'raptor', region: 'delesyia', speed: 85, combat: 35, stamina: 65, special: 'Enhanced agility; can perform sharp turns without speed loss', acquisition: 'Purchase from Delesyia Beast Handler' },
+  // ── Vehicles (2) ──────────────────────────
+  { name: 'Pywel Wagon', category: 'vehicle', mountType: 'vehicle', region: 'multiple', speed: 30, combat: 0, stamina: 90, special: 'Horse-drawn cargo wagon for hauling goods across regions', acquisition: 'Steal from NPCs or craft via Brice (Wagon Master) dispatch mission at Howling Hill camp' },
+  { name: 'Cloudcart', category: 'vehicle', mountType: 'vehicle', region: 'multiple', speed: 50, combat: 0, stamina: 80, special: 'Hot air balloon for aerial travel and reconnaissance', acquisition: 'Craft via Engineer dispatch mission after discovering Emberwind Workshop' },
 
-  // Lizards (3)
-  { name: 'Rock Lizard', category: 'lizard', region: 'hernand', speed: 55, combat: 25, stamina: 80, special: 'Wall climbing; can scale vertical cliff faces and fortress walls', acquisition: 'Tame in the wild (Hernand canyon walls)' },
-  { name: 'Sand Skimmer', category: 'lizard', region: 'desert', speed: 70, combat: 20, stamina: 75, special: 'Glides across sand dunes; ignores quicksand and soft terrain', acquisition: 'Tame in the wild (Crimson Desert flats)' },
-  { name: 'Frost Salamander', category: 'lizard', region: 'pailune', speed: 50, combat: 30, stamina: 85, special: 'Traverses ice and frozen water without slipping; cold immunity', acquisition: 'Found in Frozen Soul Mountain caves' },
+  // ── Temporary Mounts: Bears (2) ───────────
+  { name: 'Brown Bear', category: 'bear', mountType: 'temporary', region: 'multiple', speed: 40, combat: 80, stamina: 75, special: 'Claw swipes, bite attacks, and body slams without rider input', acquisition: 'Stagger a wild bear with enough damage until it stops moving, then mount when prompt appears; despawns on dismount' },
+  { name: 'Clawed Bear', category: 'bear', mountType: 'temporary', region: 'hernand', speed: 45, combat: 85, stamina: 80, special: 'Black Bear faction war mount; stronger combat abilities than wild bears', acquisition: 'Defeat Black Bear faction soldiers and mount their bear before it flees' },
 
-  // Wyverns & Dragons (4)
-  { name: 'Highland Wyvern', category: 'wyvern', region: 'pailune', speed: 80, combat: 60, stamina: 50, special: 'Full flight control; dive-bomb attack on ground targets', acquisition: 'Complete the Dragon Ridge wyvern egg quest' },
-  { name: 'Storm Drake', category: 'wyvern', region: 'delesyia', speed: 85, combat: 70, stamina: 45, special: 'Lightning breath attack; chain-damages groups of enemies from the sky', acquisition: 'Tame atop the Tesla Ruins during a storm event' },
-  { name: 'Ember Wyvern', category: 'wyvern', region: 'desert', speed: 75, combat: 75, stamina: 40, special: 'Fire breathing from the sky; scorches terrain creating fire hazard zones', acquisition: 'Rare spawn in the Crimson Desert volcanic rifts' },
-  { name: 'Abyssal Dragon', category: 'wyvern', region: 'abyss', speed: 90, combat: 95, stamina: 60, special: 'Void breath that bypasses all resistances; full aerial combat', acquisition: 'End-game reward from the Abyss storyline' },
+  // ── Temporary Mounts: Predators (4) ───────
+  { name: 'Wolf', category: 'predator', mountType: 'temporary', region: 'multiple', speed: 75, combat: 50, stamina: 55, special: 'Fast and agile with flanking maneuvers; quicker than bears', acquisition: 'Stagger a wild wolf with damage, then mount when prompt appears; despawns on dismount' },
+  { name: 'Lion', category: 'predator', mountType: 'temporary', region: 'demeniss', speed: 70, combat: 65, stamina: 55, special: 'Powerful predator mount with lunging attacks', acquisition: 'Steal from The Laughing Marionette circus in Demeniss' },
+  { name: 'Tiger', category: 'predator', mountType: 'temporary', region: 'multiple', speed: 70, combat: 70, stamina: 55, special: 'Fast, aggressive predator mount with powerful swipe attacks', acquisition: 'Stagger a wild tiger with damage, then mount when prompt appears; despawns on dismount' },
+  { name: 'Hyena', category: 'predator', mountType: 'temporary', region: 'hernand', speed: 65, combat: 40, stamina: 50, special: 'Quick and agile scavenger mount (Helms Hyena variant)', acquisition: 'Stagger a wild hyena with damage, then mount when prompt appears; despawns on dismount' },
 
-  // Mechanical (3)
-  { name: 'Scout Automaton', category: 'mechanical', region: 'delesyia', speed: 65, combat: 40, stamina: 100, special: 'Infinite stamina; never tires. Built-in lantern for dark areas', acquisition: 'Craft at Delesyia Workshop (Blueprints required)' },
-  { name: 'Siege Walker', category: 'mechanical', region: 'delesyia', speed: 40, combat: 95, stamina: 90, special: 'Fires devastating missiles; massive AoE siege damage', acquisition: 'Rare blueprint drop from Delesyian Automaton boss' },
-  { name: 'Golden Star Mech', category: 'mechanical', region: 'delesyia', speed: 70, combat: 90, stamina: 80, special: 'Homing projectile barrage; energy shield absorbs 3 hits before cooldown', acquisition: 'Boss drop from Golden Star (Mech Mount Key)' },
+  // ── Temporary Mounts: Birds (2) ───────────
+  { name: 'Kuku Bird', category: 'bird', mountType: 'temporary', region: 'pailune', speed: 80, combat: 20, stamina: 50, special: 'Very fast flightless bird; runs rapidly once its rider is defeated', acquisition: 'Defeat Blinding Arrow soldiers in Steel Mountains, then chase and mount their Kuku Bird Hatchling before it escapes' },
+  { name: 'Ibis', category: 'bird', mountType: 'temporary', region: 'multiple', speed: 60, combat: 10, stamina: 45, special: 'Large wading bird; one of the shortest-duration temporary mounts', acquisition: 'Approach and mount wild ibises; despawns within about a minute of riding' },
 
-  // Dinosaurs (3)
-  { name: 'Steppe Ceratops', category: 'dinosaur', region: 'hernand', speed: 50, combat: 70, stamina: 90, special: 'Horn charge attack that sends enemies flying; high knockback', acquisition: 'Tame in the wild (Hernand steppe plains)' },
-  { name: 'Jungle Strider', category: 'dinosaur', region: 'hernand', speed: 60, combat: 45, stamina: 80, special: 'Tall mount; rider can see over obstacles and foliage. Kick attack', acquisition: 'Tame in the wild (Hernand jungle canopy)' },
-  { name: 'Armored Ankylo', category: 'dinosaur', region: 'desert', speed: 35, combat: 80, stamina: 95, special: 'Heavily armored; tail swipe knocks back all surrounding enemies', acquisition: 'Tame in the wild (Crimson Desert bone fields)' },
+  // ── Temporary Mounts: Beasts (7) ──────────
+  { name: 'Cow', category: 'beast', mountType: 'temporary', region: 'hernand', speed: 30, combat: 15, stamina: 70, special: 'Slow but sturdy farmstead livestock mount', acquisition: 'Ride farm livestock directly at farmsteads throughout Pywel; no combat required' },
+  { name: 'Camel', category: 'beast', mountType: 'temporary', region: 'desert', speed: 50, combat: 15, stamina: 80, special: 'Desert-adapted mount with good stamina; saddled variants from NPCs', acquisition: 'Defeat NPC camel riders in the Crimson Desert, then catch and mount the saddled camel' },
+  { name: 'Buffalo', category: 'beast', mountType: 'temporary', region: 'hernand', speed: 35, combat: 45, stamina: 85, special: 'Large and powerful with very high stamina; slow but tough', acquisition: 'Stagger a wild buffalo with damage, then mount when prompt appears; despawns on dismount' },
+  { name: 'Elephant', category: 'beast', mountType: 'temporary', region: 'multiple', speed: 30, combat: 50, stamina: 90, special: 'Massive mount with the highest stamina of any temporary mount', acquisition: 'Stagger an elephant with damage, then mount when prompt appears; despawns on dismount' },
+  { name: 'Ibex', category: 'beast', mountType: 'temporary', region: 'pailune', speed: 55, combat: 15, stamina: 65, special: 'Mountain goat that handles rocky and elevated terrain well', acquisition: 'Stagger a wild ibex with damage, then mount when prompt appears; despawns on dismount' },
+  { name: 'Rosehorn Deer', category: 'beast', mountType: 'temporary', region: 'multiple', speed: 70, combat: 10, stamina: 55, special: 'Elegant, fast deer mount with distinctive antlers', acquisition: 'Stagger a Rosehorn Deer with damage, then mount when prompt appears; despawns on dismount' },
+  { name: 'Boar', category: 'beast', mountType: 'temporary', region: 'hernand', speed: 50, combat: 55, stamina: 70, special: 'Aggressive mount with charging attacks (Black-Maned Boar variant)', acquisition: 'Stagger a wild boar with damage, then mount when prompt appears; despawns on dismount' },
 
-  // Exotic (2)
-  { name: 'Abyssal Spider', category: 'exotic', region: 'abyss', speed: 60, combat: 55, stamina: 70, special: 'Wall climbing on any surface; leaves web trail that slows enemies', acquisition: 'Tame in the Abyss depths (requires Beast Taming skill)' },
-  { name: 'Phantom Steed', category: 'exotic', region: 'multiple', speed: 95, combat: 10, stamina: 50, special: 'Ghostly mount that phases through obstacles and enemies; cannot attack', acquisition: "Legendary reward from the Ghost of Gian side quest" },
+  // ── Temporary Mounts: Reptiles (2) ────────
+  { name: 'Red-Feathered Raptor', category: 'reptile', mountType: 'temporary', region: 'desert', speed: 80, combat: 45, stamina: 50, special: 'Fastest temporary land combat mount; ideal for hit-and-run tactics', acquisition: 'Defeat hostile NPC raptor riders in the Crimson Desert, then mount the raptor before it escapes' },
+  { name: 'Giant Iguana', category: 'reptile', mountType: 'temporary', region: 'desert', speed: 40, combat: 15, stamina: 70, special: 'Docile reptile found in desert towns; no combat needed to mount', acquisition: 'Approach and ride docile iguanas in Crimson Desert towns; typically found near NPCs' },
 ];
 
 // ═══════════════════════════════════════
