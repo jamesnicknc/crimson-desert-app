@@ -574,13 +574,13 @@ export const BOSSES: Boss[] = [
     location: 'Sanctum of Absolution, Hernand (quest: Cloister of Ruination)',
     mechanics: 'Void spirit. Fitting judge of Antumbra\'s Order. Leader of the order.' },
   { name: 'Walter Lanford', region: 'hernand', type: 'Human', difficulty: 'extreme',
-    reward: 'Unknown (TBD)', element: 'physical', weakness: 'frost',
+    reward: 'Golden Piggy Bank', element: 'physical', weakness: 'frost', // Updated 2026-03-28: reward confirmed by GameRant + game8 (House Serkis Faction Quest)
     location: 'Alfonso Estate, Hernand',
-    mechanics: 'Optional side quest. Exceptional double-barreled gun shooter.' },
+    mechanics: 'Optional side quest (House Serkis Faction). Exceptional double-barreled gun shooter. Golden Piggy Bank generates offline income (Light Copper Pouches).' },
   { name: 'Muskan', region: 'desert', type: 'Human', difficulty: 'extreme',
-    reward: 'Unknown (TBD)', element: 'physical', weakness: 'physical',
-    location: 'The Bonepit, Crimson Desert',
-    mechanics: 'Arena fight with cheering onlookers. "Seemingly undefeated warrior of The Bonepit."' },
+    reward: 'Combat God\'s Plate Gloves', element: 'physical', weakness: 'physical', // Updated 2026-03-28: reward confirmed by nerdschalk + game8 (Bonepit questline completion)
+    location: 'The Bonepit, Crimson Desert (Tommasoan territory)',
+    mechanics: 'Arena fight with cheering onlookers. "Seemingly undefeated warrior of The Bonepit." Fist-only fighter. Counters any move used twice in a row -- vary grapple finishers. Observation rewards: enhanced Body Slam + Grapple Follow-up.' },
 
   // ─── PARTIALLY CONFIRMED (name known; full details TBD post-exploration) ──────────────────────
   { name: 'Queen Stoneback Crab', region: 'hernand', type: 'Beast', difficulty: 'hard',
