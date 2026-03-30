@@ -13,12 +13,13 @@ type SortDir = 'asc' | 'desc';
 const CATEGORY_OPTIONS: { label: string; value: MountCategory }[] = [
   { label: 'Horses', value: 'horse' },
   { label: 'Bears', value: 'bear' },
-  { label: 'Raptors', value: 'raptor' },
-  { label: 'Lizards', value: 'lizard' },
-  { label: 'Wyverns', value: 'wyvern' },
-  { label: 'Mechanical', value: 'mechanical' },
-  { label: 'Dinosaurs', value: 'dinosaur' },
-  { label: 'Exotic', value: 'exotic' },
+  { label: 'Predators', value: 'predator' },
+  { label: 'Birds', value: 'bird' },
+  { label: 'Beasts', value: 'beast' },
+  { label: 'Reptiles', value: 'reptile' },
+  { label: 'Dragon', value: 'dragon' },
+  { label: 'Mech', value: 'mech' },
+  { label: 'Vehicles', value: 'vehicle' },
 ];
 
 const REGION_OPTIONS: { label: string; value: Region | 'multiple' | 'abyss' }[] = [
@@ -30,13 +31,13 @@ const getCategoryIcon = (cat: MountCategory): string => {
   const icons: Record<MountCategory, string> = {
     horse: '\uD83D\uDC0E',
     bear: '\uD83D\uDC3B',
-    raptor: '\uD83E\uDD96',
-    lizard: '\uD83E\uDD8E',
-    wyvern: '\uD83D\uDC09',
-    mechanical: '\u2699\uFE0F',
-    dinosaur: '\uD83E\uDD95',
-    exotic: '\u2728',
-    wolf: '\uD83D\uDC3A',
+    predator: '\uD83D\uDC3A',
+    bird: '\uD83D\uDC26',
+    beast: '\uD83E\uDD9B',
+    reptile: '\uD83E\uDD8E',
+    dragon: '\uD83D\uDC09',
+    mech: '\u2699\uFE0F',
+    vehicle: '\uD83D\uDEDE',
   };
   return icons[cat];
 };
@@ -45,13 +46,13 @@ const getCategoryLabel = (cat: MountCategory): string => {
   const labels: Record<MountCategory, string> = {
     horse: 'Horse',
     bear: 'Bear',
-    raptor: 'Raptor',
-    lizard: 'Lizard',
-    wyvern: 'Wyvern',
-    mechanical: 'Mechanical',
-    dinosaur: 'Dinosaur',
-    exotic: 'Exotic',
-    wolf: 'Wolf',
+    predator: 'Predator',
+    bird: 'Bird',
+    beast: 'Beast',
+    reptile: 'Reptile',
+    dragon: 'Dragon',
+    mech: 'Mech',
+    vehicle: 'Vehicle',
   };
   return labels[cat];
 };

@@ -600,7 +600,7 @@ export const BOSSES: Boss[] = [
     location: 'Pailune region',
     mechanics: 'Massive ice elemental. Ice attacks with charging and melee mix.' },
   { name: 'Gwen Kraber', region: 'hernand', type: 'Human', difficulty: 'hard',
-    reward: 'Spear (obtainable weapon)', element: 'physical', weakness: 'physical',
+    reward: 'Frostfang', element: 'physical', weakness: 'physical', // Updated 2026-03-30: reward confirmed as Frostfang by game8
     location: 'Roothold Stronghold, Hernand' },
   { name: 'Sir Catfish', region: 'desert', type: 'Beast', difficulty: 'normal',
     reward: 'Unknown (TBD)', element: 'physical', weakness: 'shock',

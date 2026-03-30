@@ -10,7 +10,7 @@ export type QuestType = 'main' | 'side' | 'faction' | 'character' | 'liberation'
 export type QuestStatus = 'not-started' | 'active' | 'complete';
 export type CollectibleCategory = 'artifact' | 'gear' | 'recipe' | 'lore' | 'fast-travel' | 'edition';
 export type CraftingType = 'cooking' | 'alchemy' | 'blacksmith' | 'dye' | 'camp-upgrade';
-export type MountCategory = 'horse' | 'bear' | 'raptor' | 'lizard' | 'wyvern' | 'mechanical' | 'dinosaur' | 'exotic' | 'wolf';
+export type MountCategory = 'horse' | 'bear' | 'predator' | 'bird' | 'beast' | 'reptile' | 'dragon' | 'mech' | 'vehicle';
 export type TrophyRarity = 'platinum' | 'gold' | 'silver' | 'bronze';
 export type ActivityCategory = 'gathering' | 'farming' | 'combat' | 'social';
 export type PinCategory = 'collectible' | 'boss' | 'npc' | 'poi' | 'custom';
@@ -111,9 +111,12 @@ export interface Recipe {
   recipeLocation: string;
 }
 
+export type MountType = 'permanent' | 'temporary' | 'vehicle';
+
 export interface Mount {
   name: string;
   category: MountCategory;
+  mountType: MountType;
   region: Region | 'multiple';
   speed: number;
   combat: number;
