@@ -583,32 +583,32 @@ export const BOSSES: Boss[] = [
     mechanics: 'Arena fight with cheering onlookers. "Seemingly undefeated warrior of The Bonepit." Fist-only fighter. Counters any move used twice in a row -- vary grapple finishers. Observation rewards: enhanced Body Slam + Grapple Follow-up.' },
 
   // ─── PARTIALLY CONFIRMED (name known; full details TBD post-exploration) ──────────────────────
-  { name: 'Queen Stoneback Crab', region: 'hernand', type: 'Beast', difficulty: 'hard',
-    reward: 'Unknown (TBD)', element: 'physical', weakness: 'fire',
-    location: 'Unknown (Hernand area)',
-    mechanics: 'Enchanted gigantic crab. "Prism of riches." Target weak points for stagger. Awakened when Diederik strikes its carapace.' },
+  { name: 'Queen Stoneback Crab', region: 'delesyia', type: 'Beast', difficulty: 'hard', // Updated 2026-04-02: region confirmed delesyia by GameRant + crimsondesert.app (Bardtree Gorge, east of Demeniss)
+    reward: 'Abyss Artifact x1, Diamond x2, Garnet x3, Azurite x5', element: 'physical', weakness: 'fire', // Updated 2026-04-02: reward confirmed by GameRant + crimsondesert.app (2 sources)
+    location: 'Bardtree Gorge / Redfox Forest, Delesyia (quest: The Queen\'s Lake)',
+    mechanics: 'Climbing puzzle boss. Use Triple Force Jump to scale its back. P1: Cling (R3) + Pierce (R2) on glowing green cracks. P2: Smash ceramic pots on shell. Requires good Stamina investment for clinging. NPC Diederik becomes armor vendor after completion.' },
   { name: 'White Horn', region: 'pailune', type: 'Beast', difficulty: 'hard',
     reward: 'Unknown (TBD)', element: 'frost', weakness: 'fire',
     location: 'White Mountains, Pailune',
     mechanics: 'Multi-stage fight. Yeti/reindeer hybrid. Mountain spirit. Summons snowstorms and blizzards.' },
   { name: 'Golden Star', region: 'delesyia', type: 'Mechanical', difficulty: 'legendary',
-    reward: 'Unknown (TBD)', element: 'shock', weakness: 'physical',
-    location: 'Delesyian Territory',
-    mechanics: 'Giant mechanical dragon with golden appearance. Fought while riding a Wyvern mount. Dragon\'s breath attack.' },
+    reward: 'Blackstar Dragon Mount, Abyssal Dragon Armor Component', element: 'shock', weakness: 'physical', // Updated 2026-04-02: rewards confirmed by GameSpot + Fextralife (2 sources)
+    location: "Marni's Masterium, Delesyia (quest: Foreboding Shadow, Ch.11)",
+    mechanics: '1 HP bar. Sits in corners of arena — position determines attack type. Throw javelins from arena devices to build stagger meter. When stunned, unleash melee combos. Flame tornado and bombard barrage are key attacks to dodge.' },
   { name: 'Snow Walker', region: 'pailune', type: 'Elemental', difficulty: 'extreme',
     reward: 'Unknown (TBD)', element: 'frost', weakness: 'fire',
     location: 'Pailune region',
     mechanics: 'Massive ice elemental. Ice attacks with charging and melee mix.' },
   { name: 'Gwen Kraber', region: 'hernand', type: 'Human', difficulty: 'hard',
-    reward: 'Frostfang', element: 'physical', weakness: 'physical', // Updated 2026-03-30: reward confirmed as Frostfang by game8
+    reward: 'Frostfang', element: 'physical', weakness: 'physical', // Updated 2026-03-31: reward confirmed as 'Frostfang' by game8 + web search (2-handed spear)
     location: 'Roothold Stronghold, Hernand' },
   { name: 'Sir Catfish', region: 'desert', type: 'Beast', difficulty: 'normal',
     reward: 'Unknown (TBD)', element: 'physical', weakness: 'shock',
     location: 'Unknown — confirmed in in-game Boss Knowledge Menu' },
-  { name: 'Titan', region: 'desert', type: 'Monster', difficulty: 'extreme',
-    reward: 'Unknown (TBD)', element: 'shock', weakness: 'physical',
-    location: 'Unknown',
-    mechanics: 'Wields spear. Lightning attacks.' },
+  { name: 'Titan', region: 'pailune', type: 'Monster', difficulty: 'extreme', // Updated 2026-04-02: region confirmed pailune (Windsong Peaks) by GameRant + gamingpromax (2 sources)
+    reward: 'Reckoning Two-Handed Spear, Lightning Bolt Plate Armor', element: 'shock', weakness: 'physical', // Updated 2026-04-02: rewards confirmed by nerdschalk + GameRant (2 sources)
+    location: 'Windsong Peaks, Pailune (quest: Ancient Barrier faction quest)',
+    mechanics: '3 phases including Gigantified form. Wields spear with lightning attacks. Attack exposed skin on hands during giant phase. Reckoning Spear has Lightning God\'s Affliction passive (calls lightning on parry).' },
 
   // Added 2026-03-24 via apply-data task
   // ─── CHAPTER 8–9 STORY BOSSES ──────────────────────────────────────────────────────────────────
