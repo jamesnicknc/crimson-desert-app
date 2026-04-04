@@ -574,9 +574,9 @@ export const BOSSES: Boss[] = [
     location: 'Sanctum of Absolution, Hernand (quest: Cloister of Ruination)',
     mechanics: 'Void spirit. Fitting judge of Antumbra\'s Order. Leader of the order.' },
   { name: 'Walter Lanford', region: 'hernand', type: 'Human', difficulty: 'extreme',
-    reward: 'Golden Piggy Bank', element: 'physical', weakness: 'frost', // Updated 2026-03-28: reward confirmed by GameRant + game8 (House Serkis Faction Quest)
+    reward: 'Golden Piggy Bank, Dane Shotgun, Rhonda Leather Boots', element: 'physical', weakness: 'frost', // Updated 2026-04-03: full rewards confirmed by game8 Tier 1 (House Serkis Faction Quest)
     location: 'Alfonso Estate, Hernand',
-    mechanics: 'Optional side quest (House Serkis Faction). Exceptional double-barreled gun shooter. Golden Piggy Bank generates offline income (Light Copper Pouches).' },
+    mechanics: 'Optional side quest (House Serkis Faction). Exceptional double-barreled gun shooter. Golden Piggy Bank generates offline income (Light Copper Pouches). Dane Shotgun is a unique firearm reward.' },
   { name: 'Muskan', region: 'desert', type: 'Human', difficulty: 'extreme',
     reward: 'Combat God\'s Plate Gloves', element: 'physical', weakness: 'physical', // Updated 2026-03-28: reward confirmed by nerdschalk + game8 (Bonepit questline completion)
     location: 'The Bonepit, Crimson Desert (Tommasoan territory)',
@@ -640,10 +640,37 @@ export const BOSSES: Boss[] = [
     element: 'fire', weakness: 'physical',
     location: 'Abyss Debris, west of Tashkalp, Crimson Desert',
     mechanics: 'Optional boss. Part of the Shackled God faction quest. Flying boss with fire lasers and meteors. Use Focused Shot to stun and ground it. Trap against arena rocks in northern area for sustained damage. Rolling extinguishes burning status. Confirmed identity of pre-launch "Desert Ancient" placeholder.' },
+
+  // Added 2026-04-03 via nightly audit (source: game8 Tier 1)
+  // ─── NEWLY CONFIRMED OPTIONAL BOSSES ──────────────────────────────────────────────────────────
+  { name: 'Abyss Kutum', region: 'abyss', type: 'Monster', difficulty: 'extreme',
+    reward: 'Power Core - Spire of Defiance, Abyss Artifact x1',
+    element: 'abyss', weakness: 'physical',
+    location: 'Twisted Thicketway, The Abyss' },
+  { name: 'Ogre', region: 'desert', type: 'Monster', difficulty: 'hard',
+    reward: "Ogre's Necklace, Colossal Might",
+    element: 'physical', weakness: 'physical',
+    location: 'Desolate Megalith Altar, Crimson Desert' },
+  { name: 'Crookrock Walker', region: 'desert', type: 'Monster', difficulty: 'extreme',
+    reward: 'Abyss Cell, Composure I, Power Core - Spire of Defiance, Destruction I',
+    element: 'physical', weakness: 'physical',
+    location: "Forebearer's Barrens, Crimson Desert" },
+  { name: 'Desert Marauder Rusten', region: 'desert', type: 'Human', difficulty: 'hard',
+    reward: "Plunderer's Gold Chest, Pillager's Leather Boots",
+    element: 'physical', weakness: 'physical',
+    location: "Forebearer's Barrens, Crimson Desert" },
+  { name: 'Queen Spider', region: 'hernand', type: 'Beast', difficulty: 'extreme',
+    reward: "Stirrups of the Open Sky, Queen's Fangs, Abyss Artifact x1",
+    element: 'physical', weakness: 'fire',
+    location: "Arboria Castle, Hernand (quest: Queen's Nest)" },
+  { name: 'Hemon Beindel', region: 'hernand', type: 'Human', difficulty: 'hard',
+    reward: 'Hound, Abyss Artifact x1',
+    element: 'physical', weakness: 'physical',
+    location: 'Fort Hellwood, Hernand (quest: Town on the Cliff)' },
 ];
 
-// Knowledge Codex contains 76 total named bosses. Above list contains 35 confirmed.
-// Remaining ~41 bosses exist but are not yet fully documented post-launch.
+// Knowledge Codex contains 76 total named bosses. Above list contains 41 confirmed.
+// Remaining ~35 bosses exist but are not yet fully documented post-launch.
 
 // ═══════════════════════════════════════
 // ENEMIES / BESTIARY
