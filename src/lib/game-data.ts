@@ -588,9 +588,9 @@ export const BOSSES: Boss[] = [
     location: 'Bardtree Gorge / Redfox Forest, Delesyia (quest: The Queen\'s Lake)',
     mechanics: 'Climbing puzzle boss. Use Triple Force Jump to scale its back. P1: Cling (R3) + Pierce (R2) on glowing green cracks. P2: Smash ceramic pots on shell. Requires good Stamina investment for clinging. NPC Diederik becomes armor vendor after completion.' },
   { name: 'White Horn', region: 'pailune', type: 'Beast', difficulty: 'hard',
-    reward: 'Unknown (TBD)', element: 'frost', weakness: 'fire',
-    location: 'White Mountains, Pailune',
-    mechanics: 'Multi-stage fight. Yeti/reindeer hybrid. Mountain spirit. Summons snowstorms and blizzards.' },
+    reward: "White Horn's Earring, Frost Hail Abyss Gear", element: 'frost', weakness: 'fire', // Updated 2026-04-05: rewards confirmed by GrindMeta + GameRant + crimsondesert.app (3 sources)
+    location: 'White Mountains, Pailune (Primal Frenzy / New Power Challenge)',
+    mechanics: 'Multi-stage fight. Yeti/reindeer hybrid. Mountain spirit. Summons snowstorms and blizzards. Part of Primal Frenzy New Power Challenges.' },
   { name: 'Golden Star', region: 'delesyia', type: 'Mechanical', difficulty: 'legendary',
     reward: 'Blackstar Dragon Mount, Abyssal Dragon Armor Component', element: 'shock', weakness: 'physical', // Updated 2026-04-02: rewards confirmed by GameSpot + Fextralife (2 sources)
     location: "Marni's Masterium, Delesyia (quest: Foreboding Shadow, Ch.11)",
