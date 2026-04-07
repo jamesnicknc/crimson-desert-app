@@ -602,9 +602,9 @@ export const BOSSES: Boss[] = [
   { name: 'Gwen Kraber', region: 'hernand', type: 'Human', difficulty: 'hard',
     reward: 'Frostfang', element: 'physical', weakness: 'physical', // Updated 2026-03-31: reward confirmed as 'Frostfang' by game8 + web search (2-handed spear)
     location: 'Roothold Stronghold, Hernand' },
-  { name: 'Sir Catfish', region: 'desert', type: 'Beast', difficulty: 'normal',
+  { name: 'Sir Catfish', region: 'hernand', type: 'Beast', difficulty: 'normal', // Updated 2026-04-06: region confirmed hernand (Vellua) by GameRant + crimsondesert.app (2 sources)
     reward: 'Unknown (TBD)', element: 'physical', weakness: 'shock',
-    location: 'Unknown — confirmed in in-game Boss Knowledge Menu' },
+    location: 'Vellua, Hernand (quest: Shadows in the Mist, Vellua Fishermen\'s Guild)' },
   { name: 'Titan', region: 'pailune', type: 'Monster', difficulty: 'extreme', // Updated 2026-04-02: region confirmed pailune (Windsong Peaks) by GameRant + gamingpromax (2 sources)
     reward: 'Reckoning Two-Handed Spear, Lightning Bolt Plate Armor', element: 'shock', weakness: 'physical', // Updated 2026-04-02: rewards confirmed by nerdschalk + GameRant (2 sources)
     location: 'Windsong Peaks, Pailune (quest: Ancient Barrier faction quest)',
@@ -669,7 +669,7 @@ export const BOSSES: Boss[] = [
     location: 'Fort Hellwood, Hernand (quest: Town on the Cliff)' },
 ];
 
-// Knowledge Codex contains 76 total named bosses. Above list contains 41 confirmed.
+// Knowledge Codex contains 76 total named bosses. Above list contains 39 confirmed.
 // Remaining ~35 bosses exist but are not yet fully documented post-launch.
 
 // ═══════════════════════════════════════
