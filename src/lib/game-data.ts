@@ -603,7 +603,7 @@ export const BOSSES: Boss[] = [
     reward: 'Frostfang', element: 'physical', weakness: 'physical', // Updated 2026-03-31: reward confirmed as 'Frostfang' by game8 + web search (2-handed spear)
     location: 'Roothold Stronghold, Hernand' },
   { name: 'Sir Catfish', region: 'hernand', type: 'Beast', difficulty: 'normal', // Updated 2026-04-06: region confirmed hernand (Vellua) by GameRant + crimsondesert.app (2 sources)
-    reward: 'Unknown (TBD)', element: 'physical', weakness: 'shock',
+    reward: "Voyages of Sir Catfish, Catfish Plate Helm, Abyss Artifact x1", element: 'physical', weakness: 'shock', // Updated 2026-04-07: rewards confirmed by crimsondesert.app wiki (Tier 1)
     location: 'Vellua, Hernand (quest: Shadows in the Mist, Vellua Fishermen\'s Guild)' },
   { name: 'Titan', region: 'pailune', type: 'Monster', difficulty: 'extreme', // Updated 2026-04-02: region confirmed pailune (Windsong Peaks) by GameRant + gamingpromax (2 sources)
     reward: 'Reckoning Two-Handed Spear, Lightning Bolt Plate Armor', element: 'shock', weakness: 'physical', // Updated 2026-04-02: rewards confirmed by nerdschalk + GameRant (2 sources)
