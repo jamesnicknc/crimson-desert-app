@@ -541,11 +541,11 @@ export const BOSSES: Boss[] = [
     mechanics: 'Forced Oongka play (no Kliff shield). Block/parry with weapon via L1/LB. Dual-wield one-handed weapons recommended. Sword of the Lord optimal for wave attacks. Prep: hunt animals nearby, cook at Beighen village.' },
   // Ch.8 — Demeniss campaign
   { name: 'Gregor the Halberd of Carnage', region: 'hernand', type: 'Human', difficulty: 'hard', // Updated 2026-03-24: region confirmed hernand by PowerPyx + GameRant (2 sources)
-    reward: 'Golden Vanguard, Abyss Artifact x1', element: 'physical', weakness: 'physical', // Updated 2026-03-24: reward confirmed by PowerPyx Tier 1
+    reward: 'Golden Vanguard, Radiant Necklace, Abyss Artifact x1', element: 'physical', weakness: 'physical', // Updated 2026-04-09: reward updated with Radiant Necklace per game8 Tier 1
     location: 'Fort Ironclad, Hernand (quest: Where the Wind Guides You)', // Updated 2026-03-24: location region corrected
     mechanics: '1 HP bar. Arrows fired from walls throughout fight. Super armor with successive stabs — dodge continuously until it stops. Combat loop: dodge → attack → heal simultaneously.' },
   { name: 'Fortain the Cursed Knight', region: 'hernand', type: 'Human', difficulty: 'extreme', // Updated 2026-03-22: region confirmed hernand by Fextralife, PowerPyx, game8, Deltia's Gaming (4 sources)
-    reward: 'Shackle of Might, Abyss Artifact x1', element: 'abyss', weakness: 'physical',
+    reward: 'Shackle of Might, Demeniss Refinement Token, Abyss Artifact x1', element: 'abyss', weakness: 'physical', // Updated 2026-04-09: Demeniss Refinement Token added per game8 Tier 1
     location: 'Thornbriar Fortress, Hernand (quest: The Cursed Knight)', // Updated 2026-03-22: location region corrected
     mechanics: '1 HP bar. Summons blue ghost knight (ground strikes + arrows). Spam R2 with Tauria Curved Sword. Nature\'s Echo skill recommended. Dodge away when ghost appears. "Gigantic warrior empowered by cursed warrior spirits."' },
   // Late game — The Abyss
