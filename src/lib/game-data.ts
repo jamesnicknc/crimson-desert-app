@@ -509,11 +509,11 @@ export const BOSSES: Boss[] = [
     reward: 'Axiom Bracelet', element: 'physical', weakness: 'frost',
     location: 'Hills of No Return, Hernand',
     mechanics: 'Primary antagonist. Leader of Black Bear Forces. First encounter. Parry L1 → heavy R2 attacks.' },
-  // Ch.5 — Crow's Nest (Abyss region); fought twice
-  { name: 'Draven the Crowcaller', region: 'abyss', type: 'Humanoid', difficulty: 'extreme',
+  // Ch.5 — Spire of Soaring (Demeniss region); fought twice
+  { name: 'Draven the Crowcaller', region: 'demeniss', type: 'Humanoid', difficulty: 'extreme',
     reward: 'Blackwing Leather Armor, Blackwing Mask, Tauria Curved Sword',
     element: 'abyss', weakness: 'abyss',
-    location: "Crow's Nest, The Abyss",
+    location: 'Spire of Soaring, Demeniss', // Updated 2026-04-12: region confirmed demeniss by PowerPyx, method.gg, TheGamer, Fextralife (4 sources)
     mechanics: 'Fought twice. First encounter: 1 HP bar (easy). Second encounter (Ch.5 finale): 3 HP bars. Parry L1 → R1 combo → heal while attacking. Aerial dodge: wait for 2nd midair dodge, roll via Circle/B to dodge dive attack. Drops Tauria Curved Sword.' },
   // Ch.6 — Calphade arc
   { name: 'Cassius Morten', region: 'hernand', type: 'Human', difficulty: 'hard',
@@ -526,9 +526,10 @@ export const BOSSES: Boss[] = [
     location: 'Pailune Castle (quest: Dawn)',
     mechanics: '2 HP bars. Lightning user. Teleports constantly. Dodge > block/parry. Attack during combo gaps or after teleport stops. 100+ grilled meat.' },
   { name: 'Awakened Ludvig', region: 'pailune', type: 'Human', difficulty: 'extreme',
-    reward: 'Unknown (TBD)', element: 'shock', weakness: 'physical',
-    location: 'Pailune (continuation of Lonely Jackals)',
-    mechanics: 'Empowered transformation. Consumes an imprisoned human to gain immense unholy power.' },
+    reward: 'Hungering Fang Leather Cloak, Hungering Fang Leather Boots', // Updated 2026-04-12: rewards confirmed by games.gg, method.gg, TheGamer, Fextralife, game8 (5 sources)
+    element: 'shock', weakness: 'physical',
+    location: 'Pailune Castle (continuation of Lonely Jackals)',
+    mechanics: 'Empowered transformation. Consumes an imprisoned human to gain immense unholy power. Wider swing arcs than base Ludvig — step back during awakening animation (~5 seconds) to recover.' },
   { name: 'Lava Myurdin', region: 'pailune', type: 'Human', difficulty: 'legendary',
     reward: 'Melted Ambition, Pailunese Contribution EXP x3000',
     element: 'fire', weakness: 'frost',
