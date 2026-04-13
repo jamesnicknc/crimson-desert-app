@@ -668,6 +668,13 @@ export const BOSSES: Boss[] = [
     reward: 'Hound, Abyss Artifact x1',
     element: 'physical', weakness: 'physical',
     location: 'Fort Hellwood, Hernand (quest: Town on the Cliff)' },
+
+  // Added 2026-04-12 via nightly audit (sources: Fextralife wiki Tier 1 + GameSpot/GameRant/nerdschalk Tier 2)
+  // ─── SHACKLED GOD FINALE ──────────────────────────────────────────────────────────────────────
+  { name: 'Aeserion the Great Serpent', region: 'delesyia', type: 'Monster', difficulty: 'legendary',
+    reward: 'Aeserion Sword', element: 'shock', weakness: 'physical', // element: area rain reduces lightning resistance (editorial inference); reward: Fextralife + nerdschalk + GameRant confirm Aeserion Sword
+    location: 'Serpent Shrine, southwestern Delesyia (Shackled God Faction Quest finale)',
+    mechanics: 'Puzzle boss -- no traditional HP bar. Requires defeating all 3 Ancients (Priscus, Praevus, Primus) first. Mechanic: destroy 3 Bismuth Emitters on back, then cleanse exposed corruption with Force Palm. Area has permanent rain that reduces lightning resistance. Post-fight: collect Aeserion Scales via Axiom Force + Kuku Pot for upgrade materials.' },
 ];
 
 // Knowledge Codex contains 76 total named bosses. Above list contains 39 confirmed.
@@ -1927,46 +1934,49 @@ export function getSkillBranches(character: Character) {
 
 // ═══════════════════════════════════════
 // TROPHIES / ACHIEVEMENTS (35 total)
-// Source: gamingbible.com [2026-03-16] -- Tier 2
+// Source: PowerPyx trophy guide [2026-03-19] -- Tier 1; PSNProfiles [2026-04-12] -- Tier 2
+// Rarity distribution confirmed: 1 Platinum / 4 Gold / 10 Silver / 20 Bronze
+// Corrected 2026-04-12 (Nightly Run): prior version had wrong distribution (1P/5G/16S/13B)
 // ═══════════════════════════════════════
 
 export const TROPHIES: Trophy[] = [
-  // Platinum
+  // Platinum (1)
   { id: 'troph-plat', name: 'Pywel Legend', rarity: 'platinum', description: 'Unlock all other trophies and prove yourself the ultimate legend of Pywel.', category: 'Mastery' },
-  // Gold
-  { id: 'troph-g01', name: 'Conqueror of Spires', rarity: 'gold', description: 'Conquer the towering spires that pierce the sky across the lands of Pywel.', category: 'Exploration' },
+  // Gold (4) — Expert Storyteller, Conqueror of the Abysses, Expert Explorer, Unvanquished Strategist
   { id: 'troph-g02', name: 'Conqueror of the Abysses', rarity: 'gold', description: 'Explore and master the multiple Abyss areas that threaten the world of Pywel.', category: 'Exploration' },
-  { id: 'troph-g03', name: 'Tamer of Legends', rarity: 'gold', description: 'Tame legendary mounts and build an extraordinary stable of companions.', category: 'Mounts' },
-  { id: 'troph-g04', name: 'Grand Collector of Arms', rarity: 'gold', description: 'Collect an impressive arsenal of weapons from across the world of Pywel.', category: 'Collection' },
-  { id: 'troph-g05', name: 'Natural Collector', rarity: 'gold', description: 'Discover and catalog the natural wonders and creatures found throughout Pywel.', category: 'Collection' },
-  // Silver
-  { id: 'troph-s01', name: 'Master of Swords', rarity: 'silver', description: 'Demonstrate mastery over the sword through skill and countless victories.', category: 'Combat' },
-  { id: 'troph-s02', name: 'Master of Shields', rarity: 'silver', description: 'Master the art of defense and shield combat.', category: 'Combat' },
-  { id: 'troph-s03', name: 'Master of Bows', rarity: 'silver', description: 'Prove your expertise with the bow through ranged combat mastery.', category: 'Combat' },
-  { id: 'troph-s04', name: 'Master of Spears', rarity: 'silver', description: 'Achieve mastery over the spear and polearm weapons.', category: 'Combat' },
-  { id: 'troph-s05', name: 'Master of Two-Handed Weapons', rarity: 'silver', description: 'Wield massive two-handed weapons with devastating expertise.', category: 'Combat' },
-  { id: 'troph-s06', name: 'Master of Artillery', rarity: 'silver', description: 'Unleash the full power of artillery weapons on the enemies of Pywel.', category: 'Combat' },
-  { id: 'troph-s07', name: 'Master of Rapiers', rarity: 'silver', description: 'Demonstrate supreme finesse and precision with the rapier.', category: 'Combat' },
-  { id: 'troph-s08', name: 'Master of Firearms', rarity: 'silver', description: 'Master the modern firearms of Pywel with deadly accuracy.', category: 'Combat' },
-  { id: 'troph-s09', name: 'Master Camper', rarity: 'silver', description: 'Build and fully develop the Greymane Camp into a thriving base of operations.', category: 'Camp' },
-  { id: 'troph-s10', name: 'Expert Storyteller', rarity: 'silver', description: 'Complete a significant portion of the stories woven across Pywel.', category: 'Story' },
-  { id: 'troph-s11', name: 'Expert Explorer', rarity: 'silver', description: 'Explore a vast range of locations and regions throughout Pywel.', category: 'Exploration' },
+  { id: 'troph-s10', name: 'Expert Storyteller', rarity: 'gold', description: 'Complete the entire main story including all boss fights across Pywel.', category: 'Story' },
+  { id: 'troph-s11', name: 'Expert Explorer', rarity: 'gold', description: 'Solve every exploration puzzle and fulfill all exploration challenges in Pywel.', category: 'Exploration' },
+  { id: 'troph-b03', name: 'Unvanquished Strategist', rarity: 'gold', description: 'Use cunning strategy and tactics to overcome challenging encounters.', category: 'Combat' },
+  // Silver (10) — Grand Collector of Arms, Tamer of Legends, Natural Collector, Proud Returnee,
+  //              Pilgrim of Wonders, Puzzle Solver, Lightbringer, True Gamer, Protector of Pailune, Ultimate Hunter
+  { id: 'troph-g04', name: 'Grand Collector of Arms', rarity: 'silver', description: 'Collect an impressive arsenal of special weapons from across the world of Pywel.', category: 'Collection' },
+  { id: 'troph-g03', name: 'Tamer of Legends', rarity: 'silver', description: 'Tame legendary mounts and build an extraordinary stable of companions.', category: 'Mounts' },
+  { id: 'troph-g05', name: 'Natural Collector', rarity: 'silver', description: 'Discover and catalog the natural wonders and creatures found throughout Pywel.', category: 'Collection' },
+  { id: 'troph-b04', name: 'Proud Returnee', rarity: 'silver', description: 'Relocate the Greymane Camp from Howling Hill to Pailune.', category: 'Story' },
+  { id: 'troph-b05', name: 'Pilgrim of Wonders', rarity: 'silver', description: 'Visit all the remarkable secret wonders and landmarks scattered across Pywel.', category: 'Exploration' },
+  { id: 'troph-b06', name: 'Puzzle Solver', rarity: 'silver', description: 'Unravel all mysteries and solve every puzzle hidden throughout the world.', category: 'Exploration' },
+  { id: 'troph-b07', name: 'Lightbringer', rarity: 'silver', description: 'Cleanse all Sanctums and bring light to the dark places of Pywel.', category: 'Exploration' },
+  { id: 'troph-b09', name: 'True Gamer', rarity: 'silver', description: 'Master all minigames and side activities of Pywel.', category: 'Minigames' },
+  { id: 'troph-b10', name: 'Protector of Pailune', rarity: 'silver', description: 'Finish Chapter 7 and defend the frozen lands of Pailune.', category: 'Story' },
   { id: 'troph-s12', name: 'Ultimate Hunter', rarity: 'silver', description: 'Hunt and defeat legendary beasts across every region of Pywel.', category: 'Combat' },
-  { id: 'troph-s13', name: 'Battlefield Conqueror', rarity: 'silver', description: 'Dominate the battlefields of Pywel through superior combat and strategy.', category: 'Combat' },
-  { id: 'troph-s14', name: 'The Golden Merchant', rarity: 'silver', description: 'Accumulate great wealth and become a prominent merchant across Pywel.', category: 'Economy' },
-  { id: 'troph-s15', name: 'Shadowlord', rarity: 'silver', description: 'Master stealth and shadow-based abilities to become a feared Shadowlord.', category: 'Combat' },
-  { id: 'troph-s16', name: 'Lord of Honor', rarity: 'silver', description: 'Uphold honor and justice throughout your journey across Pywel.', category: 'Story' },
-  // Bronze
+  // Bronze (20)
   { id: 'troph-b01', name: 'Novice Adventurer', rarity: 'bronze', description: 'Take your first steps as an adventurer in the world of Pywel.', category: 'Story' },
-  { id: 'troph-b02', name: 'Maze Pathfinder', rarity: 'bronze', description: 'Navigate through the complex mazes and labyrinths hidden across Pywel.', category: 'Exploration' },
-  { id: 'troph-b03', name: 'Unvanquished Strategist', rarity: 'bronze', description: 'Use cunning strategy and tactics to overcome challenging encounters.', category: 'Combat' },
-  { id: 'troph-b04', name: 'Proud Returnee', rarity: 'bronze', description: 'Return to a significant location with renewed purpose and strength.', category: 'Story' },
-  { id: 'troph-b05', name: 'Pilgrim of Wonders', rarity: 'bronze', description: 'Visit the remarkable wonders and landmarks scattered across Pywel.', category: 'Exploration' },
-  { id: 'troph-b06', name: 'Puzzle Solver', rarity: 'bronze', description: 'Unravel the mysteries and solve the puzzles hidden throughout the world.', category: 'Exploration' },
-  { id: 'troph-b07', name: 'Lightbringer', rarity: 'bronze', description: 'Bring light to dark places and illuminate the hidden corners of Pywel.', category: 'Exploration' },
+  { id: 'troph-b02', name: 'Maze Pathfinder', rarity: 'bronze', description: 'Navigate through all the mazes and labyrinths hidden across Pywel.', category: 'Exploration' },
+  { id: 'troph-g01', name: 'Conqueror of Spires', rarity: 'bronze', description: 'Conquer all the towering spires that pierce the sky across the lands of Pywel.', category: 'Exploration' },
   { id: 'troph-b08', name: 'Navigator of the Stars', rarity: 'bronze', description: 'Use the stars and celestial markers to navigate and explore Pywel.', category: 'Exploration' },
-  { id: 'troph-b09', name: 'True Gamer', rarity: 'bronze', description: 'Prove your versatility by mastering the minigames and side activities of Pywel.', category: 'Minigames' },
-  { id: 'troph-b10', name: 'Protector of Pailune', rarity: 'bronze', description: 'Defend the frozen lands of Pailune from the threats that endanger its people.', category: 'Story' },
+  { id: 'troph-s09', name: 'Master Camper', rarity: 'bronze', description: 'Activate the Greymane Camp at Howling Hill.', category: 'Camp' },
+  { id: 'troph-s01', name: 'Master of Swords', rarity: 'bronze', description: 'Demonstrate mastery over the sword through skill and countless victories.', category: 'Combat' },
+  { id: 'troph-s02', name: 'Master of Shields', rarity: 'bronze', description: 'Master the art of defense and shield combat.', category: 'Combat' },
+  { id: 'troph-s03', name: 'Master of Bows', rarity: 'bronze', description: 'Prove your expertise with the bow through ranged combat mastery.', category: 'Combat' },
+  { id: 'troph-s04', name: 'Master of Spears', rarity: 'bronze', description: 'Achieve mastery over the spear and polearm weapons.', category: 'Combat' },
+  { id: 'troph-s05', name: 'Master of Two-Handed Weapons', rarity: 'bronze', description: 'Wield massive two-handed weapons with devastating expertise.', category: 'Combat' },
+  { id: 'troph-s06', name: 'Master of Artillery', rarity: 'bronze', description: 'Unleash the full power of artillery weapons on the enemies of Pywel.', category: 'Combat' },
+  { id: 'troph-s07', name: 'Master of Rapiers', rarity: 'bronze', description: 'Demonstrate supreme finesse and precision with the rapier.', category: 'Combat' },
+  { id: 'troph-s08', name: 'Master of Firearms', rarity: 'bronze', description: 'Master the modern firearms of Pywel with deadly accuracy.', category: 'Combat' },
+  { id: 'troph-s13', name: 'Battlefield Conqueror', rarity: 'bronze', description: 'Dominate the battlefields of Pywel through superior combat and strategy.', category: 'Combat' },
+  { id: 'troph-s14', name: 'The Golden Merchant', rarity: 'bronze', description: 'Accumulate great wealth and become a prominent merchant across Pywel.', category: 'Economy' },
+  { id: 'troph-s15', name: 'Shadowlord', rarity: 'bronze', description: 'Master stealth and shadow-based abilities to become a feared Shadowlord.', category: 'Combat' },
+  { id: 'troph-s16', name: 'Lord of Honor', rarity: 'bronze', description: 'Uphold honor and justice throughout your journey across Pywel.', category: 'Story' },
   { id: 'troph-b11', name: 'Relentless Warrior', rarity: 'bronze', description: 'Fight relentlessly and never back down from the challenges of Pywel.', category: 'Combat' },
   { id: 'troph-b12', name: 'Brilliant Tactician', rarity: 'bronze', description: 'Demonstrate tactical brilliance in overcoming the enemies of Pywel.', category: 'Combat' },
   { id: 'troph-b13', name: 'Beast Slayer', rarity: 'bronze', description: 'Hunt and defeat the fearsome beasts that roam the wilds of Pywel.', category: 'Combat' },
