@@ -596,10 +596,10 @@ export const BOSSES: Boss[] = [
     reward: 'Blackstar Dragon Mount, Abyssal Dragon Armor Component', element: 'shock', weakness: 'physical', // Updated 2026-04-02: rewards confirmed by GameSpot + Fextralife (2 sources)
     location: "Marni's Masterium, Delesyia (quest: Foreboding Shadow, Ch.11)",
     mechanics: '1 HP bar. Sits in corners of arena — position determines attack type. Throw javelins from arena devices to build stagger meter. When stunned, unleash melee combos. Flame tornado and bombard barrage are key attacks to dodge.' },
-  { name: 'Snow Walker', region: 'pailune', type: 'Elemental', difficulty: 'extreme',
-    reward: 'Unknown (TBD)', element: 'frost', weakness: 'fire',
-    location: 'Pailune region',
-    mechanics: 'Massive ice elemental. Ice attacks with charging and melee mix.' },
+  { name: 'Icewalker', region: 'hernand', type: 'Elemental', difficulty: 'extreme', // Updated 2026-04-13: name confirmed as Icewalker by Fextralife (Tier 1); region confirmed hernand (Everfrost); reward confirmed
+    reward: 'Haste I, Aegis I, Power Core - Verse of Sowing', element: 'frost', weakness: 'fire',
+    location: 'Everfrost, Hernand (optional world boss)',
+    mechanics: 'Optional world boss. Two Icewalkers fought simultaneously, each with 1 HP bar. Cannot block any attacks -- dodge only. Slow turn rate: dash behind and backstab repeatedly. Fills stagger meter → perform finisher for heavy damage. Special attacks: Icy Whirlwind (dodge away), Frost Nova (frontal, dodge backward). Cold temperature area -- consume ice resistance items. No associated quest.' },
   { name: 'Gwen Kraber', region: 'hernand', type: 'Human', difficulty: 'hard',
     reward: 'Frostfang', element: 'physical', weakness: 'physical', // Updated 2026-03-31: reward confirmed as 'Frostfang' by game8 + web search (2-handed spear)
     location: 'Roothold Stronghold, Hernand' },
