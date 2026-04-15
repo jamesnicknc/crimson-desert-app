@@ -191,6 +191,8 @@ export const SKILLS: Skill[] = [
   { id: 'k-ax3', name: 'Aerial Maneuver', cost: 'Artifact', branch: 'Axiom', character: 'kliff', description: 'Perform advanced airborne maneuvers, repositioning rapidly to dodge attacks.' },
   { id: 'k-ax4', name: 'Aerial Swing', cost: 'Artifact', branch: 'Axiom', character: 'kliff', description: 'Execute powerful sword swings in flight, striking ground targets from above.' },
   { id: 'k-ax6', name: 'Swift Flight', cost: 'Artifact', branch: 'Axiom', character: 'kliff', description: 'Increase aerial movement speed and responsiveness.' },
+  // Added Patch 1.03.00 (2026-04-11)
+  { id: 'k-ax7', name: 'Focused Aerial Roll', cost: 'Artifact', branch: 'Axiom', character: 'kliff', description: 'Activate Focus during flight, then press dodge to perform a Focused Aerial Roll. Requires Focus Lv.3, Flight Lv.2, and Aerial Roll unlocked. Added in Patch 1.03.' },
 
   // Kliff — Core Convergence
   { id: 'k-c1', name: 'Falling Palm', cost: 'Convergence', branch: 'Core', character: 'kliff', description: 'Channel all remaining Stamina into a ground-impact strike. Unlocked by completing any one of the three branches (Blue, Green, or Red).' },
@@ -234,6 +236,9 @@ export const SKILLS: Skill[] = [
   { id: 'd-sm2', name: 'Smiting Bolt', cost: 'Artifact', branch: 'Smiting', character: 'damiane', description: 'Fire a bolt of smiting Abyss energy at a distant target.' },
   { id: 'd-pl', name: 'Piercing Light', cost: 'Artifact', branch: 'Smiting', character: 'damiane', description: 'A piercing beam of Abyss light that passes through multiple enemies.' },
   { id: 'd-ss', name: 'Shield Sentinel', cost: 'Artifact', branch: 'Smiting', character: 'damiane', description: 'Deploy a floating shield sentry turret that autonomously attacks nearby enemies.' },
+  // Added Patch 1.03.00 (2026-04-11)
+  { id: 'd-af', name: 'Axiom Force', cost: 'Story', branch: 'Axiom', character: 'damiane', description: 'Harness Abyss power for aerial grappling and environmental interactions. Previously Kliff-exclusive; added to Damiane in Patch 1.03.' },
+  { id: 'd-ns', name: "Nature's Snare", cost: 'Artifact', branch: 'Spirit Arts', character: 'damiane', description: "Rotate your energy to create a Nature's Snare that absorbs incoming projectiles. Previously Kliff-exclusive; added to Damiane in Patch 1.03." },
 
   // ─── OONGKA ──────────────────────────────────────────────────────────────────
   // Unlocked in Chapter 7 during "Twisted Fate" quest at Ashclaw Keep (after Myurdin fight).
@@ -281,6 +286,9 @@ export const SKILLS: Skill[] = [
   { id: 'o-fc', name: 'Focus', cost: 'Artifact', branch: 'Spirit Arts', character: 'oongka', description: 'Enter a focused combat state for increased precision.' },
   { id: 'o-ng', name: "Nature's Grasp", cost: 'Artifact', branch: 'Spirit Arts', character: 'oongka', description: 'Summon binding energy to immobilize a target.' },
   { id: 'o-ks', name: 'Keen Senses', cost: 'Artifact', branch: 'Spirit Arts', character: 'oongka', description: 'Heighten awareness to detect hidden enemies and avoid ambushes.' },
+  // Added Patch 1.03.00 (2026-04-11)
+  { id: 'o-af', name: 'Axiom Force', cost: 'Story', branch: 'Axiom', character: 'oongka', description: 'Harness Abyss power for aerial grappling and environmental interactions. Previously Kliff-exclusive; added to Oongka in Patch 1.03.' },
+  { id: 'o-ns', name: "Nature's Snare", cost: 'Artifact', branch: 'Spirit Arts', character: 'oongka', description: "Rotate your energy to create a Nature's Snare that absorbs incoming projectiles. Previously Kliff-exclusive; added to Oongka in Patch 1.03." },
 ];
 
 // ═══════════════════════════════════════
