@@ -344,8 +344,8 @@ export const RECOMMENDED_BUILDS: RecommendedBuild[] = [
     id: 'build-heavy-vanguard',
     name: 'Heavy Vanguard',
     character: 'damiane',
-    weapons: ["Damiane's Claymore", 'Sharpshooter Musket'],
-    keySkills: ['Claymore Sweep', 'Riposte', 'Explosive Round', 'Rapid Fire', 'Phase Dash'],
+    weapons: ["Damiane's Greatsword", 'Sharpshooter Musket'],
+    keySkills: ['Greatsword Sweep', 'Riposte', 'Explosive Round', 'Rapid Fire', 'Phase Dash'],
     abyssCores: ['Strength Core', 'Precision Core'],
     playstyle: 'Balanced melee-ranged fighter focusing on heavy hits and tactical repositioning.',
     difficulty: 'intermediate',
@@ -683,10 +683,31 @@ export const BOSSES: Boss[] = [
     reward: 'Aeserion Sword', element: 'shock', weakness: 'physical', // element: area rain reduces lightning resistance (editorial inference); reward: Fextralife + nerdschalk + GameRant confirm Aeserion Sword
     location: 'Serpent Shrine, southwestern Delesyia (Shackled God Faction Quest finale)',
     mechanics: 'Puzzle boss -- no traditional HP bar. Requires defeating all 3 Ancients (Priscus, Praevus, Primus) first. Mechanic: destroy 3 Bismuth Emitters on back, then cleanse exposed corruption with Force Palm. Area has permanent rain that reduces lightning resistance. Post-fight: collect Aeserion Scales via Axiom Force + Kuku Pot for upgrade materials.' },
+
+  // Added 2026-04-15 via nightly audit (sources: Fextralife Tier 1, PowerPyx Tier 1, game8 Tier 1)
+  // ─── NEWLY CONFIRMED BOSSES ───────────────────────────────────────────────────────────────────
+  { name: 'Beloth the Darksworn', region: 'hernand', type: 'Monster', difficulty: 'hard',
+    reward: 'Frost Spike, Abyss Artifact x1', element: 'frost',
+    location: 'Hoenmark Ruins, Hernand (quest: Wraith in the Frost)',
+    mechanics: 'Faction quest boss. Dark wraith haunting Hoenmark Ruins with an unholy blade and freezing blizzard. Frost attacks including Hailstorm cripple movement speed and deal damage over time. Tough armor -- use arena pillars for cover and concealment. Bring HP recovery items with Ice Resistance.' },
+  { name: 'Gabriel Caliburn', region: 'abyss', type: 'Human', difficulty: 'legendary',
+    reward: 'Twisted Verdict', element: 'abyss',
+    location: 'Monolith Crown / Crescent Skybridge, The Abyss (quest: A Shadow in the Void, Main Quest #159)',
+    mechanics: 'Final encounter as Corrupted Caliburn (3 HP bars). First encounter at Blood Coronation in Hernand/Demeniss is a FORCED LOSS -- no reward, do not attempt to win. Final fight in The Abyss: summons shadow copies, uses sword attacks, bow strikes, and explosive projectiles. Once renowned duke corrupted by insatiable hunger for power.' },
+  { name: 'Awakened Lucian Bastier', region: 'hernand', type: 'Human', difficulty: 'extreme',
+    reward: "Official Knight's Plate Armor, Official Knight's Leather Boots, Official Knight's Leather Gloves, Official Knight's Plate Gloves, Spire of Clockwork",
+    element: 'fire',
+    location: 'Spire of Clockwork, Hernand (continuation of A Fleeting Dream, Ch.8)',
+    mechanics: 'Phase 2 of Lucian Bastier fight (same quest, forced Damiane). Consumes an Abyss artifact to transform, wielding a massive armblade that cleaves multiple targets at once. Keep distance; dodge the transformation animation (~3s), then attack after teleport animation ends. Wide horizontal slices are the main threat.' },
+  { name: 'Master Du', region: 'desert', type: 'Human', difficulty: 'hard',
+    reward: "Master Du's Circlet, Karmic Pulse, Tashkalp Contribution EXP x1500",
+    element: 'physical',
+    location: 'Cloister of Enlightenment, Crimson Desert (quest: The Sage of the Desert)',
+    mechanics: '2 HP bars. Mysterious sage and martial master. P1: balanced attack patterns -- only strikes when a clear window appears. P2: shifts to defensive stance, switch to aggressive offense. Beware instakill Green Ray laser in P2. Observe him mid-fight to permanently unlock Blinding Flash Finisher skill. NOTE: Does not appear in Knowledge Codex journal.' },
 ];
 
-// Knowledge Codex contains 76 total named bosses. Above list contains 39 confirmed.
-// Remaining ~35 bosses exist but are not yet fully documented post-launch.
+// Knowledge Codex contains 76 total named bosses. Above list contains 44 confirmed.
+// Remaining ~32 bosses exist but are not yet fully documented post-launch.
 
 // ═══════════════════════════════════════
 // ENEMIES / BESTIARY
@@ -1660,7 +1681,7 @@ export const WEAPONS: Weapon[] = [
   { name: 'Dueling Pistol', icon: '🔫', iconKey: 'pistol', type: 'Pistol', atk: 30, spd: 75, rng: 70, character: 'damiane' },
   { name: 'Sharpshooter Musket', icon: '🔫', iconKey: 'pistol', type: 'Musket', atk: 60, spd: 25, rng: 95, character: 'damiane',
     signatureAbility: { name: 'Hexed Rounds', description: 'Shots mark enemies for 8 seconds. Marked enemies take 15% bonus damage from all sources.', source: 'Hexe Marie' } },
-  { name: "Damiane's Claymore", icon: '⚔', iconKey: 'sword', type: 'Claymore', atk: 65, spd: 40, rng: 35, character: 'damiane' },
+  { name: "Damiane's Greatsword", icon: '⚔', iconKey: 'sword', type: 'Greatsword', atk: 65, spd: 40, rng: 35, character: 'damiane' }, // Renamed from Claymore: Beebom, Game8, GamesRadar, Pearl Abyss Marketing Director all confirm Greatsword (2026-04-15)
   { name: 'Marksman Rifle', icon: '🔫', iconKey: 'rifle', type: 'Rifle', atk: 55, spd: 35, rng: 95, character: 'damiane' },
   { name: 'Blackpowder Hand Cannon', icon: '💣', iconKey: 'handcannon', type: 'Hand Cannon', atk: 75, spd: 20, rng: 50, character: 'damiane',
     signatureAbility: { name: 'Stonebreaker Shot', description: 'Fully charged shots shatter enemy guard and stagger for 2 seconds, ignoring all block.', source: 'Queen Stoneback Crab' } },
