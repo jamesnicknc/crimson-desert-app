@@ -1,6 +1,6 @@
 # Crimson Companion App -- Data To Add / Fix
 
-_Last updated: 2026-03-24 (Run 21 -- Day 6 Post-Launch / Apply-Data Task Run)_
+_Last updated: 2026-04-18 (Nightly Audit Run)_
 
 Items are organized by category and priority. Mark items as `[ADDED]` once they've been incorporated into the app.
 
@@ -9,6 +9,35 @@ Items are organized by category and priority. Mark items as `[ADDED]` once they'
 ## New Data to Add
 
 ### Skills
+
+#### Patch 1.03.00 Skills [APPLIED 2026-04-14 (Nightly Audit Run)]
+- **Kliff**: Focused Aerial Roll -- new skill added in Patch 1.03.00 (2026-04-11). Axiom branch. Requires Focus Lv.3, Flight Lv.2, Aerial Roll. `id: 'k-ax7'` added to SKILLS array.
+- **Damiane**: Axiom Force + Nature's Snare -- previously Kliff-exclusive, added to Damiane in Patch 1.03.00. `id: 'd-af'` and `id: 'd-ns'` added to SKILLS array.
+- **Oongka**: Axiom Force + Nature's Snare -- previously Kliff-exclusive, added to Oongka in Patch 1.03.00. `id: 'o-af'` and `id: 'o-ns'` added to SKILLS array.
+- Source: Official Pearl Abyss Patch Notes 1.03.00 (crimsondesert.pearlabyss.com) -- Tier 1.
+- Committed and pushed to GitHub: commit 0f10970. Vercel auto-deploy triggered.
+
+#### Patch 1.03.00 Roadmap Items [NEEDS REVIEW -- not yet live]
+- Boss Rematches (coming in April-June update window)
+- Re-Blockading system (liberated zones can be reclaimed)
+- Easy/Normal/Hard difficulty settings
+- New Mounts & Pets with dedicated armor sets
+- Hide Back Weapons feature
+- New Outfits
+- Specialized Storage System (food/wardrobe/gatherables/collections)
+- Source: Pearl Abyss April-June 2026 roadmap [2026-04-14] -- Tier 1.
+- Action needed: When these features go live, add relevant data to app (new mounts especially).
+
+#### Silver Fang [Permanent Wolf Mount] [NEEDS REVIEW -- not yet added, speed stat still missing] -- Updated: 2026-04-17 (Nightly Audit)
+- Confirmed permanent wolf mount. Name: Silver Fang (Legendary White Wolf).
+- **REGION NOW CONFIRMED: 'hernand'** [2026-04-17] -- Multiple sources confirm Howling Hollow is in Hernand, north of Sage's Peak. PCGamer states "north Hernand by the Sage's Peak." X/Twitter (@TheRealZephryss, confirmed community post): "near the Howling Hollow cave, north of The Sage's Peak in Hernand." The game8 (Tier 1) reference to "Pailune region" was incorrect; 3+ independent sources favor Hernand. Region blocker is now RESOLVED.
+- **STATS (confirmed 2026-04-16):** HP 450, Stamina 100, Attack 100, Defense 45. Speed stat still not confirmed numerically. Multiple sources describe it as "much slower than horses" -- estimated 30-35 on app speed scale. This is the ONLY remaining blocker for adding the entry.
+- **WEAKNESS CONFIRMED:** Lightning (especially weak to lightning attacks per game8).
+- **ACQUISITION CONFIRMED (2026-04-16):** (1) Defeat Black Fang during House Celeste faction quest "Silence from Afar" to obtain Leebur's Soul. (2) Defeat Silver Fang at Howling Hollow (weak to lightning). (3) Visit any Witch → "Craft Abyss Gear" → "Special Items" → craft Sigil using Fang of Silver Fang. (4) Equip via character/mount wheel.
+- **NOTABLE:** Silver Fang fights alongside player after dismounting and attacks enemies independently. Best used as a combat companion, not a travel mount.
+- Still missing: numeric speed stat (the only remaining blocker for adding to MOUNTS schema).
+- Source: GameRant + PCGamer [2026-04-14] -- Tier 1/2; game8 [2026-04-16] -- Tier 1; keengamer.com [2026-04-16] -- Tier 2; PCGamer + X/Twitter [2026-04-17] -- Tier 1/2 (region confirmation).
+- Action needed: Confirm speed stat numerically (estimate 30-35, "much slower than horses"). Once speed confirmed, add with `category: 'predator'`, `mountType: 'permanent'`, `region: 'hernand'`, `speed: TBD`, `combat: 100`, `stamina: 100`, `special: 'Legendary White Wolf; fights alongside player after dismounting; weak to lightning'`, `acquisition: 'Defeat Black Fang during House Celeste faction quest Silence from Afar → defeat Silver Fang at Howling Hollow (use lightning) → craft Sigil at any Witch'`.
 
 Run 13 (2026-03-18) sourced the FULL CONFIRMED skill list for Kliff from allthings.how. The SKILLS array needs a complete rewrite -- see the major gap entry below. Many skills confirmed below are absent from the app entirely; the existing entries use wrong names. The observation-learned skills already present (Belly Slam, Force Palm) match confirmed names in the Green branch (Force Palm confirmed; Belly Slam needs post-launch check).
 
@@ -81,26 +110,22 @@ Run 13 (2026-03-18) sourced the FULL CONFIRMED skill list for Kliff from allthin
   }
   ```
 
-#### Tenebrum [Puzzle Boss / Abyss Entity] [NEEDS REVIEW] -- Flagged: 2026-03-19 (Run 14)
-- **New post-launch confirmed boss.** Not in BOSSES array.
-- Quest: "Gate to the Otherworld"
-- Fight mechanic: Puzzle boss. Player must use Force Palm attacks while airborne. Uses Blinding Flash ability. Fight takes place in a plaza where the floor is missing. Player must double-jump (with wings ability) and time Force Palm strikes during Tenebrum's charging moments. Spirit (green branch resource) management required; hide behind pillars to recharge.
-- Type: Unknown (appears to be an entity rather than a human -- "Otherworld" quest name suggests supernatural origin). Likely 'Spirit' or 'Magical' type.
-- Region: Unknown. Likely late-game area or Abyss. "Gate to the Otherworld" quest name suggests a dimensional threshold / Abyss-adjacent area.
-- element: Unknown. Inferred 'abyss' from quest context, but unconfirmed.
-- Still missing: region, difficulty, reward, type, element. All required fields block app add.
-- Source: PowerPyx boss guide [2026-03-19] -- Tier 1
-- Note: Requires Force Palm (Green branch) to defeat -- this is a mechanic dependency not surfaced in the app's current boss data structure.
+#### Tenebrum [Puzzle Boss / Abyss Entity] [RESOLVED -- region/type confirmed 2026-04-16 (Nightly Audit)] -- Flagged: 2026-03-19 (Run 14)
+- **ALREADY IN APP** as `{ name: 'Tenebrum', region: 'hernand', type: 'Spirit', difficulty: 'hard' }`.
+- **REGION CONFIRMED: 'hernand'** -- Scholastone Institute, southwest Hernand, Chapter 4 (Forbidden Knowledge arc). Multiple Tier 1 sources confirm: PowerPyx, games.gg, game8, vulkk.com. App's current value `region: 'hernand'` is CORRECT.
+- **TYPE CONFIRMED: 'Spirit'** -- described as "an aerial enemy summoned from the otherworld" that takes the form of "a plume of dark smoke." App's `type: 'Spirit'` is CORRECT.
+- **QUEST CONFIRMED: "Gate to the Otherworld"** -- Ch.4 Forbidden Knowledge. Reward: 1x Abyss Artifact + Key to Spire of the Stars.
+- Fight mechanic confirmed: Puzzle boss. Use Force Palm while airborne (double-jump from updraft in plaza). Wait for Tenebrum to center and begin charging shockwave, then Force Palm its weak spot. 3 hits ends the fight.
+- Source: PowerPyx boss guide [2026-03-19] -- Tier 1; games.gg walkthrough [2026-04-16] -- Tier 1; game8 [2026-04-16] -- Tier 1; vulkk.com [2026-04-16] -- Tier 2
+- Action: No changes needed. App entry is correct. Data-to-add.md now resolved.
 
-#### Ludvig [Lightning Boss] [NEEDS REVIEW] -- Flagged: 2026-03-19 (Run 14)
-- **New post-launch confirmed boss.** Not in BOSSES array.
-- Quest: "Lonely Jackals"
-- HP bars: 2 (includes transformation into "Awakened Ludvig" phase 2)
-- element: 'shock' / lightning (confirmed -- teleports frequently and uses lightning damage in both phases)
-- Type: Human (appears humanoid in the PowerPyx guide)
-- Phase 2 ("Awakened Ludvig"): Constant teleporting makes landing hits difficult. Focus on dodging; attack after he completes combos or stops teleporting.
-- Region: Unknown. "Lonely Jackals" quest context not mapped to a region in available sources.
-- Still missing: region, difficulty, reward, confirmed type. Region and reward block app add.
+#### Ludvig [Lightning Boss] [RESOLVED -- all fields confirmed 2026-04-16 (Nightly Audit)] -- Flagged: 2026-03-19 (Run 14)
+- **ALREADY IN APP** as `{ name: 'Ludvig', region: 'pailune', type: 'Human', difficulty: 'hard', reward: 'Hungering Fang Leather Cloak, Hungering Fang Leather Boots', element: 'shock', weakness: 'physical' }`.
+- **REGION CONFIRMED: 'pailune'** -- Pailune Castle, Chapter 7 Homecoming arc. Confirmed by game8, games.gg, multiple Tier 1 sources. App's current value `region: 'pailune'` is CORRECT.
+- **REWARD CONFIRMED: 'Hungering Fang Leather Cloak, Hungering Fang Leather Boots'** -- confirmed by games.gg, method.gg, game8. App's reward field is CORRECT.
+- Quest: "Lonely Jackals" (94th main mission, Chapter 7 Homecoming, Sub-chapter: Decisive Battle)
+- Source: games.gg walkthrough [2026-04-16] -- Tier 1; method.gg [2026-04-16] -- Tier 2; game8 [2026-04-16] -- Tier 1
+- Action: No changes needed. App entry is correct and complete.
 - Source: PowerPyx boss guide [2026-03-19] -- Tier 1
 
 #### One-Armed Ludvig [Oongka's Introduction Boss] [ADDED -- 2026-03-24 (Run 21): reward corrected to 'None'] -- Flagged: 2026-03-19 (Run 14), Updated: 2026-03-24 (Run 19), Applied: 2026-03-24 (Run 21)
@@ -204,36 +229,33 @@ The following bosses were confirmed by authoritative sources but are NOT present
 - Researched: 2026-03-16 (Run 9) -- No new data from any source. Still 4 missing required fields. Re-run post-launch.
 - Researched: 2026-03-18 (Run 13) -- allthings.how 76-bosses article notes Draven is "referenced in Hexe Marie's dialogue," confirming a narrative connection between the two characters. This is not a region or reward confirmation, but strengthens the 'abyss' element inference given Hexe Marie's region is 'abyss'. No blocking fields resolved. Re-run post-launch.
 
-#### Muskan [Arena Boss] [NEEDS REVIEW]
+#### Muskan [Arena Boss] [RESOLVED -- reward confirmed and applied 2026-03-28 (Nightly Run)]
 - Type: Human (arena fighter)
 - Region: Crimson Desert (Bonepit arena -- desert biome confirmed)
 - Description: "Undefeated warrior of The Bonepit." Fights inside a gladiator-style arena with cheering onlookers. Does not use weapons -- relies entirely on fists. Appears in Tommasoan territory (Fextralife) which appears to be in or near the desert.
 - Source: Fextralife Wiki (https://crimsondesert.wiki.fextralife.com/Bosses), Beebom (desert biome confirmed)
 - Confirmed fields (2 sources): `region: 'desert'` (Beebom: "desert biome" + Fextralife: arena in Tommasoan territory near desert), `type: 'Human'`, `element: 'physical'` (no weapons, fists only -- no magical element observed)
 - Confirmed fields: `difficulty: 'extreme'` (editorial: undefeated arena warrior, late-game fight context; classified consistent with other extreme-tier bosses in app scale)
-- Still missing (blocks add): `reward` (Fextralife page exists but shows "TBA"; no named drop in any pre-launch source)
+- **REWARD CONFIRMED: "Combat God's Plate Gloves"** -- nerdschalk + game8 (2026-03-28). Reward is obtained after completing Bonepit questline. Observation rewards: enhanced Body Slam + Grapple Follow-up.
 - Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Runs 4-5)
-- Researched: 2026-03-16 (Run 9) -- No new data. Note: a "Muskan" appears in Black Desert Online (drops shoes) but this is a different game -- do not use. Re-run post-launch for reward field.
+- Researched: 2026-03-16 (Run 9) -- No new data.
+- [APPLIED 2026-03-28] Reward updated in game-data.ts to 'Combat God\'s Plate Gloves'. Mechanics text updated with confirmed strategy details.
 
-#### Gwen Kraber [Minor Field Boss] [NEEDS REVIEW]
-- Type: Human
-- Region: Hernand (fights at Roothold stronghold)
-- Description: Spear-wielding minor boss. Occupies Roothold stronghold (originally under House Celeste). The stronghold is freed once Kraber and his soldiers are defeated, returning it to House Celeste. Spear becomes obtainable after defeating him.
-- Source: Beebom (https://beebom.com/crimson-desert-bosses/), Fextralife Locations (Roothold confirmed in Hernand sub-locations list)
-- Confirmed fields (2 independent sources): `region: 'hernand'` (Roothold is in Hernand per Fextralife Locations; also corroborated by search results), `type: 'Human'`, `element: 'physical'` (human spear-fighter, no magical abilities mentioned)
-- Still missing (blocks add): `reward` (spear drop confirmed to exist, but no named item -- cannot invent a weapon name), `difficulty`
-- Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Run 4) -- region and element confirmed; blocked by unnamed reward
-- Researched: 2026-03-16 (Run 9) -- No new data. Note: the Beebom weapons page mentions a "Derictus Spear" as a Collector's Edition item -- this is NOT the Kraber drop spear. The in-game spear reward still has no confirmed name. Re-run post-launch.
+#### Gwen Kraber [Minor Field Boss] [RESOLVED -- reward confirmed and applied 2026-03-31] -- Updated: 2026-04-16 (Nightly Audit)
+- **ALREADY IN APP** as `{ name: 'Gwen Kraber', region: 'hernand', type: 'Human', difficulty: 'hard', reward: 'Frostfang', element: 'physical', weakness: 'physical', location: 'Roothold Stronghold, Hernand' }`.
+- **REWARD CONFIRMED: 'Frostfang'** (Two-Handed Spear) -- confirmed by game8 (Tier 1), Fextralife (Tier 1), crimsondesert.gaming.tools (Tier 1 database), multiple corroborating sources [2026-04-16]. Applied 2026-03-31.
+- **FROSTFANG STATS:** ATK 16, Refinement 1, 5 Abyss Gear Slots. Traits: Spirit Transference, Swift I, Destruction I. Spear was once wielded by Gwen Kraber, second-in-command of the Wolf Trackers.
+- **ADDITIONAL REWARD:** Icewing Plate Armor is also dropped alongside Frostfang (confirmed by gamingpromax.com [2026-04-16]). Consider adding Icewing Plate Armor to the reward field.
+- Quest: Chapter 6 -- Frozen Eldertree liberation quest (House Celeste faction), triggers boss spawn at Roothold.
+- Source: game8 [2026-04-16] -- Tier 1; Fextralife Frostfang page [2026-04-16] -- Tier 1; gamingpromax.com [2026-04-16] -- Tier 2.
+- Action: Consider updating `reward` field to include Icewing Plate Armor: `reward: 'Frostfang, Icewing Plate Armor'`.
 
-#### Titan [Armored Humanoid Boss] [NEEDS REVIEW]
-- Type: Humanoid
-- Region: Unknown
-- Description: Huge, heavily armored spear-wielder. Lightning-based attacks confirmed in trailers.
-- Source: Beebom (https://beebom.com/crimson-desert-bosses/), search result corroborations 2026-03-15
-- Confirmed fields (2+ sources): `element: 'shock'` (lightning attacks confirmed by Beebom and multiple search sources)
-- Still missing (blocks add): `region`, `difficulty`, `reward`
-- Flagged: 2026-03-15 (Run 2); Researched: 2026-03-15 (Run 4) -- element now confirmed as 'shock'; region and reward still needed
-- Researched: 2026-03-16 (Run 9) -- No new data. No source names a region or reward. Re-run post-launch.
+#### Titan [Armored Humanoid Boss] [RESOLVED -- region + reward confirmed and applied 2026-04-02 (Nightly Run)]
+- Type: Monster
+- Region: Pailune (Windsong Peaks) -- confirmed by GameRant + gamingpromax (2 sources)
+- Reward: Reckoning Two-Handed Spear, Lightning Bolt Plate Armor -- confirmed by nerdschalk + GameRant (2 sources)
+- Location: Windsong Peaks, Pailune (quest: Ancient Barrier faction quest)
+- [APPLIED 2026-04-02] Region corrected from 'desert' to 'pailune', rewards added, location and mechanics updated in game-data.ts.
 
 #### Marni's Excavatron [Hernand Mechanical Boss] [ALREADY IN APP -- verified 2026-03-20 Run 16] -- Updated: 2026-03-20 (Run 15)
 - Type: Mechanical
@@ -318,7 +340,7 @@ The following bosses were confirmed by authoritative sources but are NOT present
 - **Run 17 note (2026-03-21):** Already present in RECIPES array as `{ name: 'Grilled Meat', type: 'cooking', ingredients: ['Tough Meat x1'], effect: '+80 HP. Best bulk healing item...' }`. The ingredient is listed as "Tough Meat" (in-game name) rather than "Raw Meat" (pre-launch source). No action needed.
 - Source: PowerPyx boss guide + tips [2026-03-19] -- Tier 1
 
-#### Damiane's Weapon Type [CORRECTION -- GREATSWORD NOT DUAL BLADES] [SOURCES CONFLICT -- NEEDS REVIEW] -- Flagged: 2026-03-17 (Run 11), Updated: 2026-03-17 (Run 12)
+#### Damiane's Weapon Type [APPLIED -- 2026-04-15 (Nightly Audit Run)] -- Flagged: 2026-03-17 (Run 11), Updated: 2026-03-17 (Run 12), Applied: 2026-04-15 (Nightly Audit)
 - The current WEAPONS entry "Damiane's Claymore" (type: 'Claymore') uses a slightly wrong type name.
 - Run 11 proposed changing to "Dual Blades" based on dexora.gg. This is INCORRECT. Multiple authoritative sources confirm Dual Blades belong to Kliff, not Damiane.
 - Damiane's confirmed weapons (2+ sources): Greatsword, Rapier & Buckler, Musket, Pistol. The Director of Marketing confirmed: "Damiane has a pistol and a musket, she has a rapier that she uses in melee."
@@ -764,7 +786,7 @@ No new specific builds were found that warrant adding to the app's data layer, a
   - "Navigator of the Stars" and "Conqueror of Spires" imply Constellation and Spire challenge types -- not currently represented in app.
 - Source: PowerPyx trophy guide [2026-03-19] -- Tier 1
 - Action: Consider adding a Trophies/Achievements section to the app (currently flagged as a 35-trophy feature gap from Run 10). Full data is now available to populate it.
-- **Run 17 note (2026-03-21): TROPHIES array already exists in game-data.ts (line 1228) with all 35 entries. However, RARITY ASSIGNMENTS ARE WRONG.** The app has 1P/5G/16S/13B but the confirmed distribution is 1P/4G/10S/20B. Multiple trophies have incorrect rarity tiers. Additionally, trophy descriptions in the app are editorial/generic and do not match the confirmed in-game text from Beebom and PowerPyx. Specific discrepancies:
+- **Run 17 note (2026-03-21): TROPHIES array already exists in game-data.ts (line 1228) with all 35 entries. However, RARITY ASSIGNMENTS CORRECTED 2026-04-12 (Nightly Run).** App had 1P/5G/16S/13B -- now corrected to confirmed distribution of 1P/4G/10S/20B (sources: PowerPyx Tier 1 + PSNProfiles Tier 2). Multiple trophies have incorrect rarity tiers. Additionally, trophy descriptions in the app are editorial/generic and do not match the confirmed in-game text from Beebom and PowerPyx. Specific discrepancies:
   - Trophies incorrectly listed as Gold in app (should be Silver): Grand Collector of Arms, Tamer of Legends, Natural Collector
   - Trophy incorrectly listed as Gold (should be Bronze): Conqueror of Spires
   - Trophies incorrectly listed as Silver (should be Gold): Expert Storyteller, Expert Explorer, Unvanquished Strategist
@@ -789,11 +811,11 @@ No new specific builds were found that warrant adding to the app's data layer, a
 - **Patch 1.00.03 Revision clarified** -- 120Hz display setting separated; T'rukan officially named in Pearl Abyss patch notes (Tier 1). No Patch 1.00.05 released yet.
 - **Patch 1.00.04 platform conflict** -- Run 19 said PS5 character-switching fix; this run found Mac Steam crash fix. Both may be same version number on different platforms. Discrepancy flagged.
 - **Bonepit Greathammer confirmed as world loot** [Weapons/Muskan gap] -- game8 Tier 1 confirms it is RNG-based open-world loot, NOT a Muskan drop. Stats: ATK 20, 2H, Crit Lv1, 5 slots, non-unique. Muskan reward remains unknown.
-- **Walter Lanford reward** -- Golden Piggy Bank still single Tier 2 source (GameRant). Recommend human apply at discretion.
+- **Walter Lanford reward [RESOLVED -- 2026-04-03 (Nightly Run)]** -- Full rewards confirmed by game8 Tier 1: Golden Piggy Bank, Dane Shotgun, Rhonda Leather Boots. Applied to game-data.ts.
 - **Priscus the Ancient [ADDED -- 2026-03-24 (Run 21)]** -- Pailune, Spire of Ringing Truth, Five-Finger Mountain. Part of Shackled God Faction Quest. Flying, laser/shadow/spear attacks. Rewards: Blessing of the Immortal, Ancient's Necklace, Ancient Retribution Abyss Gear, Abyss Artifact x1. Source: game8 Tier 1 + GameRant Tier 2.
 - **Praevus the Ancient [ADDED -- 2026-03-24 (Run 21); DESERT ANCIENT RESOLVED]** -- Crimson Desert, Abyss Debris west of Tashkalp. Fire element, flying, fire lasers and meteors. Part of Shackled God quest. Rewards: Memory of Ancient Nature, Ancient Earring, Ancient Wrath Abyss Gear, Abyss Artifact x1. CONFIRMED as the pre-launch "Desert Ancient" placeholder. Source: GameRant Tier 2 x2.
-- **Aeserion, the Shackled God [NEW BOSS -- NEEDS REVIEW]** -- Delesyia, Serpent Shrine (Dewhaven Territory). Lightning element. Final boss of Shackled God questline; requires defeating all 3 Ancients first. Mechanics: destroy 3 Bismuth Emitters. Reward: Aeserion's Sword. Aeserion Scales (upgrade material) available at Serpent Shrine post-fight. 3x Tier 2 sources, no Tier 1.
-- **Abyss Kutum [NEW BOSS -- NEEDS REVIEW]** -- The Abyss, Twisted Thicketway. Eye-based creature, lightning slam. Stagger eye with Focused Shot then melee. Reward: Power Core - Spire of Defiance, Abyss Artifact x1. game8 Tier 1 for mechanics; reward single source.
+- **Aeserion, the Shackled God [ADDED -- 2026-04-12 (Nightly Run)]** -- Delesyia, Serpent Shrine (Dewhaven Territory). Lightning element. Final boss of Shackled God questline; requires defeating all 3 Ancients first. Mechanics: destroy 3 Bismuth Emitters. Reward: Aeserion's Sword. Aeserion Scales (upgrade material) available at Serpent Shrine post-fight. 3x Tier 2 sources, no Tier 1.
+- **Abyss Kutum [ADDED -- 2026-04-03 (Nightly Run)]** -- The Abyss, Twisted Thicketway. Eye-based creature, lightning slam. Stagger eye with Focused Shot then melee. Reward: Power Core - Spire of Defiance, Abyss Artifact x1. game8 Tier 1. Also added in same batch: Ogre, Crookrock Walker, Desert Marauder Rusten, Queen Spider, Hemon Beindel (all game8 Tier 1 confirmed).
 - **Primus the Ancient [NEW BOSS -- SINGLE SOURCE]** -- Dewhaven Territory (likely Delesyia south), Arrowhead Rock. Flying, shoots missiles. Reward: Ancient Ring, Ancient Reckoning Abyss Gear, Sage's Eye, Abyss Artifact x1. GameRant Tier 2 only -- needs second source.
 - **Tristan the Flame Knight [REGION NOW CONTESTED]** -- Run 19's pailune assumption now challenged by source saying quest from "central Demeniss." Reward clarified: Drale Shield is world item found by climbing castle wall (with Dragon Counterattack ability); Spada/Spade Sword is in box near target dummies (also world item, not direct drop). Still single Tier 2 sources. Do not add yet.
 - **New Shackled God Ancient accessories/Abyss Gears** [Weapons/Items] -- Six new accessories and Abyss Gears catalogued (Ancient's Necklace, Ancient Earring, Ancient Ring, Ancient Retribution, Ancient Wrath, Ancient Reckoning). See data-run20-additions.md for stats.
@@ -855,7 +877,7 @@ No new specific builds were found that warrant adding to the app's data layer, a
 - Action: Change `region: 'demeniss'` to `region: 'pailune'`, update `location` to 'Kingshield Mountain, Pailune (quest: Time to Face Justice)', change `reward: 'Unknown (TBD)'` to `reward: 'None'`.
 - Source: [game8 One-Armed Ludvig](https://game8.co/games/Crimson-Desert/archives/588168) -- Tier 1; [GameRant Ludvig guide](https://gamerant.com/crimson-desert-how-to-track-beat-ludvig-time-to-face-justice-guide/) -- Tier 2
 
-**3. Ludvig -- Reward: 'Ignir (two-handed sword)' → SOURCE CONFLICT [NEEDS HUMAN REVIEW]**
+**3. Ludvig / Awakened Ludvig -- Reward: 'Ignir (two-handed sword)' → [APPLIED 2026-04-12 (Nightly Run)]**
 - App has `reward: 'Ignir (two-handed sword)'`.
 - game8 (Tier 1) confirms Ludvig's reward is: **Hungering Fang Leather Cloak + Hungering Fang Leather Boots** (two armor items).
 - SOURCE CONFLICT: The app's "Ignir (two-handed sword)" is not confirmed by any source found in this run. game8's armor reward (Tier 1) is inconsistent with the app's weapon reward.
@@ -1059,7 +1081,7 @@ Health/Elemental branch: Imbue Element, Elemental Quaking Fury, Elemental Charge
 | Titan region/reward | SINGLE SOURCE (GameRant Tier 2 only). Skipped Run 21. Needs independent second source. | HIGH |
 | Gregor reward | APPLIED Run 21: Golden Vanguard + Abyss Artifact x1; region corrected to hernand | DONE |
 | One-Armed Ludvig reward | APPLIED Run 21: reward set to 'None' (game8 Tier 1 confirms no drop) | DONE |
-| Ludvig reward | SOURCE CONFLICT this run: app has 'Ignir (two-handed sword)', game8 Tier 1 says armor items. Human review needed. | HIGH |
+| Ludvig / Awakened Ludvig reward | APPLIED 2026-04-12 (Nightly Run): Hungering Fang Leather Cloak + Boots confirmed by 5 sources (games.gg, method.gg, TheGamer, Fextralife, game8). Crowcaller region also corrected abyss→demeniss (4 sources). | DONE |
 | T'rukan -- new boss | APPLIED Run 21: added to BOSSES array | DONE |
 | Lucian Bastier -- new boss | APPLIED Run 21: added to BOSSES array | DONE |
 | Goyen -- new boss | APPLIED Run 21: added to BOSSES array | DONE |
@@ -1411,4 +1433,56 @@ This is a major game system newly documented from post-launch sources. Not curre
 - **Hernand Iron Sword** [Weapon] -- Early quest reward sword with higher Stagger rating than the starter blade. Not in WEAPONS array. Source: crimsondesert.club [2026-03-16] -- Tier 3.
 - **35 Trophies** [Achievements] -- Full trophy list confirmed. Not in app data. Consider adding a trophy/achievement tracker feature. Confirms: multiple Abyss areas (Conqueror of the Abysses, plural), Artillery as a distinct weapon category (Master of Artillery), mount taming as a progression path (Tamer of Legends). Source: gamingbible.com [2026-03-16] -- Tier 2.
 - **Artillery Weapon Category** [Weapons] -- "Master of Artillery" trophy implies Artillery is a distinct combat category from Firearms (Master of Firearms is a separate trophy). This may refer to Hand Cannons, siege weapons, or mounted weapons. No existing app weapon has 'Artillery' as a type. Requires post-launch confirmation.
-- **Dual Blades** [Weapons] -- Confirmed as S-tier weapon in pre-launch tier list (crimsondeserthub.com). Not present in app's WEAPONS array as a weapon type. Distinct from Daggers (which focus on speed) -- Dual Blades specifically chain attacks for max combo potential. Source: crimsondeserthub.com [2026-03-16] -- Tier 2.
+- **Dual Blades** [Weapons] -- Confirmed as S-tier weapon in pre-launch tier list (crimsondeserthub.com). Not present in app's WEAPONS array as a weapon type. Distinct from Daggers (which focus on
+---
+
+### Flagged 2026-04-18 (Nightly Audit Run) -- Site Health Pass + Research Verification
+
+**Context:** Game launched March 19, 2026. This is the nightly audit for April 18. Sources used: game8 (Tier 1), GameRant (Tier 2), PCGamer (Tier 1), crimsondesertwiki.org (Tier 2 - stale/pre-launch for Split Horn). Live site: PASS. Latest Vercel deployment: READY (commit 4a60640, Patch 1.03 skills + 4 new bosses added).
+
+**Site Status:** PASS. No critical issues. No countdown timer. Landing page renders correctly. TypeScript errors for react-leaflet type declarations in InteractiveMap.tsx are present locally but NOT blocking Vercel production builds.
+
+---
+
+#### Titan Region -- NOW CONFIRMED BY GAME8 TIER 1 [RESOLVED -- third-source verification 2026-04-18]
+
+- **PREVIOUSLY:** Titan region 'pailune' was applied 2026-04-02 based on GameRant (Tier 2) + gamingpromax (Tier 2). Was a "single source" concern as of Run 17-18; later resolved with 2 Tier 2 sources.
+- **NEW CONFIRMATION (2026-04-18):** game8 (Tier 1) now confirms: "Windsong Peaks by the northeastern edge of the Pailune region during the Master of Thunder Stjar Clan faction questline." This is now confirmed by 3 independent sources including a Tier 1.
+- App data is correct. No change needed. Concern is fully resolved.
+- Source: game8 Titan boss guide [2026-04-18] -- Tier 1.
+
+#### Calphade Region Status -- CONFIRMED AS HERNAND SUB-TERRITORY [RESOLVED 2026-04-18]
+
+- **RESOLUTION:** Multiple post-launch sources now describe Chapter 6 as set across the "Calphadean Territory and Deepfog Basin regions of Hernand." Calphade is NOT a 7th major region -- it is a named sub-territory within Hernand.
+- **App impact:** Cassius Morten `region: 'hernand'` is CORRECT. No change needed.
+- **Data model:** The Region type does NOT need a 'calphade' entry. Calphade is a Hernand sub-location.
+- Source: games.gg Chapter 6 walkthrough [2026-04-18] -- Tier 1; Calphade wiki page [2026-04-18] -- Tier 2.
+- Action: No action required on game-data.ts or src/types/game-data.ts. Document as resolved.
+
+#### Silver Fang Speed Stat -- STILL UNCONFIRMED [BLOCKER REMAINS 2026-04-18]
+
+- **Status:** Checked 8+ dedicated Silver Fang guides (GameRant, PCGamer, game8, keengamer, egamersworld, thephrasemaker, games.gg, md-eksperiment.org) -- not a single one provides a numeric speed stat.
+- **Consistent description:** "Much slower than horses," "far less health and stamina than other mounts," "trades pure speed for combat ability." Estimate 30-35 on app scale remains valid.
+- **Remaining blocker:** No numeric speed value found. Entry cannot be added to MOUNTS schema without it.
+- Action: Continue monitoring. Check crimsondesert.gaming.tools database specifically for mount stat tables.
+
+#### Split Horn Reward -- STILL UNCONFIRMED [NO PROGRESS 2026-04-18]
+
+- **Status:** crimsondesertwiki.org page is stale (last updated 2026-03-16, still shows "Pre-release information -- may change at launch." and "Reward data and exact element type will be confirmed post-launch."). No post-launch reward data found in any source.
+- Action: Flag for manual wiki search on Fextralife or game8 directly for Split Horn boss page.
+
+#### Bloodwind Quest Region -- INCONSISTENCY FLAGGED [NEEDS HUMAN REVIEW]
+
+- **Issue:** Quest entries in Ch.5 "Black and White" arc (lines 1213-1226 in game-data.ts) use `region: 'abyss'`. This includes 'The Missing Seal', 'Crowcaller', "The Crow's Warning", 'Bloodwind', and 'Toward the Nest'.
+- **However:** The BOSS entry `{ name: 'Draven the Crowcaller', region: 'demeniss', location: 'Spire of Soaring, Demeniss' }` is confirmed correct by 4 sources.
+- **Decision needed:** Does the quest 'Bloodwind' (boss fight vs. Crowcaller) happen in Demeniss or a transitional Abyss-like space? The arc could start in Abyss and transition to Demeniss. Not safe to auto-fix without confirmation. Flag for human review.
+- Action: Verify in-game region indicator during Ch.5 Black and White quests. If all are Demeniss, change `region: 'abyss'` to `region: 'demeniss'` for those 5 quests.
+
+#### Narima's Horn -- NEW CONTENT FOUND [NEEDS REVIEW]
+
+- **Description:** A Dragon mount cooldown removal item. Multiple guides (GameRant, Sportskeeda, vpesports) document how to obtain it. Removes the cooldown on the Dragon mount (presumably Golden Star or a related dragon mount).
+- **Relevance:** This is a notable consumable/item not currently in the app's data. If the app has a Dragon mount entry, the acquisition chain may reference Narima's Horn.
+- **Source:** GameRant "Narima's Horn" guide [2026-04-18] -- Tier 2; Sportskeeda [2026-04-18] -- Tier 2.
+- Action: Research Narima's Horn acquisition and add to relevant mount entry if applicable. Low priority.
+
+#### Patch 1.03.01 Hotfix -- NO NEW GAME DATA [
