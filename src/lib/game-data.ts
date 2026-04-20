@@ -684,6 +684,14 @@ export const BOSSES: Boss[] = [
     location: 'Serpent Shrine, southwestern Delesyia (Shackled God Faction Quest finale)',
     mechanics: 'Puzzle boss -- no traditional HP bar. Requires defeating all 3 Ancients (Priscus, Praevus, Primus) first. Mechanic: destroy 3 Bismuth Emitters on back, then cleanse exposed corruption with Force Palm. Area has permanent rain that reduces lightning resistance. Post-fight: collect Aeserion Scales via Axiom Force + Kuku Pot for upgrade materials.' },
 
+  // Added 2026-04-19 via nightly audit (source: Fextralife wiki Tier 1 + game8 Tier 1)
+  // ─── ATOR ARCHON (ANTUMBRA QUESTLINE FINALE) ──────────────────────────────────────────────────
+  { name: 'Ator Archon of Antumbra', region: 'pailune', type: 'Spirit', difficulty: 'extreme',
+    reward: "Seal of Pitch-Black Darkness, Darkbringer, Ator's Will Helm, Ator's Will Cloth Armor, Ator's Will Leather Gloves, Ator's Will Leather Boots",
+    element: 'abyss',
+    location: 'Cloister of Ruination, Pailune (quest: Archon of Antumbra)',
+    mechanics: 'One of three Overwhelming Beings. Majestic ethereal being consumed by evil/corruption. Defensive approach -- wait for attacks, then counter. Force Palm 3-hit combo fills stagger meter efficiently. Key attacks: Hammer of Light (dodge away, unblockable), Netherworld Strike (mystical orbs, unblockable), Wrath of the Netherworld (5-sec barrage, keep dodging). Prepare HP items and reinforce gear at Anvil/Grind Stone before fight.' },
+
   // Added 2026-04-15 via nightly audit (sources: Fextralife Tier 1, PowerPyx Tier 1, game8 Tier 1)
   // ─── NEWLY CONFIRMED BOSSES ───────────────────────────────────────────────────────────────────
   { name: 'Beloth the Darksworn', region: 'hernand', type: 'Monster', difficulty: 'hard',
@@ -706,8 +714,10 @@ export const BOSSES: Boss[] = [
     mechanics: '2 HP bars. Mysterious sage and martial master. P1: balanced attack patterns -- only strikes when a clear window appears. P2: shifts to defensive stance, switch to aggressive offense. Beware instakill Green Ray laser in P2. Observe him mid-fight to permanently unlock Blinding Flash Finisher skill. NOTE: Does not appear in Knowledge Codex journal.' },
 ];
 
-// Knowledge Codex contains 76 total named bosses. Above list contains 44 confirmed.
-// Remaining ~32 bosses exist but are not yet fully documented post-launch.
+// Knowledge Codex contains 76 total named bosses. Above list contains 45 confirmed.
+// Remaining ~31 bosses exist but are not yet fully documented post-launch.
+// Known missing (Fextralife Tier 1 confirmed, not yet added): Crimson Warden, Dreadnought, Full Moon Reaper,
+//   Grave Walker, Half Moon Reaper, Marni's Clockwork Mantis, New Moon Reaper, Taming Dragon, Thunder Tank, Turbine.
 
 // ═══════════════════════════════════════
 // ENEMIES / BESTIARY

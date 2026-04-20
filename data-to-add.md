@@ -1,6 +1,6 @@
 # Crimson Companion App -- Data To Add / Fix
 
-_Last updated: 2026-04-18 (Nightly Audit Run)_
+_Last updated: 2026-04-19 (Nightly Audit Run)_
 
 Items are organized by category and priority. Mark items as `[ADDED]` once they've been incorporated into the app.
 
@@ -814,6 +814,8 @@ No new specific builds were found that warrant adding to the app's data layer, a
 - **Walter Lanford reward [RESOLVED -- 2026-04-03 (Nightly Run)]** -- Full rewards confirmed by game8 Tier 1: Golden Piggy Bank, Dane Shotgun, Rhonda Leather Boots. Applied to game-data.ts.
 - **Priscus the Ancient [ADDED -- 2026-03-24 (Run 21)]** -- Pailune, Spire of Ringing Truth, Five-Finger Mountain. Part of Shackled God Faction Quest. Flying, laser/shadow/spear attacks. Rewards: Blessing of the Immortal, Ancient's Necklace, Ancient Retribution Abyss Gear, Abyss Artifact x1. Source: game8 Tier 1 + GameRant Tier 2.
 - **Praevus the Ancient [ADDED -- 2026-03-24 (Run 21); DESERT ANCIENT RESOLVED]** -- Crimson Desert, Abyss Debris west of Tashkalp. Fire element, flying, fire lasers and meteors. Part of Shackled God quest. Rewards: Memory of Ancient Nature, Ancient Earring, Ancient Wrath Abyss Gear, Abyss Artifact x1. CONFIRMED as the pre-launch "Desert Ancient" placeholder. Source: GameRant Tier 2 x2.
+- **Ator Archon of Antumbra [ADDED -- 2026-04-19 (Nightly Audit)]** -- Pailune, Cloister of Ruination (quest: Archon of Antumbra). One of three Overwhelming Beings. Abyss Spirit boss. Drops: Seal of Pitch-Black Darkness, Darkbringer, Ator's Will Helm/Cloth Armor/Leather Gloves/Leather Boots. Source: Fextralife wiki Tier 1 + game8 Tier 1.
+- **12 Confirmed Missing Bosses [NOT YET ADDED -- Research Needed]** -- Fextralife Tier 1 confirms these boss pages exist: Crimson Warden (Crimson Desert), Dreadnought, Full Moon Reaper, Grave Walker, Half Moon Reaper, Marni's Clockwork Mantis, New Moon Reaper, Taming Dragon, Thunder Tank, Turbine. Also: Beloth reward discrepancy found -- GitHub has 'Frost Spike' but PCGamer/GameRant/TheGamer/Deltia's say 'Plate Helm of Shadows / Armor of Shadows set'. Needs review.
 - **Aeserion, the Shackled God [ADDED -- 2026-04-12 (Nightly Run)]** -- Delesyia, Serpent Shrine (Dewhaven Territory). Lightning element. Final boss of Shackled God questline; requires defeating all 3 Ancients first. Mechanics: destroy 3 Bismuth Emitters. Reward: Aeserion's Sword. Aeserion Scales (upgrade material) available at Serpent Shrine post-fight. 3x Tier 2 sources, no Tier 1.
 - **Abyss Kutum [ADDED -- 2026-04-03 (Nightly Run)]** -- The Abyss, Twisted Thicketway. Eye-based creature, lightning slam. Stagger eye with Focused Shot then melee. Reward: Power Core - Spire of Defiance, Abyss Artifact x1. game8 Tier 1. Also added in same batch: Ogre, Crookrock Walker, Desert Marauder Rusten, Queen Spider, Hemon Beindel (all game8 Tier 1 confirmed).
 - **Primus the Ancient [NEW BOSS -- SINGLE SOURCE]** -- Dewhaven Territory (likely Delesyia south), Arrowhead Rock. Flying, shoots missiles. Reward: Ancient Ring, Ancient Reckoning Abyss Gear, Sage's Eye, Abyss Artifact x1. GameRant Tier 2 only -- needs second source.
