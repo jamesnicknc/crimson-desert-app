@@ -865,3 +865,84 @@ Pywel Legend (Platinum), Novice Adventurer, Master Camper, Maze Pathfinder, Conq
 | 2026-03-16 (Run 3) | Web: 25+ new points (Kailock boss, unconfirmed bosses, faction shop, mount leveling, Oongka Hammer weapon, Damiane Musket/Izuna Drop, VO element, Abyss force powers, PS Blog hands-on quests, AMD FSR Redstone, PSSR2 launch details, named builds). YouTube: 3 videos processed (k-yOpdOk_a0 gameplay 6hr, LqXzIcc4-0o IGN preview, 3uUIBUoJhk8 Digital Foundry PS5 Pro). TGitEbsEbNo: no transcript. u3Wb6GOaFz8/eoW_KMr3xSE: Korean only. | 6 new bosses documented (Kailock, Driller, Giant Serpent, White Spider, Mech Pterodactyls, Silver Armor), VO element (new undocumented element type), bounty/crime/trust system mechanics, faction shops, mount leveling, Drill Arm item, 3 new side quests (Chimney Sweep, Rescue Sheep, RPS), Oongka Hammer confirmed, named builds (Mountain Breaker, Siege Titan, Steel Rose) | Oongka Hammer not in app weapons; VO element not in element types; bounty/crime/faction systems not in app |
 | 2026-03-16 (Run 10) | Web: 30+ new points (full skill names per branch for Blue/Green/Red trees, Falling Palm central skill, weapon tier list, launch FAQ details, 35 trophy list, vehicle mounts -- War Robot/Hot Air Balloon/Wagon/Skiff, wolf/direwolf mount confirmed with saddle, Akman Plains horse taming location, Hernand Iron Sword named weapon, Wanderer's Leather Set armor, elemental oils as consumables, weapon rarity tiers, "A Blacksmith's Debt" side quest named, "Crow's Wing" gliding mechanic named, Simplified Combos setting, Epic Games Store/GeForce NOW confirmed platforms). YouTube: IP blocked by YouTube -- all video transcript requests returned IP-rate-limit error. No transcripts processed this run. | Crow's Wing gliding named, full skill tree names documented, 35 trophies catalogued, weapon tier list added, 5 new vehicle mount types confirmed, Wanderer's Leather Set and Hernand Iron Sword named, elemental oils documented | Wolf/Direwolf mount category still missing from app MountCategory type; Artillery weapon category from trophy list suggests a gap (app has no Artillery category distinct from ranged); Dual Blades not in app weapon types; Rapier listed as S-tier but only present for Damiane in app |
 | 2026-03-17 (Run 11) | Web: 25+ new points (Fextralife Bosses page confirmed 13 named bosses including Walter Lanford at Fort Warspike, Kearush at Hernand Castle, Kailock the HornSplitter as goblin boss name; dexora.gg weapon breakdown confirms Damiane has Dual Blades not Claymore; allthings.how confirmed Marni's Excavatron as a Delesyia mechanical boss; cooking/life skills confirmed with named recipes; NPC name spellings confirmed from Fextralife breakdown). YouTube: Script API version updated (list_transcripts changed to instance method). 5 videos processed successfully (k-yOpdOk_a0, LqXzIcc4-0o, 3uUIBUoJhk8, 1ItNYP9U1M0 -- all previously processed in Runs 2-3; 08bOU_cfNW4 -- NEW video from Fextralife breakdown article). | Prixia swords named (weapon rack item in Gold Leaf HQ), Goodwill/reputation stat confirmed in pause menu, Battery stat confirmed in pause menu, Temperature gauge confirmed (21.4C normal, 50C inside burning house), White Crow the Witch confirmed as NPC name (not "White Crow"), Alustin The Alchemist confirmed name (not "Aliston"), Barden Middler confirmed name spelling (not "Bon Midler"), Damiane weapon set corrected (has Dual Blades, NOT Claymore per dexora.gg), Marni's Excavatron confirmed as boss name, cooking recipe names from dexora.gg (Fish Stew, Grilled Trout, Warrior's Feast, Guardian's Broth, Explorer's Trail Mix, Alchemist's Tea), alchemy recipe names (Health Potion, Stamina Elixir, Fire Oil, Antidote, Resistance Tonic), element pairings confirmed for weapon types | Walter Lanford region listed as 'desert' in app but Fextralife says Fort Warspike -- region unknown (Fort Warspike not confirmed under any of 5 main regions); Damiane's weapon in app is 'Claymore' but confirmed to be 'Dual Blades' -- significant data error |
+
+---
+
+## Nightly Audit Update — 2026-04-13
+
+### Icewalker [CONFIRMED — Fextralife Tier 1]
+- Pre-launch placeholder name "Snow Walker" corrected to "Icewalker"
+- Region corrected from 'pailune' to 'hernand' (Everfrost sub-zone)
+- Location: Everfrost, Hernand (north of Everfrost Cave)
+- Drops: Haste I, Aegis I, Power Core - Verse of Sowing
+- Optional world boss: No associated quest. Two Icewalkers fought simultaneously, each with 1 HP bar
+- Cannot block any attacks; dodge-only combat. Slow turn rate — dash behind and backstab
+- Special attacks: Icy Whirlwind (dodge away), Frost Nova (wide frontal arc, dodge backward)
+- Cold temperature area reduces stamina and may slow player — ice resistance items recommended
+- Source: Fextralife wiki Icewalker page [2026-04-13] — Tier 1
+
+### Marni's Clockwork Mantis [NEW BOSS — NOT IN APP]
+- A mechanical boss in Delesyia's Gorthak region
+- Quest: "Frozen Hearted Predator" — Main Quest #145, Chapter 10: Counterattack
+- Type: Mechanical. Region: delesyia. Described as easier late-game boss despite intimidating appearance
+- Most dangerous attack: yellow laser beams (potential one-shot at low HP); melee attacks are weak
+- Source: crimsondesert.app wiki [2026-04-13] — Tier 1; intoindiegames.com Chapter 10 walkthrough
+- NOTE: This is DISTINCT from Marni's Excavatron (which is in Hernand/Karin Quarry). Different machine.
+- Still missing: reward (not found in available sources)
+
+### Fextralife Boss List Discovery
+- The Fextralife category cloud reveals ~42+ listed bosses including several not yet in the app:
+  - Beloth the Darksworn, Gabriel Caliburn, Ator Archon of Antumbra, Crimson Warden
+  - Dreadnought, Full Moon Reaper, Half Moon Reaper, New Moon Reaper, Thunder Tank
+  - Taming Dragon, Turbine, Grave Walker, Master Du
+- These are all post-research discoveries. Re-run research to gather data on each.
+
+---
+
+## Nightly Audit Update — 2026-04-20
+
+### Site Status [PASS]
+- Landing page: HTTP 200, "Now Live!" banner rendering correctly. No countdown timer.
+- GitHub latest commit: `8b46e4f` (2026-04-19) — Ator Archon of Antumbra added to BOSSES.
+- Total bosses in app: 46 (confirmed via GitHub live file).
+- No placeholder boss names remaining (Ironclad Guardian, Sand Colossus, etc. all gone).
+- Chrome browser unavailable for visual audit — used HTTP fetch for landing page verification.
+
+### Silver Fang Speed Stat [BLOCKER REMAINS]
+- Checked 9+ sources including game8, GameRant, PCGamer, keengamer, crimsondesert.gg, egamersworld, thephrasemaker, games.gg, mein-mmo.de.
+- All confirm HP 450, Stamina 100, Attack 100, Defense 45. No source provides a numeric speed value.
+- Consistent description: "much slower than horses," "low movement speed," "trades speed for combat."
+- Estimate of 30-35 on app scale remains. Mount entry cannot be added without confirmed numeric value.
+- crimsondb.gg has a Silver Fang page but content was too large to parse.
+
+### Split Horn Reward [BLOCKER REMAINS]
+- crimsondesertwiki.org page still stale (pre-launch data, no reward listed post-launch).
+- Fextralife Split Horn page redirected (not found or merged).
+- No source provides a named reward drop for Split Horn as of 2026-04-20.
+
+### Bloodwind / Crowcaller Quest Region [FLAGGED — HUMAN REVIEW NEEDED]
+- Both "Crowcaller" quest (first fight) and "Bloodwind" quest (second fight) have `region: 'abyss'` in QUESTS array.
+- Boss entry for Draven the Crowcaller has `region: 'demeniss'` (confirmed, Spire of Soaring).
+- These quest entries were previously flagged in data-to-add.md (lines 1213-1226 in game-data.ts context).
+- The Chapter 5 "Black and White" arc also involves the Abyss storyline, so the quest region may be intentionally 'abyss' if the arc transitions through both Abyss and Demeniss areas. Needs in-game verification.
+- NOT auto-fixed — needs human decision on whether quest region = fight location or chapter arc region.
+
+### Upcoming Patch
+- Pearl Abyss confirmed a "substantial" new patch is coming in late April 2026. No version number yet.
+- Expected content: difficulty settings, improved controls/keybinds, Boss Rematches system.
+- No patch 1.04 released as of 2026-04-20. Latest is still 1.03.00 (revised 2026-04-11).
+- Action: Monitor patch release. When live, add new mounts/difficulty data as appropriate.
+
+### Walter Lanford Reward [CONFIRMED — Already In App]
+- Multiple sources (GameRant, crimsondesert.gaming.tools, thegameswiki.com, crimsondesert.gg) confirm Golden Piggy Bank as Walter Lanford's reward.
+- App already shows `reward: 'Golden Piggy Bank, Dane Shotgun, Rhonda Leather Boots'` (applied 2026-04-03). No action needed.
+
+---
+
+## Nightly Audit Update — 2026-04-15
+
+### Bosses Added to App [APPLIED — commit 4a60640]
+
+#### Beloth the Darksworn [ADDED]
+- Region: Hernand (Hoenmark Ruins). Quest: Wraith in the Frost (faction quest).
+- Type: Monster. Element: frost. Reward: Fros

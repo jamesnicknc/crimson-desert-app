@@ -1,6 +1,6 @@
 # Crimson Companion App -- Data To Add / Fix
 
-_Last updated: 2026-04-19 (Nightly Audit Run)_
+_Last updated: 2026-04-20 (Nightly Audit Run)_
 
 Items are organized by category and priority. Mark items as `[ADDED]` once they've been incorporated into the app.
 
@@ -28,7 +28,7 @@ Items are organized by category and priority. Mark items as `[ADDED]` once they'
 - Source: Pearl Abyss April-June 2026 roadmap [2026-04-14] -- Tier 1.
 - Action needed: When these features go live, add relevant data to app (new mounts especially).
 
-#### Silver Fang [Permanent Wolf Mount] [NEEDS REVIEW -- not yet added, speed stat still missing] -- Updated: 2026-04-17 (Nightly Audit)
+#### Silver Fang [Permanent Wolf Mount] [NEEDS REVIEW -- not yet added, speed stat still missing] -- Updated: 2026-04-20 (Nightly Audit)
 - Confirmed permanent wolf mount. Name: Silver Fang (Legendary White Wolf).
 - **REGION NOW CONFIRMED: 'hernand'** [2026-04-17] -- Multiple sources confirm Howling Hollow is in Hernand, north of Sage's Peak. PCGamer states "north Hernand by the Sage's Peak." X/Twitter (@TheRealZephryss, confirmed community post): "near the Howling Hollow cave, north of The Sage's Peak in Hernand." The game8 (Tier 1) reference to "Pailune region" was incorrect; 3+ independent sources favor Hernand. Region blocker is now RESOLVED.
 - **STATS (confirmed 2026-04-16):** HP 450, Stamina 100, Attack 100, Defense 45. Speed stat still not confirmed numerically. Multiple sources describe it as "much slower than horses" -- estimated 30-35 on app speed scale. This is the ONLY remaining blocker for adding the entry.
@@ -814,9 +814,11 @@ No new specific builds were found that warrant adding to the app's data layer, a
 - **Walter Lanford reward [RESOLVED -- 2026-04-03 (Nightly Run)]** -- Full rewards confirmed by game8 Tier 1: Golden Piggy Bank, Dane Shotgun, Rhonda Leather Boots. Applied to game-data.ts.
 - **Priscus the Ancient [ADDED -- 2026-03-24 (Run 21)]** -- Pailune, Spire of Ringing Truth, Five-Finger Mountain. Part of Shackled God Faction Quest. Flying, laser/shadow/spear attacks. Rewards: Blessing of the Immortal, Ancient's Necklace, Ancient Retribution Abyss Gear, Abyss Artifact x1. Source: game8 Tier 1 + GameRant Tier 2.
 - **Praevus the Ancient [ADDED -- 2026-03-24 (Run 21); DESERT ANCIENT RESOLVED]** -- Crimson Desert, Abyss Debris west of Tashkalp. Fire element, flying, fire lasers and meteors. Part of Shackled God quest. Rewards: Memory of Ancient Nature, Ancient Earring, Ancient Wrath Abyss Gear, Abyss Artifact x1. CONFIRMED as the pre-launch "Desert Ancient" placeholder. Source: GameRant Tier 2 x2.
-- **Ator Archon of Antumbra [ADDED -- 2026-04-19 (Nightly Audit)]** -- Pailune, Cloister of Ruination (quest: Archon of Antumbra). One of three Overwhelming Beings. Abyss Spirit boss. Drops: Seal of Pitch-Black Darkness, Darkbringer, Ator's Will Helm/Cloth Armor/Leather Gloves/Leather Boots. Source: Fextralife wiki Tier 1 + game8 Tier 1.
-- **12 Confirmed Missing Bosses [NOT YET ADDED -- Research Needed]** -- Fextralife Tier 1 confirms these boss pages exist: Crimson Warden (Crimson Desert), Dreadnought, Full Moon Reaper, Grave Walker, Half Moon Reaper, Marni's Clockwork Mantis, New Moon Reaper, Taming Dragon, Thunder Tank, Turbine. Also: Beloth reward discrepancy found -- GitHub has 'Frost Spike' but PCGamer/GameRant/TheGamer/Deltia's say 'Plate Helm of Shadows / Armor of Shadows set'. Needs review.
 - **Aeserion, the Shackled God [ADDED -- 2026-04-12 (Nightly Run)]** -- Delesyia, Serpent Shrine (Dewhaven Territory). Lightning element. Final boss of Shackled God questline; requires defeating all 3 Ancients first. Mechanics: destroy 3 Bismuth Emitters. Reward: Aeserion's Sword. Aeserion Scales (upgrade material) available at Serpent Shrine post-fight. 3x Tier 2 sources, no Tier 1.
+- **Ator Archon of Antumbra [ADDED -- 2026-04-19 (Nightly Audit)]** -- Pailune, Cloister of Ruination (quest: Archon of Antumbra). One of three Overwhelming Beings. Abyss element Spirit boss. Drops: Seal of Pitch-Black Darkness, Darkbringer, Ator's Will Helm/Cloth Armor/Leather Gloves/Leather Boots. Source: Fextralife wiki Tier 1 + game8 Tier 1.
+- **Beloth the Darksworn [ADDED -- 2026-04-19 (Nightly Audit)]** -- Hernand, Hoenmark Ruins (quest: White Blizzard). Frost Humanoid. Weakness: fire. Reward: Plate Helm of the Shadows + Armor of Shadows set. Requires 15+ ice resistance. Source: PCGamer + GameRant + Deltia's Gaming + TheGamer (4 Tier 1-2 sources).
+- **Awakened Lucian Bastier [ADDED -- 2026-04-19 (Nightly Audit)]** -- Hernand, Spire of Clockwork (Phase 2 of Lucian Bastier fight, quest: A Fleeting Dream). Fire Human. Drops same Official Knight's armor set as Phase 1. Wields armblade. Source: Fextralife Tier 1 + GameRant Tier 2.
+- **12 Confirmed Missing Bosses [NOT YET ADDED -- Research Needed]** -- Fextralife Tier 1 confirms these boss pages exist but insufficient data for safe addition: Crimson Warden (bounty, Crimson Desert), Dreadnought, Full Moon Reaper, Gabriel Caliburn, Grave Walker, Half Moon Reaper, Marni's Clockwork Mantis, Master Du, New Moon Reaper, Taming Dragon, Thunder Tank, Turbine. Prioritize researching these in next audit.
 - **Abyss Kutum [ADDED -- 2026-04-03 (Nightly Run)]** -- The Abyss, Twisted Thicketway. Eye-based creature, lightning slam. Stagger eye with Focused Shot then melee. Reward: Power Core - Spire of Defiance, Abyss Artifact x1. game8 Tier 1. Also added in same batch: Ogre, Crookrock Walker, Desert Marauder Rusten, Queen Spider, Hemon Beindel (all game8 Tier 1 confirmed).
 - **Primus the Ancient [NEW BOSS -- SINGLE SOURCE]** -- Dewhaven Territory (likely Delesyia south), Arrowhead Rock. Flying, shoots missiles. Reward: Ancient Ring, Ancient Reckoning Abyss Gear, Sage's Eye, Abyss Artifact x1. GameRant Tier 2 only -- needs second source.
 - **Tristan the Flame Knight [REGION NOW CONTESTED]** -- Run 19's pailune assumption now challenged by source saying quest from "central Demeniss." Reward clarified: Drale Shield is world item found by climbing castle wall (with Dragon Counterattack ability); Spada/Spade Sword is in box near target dummies (also world item, not direct drop). Still single Tier 2 sources. Do not add yet.
@@ -1468,23 +1470,11 @@ This is a major game system newly documented from post-launch sources. Not curre
 - **Remaining blocker:** No numeric speed value found. Entry cannot be added to MOUNTS schema without it.
 - Action: Continue monitoring. Check crimsondesert.gaming.tools database specifically for mount stat tables.
 
-#### Split Horn Reward -- STILL UNCONFIRMED [NO PROGRESS 2026-04-18]
+#### Split Horn Reward -- STILL UNCONFIRMED [NO PROGRESS 2026-04-20]
 
-- **Status:** crimsondesertwiki.org page is stale (last updated 2026-03-16, still shows "Pre-release information -- may change at launch." and "Reward data and exact element type will be confirmed post-launch."). No post-launch reward data found in any source.
-- Action: Flag for manual wiki search on Fextralife or game8 directly for Split Horn boss page.
+- **Status:** crimsondesertwiki.org page still stale (pre-launch data). Fextralife Split Horn page not directly accessible. No post-launch reward data found in any source. Web search returns only Kailok the HornSplitter results when searching "Split Horn" -- possible search engine conflation between the two different goblin bosses.
+- Action: Try querying Fextralife wiki directly at `crimsondesertgame.wiki.fextralife.com/Split+Horn` in next run.
 
 #### Bloodwind Quest Region -- INCONSISTENCY FLAGGED [NEEDS HUMAN REVIEW]
 
-- **Issue:** Quest entries in Ch.5 "Black and White" arc (lines 1213-1226 in game-data.ts) use `region: 'abyss'`. This includes 'The Missing Seal', 'Crowcaller', "The Crow's Warning", 'Bloodwind', and 'Toward the Nest'.
-- **However:** The BOSS entry `{ name: 'Draven the Crowcaller', region: 'demeniss', location: 'Spire of Soaring, Demeniss' }` is confirmed correct by 4 sources.
-- **Decision needed:** Does the quest 'Bloodwind' (boss fight vs. Crowcaller) happen in Demeniss or a transitional Abyss-like space? The arc could start in Abyss and transition to Demeniss. Not safe to auto-fix without confirmation. Flag for human review.
-- Action: Verify in-game region indicator during Ch.5 Black and White quests. If all are Demeniss, change `region: 'abyss'` to `region: 'demeniss'` for those 5 quests.
-
-#### Narima's Horn -- NEW CONTENT FOUND [NEEDS REVIEW]
-
-- **Description:** A Dragon mount cooldown removal item. Multiple guides (GameRant, Sportskeeda, vpesports) document how to obtain it. Removes the cooldown on the Dragon mount (presumably Golden Star or a related dragon mount).
-- **Relevance:** This is a notable consumable/item not currently in the app's data. If the app has a Dragon mount entry, the acquisition chain may reference Narima's Horn.
-- **Source:** GameRant "Narima's Horn" guide [2026-04-18] -- Tier 2; Sportskeeda [2026-04-18] -- Tier 2.
-- Action: Research Narima's Horn acquisition and add to relevant mount entry if applicable. Low priority.
-
-#### Patch 1.03.01 Hotfix -- NO NEW GAME DATA [
+- **Issue:** Quest
