@@ -694,10 +694,10 @@ export const BOSSES: Boss[] = [
 
   // Added 2026-04-15 via nightly audit (sources: Fextralife Tier 1, PowerPyx Tier 1, game8 Tier 1)
   // ─── NEWLY CONFIRMED BOSSES ───────────────────────────────────────────────────────────────────
-  { name: 'Beloth the Darksworn', region: 'hernand', type: 'Monster', difficulty: 'hard',
-    reward: 'Frost Spike, Abyss Artifact x1', element: 'frost',
-    location: 'Hoenmark Ruins, Hernand (quest: Wraith in the Frost)',
-    mechanics: 'Faction quest boss. Dark wraith haunting Hoenmark Ruins with an unholy blade and freezing blizzard. Frost attacks including Hailstorm cripple movement speed and deal damage over time. Tough armor -- use arena pillars for cover and concealment. Bring HP recovery items with Ice Resistance.' },
+  { name: 'Beloth the Darksworn', region: 'hernand', type: 'Humanoid', difficulty: 'extreme', // Updated 2026-04-21: type/reward/mechanics corrected by PCGamer+GameRant+Deltia's+TheGamer (4 sources)
+    reward: 'Plate Helm of the Shadows, Armor of Shadows set', element: 'frost', weakness: 'fire',
+    location: 'Hoenmark Ruins, northwest Hernand (quest: White Blizzard)',
+    mechanics: 'Requires 15+ ice resistance to survive the boss room without constant cold damage. Devastating freeze attacks, teleporting strikes, one-shot spear throws. Fire damage deals bonus damage AND builds stun quickly. Craft Kuku Cold-Resistant Armor at Grimnir (Kuku Shop, Hernand) before attempting. Plate Helm of the Shadows reward grants unique frost breath ability allowing you to freeze water surfaces and walk across them. Source: PCGamer + GameRant + Deltia\'s Gaming + TheGamer (4 sources).' },
   { name: 'Gabriel Caliburn', region: 'abyss', type: 'Human', difficulty: 'legendary',
     reward: 'Twisted Verdict', element: 'abyss',
     location: 'Monolith Crown / Crescent Skybridge, The Abyss (quest: A Shadow in the Void, Main Quest #159)',
@@ -712,12 +712,32 @@ export const BOSSES: Boss[] = [
     element: 'physical',
     location: 'Cloister of Enlightenment, Crimson Desert (quest: The Sage of the Desert)',
     mechanics: '2 HP bars. Mysterious sage and martial master. P1: balanced attack patterns -- only strikes when a clear window appears. P2: shifts to defensive stance, switch to aggressive offense. Beware instakill Green Ray laser in P2. Observe him mid-fight to permanently unlock Blinding Flash Finisher skill. NOTE: Does not appear in Knowledge Codex journal.' },
+
+  // Added 2026-04-21 via nightly audit (sources: crimsondesert.gaming.tools Tier 1, PowerPyx Tier 1, GameRant Tier 2, game8 Tier 1)
+  // ─── DELESYIA FORTRESS LIBERATION BOSSES (Fortress Keys quest chain) ──────────────────────────
+  { name: 'Thunder Tank', region: 'delesyia', type: 'Mechanical', difficulty: 'hard',
+    reward: 'Fortress Key',
+    element: 'shock', weakness: 'physical',
+    location: 'Valvegard Garrison, Delesyia (quest: Fortress Keys)',
+    mechanics: '1 HP bar. Electric tank boss guarding Valvegard Garrison fortress. Close range: rams player for massive damage. Mid range: explosive projectile barrage. Long range: missile salvos. Optimal strategy: maintain long range and use Focused Shot. Mechanical vulnerability enables one-hit potential with correct setup. Source: crimsondesert.gaming.tools Tier 1 + PowerPyx Tier 1.' },
+  { name: 'Dreadnought', region: 'delesyia', type: 'Mechanical', difficulty: 'hard',
+    reward: 'Fortress Key',
+    element: 'physical', weakness: 'physical',
+    location: "Marni's Laboratorium, Delesyia (quest: Fortress Keys)",
+    mechanics: "1 HP bar. Gigantic steam-powered military mech with cyclops laser eye. Slow turn rate (~2-3 seconds for full 180). Strategy: bait an attack, dash behind during recovery window, backstab repeatedly. Yellow eye laser is primary threat and deals massive damage. Part of Fortress Keys liberation quest chain alongside Thunder Tank. Source: Fextralife wiki Tier 1 + PowerPyx Tier 1." },
+
+  // ─── DEMENISS CORRUPTED GREYMANE FACTION BOSS ────────────────────────────────────────────────
+  { name: 'Crimson Warden', region: 'demeniss', type: 'Human', difficulty: 'hard',
+    reward: 'Dark Red Goblet, Crimson Chaser Mail, Abyss Artifact x1',
+    element: 'physical', weakness: 'physical',
+    location: 'Demeniss Wildlife Park, Demeniss (quest: The Crimson Warden, Corrupted Greymane faction)',
+    mechanics: "1 HP bar. Greatest archer of the Greymanes — now defected and hunting humans like prey. High evasion, rapid precise bow attacks. Counter bow barrages with Nature's Snare Retribution during her repositioning animations. Arrow Rain skill unlockable by Observation after the fight. Dark Red Goblet reward permanently increases Stamina. Source: game8 Tier 1 + Fextralife wiki Tier 1." },
 ];
 
-// Knowledge Codex contains 76 total named bosses. Above list contains 45 confirmed.
-// Remaining ~31 bosses exist but are not yet fully documented post-launch.
-// Known missing (Fextralife Tier 1 confirmed, not yet added): Crimson Warden, Dreadnought, Full Moon Reaper,
-//   Grave Walker, Half Moon Reaper, Marni's Clockwork Mantis, New Moon Reaper, Taming Dragon, Thunder Tank, Turbine.
+// Knowledge Codex contains 76 total named bosses. Above list contains 48 confirmed.
+// Remaining ~28 bosses exist but are not yet fully documented post-launch.
+// Known missing (Fextralife Tier 1 confirmed, not yet added): Full Moon Reaper, Grave Walker,
+//   Half Moon Reaper, Marni's Clockwork Mantis, New Moon Reaper, Taming Dragon, Turbine. Research and add in future audits.
 
 // ═══════════════════════════════════════
 // ENEMIES / BESTIARY
