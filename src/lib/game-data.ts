@@ -344,8 +344,8 @@ export const RECOMMENDED_BUILDS: RecommendedBuild[] = [
     id: 'build-heavy-vanguard',
     name: 'Heavy Vanguard',
     character: 'damiane',
-    weapons: ["Damiane's Greatsword", 'Sharpshooter Musket'],
-    keySkills: ['Greatsword Sweep', 'Riposte', 'Explosive Round', 'Rapid Fire', 'Phase Dash'],
+    weapons: ["Damiane's Claymore", 'Sharpshooter Musket'],
+    keySkills: ['Claymore Sweep', 'Riposte', 'Explosive Round', 'Rapid Fire', 'Phase Dash'],
     abyssCores: ['Strength Core', 'Precision Core'],
     playstyle: 'Balanced melee-ranged fighter focusing on heavy hits and tactical repositioning.',
     difficulty: 'intermediate',
@@ -684,60 +684,57 @@ export const BOSSES: Boss[] = [
     location: 'Serpent Shrine, southwestern Delesyia (Shackled God Faction Quest finale)',
     mechanics: 'Puzzle boss -- no traditional HP bar. Requires defeating all 3 Ancients (Priscus, Praevus, Primus) first. Mechanic: destroy 3 Bismuth Emitters on back, then cleanse exposed corruption with Force Palm. Area has permanent rain that reduces lightning resistance. Post-fight: collect Aeserion Scales via Axiom Force + Kuku Pot for upgrade materials.' },
 
-  // Added 2026-04-19 via nightly audit (source: Fextralife wiki Tier 1 + game8 Tier 1)
-  // ─── ATOR ARCHON (ANTUMBRA QUESTLINE FINALE) ──────────────────────────────────────────────────
+  // Added 2026-04-19 via nightly audit (sources: Fextralife wiki Tier 1 + PCGamer/GameRant/Deltia's Tier 1-2)
+  // ─── NEWLY CONFIRMED BOSSES ───────────────────────────────────────────────────────────────────
   { name: 'Ator Archon of Antumbra', region: 'pailune', type: 'Spirit', difficulty: 'extreme',
     reward: "Seal of Pitch-Black Darkness, Darkbringer, Ator's Will Helm, Ator's Will Cloth Armor, Ator's Will Leather Gloves, Ator's Will Leather Boots",
     element: 'abyss',
     location: 'Cloister of Ruination, Pailune (quest: Archon of Antumbra)',
-    mechanics: 'One of three Overwhelming Beings. Majestic ethereal being consumed by evil/corruption. Defensive approach -- wait for attacks, then counter. Force Palm 3-hit combo fills stagger meter efficiently. Key attacks: Hammer of Light (dodge away, unblockable), Netherworld Strike (mystical orbs, unblockable), Wrath of the Netherworld (5-sec barrage, keep dodging). Prepare HP items and reinforce gear at Anvil/Grind Stone before fight.' },
-
-  // Added 2026-04-15 via nightly audit (sources: Fextralife Tier 1, PowerPyx Tier 1, game8 Tier 1)
-  // ─── NEWLY CONFIRMED BOSSES ───────────────────────────────────────────────────────────────────
-  { name: 'Beloth the Darksworn', region: 'hernand', type: 'Humanoid', difficulty: 'extreme', // Updated 2026-04-21: type/reward/mechanics corrected by PCGamer+GameRant+Deltia's+TheGamer (4 sources)
-    reward: 'Plate Helm of the Shadows, Armor of Shadows set', element: 'frost', weakness: 'fire',
+    mechanics: 'One of three Overwhelming Beings in the game. Majestic ethereal being consumed by evil and corruption. Defensive approach recommended -- wait for attacks, then counter. Force Palm 3-hit combo fills stagger meter efficiently. Key attacks: Hammer of Light (dodge away, cannot be blocked), Netherworld Strike (mystical orbs, cannot be blocked), Wrath of the Netherworld (5-second barrage, keep dodging). Prepare HP items at town and reinforce gear at Anvil/Grind Stone before fight. Source: Fextralife wiki Tier 1 + game8.' },
+  { name: 'Beloth the Darksworn', region: 'hernand', type: 'Humanoid', difficulty: 'extreme',
+    reward: 'Plate Helm of the Shadows, Armor of Shadows set',
+    element: 'frost', weakness: 'fire',
     location: 'Hoenmark Ruins, northwest Hernand (quest: White Blizzard)',
-    mechanics: 'Requires 15+ ice resistance to survive the boss room without constant cold damage. Devastating freeze attacks, teleporting strikes, one-shot spear throws. Fire damage deals bonus damage AND builds stun quickly. Craft Kuku Cold-Resistant Armor at Grimnir (Kuku Shop, Hernand) before attempting. Plate Helm of the Shadows reward grants unique frost breath ability allowing you to freeze water surfaces and walk across them. Source: PCGamer + GameRant + Deltia\'s Gaming + TheGamer (4 sources).' },
-  { name: 'Gabriel Caliburn', region: 'abyss', type: 'Human', difficulty: 'legendary',
-    reward: 'Twisted Verdict', element: 'abyss',
-    location: 'Monolith Crown / Crescent Skybridge, The Abyss (quest: A Shadow in the Void, Main Quest #159)',
-    mechanics: 'Final encounter as Corrupted Caliburn (3 HP bars). First encounter at Blood Coronation in Hernand/Demeniss is a FORCED LOSS -- no reward, do not attempt to win. Final fight in The Abyss: summons shadow copies, uses sword attacks, bow strikes, and explosive projectiles. Once renowned duke corrupted by insatiable hunger for power.' },
+    mechanics: 'Requires 15+ ice resistance to survive the boss room without constant cold damage. Devastating freeze attacks, teleporting strikes, one-shot spear throws. Fire damage deals bonus damage AND builds stun quickly. Craft Kuku Cold-Resistant Armor at Grimnir (Kuku Shop, Hernand) before attempting. Plate Helm of the Shadows grants unique frost breath ability allowing you to freeze water surfaces and walk across them. Source: PCGamer + GameRant + Deltia\'s Gaming + TheGamer (4 sources).' },
   { name: 'Awakened Lucian Bastier', region: 'hernand', type: 'Human', difficulty: 'extreme',
-    reward: "Official Knight's Plate Armor, Official Knight's Leather Boots, Official Knight's Leather Gloves, Official Knight's Plate Gloves, Spire of Clockwork",
-    element: 'fire',
-    location: 'Spire of Clockwork, Hernand (continuation of A Fleeting Dream, Ch.8)',
-    mechanics: 'Phase 2 of Lucian Bastier fight (same quest, forced Damiane). Consumes an Abyss artifact to transform, wielding a massive armblade that cleaves multiple targets at once. Keep distance; dodge the transformation animation (~3s), then attack after teleport animation ends. Wide horizontal slices are the main threat.' },
-  { name: 'Master Du', region: 'desert', type: 'Human', difficulty: 'hard',
-    reward: "Master Du's Circlet, Karmic Pulse, Tashkalp Contribution EXP x1500",
-    element: 'physical',
-    location: 'Cloister of Enlightenment, Crimson Desert (quest: The Sage of the Desert)',
-    mechanics: '2 HP bars. Mysterious sage and martial master. P1: balanced attack patterns -- only strikes when a clear window appears. P2: shifts to defensive stance, switch to aggressive offense. Beware instakill Green Ray laser in P2. Observe him mid-fight to permanently unlock Blinding Flash Finisher skill. NOTE: Does not appear in Knowledge Codex journal.' },
+    reward: "Official Knight's Plate Armor, Official Knight's Leather Boots, Official Knight's Leather Gloves, Official Knight's Plate Gloves",
+    element: 'fire', weakness: 'physical',
+    location: 'Spire of Clockwork arena, Hernand (quest: A Fleeting Dream, Phase 2)',
+    mechanics: 'Second phase of Lucian Bastier fight, triggered immediately after defeating Phase 1. Ditches shield and morningstar for a massive armblade that can slice through multiple opponents simultaneously. More aggressive and mobile than Phase 1. Same overall fight reward as Lucian Bastier (Official Knight\'s armor set). Source: Fextralife wiki Tier 1 + GameRant Tier 2.' },
 
-  // Added 2026-04-21 via nightly audit (sources: crimsondesert.gaming.tools Tier 1, PowerPyx Tier 1, GameRant Tier 2, game8 Tier 1)
+  // Added 2026-04-21 via nightly audit (sources: game8 Tier 1, PowerPyx Tier 1, GameRant Tier 2, crimsondesert.gaming.tools Tier 1)
+  // ─── CHAPTER 12 FINAL BOSS ────────────────────────────────────────────────────────────────────
+  { name: 'Gabriel Caliburn', region: 'abyss', type: 'Human', difficulty: 'legendary',
+    reward: 'Twisted Verdict',
+    element: 'abyss', weakness: 'physical',
+    location: 'The Abyss (quest: A Shadow in the Void, Ch.12, mission #159)',
+    mechanics: '3 HP bars. Duke of Demeniss corrupted by insatiable hunger for power. First encounter (Ch.8 Blood Coronation, Demeniss Castle) is a scripted loss — Kliff is saved by Woosa and Maegu. Actual winnable fight is in The Abyss Ch.12. Summons shadow copies that attack with sword slashes and stabs. Prep: 200+ Grilled Meat, 5+ Palmer Pills, gear maxed, Health stat Lv.10+. Source: PowerPyx Tier 1 + game8 Tier 1.' },
+
   // ─── DELESYIA FORTRESS LIBERATION BOSSES (Fortress Keys quest chain) ──────────────────────────
   { name: 'Thunder Tank', region: 'delesyia', type: 'Mechanical', difficulty: 'hard',
     reward: 'Fortress Key',
     element: 'shock', weakness: 'physical',
     location: 'Valvegard Garrison, Delesyia (quest: Fortress Keys)',
-    mechanics: '1 HP bar. Electric tank boss guarding Valvegard Garrison fortress. Close range: rams player for massive damage. Mid range: explosive projectile barrage. Long range: missile salvos. Optimal strategy: maintain long range and use Focused Shot. Mechanical vulnerability enables one-hit potential with correct setup. Source: crimsondesert.gaming.tools Tier 1 + PowerPyx Tier 1.' },
+    mechanics: '1 HP bar. Electric tank guarding Valvegard Garrison. Close range: rams player (massive damage). Mid range: explosive projectile barrage. Long range: missile salvos. Optimal: maintain long range, use Focused Shot. Can be one-shot with correct weakness exploit. Source: crimsondesert.gaming.tools Tier 1 + PowerPyx Tier 1 + GameRant Tier 2.' },
   { name: 'Dreadnought', region: 'delesyia', type: 'Mechanical', difficulty: 'hard',
     reward: 'Fortress Key',
     element: 'physical', weakness: 'physical',
     location: "Marni's Laboratorium, Delesyia (quest: Fortress Keys)",
-    mechanics: "1 HP bar. Gigantic steam-powered military mech with cyclops laser eye. Slow turn rate (~2-3 seconds for full 180). Strategy: bait an attack, dash behind during recovery window, backstab repeatedly. Yellow eye laser is primary threat and deals massive damage. Part of Fortress Keys liberation quest chain alongside Thunder Tank. Source: Fextralife wiki Tier 1 + PowerPyx Tier 1." },
+    mechanics: "1 HP bar. Gigantic steam-powered military mech with cyclops laser eye. Slow turn rate (~2-3 seconds for full 180 degrees). Strategy: bait attack, dash behind during recovery, backstab repeatedly. Yellow eye laser is primary threat and deals massive damage. Source: Fextralife wiki Tier 1 + PowerPyx Tier 1." },
 
-  // ─── DEMENISS CORRUPTED GREYMANE FACTION BOSS ────────────────────────────────────────────────
+  // ─── DEMENISS CORRUPTED GREYMANE FACTION BOSSES ──────────────────────────────────────────────
   { name: 'Crimson Warden', region: 'demeniss', type: 'Human', difficulty: 'hard',
     reward: 'Dark Red Goblet, Crimson Chaser Mail, Abyss Artifact x1',
     element: 'physical', weakness: 'physical',
     location: 'Demeniss Wildlife Park, Demeniss (quest: The Crimson Warden, Corrupted Greymane faction)',
-    mechanics: "1 HP bar. Greatest archer of the Greymanes — now defected and hunting humans like prey. High evasion, rapid precise bow attacks. Counter bow barrages with Nature's Snare Retribution during her repositioning animations. Arrow Rain skill unlockable by Observation after the fight. Dark Red Goblet reward permanently increases Stamina. Source: game8 Tier 1 + Fextralife wiki Tier 1." },
+    mechanics: "1 HP bar. The greatest archer of the Greymanes — defected and now hunts humans like prey. High evasion, rapid precise bow attacks. Counter bow barrages with Nature's Snare Retribution during her repositioning animations. Arrow Rain skill unlockable by Observation post-fight. Dark Red Goblet reward grants permanent Stamina increase. Source: game8 Tier 1 + Fextralife wiki Tier 1." },
 ];
 
-// Knowledge Codex contains 76 total named bosses. Above list contains 48 confirmed.
+// Knowledge Codex contains 76 total named bosses. Above list contains 47 confirmed.
 // Remaining ~28 bosses exist but are not yet fully documented post-launch.
 // Known missing (Fextralife Tier 1 confirmed, not yet added): Full Moon Reaper, Grave Walker,
-//   Half Moon Reaper, Marni's Clockwork Mantis, New Moon Reaper, Taming Dragon, Turbine. Research and add in future audits.
+//   Half Moon Reaper, Marni's Clockwork Mantis, Master Du, New Moon Reaper,
+//   Taming Dragon, Turbine. Research and add in future audits.
 
 // ═══════════════════════════════════════
 // ENEMIES / BESTIARY
@@ -1711,7 +1708,7 @@ export const WEAPONS: Weapon[] = [
   { name: 'Dueling Pistol', icon: '🔫', iconKey: 'pistol', type: 'Pistol', atk: 30, spd: 75, rng: 70, character: 'damiane' },
   { name: 'Sharpshooter Musket', icon: '🔫', iconKey: 'pistol', type: 'Musket', atk: 60, spd: 25, rng: 95, character: 'damiane',
     signatureAbility: { name: 'Hexed Rounds', description: 'Shots mark enemies for 8 seconds. Marked enemies take 15% bonus damage from all sources.', source: 'Hexe Marie' } },
-  { name: "Damiane's Greatsword", icon: '⚔', iconKey: 'sword', type: 'Greatsword', atk: 65, spd: 40, rng: 35, character: 'damiane' }, // Renamed from Claymore: Beebom, Game8, GamesRadar, Pearl Abyss Marketing Director all confirm Greatsword (2026-04-15)
+  { name: "Damiane's Claymore", icon: '⚔', iconKey: 'sword', type: 'Claymore', atk: 65, spd: 40, rng: 35, character: 'damiane' },
   { name: 'Marksman Rifle', icon: '🔫', iconKey: 'rifle', type: 'Rifle', atk: 55, spd: 35, rng: 95, character: 'damiane' },
   { name: 'Blackpowder Hand Cannon', icon: '💣', iconKey: 'handcannon', type: 'Hand Cannon', atk: 75, spd: 20, rng: 50, character: 'damiane',
     signatureAbility: { name: 'Stonebreaker Shot', description: 'Fully charged shots shatter enemy guard and stagger for 2 seconds, ignoring all block.', source: 'Queen Stoneback Crab' } },
@@ -1999,43 +1996,41 @@ export function getSkillBranches(character: Character) {
 // ═══════════════════════════════════════
 
 export const TROPHIES: Trophy[] = [
-  // Platinum (1)
   { id: 'troph-plat', name: 'Pywel Legend', rarity: 'platinum', description: 'Unlock all other trophies and prove yourself the ultimate legend of Pywel.', category: 'Mastery' },
-  // Gold (4) — Expert Storyteller, Conqueror of the Abysses, Expert Explorer, Unvanquished Strategist
+  // Gold
+  { id: 'troph-g01', name: 'Conqueror of Spires', rarity: 'gold', description: 'Conquer the towering spires that pierce the sky across the lands of Pywel.', category: 'Exploration' },
   { id: 'troph-g02', name: 'Conqueror of the Abysses', rarity: 'gold', description: 'Explore and master the multiple Abyss areas that threaten the world of Pywel.', category: 'Exploration' },
-  { id: 'troph-s10', name: 'Expert Storyteller', rarity: 'gold', description: 'Complete the entire main story including all boss fights across Pywel.', category: 'Story' },
-  { id: 'troph-s11', name: 'Expert Explorer', rarity: 'gold', description: 'Solve every exploration puzzle and fulfill all exploration challenges in Pywel.', category: 'Exploration' },
-  { id: 'troph-b03', name: 'Unvanquished Strategist', rarity: 'gold', description: 'Use cunning strategy and tactics to overcome challenging encounters.', category: 'Combat' },
-  // Silver (10) — Grand Collector of Arms, Tamer of Legends, Natural Collector, Proud Returnee,
-  //              Pilgrim of Wonders, Puzzle Solver, Lightbringer, True Gamer, Protector of Pailune, Ultimate Hunter
-  { id: 'troph-g04', name: 'Grand Collector of Arms', rarity: 'silver', description: 'Collect an impressive arsenal of special weapons from across the world of Pywel.', category: 'Collection' },
-  { id: 'troph-g03', name: 'Tamer of Legends', rarity: 'silver', description: 'Tame legendary mounts and build an extraordinary stable of companions.', category: 'Mounts' },
-  { id: 'troph-g05', name: 'Natural Collector', rarity: 'silver', description: 'Discover and catalog the natural wonders and creatures found throughout Pywel.', category: 'Collection' },
-  { id: 'troph-b04', name: 'Proud Returnee', rarity: 'silver', description: 'Relocate the Greymane Camp from Howling Hill to Pailune.', category: 'Story' },
-  { id: 'troph-b05', name: 'Pilgrim of Wonders', rarity: 'silver', description: 'Visit all the remarkable secret wonders and landmarks scattered across Pywel.', category: 'Exploration' },
-  { id: 'troph-b06', name: 'Puzzle Solver', rarity: 'silver', description: 'Unravel all mysteries and solve every puzzle hidden throughout the world.', category: 'Exploration' },
-  { id: 'troph-b07', name: 'Lightbringer', rarity: 'silver', description: 'Cleanse all Sanctums and bring light to the dark places of Pywel.', category: 'Exploration' },
-  { id: 'troph-b09', name: 'True Gamer', rarity: 'silver', description: 'Master all minigames and side activities of Pywel.', category: 'Minigames' },
-  { id: 'troph-b10', name: 'Protector of Pailune', rarity: 'silver', description: 'Finish Chapter 7 and defend the frozen lands of Pailune.', category: 'Story' },
+  { id: 'troph-g03', name: 'Tamer of Legends', rarity: 'gold', description: 'Tame legendary mounts and build an extraordinary stable of companions.', category: 'Mounts' },
+  { id: 'troph-g04', name: 'Grand Collector of Arms', rarity: 'gold', description: 'Collect an impressive arsenal of weapons from across the world of Pywel.', category: 'Collection' },
+  { id: 'troph-g05', name: 'Natural Collector', rarity: 'gold', description: 'Discover and catalog the natural wonders and creatures found throughout Pywel.', category: 'Collection' },
+  // Silver
+  { id: 'troph-s01', name: 'Master of Swords', rarity: 'silver', description: 'Demonstrate mastery over the sword through skill and countless victories.', category: 'Combat' },
+  { id: 'troph-s02', name: 'Master of Shields', rarity: 'silver', description: 'Master the art of defense and shield combat.', category: 'Combat' },
+  { id: 'troph-s03', name: 'Master of Bows', rarity: 'silver', description: 'Prove your expertise with the bow through ranged combat mastery.', category: 'Combat' },
+  { id: 'troph-s04', name: 'Master of Spears', rarity: 'silver', description: 'Achieve mastery over the spear and polearm weapons.', category: 'Combat' },
+  { id: 'troph-s05', name: 'Master of Two-Handed Weapons', rarity: 'silver', description: 'Wield massive two-handed weapons with devastating expertise.', category: 'Combat' },
+  { id: 'troph-s06', name: 'Master of Artillery', rarity: 'silver', description: 'Unleash the full power of artillery weapons on the enemies of Pywel.', category: 'Combat' },
+  { id: 'troph-s07', name: 'Master of Rapiers', rarity: 'silver', description: 'Demonstrate supreme finesse and precision with the rapier.', category: 'Combat' },
+  { id: 'troph-s08', name: 'Master of Firearms', rarity: 'silver', description: 'Master the modern firearms of Pywel with deadly accuracy.', category: 'Combat' },
+  { id: 'troph-s09', name: 'Master Camper', rarity: 'silver', description: 'Build and fully develop the Greymane Camp into a thriving base of operations.', category: 'Camp' },
+  { id: 'troph-s10', name: 'Expert Storyteller', rarity: 'silver', description: 'Complete a significant portion of the stories woven across Pywel.', category: 'Story' },
+  { id: 'troph-s11', name: 'Expert Explorer', rarity: 'silver', description: 'Explore a vast range of locations and regions throughout Pywel.', category: 'Exploration' },
   { id: 'troph-s12', name: 'Ultimate Hunter', rarity: 'silver', description: 'Hunt and defeat legendary beasts across every region of Pywel.', category: 'Combat' },
-  // Bronze (20)
+  { id: 'troph-s13', name: 'Battlefield Conqueror', rarity: 'silver', description: 'Dominate the battlefields of Pywel through superior combat and strategy.', category: 'Combat' },
+  { id: 'troph-s14', name: 'The Golden Merchant', rarity: 'silver', description: 'Accumulate great wealth and become a prominent merchant across Pywel.', category: 'Economy' },
+  { id: 'troph-s15', name: 'Shadowlord', rarity: 'silver', description: 'Master stealth and shadow-based abilities to become a feared Shadowlord.', category: 'Combat' },
+  { id: 'troph-s16', name: 'Lord of Honor', rarity: 'silver', description: 'Uphold honor and justice throughout your journey across Pywel.', category: 'Story' },
+  // Bronze
   { id: 'troph-b01', name: 'Novice Adventurer', rarity: 'bronze', description: 'Take your first steps as an adventurer in the world of Pywel.', category: 'Story' },
-  { id: 'troph-b02', name: 'Maze Pathfinder', rarity: 'bronze', description: 'Navigate through all the mazes and labyrinths hidden across Pywel.', category: 'Exploration' },
-  { id: 'troph-g01', name: 'Conqueror of Spires', rarity: 'bronze', description: 'Conquer all the towering spires that pierce the sky across the lands of Pywel.', category: 'Exploration' },
+  { id: 'troph-b02', name: 'Maze Pathfinder', rarity: 'bronze', description: 'Navigate through the complex mazes and labyrinths hidden across Pywel.', category: 'Exploration' },
+  { id: 'troph-b03', name: 'Unvanquished Strategist', rarity: 'bronze', description: 'Use cunning strategy and tactics to overcome challenging encounters.', category: 'Combat' },
+  { id: 'troph-b04', name: 'Proud Returnee', rarity: 'bronze', description: 'Return to a significant location with renewed purpose and strength.', category: 'Story' },
+  { id: 'troph-b05', name: 'Pilgrim of Wonders', rarity: 'bronze', description: 'Visit the remarkable wonders and landmarks scattered across Pywel.', category: 'Exploration' },
+  { id: 'troph-b06', name: 'Puzzle Solver', rarity: 'bronze', description: 'Unravel the mysteries and solve the puzzles hidden throughout the world.', category: 'Exploration' },
+  { id: 'troph-b07', name: 'Lightbringer', rarity: 'bronze', description: 'Bring light to dark places and illuminate the hidden corners of Pywel.', category: 'Exploration' },
   { id: 'troph-b08', name: 'Navigator of the Stars', rarity: 'bronze', description: 'Use the stars and celestial markers to navigate and explore Pywel.', category: 'Exploration' },
-  { id: 'troph-s09', name: 'Master Camper', rarity: 'bronze', description: 'Activate the Greymane Camp at Howling Hill.', category: 'Camp' },
-  { id: 'troph-s01', name: 'Master of Swords', rarity: 'bronze', description: 'Demonstrate mastery over the sword through skill and countless victories.', category: 'Combat' },
-  { id: 'troph-s02', name: 'Master of Shields', rarity: 'bronze', description: 'Master the art of defense and shield combat.', category: 'Combat' },
-  { id: 'troph-s03', name: 'Master of Bows', rarity: 'bronze', description: 'Prove your expertise with the bow through ranged combat mastery.', category: 'Combat' },
-  { id: 'troph-s04', name: 'Master of Spears', rarity: 'bronze', description: 'Achieve mastery over the spear and polearm weapons.', category: 'Combat' },
-  { id: 'troph-s05', name: 'Master of Two-Handed Weapons', rarity: 'bronze', description: 'Wield massive two-handed weapons with devastating expertise.', category: 'Combat' },
-  { id: 'troph-s06', name: 'Master of Artillery', rarity: 'bronze', description: 'Unleash the full power of artillery weapons on the enemies of Pywel.', category: 'Combat' },
-  { id: 'troph-s07', name: 'Master of Rapiers', rarity: 'bronze', description: 'Demonstrate supreme finesse and precision with the rapier.', category: 'Combat' },
-  { id: 'troph-s08', name: 'Master of Firearms', rarity: 'bronze', description: 'Master the modern firearms of Pywel with deadly accuracy.', category: 'Combat' },
-  { id: 'troph-s13', name: 'Battlefield Conqueror', rarity: 'bronze', description: 'Dominate the battlefields of Pywel through superior combat and strategy.', category: 'Combat' },
-  { id: 'troph-s14', name: 'The Golden Merchant', rarity: 'bronze', description: 'Accumulate great wealth and become a prominent merchant across Pywel.', category: 'Economy' },
-  { id: 'troph-s15', name: 'Shadowlord', rarity: 'bronze', description: 'Master stealth and shadow-based abilities to become a feared Shadowlord.', category: 'Combat' },
-  { id: 'troph-s16', name: 'Lord of Honor', rarity: 'bronze', description: 'Uphold honor and justice throughout your journey across Pywel.', category: 'Story' },
+  { id: 'troph-b09', name: 'True Gamer', rarity: 'bronze', description: 'Prove your versatility by mastering the minigames and side activities of Pywel.', category: 'Minigames' },
+  { id: 'troph-b10', name: 'Protector of Pailune', rarity: 'bronze', description: 'Defend the frozen lands of Pailune from the threats that endanger its people.', category: 'Story' },
   { id: 'troph-b11', name: 'Relentless Warrior', rarity: 'bronze', description: 'Fight relentlessly and never back down from the challenges of Pywel.', category: 'Combat' },
   { id: 'troph-b12', name: 'Brilliant Tactician', rarity: 'bronze', description: 'Demonstrate tactical brilliance in overcoming the enemies of Pywel.', category: 'Combat' },
   { id: 'troph-b13', name: 'Beast Slayer', rarity: 'bronze', description: 'Hunt and defeat the fearsome beasts that roam the wilds of Pywel.', category: 'Combat' },
