@@ -1,8 +1,50 @@
 # Crimson Companion App -- Data To Add / Fix
 
-_Last updated: 2026-04-20 (Nightly Audit Run)_
+_Last updated: 2026-04-23 (Nightly Audit Run)_
 
 Items are organized by category and priority. Mark items as `[ADDED]` once they've been incorporated into the app.
+
+---
+
+### Flagged 2026-04-23 (Nightly Audit Run) -- Patch 1.04.00 Day-Zero Pass
+
+**Context:** Patch 1.04.00 released today, April 23, 2026. This is the major patch that was expected the week of April 20-24. Sources: Pearl Abyss official patch notes (Tier 1), vulkk.com (Tier 2), fandomwire.com (Tier 2), Shacknews (Tier 2), GameRant (Tier 2), GameSpot (Tier 2).
+
+#### Cloudcart -- mountType Updated to 'permanent' [APPLIED 2026-04-23 (Nightly Audit)]
+- Official Patch 1.04.00 states: "The cloudcart has been improved so that it can be used as a permanent mount."
+- App previously had `mountType: 'vehicle'`. Updated to `mountType: 'permanent'`.
+- Source: Pearl Abyss official Patch 1.04.00 notes [2026-04-23] -- Tier 1.
+
+#### New Skills for Damiane and Oongka [NEEDS REVIEW] -- Flagged 2026-04-23
+- Both Damiane and Oongka received a new **Ambush** skill in Patch 1.04.00.
+- Both also received a skill that mirrors Kliff's Focused Force Palm effect (exact name not yet confirmed in sources).
+- **Damiane only:** Quick Reload skill updated -- can now be acquired via Abyss Artifacts in addition to skill observation.
+- Action: Once confirmed skill names are available from game8 or Fextralife, add to SKILLS array as `character: 'damiane'` and `character: 'oongka'` entries. Need official in-game names before adding.
+- Source: vulkk.com + fandomwire.com + GameRant [2026-04-23] -- Tier 2.
+
+#### Sword of Starlight [New Damiane Weapon] [NEEDS REVIEW] -- Flagged 2026-04-23
+- A new one-handed weapon exclusive to Damiane called **Sword of Starlight** was added in Patch 1.04.00.
+- Acquisition: Obtained through a quest (quest name not yet confirmed in sources).
+- Stats unknown. Add once wiki sources confirm stats and quest name.
+- Source: GameSearch aggregation [2026-04-23] -- Tier 2.
+
+#### Tree Branch / Sturdy Tree Branch [New World Pickup Weapons] [NEEDS REVIEW] -- Flagged 2026-04-23
+- Two new one-handed weapons added: **Tree Branch** and **Sturdy Tree Branch**.
+- Obtained by cutting down trees and bamboo trees (world pickup, not boss drop).
+- Stats unknown. Likely low-tier / novelty weapons. Add once stats confirmed.
+- Source: GameSearch aggregation [2026-04-23] -- Tier 2.
+
+#### New Pets: 5 Cat Types + Abyss Heuklang [NEEDS REVIEW] -- Flagged 2026-04-23
+- **Five new cat types** added as pets. Exact names not yet confirmed in sources.
+- **Abyss Heuklang** can now become a permanent pet companion.
+- **Sigil of Bonding** item added -- allows cats to sit on the player's shoulder.
+- No pet data structure currently in the app. Data model decision pending.
+- Source: Pearl Abyss official Patch 1.04.00 notes [2026-04-23] -- Tier 1.
+
+#### Boss Rematches -- NOT IN THIS PATCH [CONFIRMED PENDING] -- Updated 2026-04-23
+- Boss Rematches feature was confirmed by Pearl Abyss as "coming soon" but was NOT included in Patch 1.04.00.
+- Continue monitoring for next patch (1.05.00 or similar).
+- Source: vulkk.com + GameRant [2026-04-23] -- Tier 2.
 
 ---
 
@@ -16,6 +58,18 @@ Items are organized by category and priority. Mark items as `[ADDED]` once they'
 - **Oongka**: Axiom Force + Nature's Snare -- previously Kliff-exclusive, added to Oongka in Patch 1.03.00. `id: 'o-af'` and `id: 'o-ns'` added to SKILLS array.
 - Source: Official Pearl Abyss Patch Notes 1.03.00 (crimsondesert.pearlabyss.com) -- Tier 1.
 - Committed and pushed to GitHub: commit 0f10970. Vercel auto-deploy triggered.
+
+#### Patch 1.03.01 Hotfix [NO DATA CHANGES NEEDED] -- Noted: 2026-04-22 (Nightly Audit)
+- Hotfix released after 1.03.00. Fixed Nature's Snare projectile ricochet bug, Nature's Snare Xbox controller input issue, and Private Storage loot not storing after liberation.
+- No new skills, mounts, or content changes. No app data updates required.
+- Source: Pearl Abyss official patch notes + gamerant.com [2026-04-22]
+
+#### Upcoming "Substantial" Patch (Late April 2026) [NEEDS REVIEW -- not yet live] -- Noted: 2026-04-22 (Nightly Audit)
+- A major patch expected week of April 20-24, 2026 (may be out now or imminent).
+- Will introduce: Easy/Normal/Hard difficulty settings, Boss Rematches, improved control systems.
+- Pearl Abyss delayed for extra "testing and polishing."
+- Action needed: When live, check patch notes for new mounts, skills, or content requiring data entry.
+- Source: games.gg [2026-04-22], techloy.com [2026-04-22]
 
 #### Patch 1.03.00 Roadmap Items [NEEDS REVIEW -- not yet live]
 - Boss Rematches (coming in April-June update window)
@@ -1465,16 +1519,4 @@ This is a major game system newly documented from post-launch sources. Not curre
 
 #### Silver Fang Speed Stat -- STILL UNCONFIRMED [BLOCKER REMAINS 2026-04-18]
 
-- **Status:** Checked 8+ dedicated Silver Fang guides (GameRant, PCGamer, game8, keengamer, egamersworld, thephrasemaker, games.gg, md-eksperiment.org) -- not a single one provides a numeric speed stat.
-- **Consistent description:** "Much slower than horses," "far less health and stamina than other mounts," "trades pure speed for combat ability." Estimate 30-35 on app scale remains valid.
-- **Remaining blocker:** No numeric speed value found. Entry cannot be added to MOUNTS schema without it.
-- Action: Continue monitoring. Check crimsondesert.gaming.tools database specifically for mount stat tables.
-
-#### Split Horn Reward -- STILL UNCONFIRMED [NO PROGRESS 2026-04-20]
-
-- **Status:** crimsondesertwiki.org page still stale (pre-launch data). Fextralife Split Horn page not directly accessible. No post-launch reward data found in any source. Web search returns only Kailok the HornSplitter results when searching "Split Horn" -- possible search engine conflation between the two different goblin bosses.
-- Action: Try querying Fextralife wiki directly at `crimsondesertgame.wiki.fextralife.com/Split+Horn` in next run.
-
-#### Bloodwind Quest Region -- INCONSISTENCY FLAGGED [NEEDS HUMAN REVIEW]
-
-- **Issue:** Quest
+- **Status:** Checked 8+ dedicated Silver Fang guides (GameRant, PCGamer, game8, keengamer, egamersworld, thephrasemaker, ga

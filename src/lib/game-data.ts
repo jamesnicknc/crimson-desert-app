@@ -1834,7 +1834,7 @@ export const MOUNTS: Mount[] = [
 
   // ── Vehicles (2) ──────────────────────────
   { name: 'Pywel Wagon', category: 'vehicle', mountType: 'vehicle', region: 'multiple', speed: 30, combat: 0, stamina: 90, special: 'Horse-drawn cargo wagon for hauling goods across regions', acquisition: 'Steal from NPCs or craft via Brice (Wagon Master) dispatch mission at Howling Hill camp' },
-  { name: 'Cloudcart', category: 'vehicle', mountType: 'vehicle', region: 'multiple', speed: 50, combat: 0, stamina: 80, special: 'Hot air balloon for aerial travel and reconnaissance', acquisition: 'Craft via Engineer dispatch mission after discovering Emberwind Workshop' },
+  { name: 'Cloudcart', category: 'vehicle', mountType: 'permanent', region: 'multiple', speed: 50, combat: 0, stamina: 80, special: 'Hot air balloon for aerial travel and reconnaissance. Updated to permanent mount in Patch 1.04.00 (2026-04-23).', acquisition: 'Craft via Engineer dispatch mission after discovering Emberwind Workshop' },
 
   // ── Temporary Mounts: Bears (2) ───────────
   { name: 'Brown Bear', category: 'bear', mountType: 'temporary', region: 'multiple', speed: 40, combat: 80, stamina: 75, special: 'Claw swipes, bite attacks, and body slams without rider input', acquisition: 'Stagger a wild bear with enough damage until it stops moving, then mount when prompt appears; despawns on dismount' },
@@ -2034,5 +2034,4 @@ export const TROPHIES: Trophy[] = [
   { id: 'troph-b17', name: 'Lord of Honor', rarity: 'bronze', description: 'Uphold honor and justice throughout your journey across Pywel.', category: 'Story' },
   { id: 'troph-b18', name: 'Relentless Warrior', rarity: 'bronze', description: 'Fight relentlessly and never back down from the challenges of Pywel.', category: 'Combat' },
   { id: 'troph-b19', name: 'Brilliant Tactician', rarity: 'bronze', description: 'Demonstrate tactical brilliance in overcoming the enemies of Pywel.', category: 'Combat' },
-  { id: 'troph-b20', name: 'Beast Slayer', rarity: 'bronze', description: 'Hunt and defeat the fearsome beasts that roam the wilds of Pywel.', category: 'Combat' },
-];
+  { id: 'troph-b20', name: 'Beast Slayer', rarity: 'bronze', descript
