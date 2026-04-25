@@ -1,8 +1,30 @@
 # Crimson Companion App -- Data To Add / Fix
 
-_Last updated: 2026-04-23 (Nightly Audit Run)_
+_Last updated: 2026-04-24 (Nightly Audit Run)_
 
 Items are organized by category and priority. Mark items as `[ADDED]` once they've been incorporated into the app.
+
+---
+
+### Flagged 2026-04-24 (Nightly Audit Run) -- Build Fix + Post-1.04.00 Research
+
+#### CRITICAL BUILD FIX [APPLIED 2026-04-24 (Nightly Audit)]
+- Previous commit (d1ae7ac, 2026-04-23) truncated `game-data.ts`, cutting off the `troph-b20` Beast Slayer trophy entry and the closing `];` of the TROPHIES array.
+- Caused TypeScript syntax error ("Unexpected eof") breaking the Vercel build. Production was serving the previous READY deployment (d2cc478).
+- Fix applied: completed troph-b20 entry and added closing `];`. Committed as 2f32756 and pushed to GitHub 2026-04-24.
+- Root cause: file write truncation during last nightly session when reformatting the TROPHIES array.
+
+#### Patch 1.04.01 Hotfix [NO DATA CHANGES NEEDED] -- Noted: 2026-04-24 (Nightly Audit)
+- Hotfix released April 23, 2026 (same day as 1.04.00). Fixes: mounts not appearing in Quick Slot, pet feeding on logged/mined materials, crash during dye/customization, Focused Aerial Roll flight speed regression, stamina recovery on weapon sheathe bug.
+- No new skills, mounts, weapons, or content. No app data updates required.
+- Source: Pearl Abyss official Patch 1.04.01 notes + mp1st.com [2026-04-23] -- Tier 1.
+
+#### Sword of Starlight [Acquisition NOW CONFIRMED] -- Updated: 2026-04-24 (Nightly Audit)
+- Acquisition quest confirmed by GameRant [2026-04-24] -- Tier 2.
+- **Full acquisition path:** Complete all 13 Constellations via "The Maps of the Night Unveiled" quest. Start by completing Hernand Faction Quests until receiving the "What the Stars Left Behind" quest chain from the Scholastone Institute (this grants the Constellation Helm). Use the Helm to observe all 13 Constellations across Pywel. Completing all 13 unlocks the secret 10th Scholastone Institute quest, "The Maps of the Night Unveiled," which rewards the Sword of Starlight.
+- Stats still unconfirmed. Add once wiki sources confirm stat values.
+- Source: GameRant Sword of Starlight guide [2026-04-24] -- Tier 2.
+- Status remains [NEEDS REVIEW] pending stat confirmation.
 
 ---
 
@@ -22,11 +44,11 @@ Items are organized by category and priority. Mark items as `[ADDED]` once they'
 - Action: Once confirmed skill names are available from game8 or Fextralife, add to SKILLS array as `character: 'damiane'` and `character: 'oongka'` entries. Need official in-game names before adding.
 - Source: vulkk.com + fandomwire.com + GameRant [2026-04-23] -- Tier 2.
 
-#### Sword of Starlight [New Damiane Weapon] [NEEDS REVIEW] -- Flagged 2026-04-23
+#### Sword of Starlight [New Damiane Weapon] [NEEDS REVIEW -- acquisition confirmed, stats pending] -- Flagged 2026-04-23, Updated 2026-04-24
 - A new one-handed weapon exclusive to Damiane called **Sword of Starlight** was added in Patch 1.04.00.
-- Acquisition: Obtained through a quest (quest name not yet confirmed in sources).
-- Stats unknown. Add once wiki sources confirm stats and quest name.
-- Source: GameSearch aggregation [2026-04-23] -- Tier 2.
+- **Acquisition CONFIRMED (2026-04-24):** Complete all 13 Constellations via "The Maps of the Night Unveiled" quest. Begin with Hernand Faction Quests → "What the Stars Left Behind" chain (Scholastone Institute) → obtain Constellation Helm → observe all 13 Constellations → unlock secret quest "The Maps of the Night Unveiled" → reward: Sword of Starlight.
+- Stats still unknown. Add once wiki sources confirm stat values.
+- Source: GameSearch aggregation [2026-04-23] -- Tier 2; GameRant [2026-04-24] -- Tier 2 (acquisition confirmed).
 
 #### Tree Branch / Sturdy Tree Branch [New World Pickup Weapons] [NEEDS REVIEW] -- Flagged 2026-04-23
 - Two new one-handed weapons added: **Tree Branch** and **Sturdy Tree Branch**.
@@ -1491,32 +1513,4 @@ This is a major game system newly documented from post-launch sources. Not curre
 - **Hernand Iron Sword** [Weapon] -- Early quest reward sword with higher Stagger rating than the starter blade. Not in WEAPONS array. Source: crimsondesert.club [2026-03-16] -- Tier 3.
 - **35 Trophies** [Achievements] -- Full trophy list confirmed. Not in app data. Consider adding a trophy/achievement tracker feature. Confirms: multiple Abyss areas (Conqueror of the Abysses, plural), Artillery as a distinct weapon category (Master of Artillery), mount taming as a progression path (Tamer of Legends). Source: gamingbible.com [2026-03-16] -- Tier 2.
 - **Artillery Weapon Category** [Weapons] -- "Master of Artillery" trophy implies Artillery is a distinct combat category from Firearms (Master of Firearms is a separate trophy). This may refer to Hand Cannons, siege weapons, or mounted weapons. No existing app weapon has 'Artillery' as a type. Requires post-launch confirmation.
-- **Dual Blades** [Weapons] -- Confirmed as S-tier weapon in pre-launch tier list (crimsondeserthub.com). Not present in app's WEAPONS array as a weapon type. Distinct from Daggers (which focus on
----
-
-### Flagged 2026-04-18 (Nightly Audit Run) -- Site Health Pass + Research Verification
-
-**Context:** Game launched March 19, 2026. This is the nightly audit for April 18. Sources used: game8 (Tier 1), GameRant (Tier 2), PCGamer (Tier 1), crimsondesertwiki.org (Tier 2 - stale/pre-launch for Split Horn). Live site: PASS. Latest Vercel deployment: READY (commit 4a60640, Patch 1.03 skills + 4 new bosses added).
-
-**Site Status:** PASS. No critical issues. No countdown timer. Landing page renders correctly. TypeScript errors for react-leaflet type declarations in InteractiveMap.tsx are present locally but NOT blocking Vercel production builds.
-
----
-
-#### Titan Region -- NOW CONFIRMED BY GAME8 TIER 1 [RESOLVED -- third-source verification 2026-04-18]
-
-- **PREVIOUSLY:** Titan region 'pailune' was applied 2026-04-02 based on GameRant (Tier 2) + gamingpromax (Tier 2). Was a "single source" concern as of Run 17-18; later resolved with 2 Tier 2 sources.
-- **NEW CONFIRMATION (2026-04-18):** game8 (Tier 1) now confirms: "Windsong Peaks by the northeastern edge of the Pailune region during the Master of Thunder Stjar Clan faction questline." This is now confirmed by 3 independent sources including a Tier 1.
-- App data is correct. No change needed. Concern is fully resolved.
-- Source: game8 Titan boss guide [2026-04-18] -- Tier 1.
-
-#### Calphade Region Status -- CONFIRMED AS HERNAND SUB-TERRITORY [RESOLVED 2026-04-18]
-
-- **RESOLUTION:** Multiple post-launch sources now describe Chapter 6 as set across the "Calphadean Territory and Deepfog Basin regions of Hernand." Calphade is NOT a 7th major region -- it is a named sub-territory within Hernand.
-- **App impact:** Cassius Morten `region: 'hernand'` is CORRECT. No change needed.
-- **Data model:** The Region type does NOT need a 'calphade' entry. Calphade is a Hernand sub-location.
-- Source: games.gg Chapter 6 walkthrough [2026-04-18] -- Tier 1; Calphade wiki page [2026-04-18] -- Tier 2.
-- Action: No action required on game-data.ts or src/types/game-data.ts. Document as resolved.
-
-#### Silver Fang Speed Stat -- STILL UNCONFIRMED [BLOCKER REMAINS 2026-04-18]
-
-- **Status:** Checked 8+ dedicated Silver Fang guides (GameRant, PCGamer, game8, keengamer, egamersworld, thephrasemaker, ga
+- **Dual Blades** [Weapons] -- Confirmed as
