@@ -728,12 +728,38 @@ export const BOSSES: Boss[] = [
     element: 'physical', weakness: 'physical',
     location: 'Demeniss Wildlife Park, Demeniss (quest: The Crimson Warden, Corrupted Greymane faction)',
     mechanics: "1 HP bar. The greatest archer of the Greymanes — defected and now hunts humans like prey. High evasion, rapid precise bow attacks. Counter bow barrages with Nature's Snare Retribution during her repositioning animations. Arrow Rain skill unlockable by Observation post-fight. Dark Red Goblet reward grants permanent Stamina increase. Source: game8 Tier 1 + Fextralife wiki Tier 1." },
+
+  // Added 2026-04-26 via nightly audit (sources: Fextralife Tier 1, gaming.tools Tier 1, crimsondesert.app Tier 1, games.gg)
+  // ─── BASTIER'S INQUISITORS (DEMENISS FACTION) ─────────────────────────────────────────────────
+  { name: 'Full Moon Reaper', region: 'demeniss', type: 'Human', difficulty: 'hard',
+    reward: 'Circling Moon, Full Moon Reaper Plate Helm, Full Moon Reaper Plate Armor, Lunar Reaper Plate Gloves, Full Moon Reaper Plate Boots',
+    element: 'shock', weakness: null,
+    location: 'Demeniss (quest: Eastern Court, Bastier\'s Inquisitors faction)',
+    mechanics: "1 HP bar. One of three Lunar Reapers (Crescent/New Moon, Half Moon, Full Moon) — the most ruthless judges of Bastier's Inquisitors. Wields a lightning-fused moon blade. Slowest turning of the three. Wait for the overhead slam, punish during recovery. Source: Fextralife wiki Tier 1 + gaming.tools Tier 1 (v1.04.02)." },
+  { name: 'New Moon Reaper', region: 'demeniss', type: 'Human', difficulty: 'hard',
+    reward: 'Diverging Moon',
+    element: 'physical', weakness: null,
+    location: 'Demeniss (quest: Eastern Court, Bastier\'s Inquisitors faction)',
+    mechanics: "1 HP bar. One of three Lunar Reapers — wields twin crescent-shaped blades with excellent reach and area coverage. The Diverging Moon weapon has Lv.3 Attack Speed at base; reaches 35 ATK at +10 refinement. Comes with Crescent Moon Slash Abyss Gear socketed by default. Source: Fextralife wiki Tier 1 + gaming.tools Tier 1." },
+
+  // ─── WORLD ENCOUNTER BOSSES ───────────────────────────────────────────────────────────────────
+  { name: 'Grave Walker', region: 'hernand', type: 'Monster', difficulty: 'medium',
+    reward: "Sorcerer's Staff, Power Core",
+    element: 'physical', weakness: null,
+    location: 'Silent Falls Hideout, Hills of No Return (Hernand/Demeniss border)',
+    mechanics: "Massive slow stone golem guarding treasure. Extremely slow turn rate and attack speed. Bait the overhead slam, punish during recovery, repeat until stagger fills. On defeat: pick up Power Core with Axiom Force (L3), seal into Kuku Pot. Power Core is random drop used in Kuku recipes. Source: Fextralife wiki Tier 1 + crimsondesert.app Tier 1." },
+
+  // ─── DELESYIA CHAPTER BOSSES ──────────────────────────────────────────────────────────────────
+  { name: "Marni's Clockwork Mantis", region: 'delesyia', type: 'Mechanical', difficulty: 'hard',
+    reward: null,
+    element: 'physical', weakness: null,
+    location: 'Gorthak, Delesyia (Ch.10 quest: Frozen Hearted Predator)',
+    mechanics: "Mechanical mantis encountered in Chapter 10. Despite intimidating appearance, considered one of the easier late-game bosses. Primary threat: yellow laser beams (can one-shot at low HP). Source: Fextralife wiki Tier 1 + crimsondesert.app Tier 1 + YouTube." },
 ];
 
-// Knowledge Codex contains 76 total named bosses. Above list contains 47 confirmed.
-// Remaining ~28 bosses exist but are not yet fully documented post-launch.
-// Known missing (Fextralife Tier 1 confirmed, not yet added): Full Moon Reaper, Grave Walker,
-//   Half Moon Reaper, Marni's Clockwork Mantis, Master Du, New Moon Reaper,
+// Knowledge Codex contains 76 total named bosses. Above list contains 51 confirmed.
+// Remaining ~24 bosses exist but are not yet fully documented post-launch.
+// Known missing (Fextralife Tier 1 confirmed, not yet added): Half Moon Reaper, Master Du,
 //   Taming Dragon, Turbine. Research and add in future audits.
 
 // ═══════════════════════════════════════
