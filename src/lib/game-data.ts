@@ -733,33 +733,45 @@ export const BOSSES: Boss[] = [
   // ─── BASTIER'S INQUISITORS (DEMENISS FACTION) ─────────────────────────────────────────────────
   { name: 'Full Moon Reaper', region: 'demeniss', type: 'Human', difficulty: 'hard',
     reward: 'Circling Moon, Full Moon Reaper Plate Helm, Full Moon Reaper Plate Armor, Lunar Reaper Plate Gloves, Full Moon Reaper Plate Boots',
-    element: 'shock', weakness: null,
+    element: 'shock',
     location: 'Demeniss (quest: Eastern Court, Bastier\'s Inquisitors faction)',
     mechanics: "1 HP bar. One of three Lunar Reapers (Crescent/New Moon, Half Moon, Full Moon) — the most ruthless judges of Bastier's Inquisitors. Wields a lightning-fused moon blade. Slowest turning of the three. Wait for the overhead slam, punish during recovery. Source: Fextralife wiki Tier 1 + gaming.tools Tier 1 (v1.04.02)." },
   { name: 'New Moon Reaper', region: 'demeniss', type: 'Human', difficulty: 'hard',
     reward: 'Diverging Moon',
-    element: 'physical', weakness: null,
+    element: 'physical',
     location: 'Demeniss (quest: Eastern Court, Bastier\'s Inquisitors faction)',
     mechanics: "1 HP bar. One of three Lunar Reapers — wields twin crescent-shaped blades with excellent reach and area coverage. The Diverging Moon weapon has Lv.3 Attack Speed at base; reaches 35 ATK at +10 refinement. Comes with Crescent Moon Slash Abyss Gear socketed by default. Source: Fextralife wiki Tier 1 + gaming.tools Tier 1." },
+
+  { name: 'Half Moon Reaper', region: 'demeniss', type: 'Human', difficulty: 'hard',
+    reward: 'Grasping Moon',
+    element: 'physical',
+    location: 'Demeniss (quest: Eastern Court, Bastier\'s Inquisitors faction)',
+    mechanics: "1 HP bar. One of three Lunar Reapers — wields a massive half-moon blade optimized for slashing and sweeping strikes. Middle difficulty of the trio. Wait for sweep attack to complete, punish during recovery. Source: crimsondesert.gaming.tools Tier 1 (v1.04.02)." },
+
+  { name: 'Master Du', region: 'desert', type: 'Human', difficulty: 'hard',
+    reward: "Master Du's Circlet, Karmic Pulse, Blinding Flash Finisher",
+    element: 'physical',
+    location: 'Cloister of Enlightenment, The Crimson Desert (quest: The Sage of the Desert)',
+    mechanics: "1 HP bar. Martial arts master of the Cloister of Enlightenment. Fast combos and counter attacks. Defeating him unlocks the Blinding Flash Finisher skill via Observation. Source: Fextralife wiki Tier 1 (crimsondesertgame.wiki.fextralife.com/Master_Du)." },
 
   // ─── WORLD ENCOUNTER BOSSES ───────────────────────────────────────────────────────────────────
   { name: 'Grave Walker', region: 'hernand', type: 'Monster', difficulty: 'medium',
     reward: "Sorcerer's Staff, Power Core",
-    element: 'physical', weakness: null,
+    element: 'physical',
     location: 'Silent Falls Hideout, Hills of No Return (Hernand/Demeniss border)',
     mechanics: "Massive slow stone golem guarding treasure. Extremely slow turn rate and attack speed. Bait the overhead slam, punish during recovery, repeat until stagger fills. On defeat: pick up Power Core with Axiom Force (L3), seal into Kuku Pot. Power Core is random drop used in Kuku recipes. Source: Fextralife wiki Tier 1 + crimsondesert.app Tier 1." },
 
   // ─── DELESYIA CHAPTER BOSSES ──────────────────────────────────────────────────────────────────
   { name: "Marni's Clockwork Mantis", region: 'delesyia', type: 'Mechanical', difficulty: 'hard',
-    reward: null,
-    element: 'physical', weakness: null,
+    reward: 'None',
+    element: 'physical',
     location: 'Gorthak, Delesyia (Ch.10 quest: Frozen Hearted Predator)',
     mechanics: "Mechanical mantis encountered in Chapter 10. Despite intimidating appearance, considered one of the easier late-game bosses. Primary threat: yellow laser beams (can one-shot at low HP). Source: Fextralife wiki Tier 1 + crimsondesert.app Tier 1 + YouTube." },
 ];
 
-// Knowledge Codex contains 76 total named bosses. Above list contains 51 confirmed.
+// Knowledge Codex contains 76 total named bosses. Above list contains 53 confirmed.
 // Remaining ~24 bosses exist but are not yet fully documented post-launch.
-// Known missing (Fextralife Tier 1 confirmed, not yet added): Half Moon Reaper, Master Du,
+// Known missing (Fextralife Tier 1 confirmed, not yet added):
 //   Taming Dragon, Turbine. Research and add in future audits.
 
 // ═══════════════════════════════════════
