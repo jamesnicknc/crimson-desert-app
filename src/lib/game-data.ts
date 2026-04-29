@@ -755,7 +755,7 @@ export const BOSSES: Boss[] = [
     mechanics: "1 HP bar. Martial arts master of the Cloister of Enlightenment. Fast combos and counter attacks. Defeating him unlocks the Blinding Flash Finisher skill via Observation. Source: Fextralife wiki Tier 1 (crimsondesertgame.wiki.fextralife.com/Master_Du)." },
 
   // ─── WORLD ENCOUNTER BOSSES ───────────────────────────────────────────────────────────────────
-  { name: 'Grave Walker', region: 'hernand', type: 'Monster', difficulty: 'medium',
+  { name: 'Grave Walker', region: 'hernand', type: 'Monster', difficulty: 'hard',
     reward: "Sorcerer's Staff, Power Core",
     element: 'physical',
     location: 'Silent Falls Hideout, Hills of No Return (Hernand/Demeniss border)',
@@ -767,12 +767,19 @@ export const BOSSES: Boss[] = [
     element: 'physical',
     location: 'Gorthak, Delesyia (Ch.10 quest: Frozen Hearted Predator)',
     mechanics: "Mechanical mantis encountered in Chapter 10. Despite intimidating appearance, considered one of the easier late-game bosses. Primary threat: yellow laser beams (can one-shot at low HP). Source: Fextralife wiki Tier 1 + crimsondesert.app Tier 1 + YouTube." },
+  // Added 2026-04-28 via nightly audit (sources: Fextralife wiki Tier 1 + data-to-add.md)
+  // ─── DELESYIA DEFEND BOSS ────────────────────────────────────────────────────────────────────
+  { name: 'Turbine', region: 'delesyia', type: 'Mechanical', difficulty: 'hard',
+    reward: 'None',
+    element: 'physical',
+    location: 'Krall Foundry, Gorthak, Delesyia (quest: Invaders from the East)',
+    mechanics: 'Non-traditional boss encounter: defend a generator for 180 seconds rather than depleting an HP bar. Confirmed no item drop. Source: Fextralife wiki Tier 1 + gaming.tools Tier 1 (v1.04.02).' },
 ];
 
-// Knowledge Codex contains 76 total named bosses. Above list contains 53 confirmed.
+// Knowledge Codex contains 76 total named bosses. Above list contains 54 confirmed.
 // Remaining ~24 bosses exist but are not yet fully documented post-launch.
-// Known missing (Fextralife Tier 1 confirmed, not yet added):
-//   Taming Dragon, Turbine. Research and add in future audits.
+// Known missing (confirmed, not yet added):
+//   Taming Dragon (region string unresolved — Great Gate of Urdavah). Research and add in future audits.
 
 // ═══════════════════════════════════════
 // ENEMIES / BESTIARY
@@ -1879,6 +1886,7 @@ export const MOUNTS: Mount[] = [
   { name: 'Clawed Bear', category: 'bear', mountType: 'temporary', region: 'hernand', speed: 45, combat: 85, stamina: 80, special: 'Black Bear faction war mount; stronger combat abilities than wild bears', acquisition: 'Defeat Black Bear faction soldiers and mount their bear before it flees' },
 
   // ── Temporary Mounts: Predators (4) ───────
+  { name: 'Silver Fang', category: 'predator', mountType: 'permanent', region: 'hernand', speed: 30, combat: 100, stamina: 100, special: 'Legendary White Wolf; highest combat stat of any mount; fights alongside player after dismounting (acts as AI companion); weak to lightning. NOTE: speed stat estimated (~30) — all sources say "fairly slow, built for combat not travel" but no numeric value confirmed.', acquisition: "Defeat Black Fang during House Celeste faction quest 'Silence from Afar' → defeat Silver Fang at Howling Hollow in north Hernand (use lightning attacks) → craft Sigil at any Witch → equip via mount wheel" },
   { name: 'Wolf', category: 'predator', mountType: 'temporary', region: 'multiple', speed: 75, combat: 50, stamina: 55, special: 'Fast and agile with flanking maneuvers; quicker than bears', acquisition: 'Stagger a wild wolf with damage, then mount when prompt appears; despawns on dismount' },
   { name: 'Lion', category: 'predator', mountType: 'temporary', region: 'demeniss', speed: 70, combat: 65, stamina: 55, special: 'Powerful predator mount with lunging attacks', acquisition: 'Steal from The Laughing Marionette circus in Demeniss' },
   { name: 'Tiger', category: 'predator', mountType: 'temporary', region: 'multiple', speed: 70, combat: 70, stamina: 55, special: 'Fast, aggressive predator mount with powerful swipe attacks', acquisition: 'Stagger a wild tiger with damage, then mount when prompt appears; despawns on dismount' },
