@@ -774,12 +774,21 @@ export const BOSSES: Boss[] = [
     element: 'physical',
     location: 'Krall Foundry, Gorthak, Delesyia (quest: Invaders from the East)',
     mechanics: 'Non-traditional boss encounter: defend a generator for 180 seconds rather than depleting an HP bar. Confirmed no item drop. Source: Fextralife wiki Tier 1 + gaming.tools Tier 1 (v1.04.02).' },
+
+  // ─── TAMING DRAGON (Ch.9) ─────────────────────────────────────────────────────────────────────
+  // Region confirmed: World's Navel, Crimson Desert (Fextralife Tier 1, PowerPyx Tier 1 — 2026-04-29)
+  // Reward confirmed: Stardust Necklace + Blackstar Dragon Knowledge (game8 + powerpyx Tier 1)
+  { name: 'Taming Dragon', region: 'desert', type: 'Beast', difficulty: 'legendary',
+    reward: 'Stardust Necklace, Blackstar Dragon Knowledge',
+    element: 'physical',
+    location: "World's Navel, Urdavah, The Crimson Desert (quest: Shackles of Fate)",
+    mechanics: "Non-combat encounter. Board the dragon by jumping from Urdavah castle roof — use Flight and Axiom Force to grab on. Remove three spears from the dragon's back while riding it. Completing this unlocks the Blackstar Dragon Mount (Ch.11 Wings of Defiance). Quest: Shackles of Fate (main mission #122). Source: Fextralife wiki Tier 1 + PowerPyx Tier 1 (2026-04-29)." },
 ];
 
-// Knowledge Codex contains 76 total named bosses. Above list contains 54 confirmed.
-// Remaining ~24 bosses exist but are not yet fully documented post-launch.
+// Knowledge Codex contains 76 total named bosses. Above list contains 55 confirmed.
+// Remaining ~21 bosses exist but are not yet fully documented post-launch.
 // Known missing (confirmed, not yet added):
-//   Taming Dragon (region string unresolved — Great Gate of Urdavah). Research and add in future audits.
+//   (none currently identified — Taming Dragon added 2026-04-29)
 
 // ═══════════════════════════════════════
 // ENEMIES / BESTIARY
