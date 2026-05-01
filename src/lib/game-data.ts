@@ -193,6 +193,11 @@ export const SKILLS: Skill[] = [
   { id: 'k-ax6', name: 'Swift Flight', cost: 'Artifact', branch: 'Axiom', character: 'kliff', description: 'Increase aerial movement speed and responsiveness.' },
   // Added Patch 1.03.00 (2026-04-11)
   { id: 'k-ax7', name: 'Focused Aerial Roll', cost: 'Artifact', branch: 'Axiom', character: 'kliff', description: 'Activate Focus during flight, then press dodge to perform a Focused Aerial Roll. Requires Focus Lv.3, Flight Lv.2, and Aerial Roll unlocked. Added in Patch 1.03.' },
+  // Added Patch 1.04.00 (2026-04-23) — source: Pearl Abyss Tier 1 + nerdschalk + sportskeeda
+  { id: 'k-wt', name: 'Weapon Throw', cost: 'Artifact', branch: 'Armed Combat', character: 'kliff', description: 'Throw your weapon at an enemy while dual-wielding. Uses the same controls as Shield Bash. Retrieve by pressing the same controls or by walking toward it. Added in Patch 1.04.' },
+  // Confirmed Kliff Observable Skills — source: Fextralife wiki Tier 1 + game8 Tier 1
+  { id: 'k-fr', name: 'Focused Repulsion', cost: 'Observe', branch: 'Spirit Arts', character: 'kliff', description: 'Press R1 while in a Focused state, or L3+R3 when hit, to repel everything away from you. Can also be unlocked by raising Focus to Level 2. Highly effective for creating distance against aggressive bosses.' },
+  { id: 'k-am', name: 'Ambush', cost: 'Observe', branch: 'Axiom', character: 'kliff', description: 'Hold R1 while shooting Axiom Force to move instantly to the target enemy and strike. Effectively a high-speed dash attack via the Axiom grapple system.' },
 
   // Kliff — Core Convergence
   { id: 'k-c1', name: 'Falling Palm', cost: 'Convergence', branch: 'Core', character: 'kliff', description: 'Channel all remaining Stamina into a ground-impact strike. Unlocked by completing any one of the three branches (Blue, Green, or Red).' },
@@ -1885,6 +1890,15 @@ export const MOUNTS: Mount[] = [
   // ── Story / Special Permanent Mounts (2) ──
   { name: 'Blackstar', category: 'dragon', mountType: 'permanent', region: 'multiple', speed: 85, combat: 90, stamina: 50, special: 'Summonable dragon with Fireball and Fire Breath attacks; 15-minute ride duration, 50-minute cooldown', acquisition: "Unlocked at end of Chapter 11 after 'Master of a Forgotten Land' mission" },
   { name: 'ATAG', category: 'mech', mountType: 'permanent', region: 'delesyia', speed: 60, combat: 95, stamina: 80, special: 'All-Terrain Armored Gear; fires missiles and bullets, melee arm attacks', acquisition: 'Unlocked during Chapter 10 siege mission' },
+
+  // ── Legendary Permanent Mounts added in Patch 1.01.00 (2026-03-29) ──────────
+  // Sources: GameRant Tier 2, game8 Tier 1, egamersworld, Fextralife, mein-mmo (5 sources)
+  // All four use the same acquisition system: defeat creature → skin → craft Sigil of Solidarity at any Witch
+  // NOTE: speed stats estimated for all four — no numeric speed values found in any source
+  { name: 'White Bear', category: 'bear', mountType: 'permanent', region: 'pailune', speed: 45, combat: 180, stamina: 200, special: 'Legendary polar bear; highest combat stat of all bear mounts (Attack 180, HP 1500). Fights alongside player after dismounting. NOTE: speed estimated (~45) — described as slow compared to horses.', acquisition: 'Find at Five-Finger Mountain, northwest Pailune (near Five-Finger Mountain summit) → skin for White Bear Claw → craft Sigil of Solidarity at any Witch → equip via mount wheel' },
+  { name: 'Snowwhite Deer', category: 'beast', mountType: 'permanent', region: 'pailune', speed: 80, combat: 25, stamina: 300, special: 'Legendary white deer; exceptional stamina (300) and fast movement. Best non-horse travel mount. NOTE: speed estimated (~80) — described as fast and graceful.', acquisition: 'Find on plains near Valgrand Tomb, Pailune → fire a charged Fire Arrow from distance to knock it down → skin for material → craft Sigil of Solidarity at any Witch' },
+  { name: 'Rock Tusk Warthog', category: 'beast', mountType: 'permanent', region: 'desert', speed: 55, combat: 100, stamina: 200, special: 'Legendary battle warthog; balanced combat (100) and stamina (200). Fights alongside player after dismounting. NOTE: speed estimated (~55).', acquisition: "Find during 'Master of the Wetlands' quest in Bordig Ruins, Crimson Desert → defeat Ravok of the Savage Fangs → receive Rock Tusk Warthog's Tusk → exchange at any Witch for Sigil of Solidarity" },
+  { name: 'Icicle Edge Alpine Ibex', category: 'beast', mountType: 'permanent', region: 'pailune', speed: 70, combat: 25, stamina: 300, special: 'Legendary mountain ibex; exceptional stamina (300) and agility in mountainous terrain. NOTE: speed estimated (~70). Defense stat is 0 — purely a traversal mount.', acquisition: "Complete Chapter 8 + complete 15 Pailune Militia faction missions + defeat White Horn Yeti → triggers Longleaf Tribe faction mission 'Fog Over the Forest' which rewards the mount" },
 
   // ── Vehicles (2) ──────────────────────────
   { name: 'Pywel Wagon', category: 'vehicle', mountType: 'vehicle', region: 'multiple', speed: 30, combat: 0, stamina: 90, special: 'Horse-drawn cargo wagon for hauling goods across regions', acquisition: 'Steal from NPCs or craft via Brice (Wagon Master) dispatch mission at Howling Hill camp' },
