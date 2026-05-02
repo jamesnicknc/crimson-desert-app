@@ -1773,6 +1773,7 @@ export const WEAPONS: Weapon[] = [
     signatureAbility: { name: 'Stonebreaker Shot', description: 'Fully charged shots shatter enemy guard and stagger for 2 seconds, ignoring all block.', source: 'Queen Stoneback Crab' } },
   { name: 'Bekker Musket', icon: '🔫', iconKey: 'pistol', type: 'Musket', atk: 50, spd: 30, rng: 90, character: 'damiane', description: 'Basic crafted musket from Guns Vol. I.' },
   { name: 'Absolute Justice Greatsword', icon: '⚔', iconKey: 'sword', type: 'Greatsword', atk: 85, spd: 25, rng: 40, character: 'damiane', description: 'High ATK greatsword.' },
+  { name: 'Sword of Starlight', icon: '⭐', iconKey: 'sword', type: 'Sword', atk: 17, spd: 85, rng: 30, character: 'damiane', description: 'Patch 1.04.00 legendary sword. Base ATK 17 (upgrades to 27). Attack Speed Lv.5 (max Lv.6). 3 Abyss Gear slots including the unique Stamina Siphon Lv.2 (regenerates stamina during combat). Acquired by completing all 13 Constellations via "The Maps of the Night Unveiled" quest chain from the Scholastone Institute.' }, // Added 2026-05-01: stats confirmed by GameRant + vpesports + nerdschalk (Tier 2, 3 sources)
 
   // Oongka
   { name: "Oongka's Greataxe", icon: '🪓', iconKey: 'axe', type: 'Battle Axe', atk: 80, spd: 25, rng: 35, character: 'oongka',
@@ -2100,8 +2101,4 @@ export const TROPHIES: Trophy[] = [
   { id: 'troph-b14', name: 'Battlefield Conqueror', rarity: 'bronze', description: 'Dominate the battlefields of Pywel through superior combat and strategy.', category: 'Combat' },
   { id: 'troph-b15', name: 'The Golden Merchant', rarity: 'bronze', description: 'Accumulate great wealth and become a prominent merchant across Pywel.', category: 'Economy' },
   { id: 'troph-b16', name: 'Shadowlord', rarity: 'bronze', description: 'Master stealth and shadow-based abilities to become a feared Shadowlord.', category: 'Combat' },
-  { id: 'troph-b17', name: 'Lord of Honor', rarity: 'bronze', description: 'Uphold honor and justice throughout your journey across Pywel.', category: 'Story' },
-  { id: 'troph-b18', name: 'Relentless Warrior', rarity: 'bronze', description: 'Fight relentlessly and never back down from the challenges of Pywel.', category: 'Combat' },
-  { id: 'troph-b19', name: 'Brilliant Tactician', rarity: 'bronze', description: 'Demonstrate tactical brilliance in overcoming the enemies of Pywel.', category: 'Combat' },
-  { id: 'troph-b20', name: 'Beast Slayer', rarity: 'bronze', description: 'Hunt and defeat the fearsome beasts that roam the wilds of Pywel.', category: 'Combat' },
-];
+  { id: 'troph-b17', name: 'Lord of Honor', rarity: 'bronze', description: 'Uphold honor and justice throughout your journey 
