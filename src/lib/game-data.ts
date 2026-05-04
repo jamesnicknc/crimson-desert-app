@@ -562,11 +562,16 @@ export const BOSSES: Boss[] = [
     reward: 'Shackle of Might, Demeniss Refinement Token, Abyss Artifact x1', element: 'abyss', weakness: 'physical', // Updated 2026-04-09: Demeniss Refinement Token added per game8 Tier 1
     location: 'Thornbriar Fortress, Hernand (quest: The Cursed Knight)', // Updated 2026-03-22: location region corrected
     mechanics: '1 HP bar. Summons blue ghost knight (ground strikes + arrows). Spam R2 with Tauria Curved Sword. Nature\'s Echo skill recommended. Dodge away when ghost appears. "Gigantic warrior empowered by cursed warrior spirits."' },
-  // Late game — The Abyss
+  // Late game — Demeniss (first Hexe Marie encounter)
+  { name: 'Hexe Marie', region: 'demeniss', type: 'Magical', difficulty: 'extreme',
+    reward: 'Earring of Dark Magic, Crow Whisperer', element: 'abyss',
+    location: 'Hexe Sanctuary, Demeniss (quest: Black Witch)',
+    mechanics: 'First encounter with the Black Witch. Two HP bars. She flees at the end — not a kill. Destroy four totems in Hexe Sanctuary during preceding quest Pursuit Beyond the Veil. She summons and manipulates crows throughout the fight. Rewards Earring of Dark Magic (Accessory) and Crow Whisperer (Two-Handed Weapon). Source: Fextralife Tier 1 + PowerPyx Tier 1 + game8 Tier 1 (2026-05-03).' },
+  // Late game — The Abyss (final Hexe Marie encounter)
   { name: 'Hexe Marie', region: 'abyss', type: 'Magical', difficulty: 'legendary',
     reward: 'Deep Abyss Core', element: 'abyss',
     location: 'The Abyss (connected to Reventine Monastery)',
-    mechanics: 'Summons monsters. Grief-stricken dark sorcerer in despair over her slain child. Fully voice-acted. Infused dark power into her child.' },
+    mechanics: 'Final encounter. Ch.12 — The Final Stand. Summons monsters. Grief-stricken dark sorcerer in despair over her slain child. Fully voice-acted. Three phases; hardest fight in the game.' },
 
   // ─── OPTIONAL / SIDE BOSSES ───────────────────────────────────────────────────────────────────
   { name: "Marni's Excavatron", region: 'hernand', type: 'Mechanical', difficulty: 'hard',
@@ -761,10 +766,10 @@ export const BOSSES: Boss[] = [
 
   // ─── WORLD ENCOUNTER BOSSES ───────────────────────────────────────────────────────────────────
   { name: 'Grave Walker', region: 'hernand', type: 'Monster', difficulty: 'hard',
-    reward: "Sorcerer's Staff, Power Core",
+    reward: 'Power Core - Verse of Sowing, Abyss Cell x1',
     element: 'physical',
     location: 'Silent Falls Hideout, Hills of No Return (Hernand/Demeniss border)',
-    mechanics: "Massive slow stone golem guarding treasure. Extremely slow turn rate and attack speed. Bait the overhead slam, punish during recovery, repeat until stagger fills. On defeat: pick up Power Core with Axiom Force (L3), seal into Kuku Pot. Power Core is random drop used in Kuku recipes. Source: Fextralife wiki Tier 1 + crimsondesert.app Tier 1." },
+    mechanics: "Massive slow stone golem guarding treasure. Extremely slow turn rate and attack speed. Bait the overhead slam, punish during recovery, repeat until stagger fills. On defeat: pick up Power Core with Axiom Force (L3), seal into Kuku Pot. Power Core is random drop used in Kuku recipes. Note: Sorcerer's Staff is NOT a direct drop — it is found in the locked gate behind the boss (light the two lamps to unlock). Source: Fextralife wiki Tier 1 (updated 2026-04-28)." },
 
   // ─── DELESYIA CHAPTER BOSSES ──────────────────────────────────────────────────────────────────
   { name: "Marni's Clockwork Mantis", region: 'delesyia', type: 'Mechanical', difficulty: 'hard',
