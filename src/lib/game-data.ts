@@ -2106,4 +2106,8 @@ export const TROPHIES: Trophy[] = [
   { id: 'troph-b14', name: 'Battlefield Conqueror', rarity: 'bronze', description: 'Dominate the battlefields of Pywel through superior combat and strategy.', category: 'Combat' },
   { id: 'troph-b15', name: 'The Golden Merchant', rarity: 'bronze', description: 'Accumulate great wealth and become a prominent merchant across Pywel.', category: 'Economy' },
   { id: 'troph-b16', name: 'Shadowlord', rarity: 'bronze', description: 'Master stealth and shadow-based abilities to become a feared Shadowlord.', category: 'Combat' },
-  { id: 'troph-b17', name: 'Lord of Honor', rarity: 'bronze', description: 'Uphold honor and justice throughout your journey 
+  { id: 'troph-b17', name: 'Lord of Honor', rarity: 'bronze', description: 'Uphold honor and justice throughout your journey across Pywel.', category: 'Story' },
+  { id: 'troph-b18', name: 'Relentless Warrior', rarity: 'bronze', description: 'Fight relentlessly and never back down from the challenges of Pywel.', category: 'Combat' },
+  { id: 'troph-b19', name: 'Brilliant Tactician', rarity: 'bronze', description: 'Demonstrate tactical brilliance in overcoming the enemies of Pywel.', category: 'Combat' },
+  { id: 'troph-b20', name: 'Beast Slayer', rarity: 'bronze', description: 'Hunt and defeat the fearsome beasts that roam the wilds of Pywel.', category: 'Combat' },
+];
