@@ -1065,7 +1065,7 @@ export default function GuidePage() {
             <div className="bg-pywel-bg border border-pywel-border rounded p-4">
               <h3 className="font-semibold text-gold-300 mb-2">Overview</h3>
               <p className="text-gray-300 text-sm leading-relaxed">
-                Pywel features 29 mounts across multiple categories. Each mount has unique speed, combat power, and stamina stats. Some have special abilities. Mounts can be acquired through taming wild creatures, boss drops, quests, or crafting at the Blacksmith Forge.
+                Pywel features 34 mounts across multiple categories. Each mount has unique speed, combat power, and stamina stats. Some have special abilities. Mounts can be acquired through taming wild creatures, boss drops, quests, or crafting at the Blacksmith Forge.
               </p>
             </div>
           </div>

@@ -186,7 +186,7 @@ export default function MountsPage() {
     <div className="space-y-6">
       <div className="text-center">
         <h1 className="text-3xl font-cinzel font-bold text-gold-400 mb-2">Mounts</h1>
-        <p className="text-gray-400">Track and compare all 29 confirmed mounts across Pywel.</p>
+        <p className="text-gray-400">Track and compare all {MOUNTS.length} confirmed mounts across Pywel.</p>
       </div>
 
       {/* Overall progress */}
