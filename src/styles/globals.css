@@ -8,7 +8,7 @@ html {
 }
 
 body {
-  @apply bg-pywel-bg text-gray-100 font-body;
+  @apply bg-arc-bg text-gray-100 font-body;
 }
 
 /* Custom scrollbar styling */
@@ -18,22 +18,22 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-pywel-bg;
+  @apply bg-arc-bg;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gold-700 rounded hover:bg-gold-600;
+  @apply bg-rust-700 rounded hover:bg-rust-600;
 }
 
 /* Firefox scrollbar */
 * {
-  scrollbar-color: #4A3E18 #0A0A0F;
+  scrollbar-color: #8a3b12 #0b0e12;
   scrollbar-width: thin;
 }
 
 /* Heading styles */
 h1, h2, h3, h4, h5, h6 {
-  @apply font-cinzel;
+  @apply font-display;
 }
 
 /* Links */
@@ -46,13 +46,32 @@ button {
   @apply transition-all duration-200;
 }
 
+/* Subtle diagonal hazard stripe used on banners */
+.hazard-stripe {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(232, 133, 58, 0.12) 0px,
+    rgba(232, 133, 58, 0.12) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
+/* Grid backdrop for the schematic raid maps */
+.map-grid {
+  background-color: #0e1318;
+  background-image:
+    linear-gradient(rgba(62, 201, 184, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(62, 201, 184, 0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
 /* ── Leaflet dark-theme overrides ──────────────────────────────────────── */
 .leaflet-container {
   font-family: Inter, system-ui, sans-serif;
-  background: #06060A;
+  background: #0e1318;
 }
 
-/* Strip default popup chrome so our custom div styles show */
 .leaflet-popup-content-wrapper {
   background: transparent !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7) !important;
@@ -81,21 +100,20 @@ button {
 }
 
 .leaflet-popup-close-button:hover {
-  color: #d4a847 !important;
+  color: #e8853a !important;
   background: transparent !important;
 }
 
-/* Dark zoom controls */
 .leaflet-bar {
-  border: 1px solid #2A2630 !important;
+  border: 1px solid #2a333f !important;
   border-radius: 6px !important;
   overflow: hidden;
 }
 
 .leaflet-control-zoom a {
-  background-color: #19191E !important;
-  border-color: #2A2630 !important;
-  color: #d4a847 !important;
+  background-color: #171d25 !important;
+  border-color: #2a333f !important;
+  color: #e8853a !important;
   width: 28px !important;
   height: 28px !important;
   line-height: 28px !important;
@@ -103,16 +121,19 @@ button {
 }
 
 .leaflet-control-zoom a:hover {
-  background-color: #22222A !important;
-  color: #f0c860 !important;
+  background-color: #1e2630 !important;
+  color: #f5a65b !important;
 }
 
 .leaflet-control-zoom-in {
-  border-bottom: 1px solid #2A2630 !important;
+  border-bottom: 1px solid #2a333f !important;
 }
 
-/* Marker focus outline */
 .leaflet-marker-icon:focus {
   outline: none;
 }
 
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-6px); }
+}

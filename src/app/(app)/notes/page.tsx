@@ -70,7 +70,7 @@ export default function NotesPage() {
   return (
     <div className="space-y-6">
       <div className="text-center">
-        <h1 className="text-3xl font-cinzel font-bold text-gold-400 mb-2">Personal Notes</h1>
+        <h1 className="text-3xl font-display font-bold text-rust-400 mb-2">Personal Notes</h1>
         <p className="text-gray-400">Keep personal notes about your adventure. Changes are saved automatically.</p>
       </div>
 
@@ -81,7 +81,7 @@ export default function NotesPage() {
       {user && (
       <div className="relative">
         {loading ? (
-          <div className="w-full h-96 bg-pywel-card rounded-lg flex items-center justify-center text-gray-400">
+          <div className="w-full h-96 bg-arc-card rounded-lg flex items-center justify-center text-gray-400">
             Loading notes...
           </div>
         ) : (
@@ -90,7 +90,7 @@ export default function NotesPage() {
               value={notes}
               onChange={handleChange}
               placeholder="Write your notes here. They will be saved automatically..."
-              className="w-full h-96 bg-pywel-bg border-2 border-pywel-border rounded-lg p-4 text-gray-100 placeholder-gray-500 focus:border-gold-400 focus:outline-none resize-none"
+              className="w-full h-96 bg-arc-bg border-2 border-arc-border rounded-lg p-4 text-gray-100 placeholder-gray-500 focus:border-rust-400 focus:outline-none resize-none"
             />
             {saved && (
               <div className="absolute bottom-4 right-4 bg-green-600/90 text-white px-3 py-1 rounded text-sm font-semibold">
@@ -98,7 +98,7 @@ export default function NotesPage() {
               </div>
             )}
             {saving && (
-              <div className="absolute bottom-4 right-4 bg-gold-600/90 text-pywel-bg px-3 py-1 rounded text-sm font-semibold">
+              <div className="absolute bottom-4 right-4 bg-rust-600/90 text-arc-bg px-3 py-1 rounded text-sm font-semibold">
                 Saving...
               </div>
             )}

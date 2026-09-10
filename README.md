@@ -1,214 +1,119 @@
-# Crimson Desert Companion Dashboard
+# ARC Raiders Companion
 
-A full-stack companion app for **Crimson Desert** (Pearl Abyss, March 19, 2026). Track your progress, plan builds, share with friends, and stay updated with auto-scraped community data.
+An unofficial companion web app for **ARC Raiders** (Embark Studios). Live at [crimsoncompanionapp.us](https://crimsoncompanionapp.us).
+
+Raid maps, ARC bestiary, weapons, gear, items and recipes, quest chains, the skill tree, workshop upgrades, expeditions, trader stock and a loadout planner. Sign in to track progress across devices and share loadouts and map pins with your squad.
 
 ## Stack
 
 - **Frontend**: Next.js 14 (App Router) + TypeScript + Tailwind CSS
-- **Auth**: Supabase Auth (Discord + Google OAuth)
+- **Auth**: Supabase Auth (Discord OAuth + email)
 - **Database**: Supabase (PostgreSQL + Row Level Security)
-- **Maps**: Leaflet.js + react-leaflet
-- **Scraper**: Python + Playwright + BeautifulSoup
-- **Hosting**: Vercel
-- **State**: Zustand + React hooks with optimistic Supabase sync
+- **Maps**: Leaflet + react-leaflet over in-game map imagery
+- **Hosting**: Vercel (auto-deploys on push to `main`)
 
 ## Features
 
-- Interactive world map with custom pins (Leaflet.js)
-- Skill tree tracker for all 3 characters (Kliff, Damiane, Oongka)
-- Collectibles tracker with progress bars (Abyss Artifacts, Gears, Recipes, Lore, Fast Travel)
-- Boss bestiary with defeat tracking
-- Quest log with status cycling
-- Weapons comparison grid
-- Crafting recipe guide
-- Build planner / theorycrafting tool
-- Friend groups with shared progress dashboard
-- Personal notes with auto-save
-- Auto-scraped wiki data, news, community guides, and map locations
-- Discord + Google OAuth login
-- Dark fantasy theme matching Crimson Desert's aesthetic
+| Area | What it does |
+| --- | --- |
+| Dashboard | Database counts, your progress summary, recent patches |
+| Raid Maps | Every map with POIs, extractions, keys, ARC spawns, events and tips. Pannable in-game map with personal and squad pins |
+| ARC Bestiary | All machines with attacks, weak points, kill strategy, drops and spawn maps. Mark the ones you have destroyed |
+| Weapons | Stats, upgrade tiers, recipes, mod slots, community tier, side-by-side compare, attachments and ammo |
+| Gear & Gadgets | Shields, augments, throwables, deployables and healing |
+| Items & Materials | 380+ items with sell value, recycle outputs, traders and uses, plus every workbench recipe |
+| Quests | 100 trader quests in unlock order with objectives, rewards and chain links. Status syncs to your account |
+| Skill Tree | All 45 nodes with prerequisites and community ratings. Plan your 76 points |
+| Workshop | Every station level with material costs, plus a "farm next" shopping list |
+| Expeditions | Prestige mechanics, project phases, Trials, Feats and achievements |
+| Traders | Stock per trader with prices and level gates |
+| New Raider Guide | Core loop, extraction rules, ARC behaviour, etiquette, tips, early loadouts, patch timeline |
+| Loadout Planner | Build, price and save loadouts; share publicly or with your squad |
+| Squad | Invite codes and a progress leaderboard |
+| Notes | Personal auto-saving notes |
 
----
+## Data
 
-## Setup Guide
+Game data lives in `src/data/*.ts` and is generated from research JSON plus the community data repo
+[RaidTheory/arcraiders-data](https://github.com/RaidTheory/arcraiders-data) (MIT, powers arctracker.io).
+Entries flagged `verified: false` came from search summaries rather than a primary source and show an
+"unverified" tag in the UI. All game content and imagery is copyright Embark Studios AB.
+
+To update data, edit the files in `src/data/` directly. Keep ids stable: user progress is keyed on them.
+
+## Setup
 
 ### Prerequisites
 
 - Node.js 18+
-- Python 3.11+
-- A [Supabase](https://supabase.com) account (free tier works)
-- A [Vercel](https://vercel.com) account (free tier works)
-- Discord Developer Application (for OAuth)
-- Google Cloud Console project (for OAuth)
+- A Supabase project (free tier works)
+- A Vercel account (free tier works)
+- A Discord developer application for OAuth (optional)
 
-### 1. Clone and Install
+### 1. Install
 
 ```bash
-git clone <your-repo-url>
+git clone git@github.com:jamesnicknc/crimson-desert-app.git
 cd crimson-desert-app
 npm install
 ```
 
-### 2. Set Up Supabase
+### 2. Database
 
-1. Create a new project at [supabase.com](https://supabase.com)
-2. Go to **SQL Editor** and run the migration file:
-   ```
-   supabase/migrations/001_initial_schema.sql
-   ```
-3. Copy your project URL and anon key from **Settings > API**
+Run the migrations in the Supabase SQL editor in order:
 
-### 3. Configure OAuth Providers
+```
+supabase/migrations/001_initial_schema.sql
+supabase/migrations/002_arc_raiders.sql
+```
 
-#### Discord
-1. Go to [Discord Developer Portal](https://discord.com/developers/applications)
-2. Create a new application
-3. Go to **OAuth2** tab
-4. Add redirect URL: `https://your-project.supabase.co/auth/v1/callback`
-5. Copy the Client ID and Client Secret
-6. In Supabase: **Auth > Providers > Discord**, enable and paste credentials
+Migration 002 adds `map_slug` to map pins, drops the unused scraped-content table, and rewrites the
+squad progress function for the new `ar-*` progress categories.
 
-#### Google
-1. Go to [Google Cloud Console](https://console.cloud.google.com/apis/credentials)
-2. Create OAuth 2.0 Client ID (Web application)
-3. Add authorized redirect: `https://your-project.supabase.co/auth/v1/callback`
-4. Copy Client ID and Client Secret
-5. In Supabase: **Auth > Providers > Google**, enable and paste credentials
+### 3. Environment
 
-### 4. Environment Variables
-
-Copy the example env file:
 ```bash
 cp .env.local.example .env.local
 ```
 
-Fill in your values:
-```
-NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...
-SUPABASE_SERVICE_ROLE_KEY=eyJ...
-SCRAPER_API_KEY=your-random-secret-here
-```
+Fill in `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` from Supabase Settings > API.
 
-### 5. Run Locally
+### 4. Run
 
 ```bash
-npm run dev
+npm run dev        # http://localhost:3000
+npm run typecheck  # tsc --noEmit
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+## Project structure
 
-### 6. Deploy to Vercel
-
-1. Push to GitHub
-2. Import the repo in [Vercel](https://vercel.com/new)
-3. Add the same environment variables in Vercel project settings
-4. Deploy!
-
-Your app will be live at `your-project.vercel.app`
-
-### 7. Set Up the Scraper
-
-The Python scraper runs separately from the Next.js app:
-
-```bash
-cd scraper
-python -m venv .venv
-source .venv/bin/activate  # or .venv\Scripts\activate on Windows
-pip install -r requirements.txt
-playwright install chromium
+```
+src/
+  app/
+    (auth)/            login + OAuth callback
+    (app)/             all companion pages (dashboard, maps, arc, weapons, gear, items,
+                       quests, skills, workshop, expeditions, traders, guide, planner,
+                       builds, group, notes)
+  components/
+    layout/            Sidebar, DashboardLayout
+    map/               RaidMapViewer (Leaflet)
+    items/             ItemCard, ItemDetail
+    ui/                PageHeader, Chips, SearchInput, Modal, ProgressBar, Tag, Checkbox
+  data/                generated game data (weapons, enemies, maps, quests, items, progression)
+  hooks/               use-user, use-progress, use-map-pins
+  lib/                 game-data barrel + labels, loadout helpers, progress keys, supabase clients
+  types/               TypeScript definitions
+public/maps/           in-game map imagery (JPEG)
+supabase/migrations/   SQL schema
 ```
 
-Run once:
-```bash
-python main.py
-```
+## Progress storage
 
-Run on a schedule (every 6 hours):
-```bash
-python main.py --schedule
-```
-
-Run a specific source:
-```bash
-python main.py --source wiki
-python main.py --source news
-python main.py --source guide
-python main.py --source map
-```
-
-For always-on scraping, deploy the scraper to:
-- **Railway** or **Fly.io** (recommended for long-running processes)
-- **GitHub Actions** with a cron schedule
-- A VPS with systemd or cron
-
-### 8. Share with Friends
-
-1. Sign in to the dashboard
-2. Go to the **Group** page
-3. Click "Create Group" to get an invite code
-4. Share the 8-character code with friends
-5. Friends enter the code on their Group page to join
-6. Everyone can see each other's progress on the group dashboard
+Progress rows live in `user_progress` with category keys prefixed `ar-` (`ar-quest`, `ar-skill`,
+`ar-workshop`, `ar-arc`, `ar-expedition`, `ar-weapon`, `ar-achievement`). Quest rows store
+`{ status }`, skill rows store `{ points }`, everything else stores `{ completed: true }`.
 
 ---
 
-## Project Structure
-
-```
-crimson-desert-app/
-  src/
-    app/                    # Next.js App Router pages
-      (auth)/               # Login + OAuth callback
-      api/scraper/          # Scraper API endpoint
-      bestiary/             # Boss tracker
-      characters/           # Character profiles
-      collectibles/         # Collectibles tracker
-      crafting/             # Crafting recipes
-      dashboard/            # Main overview
-      group/                # Friend groups
-      map/                  # Interactive Leaflet map
-      notes/                # Personal notes
-      planner/              # Build planner
-      quests/               # Quest log
-      skills/               # Skill trees
-      weapons/              # Weapons grid
-    components/
-      layout/               # Sidebar, DashboardLayout
-      MapComponent.tsx      # Leaflet map (dynamic import)
-    hooks/
-      use-progress.ts       # Progress sync hook
-    lib/
-      game-data.ts          # All game data constants
-      supabase/             # Supabase client configs
-    types/
-      game-data.ts          # TypeScript type definitions
-    styles/
-      globals.css           # Tailwind + custom styles
-  supabase/
-    migrations/             # SQL schema
-  scraper/
-    main.py                 # Entry point
-    config.py               # URLs and settings
-    storage.py              # Supabase storage layer
-    scrapers/               # Individual scraper modules
-      base.py               # Base Playwright scraper
-      wiki_scraper.py       # Fextralife, Game8
-      news_scraper.py       # Pearl Abyss, PCGamer
-      guide_scraper.py      # Reddit, Steam guides
-      map_scraper.py        # MapGenie locations
-  vercel.json               # Vercel deployment config
-  tailwind.config.ts        # Custom Crimson Desert theme
-```
-
-## Updating Game Data
-
-As the game launches and the community discovers new content, you can:
-
-1. **Auto-update via scraper**: The scraper pulls from wikis and guides automatically
-2. **Manual update**: Edit `src/lib/game-data.ts` to add new skills, bosses, collectibles, etc.
-3. **Community pins**: Users can add custom map pins that get shared with their group
-
----
-
-Built for the continent of Pywel. Good luck, Greymane.
+Unofficial fan project. Not affiliated with Embark Studios or Nexon.

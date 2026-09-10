@@ -5,57 +5,72 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        crimson: {
-          50: '#fef2f2',
-          100: '#fde3e3',
-          200: '#fcc',
-          300: '#f9a8a8',
-          400: '#f47272',
-          500: '#C0392B',
-          600: '#761014',
-          700: '#5C0E0E',
-          800: '#3D0808',
-          900: '#1A0303',
+        // Primary accent: the burnt orange of Raider gear and Speranza signage
+        rust: {
+          50: '#fff6ec',
+          100: '#ffe8cf',
+          200: '#fdd0a0',
+          300: '#f5a65b',
+          400: '#e8853a',
+          500: '#d9671f',
+          600: '#b5501a',
+          700: '#8a3b12',
+          800: '#5c270c',
+          900: '#331506',
         },
-        gold: {
-          50: '#fdf8e8',
-          100: '#f8edcc',
-          200: '#d4c4a0',
-          300: '#C8AD7F',
-          400: '#AE8954',
-          500: '#8B7530',
-          600: '#6B5A22',
-          700: '#4A3E18',
-          800: '#2E2710',
-          900: '#1A1508',
+        // Secondary accent: ARC sensor teal / signal light
+        signal: {
+          50: '#ecfffb',
+          100: '#c9fdf3',
+          200: '#9af3e6',
+          300: '#7fe3d6',
+          400: '#3ec9b8',
+          500: '#1fa99a',
+          600: '#15837a',
+          700: '#12655f',
+          800: '#0f4a46',
+          900: '#082e2c',
         },
-        pywel: {
-          bg: '#0A0A0F',
-          card: '#19191E',
-          'card-hover': '#22222A',
-          secondary: '#111116',
-          border: '#2A2630',
+        // Warm neutral used for secondary text and highlights
+        sand: {
+          100: '#f1e9d8',
+          200: '#d8c9a8',
+          300: '#bfae8a',
+          400: '#9c8c6c',
+        },
+        // Surface palette (dark, blue-grey, "underground bunker")
+        arc: {
+          bg: '#0b0e12',
+          secondary: '#11161c',
+          card: '#171d25',
+          'card-hover': '#1e2630',
+          border: '#2a333f',
         },
       },
       fontFamily: {
-        cinzel: ['var(--font-cinzel)', 'Cinzel', 'serif'],
-        crimson: ['var(--font-crimson)', 'Crimson Text', 'serif'],
-        body: ['var(--font-inter)', 'Inter', 'sans-serif'],
-        sans: ['var(--font-inter)', 'Inter', 'sans-serif'],
+        display: ['var(--font-display)', 'Chakra Petch', 'sans-serif'],
+        body: ['var(--font-body)', 'Inter', 'sans-serif'],
+        sans: ['var(--font-body)', 'Inter', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
       },
       keyframes: {
         'fade-in': {
           '0%': { opacity: '0', transform: 'translateY(8px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
-        'pulse-gold': {
-          '0%, 100%': { boxShadow: '0 0 0 0 rgba(174, 137, 84, 0.4)' },
-          '50%': { boxShadow: '0 0 0 8px rgba(174, 137, 84, 0)' },
+        'pulse-rust': {
+          '0%, 100%': { boxShadow: '0 0 0 0 rgba(232, 133, 58, 0.4)' },
+          '50%': { boxShadow: '0 0 0 8px rgba(232, 133, 58, 0)' },
+        },
+        scan: {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(100%)' },
         },
       },
       animation: {
         'fade-in': 'fade-in 0.3s ease-out',
-        'pulse-gold': 'pulse-gold 2s infinite',
+        'pulse-rust': 'pulse-rust 2s infinite',
+        scan: 'scan 6s linear infinite',
       },
     },
   },

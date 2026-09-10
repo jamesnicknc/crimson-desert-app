@@ -1,11 +1,25 @@
-## Repository & Deployment
+## Project
+
+This repository is the **ARC Raiders Companion** (unofficial fan companion for ARC Raiders by Embark Studios).
+It was previously a Crimson Desert companion; all Crimson Desert content has been removed. The repo and
+domain names still carry the old name.
 
 - **GitHub repo**: github.com/jamesnicknc/crimson-desert-app
 - **SSH**: git@github.com:jamesnicknc/crimson-desert-app.git
 - **Local workspace path**: /crimson-desert-app
 - **Hosting**: Vercel (auto-deploys on push to main)
-- **Domain**: crimsoncompanionapp.us
-- **Backend**: Supabase (PostgreSQL + Auth)
+- **Domain**: crimsoncompanionapp.us (set in `src/lib/site.ts`)
+- **Backend**: Supabase (PostgreSQL + Auth), project `znpgcnhxkmdsabfcvyju`
+
+### Code map
+
+- Game data: `src/data/*.ts` (generated, one object per line). Keep ids stable; progress is keyed on them.
+- Types: `src/types/game-data.ts`. Labels and colour helpers: `src/lib/game-data.ts`.
+- Progress categories: `src/lib/progress-keys.ts` (all prefixed `ar-`).
+- Pages: `src/app/(app)/<route>/page.tsx`. Shared UI in `src/components/ui`.
+- Map imagery: `public/maps/*.jpg`, referenced from `src/data/maps.ts`.
+- Schema: `supabase/migrations/002_arc_raiders.sql` is the current one.
+- Checks: `npm run typecheck` and `npm run build`.
 
 ---
 

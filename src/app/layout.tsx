@@ -1,40 +1,43 @@
 import type { Metadata } from 'next';
-import { Cinzel, Crimson_Text, Inter } from 'next/font/google';
+import { Chakra_Petch, Inter, JetBrains_Mono } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
+import { SITE_URL } from '@/lib/site';
 import '@/styles/globals.css';
 
-const cinzel = Cinzel({
+const display = Chakra_Petch({
   subsets: ['latin'],
-  variable: '--font-cinzel',
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-display',
   display: 'swap',
 });
 
-const crimsonText = Crimson_Text({
+const body = Inter({
   subsets: ['latin'],
-  weight: ['400'],
-  style: ['normal', 'italic'],
-  variable: '--font-crimson',
+  variable: '--font-body',
   display: 'swap',
 });
 
-const inter = Inter({
+const mono = JetBrains_Mono({
   subsets: ['latin'],
-  variable: '--font-inter',
+  weight: ['400', '600'],
+  variable: '--font-mono',
   display: 'swap',
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Crimson Desert Companion',
-    template: '%s | Crimson Desert Companion',
+    default: 'ARC Raiders Companion',
+    template: '%s | ARC Raiders Companion',
   },
   description:
-    'Your ultimate companion dashboard for the Crimson Desert game. Track your progress, manage resources, and explore the world.',
+    'Unofficial companion for ARC Raiders. Raid maps, ARC bestiary, weapons, gear, quests, skill tree, workshop upgrades, loadout planner and squad progress tracking.',
   openGraph: {
-    title: 'Crimson Desert Companion',
-    description: 'Track your journey through Pywel. Skills, quests, bestiary, weapons, and more.',
+    title: 'ARC Raiders Companion',
+    description:
+      'Plan raids on the Rust Belt. Maps, ARC enemies, weapons, quests, workshop upgrades and loadouts in one place.',
     type: 'website',
-    url: 'https://crimsoncompanionapp.us',
+    url: SITE_URL,
   },
 };
 
@@ -44,8 +47,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`dark ${cinzel.variable} ${crimsonText.variable} ${inter.variable}`}>
-      <body className="bg-pywel-bg text-gray-100 font-sans">
+    <html lang="en" className={`dark ${display.variable} ${body.variable} ${mono.variable}`}>
+      <body className="bg-arc-bg text-gray-100 font-sans">
         {children}
         <Analytics />
       </body>

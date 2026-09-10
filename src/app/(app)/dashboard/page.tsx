@@ -2,131 +2,96 @@
 
 import Link from 'next/link';
 import {
-  Globe,
-  Users,
-  Skull,
-  TrendingUp,
-  Compass,
-  Sparkles,
-  Scroll,
-  Hammer,
-  BookOpen,
-  Footprints,
-  Trophy,
-  Swords,
-  MapPin,
-  Shield,
-  Leaf,
-  Gem,
-  Bug,
-  Library,
+  Map, Bot, Crosshair, ClipboardList, Wrench, GitBranch, Rocket, Store, BookOpen, Layers, Shield, Package, Trophy, Sparkles, CalendarClock,
 } from 'lucide-react';
-import { TROPHIES } from '@/lib/game-data';
-
-// ─── Knowledge Codex counts (confirmed via in-game codex data) ──────────────
-const CODEX_CATEGORIES = [
-  { label: 'Characters', count: 467, icon: Users, color: 'text-blue-400' },
-  { label: 'Factions', count: 110, icon: Shield, color: 'text-purple-400' },
-  { label: 'Territories', count: 573, icon: MapPin, color: 'text-green-400' },
-  { label: 'Creatures', count: 401, icon: Bug, color: 'text-red-400' },
-  { label: 'Bosses', count: 76, icon: Skull, color: 'text-orange-400' },
-  { label: 'Mounts', count: 29, icon: Footprints, color: 'text-amber-400' },
-  { label: 'Adventures', count: 430, icon: Compass, color: 'text-cyan-400' },
-  { label: 'Gatherables', count: 150, icon: Leaf, color: 'text-emerald-400' },
-  { label: 'Collectibles', count: 94, icon: Gem, color: 'text-pink-400' },
-  { label: 'Crafting Manuals', count: 355, icon: Hammer, color: 'text-yellow-400' },
-];
-
-const CODEX_TOTAL = CODEX_CATEGORIES.reduce((sum, c) => sum + c.count, 0);
+import {
+  MAPS, ENEMIES, WEAPONS, QUESTS, ITEMS, SKILLS, WORKSHOP_STATIONS, ACHIEVEMENTS, PATCHES, GAME_OVERVIEW, EXPEDITION_PROJECTS,
+} from '@/lib/game-data';
+import { PROGRESS } from '@/lib/progress-keys';
+import { useProgress } from '@/hooks/use-progress';
+import ProgressBar from '@/components/ui/ProgressBar';
+import SignInPrompt from '@/components/SignInPrompt';
 
 export default function DashboardPage() {
+  const { isAuthenticated, loading, isCompleted, categoryCount, getValue } = useProgress();
 
+  const playableMaps = MAPS.filter((m) => m.status === 'playable');
   const stats = [
-    { label: 'World Size', value: '256 km²', icon: Globe, href: '/map' },
-    { label: 'Territories', value: '573', icon: MapPin, href: '/map' },
-    { label: 'Bosses', value: '76', icon: Skull, href: '/bosses' },
-    { label: 'Adventures', value: '430', icon: Compass, href: '/quests' },
-    { label: 'Creatures', value: '401', icon: Bug, href: '/bestiary' },
-    { label: 'Codex Entries', value: CODEX_TOTAL.toLocaleString(), icon: Library, href: '/quests' },
+    { label: 'Raid Maps', value: playableMaps.length, icon: Map, href: '/maps' },
+    { label: 'ARC Machines', value: ENEMIES.length, icon: Bot, href: '/arc' },
+    { label: 'Weapons', value: WEAPONS.length, icon: Crosshair, href: '/weapons' },
+    { label: 'Quests', value: QUESTS.length, icon: ClipboardList, href: '/quests' },
+    { label: 'Items', value: ITEMS.length, icon: Package, href: '/items' },
+    { label: 'Skill Nodes', value: SKILLS.length, icon: GitBranch, href: '/skills' },
   ];
 
   const quickAccess = [
-    {
-      title: 'World Map',
-      description: 'Explore the cursed lands',
-      href: '/map',
-      icon: Globe,
-      color: 'from-blue-600 to-blue-800',
-    },
-    {
-      title: 'Quest Log',
-      description: 'Track your adventures',
-      href: '/quests',
-      icon: Scroll,
-      color: 'from-amber-600 to-amber-800',
-    },
-    {
-      title: 'Bosses',
-      description: 'Defeat powerful bosses',
-      href: '/bosses',
-      icon: Skull,
-      color: 'from-red-600 to-red-800',
-    },
-    {
-      title: 'Crafting',
-      description: 'Create powerful items',
-      href: '/crafting',
-      icon: Hammer,
-      color: 'from-yellow-600 to-yellow-800',
-    },
-    {
-      title: 'Skill Trees',
-      description: 'Master your abilities',
-      href: '/skills',
-      icon: Sparkles,
-      color: 'from-purple-600 to-purple-800',
-    },
-    {
-      title: 'Notes',
-      description: 'Document your journey',
-      href: '/notes',
-      icon: BookOpen,
-      color: 'from-gray-600 to-gray-800',
-    },
+    { title: 'Raid Maps', description: 'POIs, extractions, keys and events', href: '/maps', icon: Map, color: 'from-blue-600 to-blue-800' },
+    { title: 'ARC Bestiary', description: 'Weak points and kill strategies', href: '/arc', icon: Bot, color: 'from-red-600 to-red-800' },
+    { title: 'Weapons', description: 'Stats, recipes, tiers and mods', href: '/weapons', icon: Crosshair, color: 'from-rust-500 to-rust-700' },
+    { title: 'Gear & Gadgets', description: 'Shields, augments and throwables', href: '/gear', icon: Shield, color: 'from-signal-500 to-signal-700' },
+    { title: 'Quests', description: 'Every trader chain, tracked', href: '/quests', icon: ClipboardList, color: 'from-amber-600 to-amber-800' },
+    { title: 'Workshop', description: 'Upgrade costs and what to farm', href: '/workshop', icon: Wrench, color: 'from-purple-600 to-purple-800' },
+    { title: 'Expeditions', description: 'Projects, trials and achievements', href: '/expeditions', icon: Rocket, color: 'from-pink-600 to-pink-800' },
+    { title: 'Traders', description: 'Who sells what and at which level', href: '/traders', icon: Store, color: 'from-emerald-600 to-emerald-800' },
+    { title: 'New Raider Guide', description: 'The loop, the ARC, the etiquette', href: '/guide', icon: BookOpen, color: 'from-gray-600 to-gray-800' },
+    { title: 'Loadout Planner', description: 'Kit up and share with your squad', href: '/planner', icon: Layers, color: 'from-cyan-600 to-cyan-800' },
   ];
+
+  // Progress summary
+  const questsDone = QUESTS.filter((q) => isCompleted(PROGRESS.quest, q.id)).length;
+  const questsActive = QUESTS.filter((q) => getValue(PROGRESS.quest, q.id)?.status === 'active').length;
+  const skillPoints = SKILLS.reduce((sum, s) => sum + (Number(getValue(PROGRESS.skill, s.id)?.points ?? 0) || 0), 0);
+  const workshopLevels = WORKSHOP_STATIONS.reduce((sum, s) => sum + s.levels.filter((l) => isCompleted(PROGRESS.workshop, `${s.id}-${l.level}`)).length, 0);
+  const workshopMax = WORKSHOP_STATIONS.reduce((sum, s) => sum + s.levels.length, 0);
+  const arcSeen = categoryCount(PROGRESS.arc);
+  const achievementsDone = categoryCount(PROGRESS.achievement);
+  const blueprints = categoryCount(PROGRESS.weapon);
+
+  const latestPatches = [...PATCHES].reverse().slice(0, 4);
+  const activeExpedition = EXPEDITION_PROJECTS.filter((p) => p.kind === 'expedition').slice(-1)[0];
 
   return (
     <div className="space-y-8">
-      {/* Game Live Banner */}
-      <section className="bg-gradient-to-r from-gold-500/20 to-gold-400/10 border border-gold-400/50 rounded-lg p-6 text-center">
-        <p className="font-cinzel text-xl font-bold text-gold-300 mb-1">
-          🎮 Crimson Desert is Now Live!
-        </p>
-        <p className="text-gray-400 text-sm">
-          Released March 19, 2026 — Track your journey across Pywel below
-        </p>
+      {/* Status banner */}
+      <section className="relative overflow-hidden bg-gradient-to-r from-rust-500/15 to-signal-500/10 border border-rust-400/40 rounded-lg p-6">
+        <div className="absolute inset-y-0 right-0 w-1/3 hazard-stripe opacity-30 pointer-events-none" />
+        <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <p className="font-display text-xl font-bold text-rust-300 mb-1 flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-signal-400" />
+              {GAME_OVERVIEW.latestPatch || 'Live'}
+            </p>
+            <p className="text-gray-400 text-sm max-w-2xl">
+              {GAME_OVERVIEW.nextUpdate ? `Next: ${GAME_OVERVIEW.nextUpdate}` : 'Track your raids, quests and workshop below.'}
+            </p>
+          </div>
+          {activeExpedition && (
+            <Link href="/expeditions" className="flex items-center gap-3 bg-arc-card/80 border border-arc-border rounded-lg px-4 py-3 hover:border-rust-400/60 transition-colors">
+              <CalendarClock className="w-5 h-5 text-signal-400" />
+              <div>
+                <p className="text-xs text-gray-400 font-display uppercase tracking-wider">Current expedition</p>
+                <p className="text-sm text-gray-100 font-semibold">{activeExpedition.name}</p>
+              </div>
+            </Link>
+          )}
+        </div>
       </section>
 
-      {/* Stats section */}
+      {/* Stats */}
       <section>
-        <h2 className="font-cinzel text-2xl font-bold text-gold-300 mb-6">
-          World Statistics
-        </h2>
+        <h2 className="font-display text-2xl font-bold text-rust-300 mb-4">Database</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {stats.map((stat) => {
-            const IconComponent = stat.icon;
+            const Icon = stat.icon;
             return (
               <Link key={stat.label} href={stat.href}>
-                <div className="bg-pywel-card border border-pywel-border rounded-lg p-4 hover:bg-pywel-card-hover hover:border-gold-500/50 transition-colors duration-200 cursor-pointer">
+                <div className="bg-arc-card border border-arc-border rounded-lg p-4 hover:bg-arc-card-hover hover:border-rust-500/50 transition-colors duration-200 cursor-pointer">
                   <div className="flex items-center gap-2 mb-3">
-                    <IconComponent className="w-5 h-5 text-gold-400" />
-                    <p className="text-xs text-gray-400 font-cinzel uppercase">
-                      {stat.label}
-                    </p>
+                    <Icon className="w-5 h-5 text-signal-400" />
+                    <p className="text-xs text-gray-400 font-display uppercase">{stat.label}</p>
                   </div>
-                  <p className="text-2xl font-bold text-gold-300">
-                    {stat.value}
-                  </p>
+                  <p className="text-2xl font-bold text-rust-300 font-display">{stat.value}</p>
                 </div>
               </Link>
             );
@@ -134,28 +99,56 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      {/* Quick access cards */}
+      {/* Your progress */}
       <section>
-        <h2 className="font-cinzel text-2xl font-bold text-gold-300 mb-6">
-          Quick Access
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h2 className="font-display text-2xl font-bold text-rust-300 mb-4">Your Raider</h2>
+        {!loading && !isAuthenticated && (
+          <div className="mb-4">
+            <SignInPrompt compact message="Sign in to track quests, skills, workshop upgrades and ARC kills across devices." />
+          </div>
+        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <Link href="/quests" className="bg-arc-card border border-arc-border rounded-lg p-4 hover:border-rust-500/50 transition-colors">
+            <div className="flex items-center gap-2 mb-3"><ClipboardList className="w-4 h-4 text-amber-400" /><span className="text-sm font-display text-gray-300">Quests</span><span className="ml-auto text-xs text-gray-500">{questsActive} active</span></div>
+            <ProgressBar value={questsDone} max={QUESTS.length} color="bg-amber-400" compact />
+          </Link>
+          <Link href="/workshop" className="bg-arc-card border border-arc-border rounded-lg p-4 hover:border-rust-500/50 transition-colors">
+            <div className="flex items-center gap-2 mb-3"><Wrench className="w-4 h-4 text-purple-400" /><span className="text-sm font-display text-gray-300">Workshop levels</span></div>
+            <ProgressBar value={workshopLevels} max={workshopMax} color="bg-purple-400" compact />
+          </Link>
+          <Link href="/skills" className="bg-arc-card border border-arc-border rounded-lg p-4 hover:border-rust-500/50 transition-colors">
+            <div className="flex items-center gap-2 mb-3"><GitBranch className="w-4 h-4 text-signal-400" /><span className="text-sm font-display text-gray-300">Skill points spent</span></div>
+            <ProgressBar value={skillPoints} max={76} color="bg-signal-400" compact />
+          </Link>
+          <Link href="/arc" className="bg-arc-card border border-arc-border rounded-lg p-4 hover:border-rust-500/50 transition-colors">
+            <div className="flex items-center gap-2 mb-3"><Bot className="w-4 h-4 text-red-400" /><span className="text-sm font-display text-gray-300">ARC destroyed (types)</span></div>
+            <ProgressBar value={arcSeen} max={ENEMIES.filter((e) => e.sizeClass !== 'event').length} color="bg-red-400" compact />
+          </Link>
+          <Link href="/weapons" className="bg-arc-card border border-arc-border rounded-lg p-4 hover:border-rust-500/50 transition-colors">
+            <div className="flex items-center gap-2 mb-3"><Crosshair className="w-4 h-4 text-rust-400" /><span className="text-sm font-display text-gray-300">Weapons unlocked</span></div>
+            <ProgressBar value={blueprints} max={WEAPONS.length} color="bg-rust-400" compact />
+          </Link>
+          <Link href="/expeditions" className="bg-arc-card border border-arc-border rounded-lg p-4 hover:border-rust-500/50 transition-colors">
+            <div className="flex items-center gap-2 mb-3"><Trophy className="w-4 h-4 text-yellow-400" /><span className="text-sm font-display text-gray-300">Achievements</span></div>
+            <ProgressBar value={achievementsDone} max={ACHIEVEMENTS.length} color="bg-yellow-400" compact />
+          </Link>
+        </div>
+      </section>
+
+      {/* Quick access */}
+      <section>
+        <h2 className="font-display text-2xl font-bold text-rust-300 mb-4">Quick Access</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {quickAccess.map((card) => {
-            const IconComponent = card.icon;
+            const Icon = card.icon;
             return (
               <Link key={card.href} href={card.href}>
-                <div className="h-full bg-pywel-card border border-pywel-border rounded-lg p-6 hover:border-gold-400 hover:bg-pywel-card-hover transition-all duration-200 cursor-pointer group">
-                  <div
-                    className={`inline-flex p-3 rounded-lg mb-4 bg-gradient-to-br ${card.color}`}
-                  >
-                    <IconComponent className="w-6 h-6 text-white" />
+                <div className="h-full bg-arc-card border border-arc-border rounded-lg p-4 hover:border-rust-400 hover:bg-arc-card-hover transition-all duration-200 cursor-pointer group">
+                  <div className={`inline-flex p-2.5 rounded-lg mb-3 bg-gradient-to-br ${card.color}`}>
+                    <Icon className="w-5 h-5 text-white" />
                   </div>
-                  <h3 className="font-cinzel text-lg font-bold text-gold-300 group-hover:text-gold-200 transition-colors">
-                    {card.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm mt-2">
-                    {card.description}
-                  </p>
+                  <h3 className="font-display font-bold text-rust-300 group-hover:text-rust-200 transition-colors">{card.title}</h3>
+                  <p className="text-gray-400 text-xs mt-1">{card.description}</p>
                 </div>
               </Link>
             );
@@ -163,99 +156,48 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      {/* Knowledge Codex section */}
+      {/* Maps strip */}
       <section>
-        <div className="flex items-center gap-3 mb-6">
-          <Library className="w-6 h-6 text-gold-400" />
-          <h2 className="font-cinzel text-2xl font-bold text-gold-300">
-            Knowledge Codex
-          </h2>
-          <span className="ml-auto text-sm text-gray-500 font-cinzel">{CODEX_TOTAL.toLocaleString()} entries</span>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="font-display text-2xl font-bold text-rust-300">Raid Maps</h2>
+          <Link href="/maps" className="text-sm text-signal-400 hover:text-signal-300">View all</Link>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-          {CODEX_CATEGORIES.map((cat) => {
-            const IconComponent = cat.icon;
-            return (
-              <div
-                key={cat.label}
-                className="bg-pywel-card border border-pywel-border rounded-lg p-4 hover:border-pywel-border/80 transition-colors"
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <IconComponent className={`w-4 h-4 ${cat.color}`} />
-                  <p className="text-xs text-gray-400 font-cinzel">{cat.label}</p>
-                </div>
-                <p className={`text-xl font-bold font-cinzel ${cat.color}`}>{cat.count.toLocaleString()}</p>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+          {playableMaps.map((m) => (
+            <Link key={m.slug} href={`/maps/${m.slug}`} className="group relative rounded-lg overflow-hidden border border-arc-border hover:border-rust-400/70 transition-colors aspect-[4/3] bg-arc-card">
+              {m.images[0] && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={m.images[0].src} alt={m.name} className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity" loading="lazy" />
+              )}
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-3">
+                <p className="font-display font-semibold text-sm text-gray-100">{m.name}</p>
+                <p className="text-[11px] text-gray-400">Danger {m.danger}/5</p>
               </div>
-            );
-          })}
+            </Link>
+          ))}
         </div>
-        <p className="text-xs text-gray-600 mt-3 text-center">
-          Adventures include side quests, camp clearing missions, puzzles, and side boss encounters.
-        </p>
       </section>
 
-      {/* Trophies section */}
-      <section className="bg-gradient-to-r from-black/30 to-pywel-secondary/30 border border-pywel-border rounded-lg p-8">
-        <div className="flex items-center gap-3 mb-6">
-          <Trophy className="w-6 h-6 text-gold-400" />
-          <h2 className="font-cinzel text-2xl font-bold text-gold-300">
-            Trophies & Achievements
-          </h2>
-          <span className="ml-auto text-sm text-gray-500 font-cinzel">{TROPHIES.length} total</span>
+      {/* Patch history */}
+      <section className="bg-gradient-to-r from-black/30 to-arc-secondary/30 border border-arc-border rounded-lg p-6">
+        <div className="flex items-center gap-3 mb-4">
+          <CalendarClock className="w-5 h-5 text-signal-400" />
+          <h2 className="font-display text-xl font-bold text-rust-300">Recent Updates</h2>
+          <Link href="/guide#patches" className="ml-auto text-sm text-signal-400 hover:text-signal-300">Full timeline</Link>
         </div>
-
-        {/* Rarity summary row */}
-        <div className="grid grid-cols-4 gap-3 mb-6">
-          {(
-            [
-              { rarity: 'platinum', label: 'Platinum', color: 'text-cyan-300', bg: 'bg-cyan-900/20 border-cyan-700/30' },
-              { rarity: 'gold', label: 'Gold', color: 'text-yellow-400', bg: 'bg-yellow-900/20 border-yellow-700/30' },
-              { rarity: 'silver', label: 'Silver', color: 'text-gray-300', bg: 'bg-gray-700/20 border-gray-600/30' },
-              { rarity: 'bronze', label: 'Bronze', color: 'text-amber-600', bg: 'bg-amber-900/20 border-amber-700/30' },
-            ] as const
-          ).map(({ rarity, label, color, bg }) => {
-            const count = TROPHIES.filter(t => t.rarity === rarity).length;
-            return (
-              <div key={rarity} className={`rounded-lg border p-3 text-center ${bg}`}>
-                <p className={`text-2xl font-bold font-cinzel ${color}`}>{count}</p>
-                <p className={`text-xs font-cinzel mt-0.5 ${color} opacity-80`}>{label}</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {latestPatches.map((p) => (
+            <div key={p.version + p.date} className="bg-arc-bg/40 border border-arc-border/60 rounded-lg p-3">
+              <div className="flex items-baseline gap-2 mb-1">
+                <span className="font-display font-semibold text-gray-100 text-sm">{p.name}</span>
+                <span className="text-xs text-gray-500 font-mono">{p.version}</span>
+                <span className="ml-auto text-xs text-gray-500">{p.date}</span>
               </div>
-            );
-          })}
-        </div>
-
-        {/* Trophy list */}
-        <div className="space-y-1.5 max-h-72 overflow-y-auto pr-1">
-          {TROPHIES.map((trophy) => {
-            const rarityStyles: Record<string, string> = {
-              platinum: 'text-cyan-300 border-cyan-700/40',
-              gold: 'text-yellow-400 border-yellow-700/40',
-              silver: 'text-gray-300 border-gray-600/40',
-              bronze: 'text-amber-600 border-amber-700/40',
-            };
-            const rarityDot: Record<string, string> = {
-              platinum: 'bg-cyan-300',
-              gold: 'bg-yellow-400',
-              silver: 'bg-gray-400',
-              bronze: 'bg-amber-600',
-            };
-            return (
-              <div
-                key={trophy.id}
-                className="flex items-start gap-3 p-2.5 rounded-lg bg-pywel-bg/40 border border-pywel-border/50 hover:border-pywel-border transition-colors"
-              >
-                <span className={`w-2 h-2 rounded-full flex-shrink-0 mt-1.5 ${rarityDot[trophy.rarity]}`} />
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-baseline gap-2 flex-wrap">
-                    <span className="font-cinzel font-semibold text-sm text-gray-100">{trophy.name}</span>
-                    <span className={`text-xs font-cinzel ${rarityStyles[trophy.rarity]}`}>{trophy.rarity}</span>
-                    <span className="text-xs text-gray-600 ml-auto">{trophy.category}</span>
-                  </div>
-                  <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{trophy.description}</p>
-                </div>
-              </div>
-            );
-          })}
+              <ul className="text-xs text-gray-400 space-y-0.5">
+                {p.highlights.slice(0, 3).map((h) => <li key={h}>{h}</li>)}
+              </ul>
+            </div>
+          ))}
         </div>
       </section>
     </div>

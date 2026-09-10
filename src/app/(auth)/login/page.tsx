@@ -79,10 +79,10 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen bg-pywel-bg text-gray-100 flex items-center justify-center px-4">
+    <main className="min-h-screen bg-arc-bg text-gray-100 flex items-center justify-center px-4">
       {/* Animated background */}
       <div className="fixed inset-0 opacity-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-pywel-secondary via-black to-pywel-secondary" />
+        <div className="absolute inset-0 bg-gradient-to-br from-arc-secondary via-black to-arc-secondary" />
       </div>
 
       {/* Login card */}
@@ -90,25 +90,24 @@ export default function LoginPage() {
         {/* Header */}
         <div className="text-center mb-12">
           <Link href="/">
-            <h1 className="font-cinzel text-5xl font-bold mb-2 cursor-pointer hover:text-gold-300 transition-colors">
-              <span className="text-gold-300">CRIMSON</span>
-              <br />
-              <span className="text-gold-400">DESERT</span>
+            <h1 className="font-display text-5xl font-bold mb-2 cursor-pointer tracking-wide">
+              <span className="text-rust-300">ARC</span>{' '}
+              <span className="text-sand-100">RAIDERS</span>
             </h1>
           </Link>
-          <p className="font-crimson text-lg text-gold-400 italic">
-            Companion Dashboard
+          <p className="font-display text-sm uppercase tracking-[0.3em] text-signal-400">
+            Companion
           </p>
         </div>
 
         {/* Login box */}
-        <div className="bg-pywel-card border border-pywel-border rounded-lg p-8 space-y-6">
+        <div className="bg-arc-card border border-arc-border rounded-lg p-8 space-y-6">
           <div className="text-center">
-            <h2 className="font-cinzel text-2xl font-bold text-gold-300 mb-2">
-              Welcome Back, Wanderer
+            <h2 className="font-display text-2xl font-bold text-rust-300 mb-2">
+              Welcome back, Raider
             </h2>
             <p className="text-gray-400 text-sm">
-              Sign in to your Crimson Desert account
+              Sign in to sync quests, workshop progress and loadouts
             </p>
           </div>
 
@@ -133,10 +132,10 @@ export default function LoginPage() {
           {/* Divider */}
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-pywel-border" />
+              <div className="w-full border-t border-arc-border" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-pywel-card text-gray-500">
+              <span className="px-2 bg-arc-card text-gray-500">
                 or sign in with email
               </span>
             </div>
@@ -151,7 +150,7 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 bg-pywel-bg border border-pywel-border rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-400 transition-colors"
+                className="w-full px-4 py-3 bg-arc-bg border border-arc-border rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-rust-400 focus:ring-1 focus:ring-rust-400 transition-colors"
               />
             </div>
             <div>
@@ -162,7 +161,7 @@ export default function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 minLength={6}
-                className="w-full px-4 py-3 bg-pywel-bg border border-pywel-border rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-400 transition-colors"
+                className="w-full px-4 py-3 bg-arc-bg border border-arc-border rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-rust-400 focus:ring-1 focus:ring-rust-400 transition-colors"
               />
             </div>
 
@@ -176,7 +175,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full px-4 py-3 bg-gold-600 hover:bg-gold-500 text-black font-semibold rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+              className="w-full px-4 py-3 bg-rust-600 hover:bg-rust-500 text-black font-semibold rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
             >
               {isLoading
                 ? 'Please wait...'
@@ -194,7 +193,7 @@ export default function LoginPage() {
                   setErrorMsg('');
                   setSuccessMsg('');
                 }}
-                className="text-gold-300 hover:text-gold-200 font-medium transition-colors"
+                className="text-rust-300 hover:text-rust-200 font-medium transition-colors"
               >
                 {isSignUp ? 'Sign in' : 'Sign up'}
               </button>
@@ -204,10 +203,10 @@ export default function LoginPage() {
           {/* Divider */}
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-pywel-border" />
+              <div className="w-full border-t border-arc-border" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-pywel-card text-gray-500">
+              <span className="px-2 bg-arc-card text-gray-500">
                 or continue as guest
               </span>
             </div>
@@ -215,7 +214,7 @@ export default function LoginPage() {
 
           {/* Guest button */}
           <Link href="/dashboard">
-            <button className="w-full px-4 py-3 border border-pywel-border text-gold-300 font-semibold rounded-lg hover:bg-pywel-card-hover transition-colors duration-200">
+            <button className="w-full px-4 py-3 border border-arc-border text-rust-300 font-semibold rounded-lg hover:bg-arc-card-hover transition-colors duration-200">
               Continue as Guest
             </button>
           </Link>

@@ -120,8 +120,10 @@ export default function GroupPage() {
 
     const progressCounts: Record<string, number> = {};
     (progressRows ?? []).forEach((r) => {
+      // Only count ARC Raiders progress categories (prefixed "ar-")
+      if (!String(r.category).startsWith('ar-')) return;
       // For quests, only count items with status "complete" (not "active")
-      if (r.category === 'quest') {
+      if (r.category === 'ar-quest') {
         const val = r.value as { status?: string } | null;
         if (val?.status !== 'complete') return;
       }
@@ -130,13 +132,13 @@ export default function GroupPage() {
 
     const profileMap: Record<string, string> = {};
     (profiles ?? []).forEach((p) => {
-      profileMap[p.id] = p.display_name ?? 'Adventurer';
+      profileMap[p.id] = p.display_name ?? 'Raider';
     });
 
     const built: Member[] = memberRows.map((r) => ({
       user_id: r.user_id,
       joined_at: r.joined_at,
-      display_name: profileMap[r.user_id] ?? 'Adventurer',
+      display_name: profileMap[r.user_id] ?? 'Raider',
       total_progress: progressCounts[r.user_id] ?? 0,
     }));
 
@@ -182,7 +184,7 @@ export default function GroupPage() {
       .insert({ group_id: newGroup.id, user_id: user.id });
 
     if (joinErr) {
-      setError('Group created but failed to join. Please refresh.');
+      setError('Squad created but failed to join. Please refresh.');
       setActionLoading(false);
       return;
     }
@@ -274,7 +276,7 @@ export default function GroupPage() {
   if (userLoading) {
     return (
       <div className="flex items-center justify-center py-24">
-        <Loader2 className="w-8 h-8 animate-spin text-gold-400" />
+        <Loader2 className="w-8 h-8 animate-spin text-rust-400" />
       </div>
     );
   }
@@ -283,10 +285,10 @@ export default function GroupPage() {
     return (
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-cinzel font-bold text-gold-400 mb-1">Group Dashboard</h1>
+          <h1 className="text-3xl font-display font-bold text-rust-400 mb-1">Squad Dashboard</h1>
           <p className="text-gray-400">Connect with friends and compare your progress.</p>
         </div>
-        <SignInPrompt message="Sign in to create and join groups" />
+        <SignInPrompt message="Sign in to create and join squads" />
       </div>
     );
   }
@@ -296,41 +298,41 @@ export default function GroupPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-cinzel font-bold text-gold-400 mb-1">Group Dashboard</h1>
+          <h1 className="text-3xl font-display font-bold text-rust-400 mb-1">Squad Dashboard</h1>
           <p className="text-gray-400">Connect with friends and compare your progress.</p>
         </div>
         {view === 'dashboard' && (
           <div className="flex gap-2">
             <button
               onClick={() => { setView('join'); setError(null); }}
-              className="flex items-center gap-2 px-4 py-2 bg-pywel-card border border-pywel-border hover:border-gold-500/50 text-gray-300 hover:text-gold-300 rounded-lg transition-colors text-sm font-cinzel"
+              className="flex items-center gap-2 px-4 py-2 bg-arc-card border border-arc-border hover:border-rust-500/50 text-gray-300 hover:text-rust-300 rounded-lg transition-colors text-sm font-display"
             >
               <LogIn className="w-4 h-4" />
-              Join Group
+              Join Squad
             </button>
             <button
               onClick={() => { setView('create'); setError(null); }}
-              className="flex items-center gap-2 px-4 py-2 bg-gold-600 hover:bg-gold-500 text-black rounded-lg transition-colors text-sm font-cinzel font-semibold"
+              className="flex items-center gap-2 px-4 py-2 bg-rust-600 hover:bg-rust-500 text-black rounded-lg transition-colors text-sm font-display font-semibold"
             >
               <Plus className="w-4 h-4" />
-              Create Group
+              Create Squad
             </button>
           </div>
         )}
       </div>
 
-      {/* Create Group Form */}
+      {/* Create Squad Form */}
       {view === 'create' && (
-        <div className="bg-pywel-card border border-pywel-border rounded-xl p-6 max-w-md">
+        <div className="bg-arc-card border border-arc-border rounded-xl p-6 max-w-md">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-cinzel font-bold text-gold-300">Create a New Group</h2>
+            <h2 className="text-lg font-display font-bold text-rust-300">Create a New Squad</h2>
             <button onClick={() => { setView('dashboard'); setError(null); setGroupName(''); }}>
               <X className="w-5 h-5 text-gray-400 hover:text-gray-200" />
             </button>
           </div>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm text-gray-400 mb-1 font-cinzel">Group Name</label>
+              <label className="block text-sm text-gray-400 mb-1 font-display">Squad Name</label>
               <input
                 type="text"
                 value={groupName}
@@ -338,7 +340,7 @@ export default function GroupPage() {
                 onKeyDown={(e) => e.key === 'Enter' && handleCreate()}
                 placeholder="e.g. The Desert Runners"
                 maxLength={40}
-                className="w-full bg-pywel-bg border border-pywel-border rounded-lg px-4 py-2.5 text-gray-100 placeholder-gray-600 focus:outline-none focus:border-gold-500/50 transition-colors"
+                className="w-full bg-arc-bg border border-arc-border rounded-lg px-4 py-2.5 text-gray-100 placeholder-gray-600 focus:outline-none focus:border-rust-500/50 transition-colors"
               />
               <p className="text-xs text-gray-600 mt-1">{groupName.length}/40</p>
             </div>
@@ -346,14 +348,14 @@ export default function GroupPage() {
             <div className="flex gap-2">
               <button
                 onClick={() => { setView('dashboard'); setError(null); setGroupName(''); }}
-                className="flex-1 px-4 py-2 bg-pywel-bg border border-pywel-border text-gray-400 hover:text-gray-200 rounded-lg transition-colors text-sm"
+                className="flex-1 px-4 py-2 bg-arc-bg border border-arc-border text-gray-400 hover:text-gray-200 rounded-lg transition-colors text-sm"
               >
                 Cancel
               </button>
               <button
                 onClick={handleCreate}
                 disabled={!groupName.trim() || actionLoading}
-                className="flex-1 px-4 py-2 bg-gold-600 hover:bg-gold-500 disabled:opacity-50 disabled:cursor-not-allowed text-black font-cinzel font-semibold rounded-lg transition-colors text-sm flex items-center justify-center gap-2"
+                className="flex-1 px-4 py-2 bg-rust-600 hover:bg-rust-500 disabled:opacity-50 disabled:cursor-not-allowed text-black font-display font-semibold rounded-lg transition-colors text-sm flex items-center justify-center gap-2"
               >
                 {actionLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
                 Create
@@ -363,18 +365,18 @@ export default function GroupPage() {
         </div>
       )}
 
-      {/* Join Group Form */}
+      {/* Join Squad Form */}
       {view === 'join' && (
-        <div className="bg-pywel-card border border-pywel-border rounded-xl p-6 max-w-md">
+        <div className="bg-arc-card border border-arc-border rounded-xl p-6 max-w-md">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-cinzel font-bold text-gold-300">Join a Group</h2>
+            <h2 className="text-lg font-display font-bold text-rust-300">Join a Squad</h2>
             <button onClick={() => { setView('dashboard'); setError(null); setInviteCode(''); }}>
               <X className="w-5 h-5 text-gray-400 hover:text-gray-200" />
             </button>
           </div>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm text-gray-400 mb-1 font-cinzel">Invite Code</label>
+              <label className="block text-sm text-gray-400 mb-1 font-display">Invite Code</label>
               <input
                 type="text"
                 value={inviteCode}
@@ -382,21 +384,21 @@ export default function GroupPage() {
                 onKeyDown={(e) => e.key === 'Enter' && handleJoin()}
                 placeholder="e.g. a1b2c3d4"
                 maxLength={8}
-                className="w-full bg-pywel-bg border border-pywel-border rounded-lg px-4 py-2.5 text-gray-100 placeholder-gray-600 font-mono focus:outline-none focus:border-gold-500/50 transition-colors tracking-widest"
+                className="w-full bg-arc-bg border border-arc-border rounded-lg px-4 py-2.5 text-gray-100 placeholder-gray-600 font-mono focus:outline-none focus:border-rust-500/50 transition-colors tracking-widest"
               />
             </div>
             {error && <p className="text-sm text-red-400">{error}</p>}
             <div className="flex gap-2">
               <button
                 onClick={() => { setView('dashboard'); setError(null); setInviteCode(''); }}
-                className="flex-1 px-4 py-2 bg-pywel-bg border border-pywel-border text-gray-400 hover:text-gray-200 rounded-lg transition-colors text-sm"
+                className="flex-1 px-4 py-2 bg-arc-bg border border-arc-border text-gray-400 hover:text-gray-200 rounded-lg transition-colors text-sm"
               >
                 Cancel
               </button>
               <button
                 onClick={handleJoin}
                 disabled={inviteCode.length < 6 || actionLoading}
-                className="flex-1 px-4 py-2 bg-gold-600 hover:bg-gold-500 disabled:opacity-50 disabled:cursor-not-allowed text-black font-cinzel font-semibold rounded-lg transition-colors text-sm flex items-center justify-center gap-2"
+                className="flex-1 px-4 py-2 bg-rust-600 hover:bg-rust-500 disabled:opacity-50 disabled:cursor-not-allowed text-black font-display font-semibold rounded-lg transition-colors text-sm flex items-center justify-center gap-2"
               >
                 {actionLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <LogIn className="w-4 h-4" />}
                 Join
@@ -411,30 +413,30 @@ export default function GroupPage() {
         <>
           {loading ? (
             <div className="flex items-center justify-center py-16">
-              <Loader2 className="w-8 h-8 animate-spin text-gold-400" />
+              <Loader2 className="w-8 h-8 animate-spin text-rust-400" />
             </div>
           ) : groups.length === 0 ? (
             /* Empty state */
-            <div className="bg-pywel-card border border-pywel-border rounded-xl p-12 text-center space-y-4">
-              <Users2 className="w-14 h-14 text-gold-400/30 mx-auto" />
-              <h2 className="text-xl font-cinzel font-bold text-gold-300">No Groups Yet</h2>
+            <div className="bg-arc-card border border-arc-border rounded-xl p-12 text-center space-y-4">
+              <Users2 className="w-14 h-14 text-rust-400/30 mx-auto" />
+              <h2 className="text-xl font-display font-bold text-rust-300">No Groups Yet</h2>
               <p className="text-gray-400 max-w-sm mx-auto">
-                Create a group and share the invite code with friends, or enter a code someone shared with you.
+                Create a squad and share the invite code with friends, or enter a code someone shared with you.
               </p>
               <div className="flex gap-3 justify-center pt-2">
                 <button
                   onClick={() => { setView('join'); setError(null); }}
-                  className="flex items-center gap-2 px-5 py-2.5 bg-pywel-bg border border-pywel-border hover:border-gold-500/50 text-gray-300 hover:text-gold-300 rounded-lg transition-colors text-sm font-cinzel"
+                  className="flex items-center gap-2 px-5 py-2.5 bg-arc-bg border border-arc-border hover:border-rust-500/50 text-gray-300 hover:text-rust-300 rounded-lg transition-colors text-sm font-display"
                 >
                   <LogIn className="w-4 h-4" />
                   Join with Code
                 </button>
                 <button
                   onClick={() => { setView('create'); setError(null); }}
-                  className="flex items-center gap-2 px-5 py-2.5 bg-gold-600 hover:bg-gold-500 text-black rounded-lg transition-colors text-sm font-cinzel font-semibold"
+                  className="flex items-center gap-2 px-5 py-2.5 bg-rust-600 hover:bg-rust-500 text-black rounded-lg transition-colors text-sm font-display font-semibold"
                 >
                   <Plus className="w-4 h-4" />
-                  Create Group
+                  Create Squad
                 </button>
               </div>
             </div>
@@ -442,7 +444,7 @@ export default function GroupPage() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Group list (left column) */}
               <div className="space-y-3">
-                <h2 className="text-sm font-cinzel font-semibold text-gold-400 uppercase tracking-wider">
+                <h2 className="text-sm font-display font-semibold text-rust-400 uppercase tracking-wider">
                   Your Groups
                 </h2>
                 {groups.map((group) => (
@@ -451,20 +453,20 @@ export default function GroupPage() {
                     onClick={() => setSelectedGroup(group)}
                     className={`w-full text-left p-4 rounded-xl border transition-all ${
                       selectedGroup?.id === group.id
-                        ? 'bg-pywel-card-hover border-gold-500/50'
-                        : 'bg-pywel-card border-pywel-border hover:border-gold-500/30'
+                        ? 'bg-arc-card-hover border-rust-500/50'
+                        : 'bg-arc-card border-arc-border hover:border-rust-500/30'
                     }`}
                   >
                     <div className="flex items-center justify-between mb-2">
-                      <span className="font-cinzel font-semibold text-gold-300 truncate pr-2">
+                      <span className="font-display font-semibold text-rust-300 truncate pr-2">
                         {group.name}
                       </span>
                       {group.created_by === user.id && (
-                        <Crown className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
+                        <Crown className="w-3.5 h-3.5 text-rust-400 flex-shrink-0" />
                       )}
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-mono bg-pywel-bg border border-pywel-border px-2 py-0.5 rounded text-gray-400 tracking-wider">
+                      <span className="text-xs font-mono bg-arc-bg border border-arc-border px-2 py-0.5 rounded text-gray-400 tracking-wider">
                         {group.invite_code}
                       </span>
                     </div>
@@ -475,26 +477,26 @@ export default function GroupPage() {
               {/* Group detail (right columns) */}
               <div className="lg:col-span-2">
                 {!selectedGroup ? (
-                  <div className="bg-pywel-card border border-pywel-border rounded-xl p-10 text-center text-gray-500">
+                  <div className="bg-arc-card border border-arc-border rounded-xl p-10 text-center text-gray-500">
                     <Users2 className="w-10 h-10 mx-auto mb-3 opacity-30" />
-                    <p className="font-cinzel">Select a group to view members</p>
+                    <p className="font-display">Select a squad to view members</p>
                   </div>
                 ) : (
-                  <div className="bg-pywel-card border border-pywel-border rounded-xl overflow-hidden">
+                  <div className="bg-arc-card border border-arc-border rounded-xl overflow-hidden">
                     {/* Group header */}
-                    <div className="px-6 py-5 border-b border-pywel-border flex items-start justify-between gap-4">
+                    <div className="px-6 py-5 border-b border-arc-border flex items-start justify-between gap-4">
                       <div>
-                        <h2 className="text-xl font-cinzel font-bold text-gold-300 mb-1">
+                        <h2 className="text-xl font-display font-bold text-rust-300 mb-1">
                           {selectedGroup.name}
                         </h2>
                         <div className="flex items-center gap-2">
                           <span className="text-xs text-gray-500">Invite code:</span>
-                          <span className="font-mono text-sm text-gold-300 tracking-widest">
+                          <span className="font-mono text-sm text-rust-300 tracking-widest">
                             {selectedGroup.invite_code}
                           </span>
                           <button
                             onClick={() => copyInviteCode(selectedGroup.invite_code)}
-                            className="text-gray-500 hover:text-gold-300 transition-colors"
+                            className="text-gray-500 hover:text-rust-300 transition-colors"
                             title="Copy invite code"
                           >
                             {copiedCode ? (
@@ -508,7 +510,7 @@ export default function GroupPage() {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => loadMembers(selectedGroup)}
-                          className="p-2 text-gray-500 hover:text-gold-300 transition-colors"
+                          className="p-2 text-gray-500 hover:text-rust-300 transition-colors"
                           title="Refresh"
                         >
                           <RefreshCw className="w-4 h-4" />
@@ -516,7 +518,7 @@ export default function GroupPage() {
                         <button
                           onClick={() => handleLeave(selectedGroup)}
                           disabled={actionLoading}
-                          className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-cinzel text-red-400 hover:text-red-300 border border-red-900/40 hover:border-red-700/50 rounded-lg transition-colors disabled:opacity-50"
+                          className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-display text-red-400 hover:text-red-300 border border-red-900/40 hover:border-red-700/50 rounded-lg transition-colors disabled:opacity-50"
                         >
                           <LogOut className="w-3.5 h-3.5" />
                           Leave
@@ -527,15 +529,15 @@ export default function GroupPage() {
                     {/* Leaderboard */}
                     <div className="p-6">
                       <div className="flex items-center gap-2 mb-4">
-                        <Trophy className="w-4 h-4 text-gold-400" />
-                        <h3 className="text-sm font-cinzel font-semibold text-gold-400 uppercase tracking-wider">
+                        <Trophy className="w-4 h-4 text-rust-400" />
+                        <h3 className="text-sm font-display font-semibold text-rust-400 uppercase tracking-wider">
                           Progress Leaderboard
                         </h3>
                       </div>
 
                       {membersLoading ? (
                         <div className="flex items-center justify-center py-10">
-                          <Loader2 className="w-6 h-6 animate-spin text-gold-400" />
+                          <Loader2 className="w-6 h-6 animate-spin text-rust-400" />
                         </div>
                       ) : members.length === 0 ? (
                         <p className="text-gray-500 text-sm text-center py-8">No members found.</p>
@@ -559,29 +561,29 @@ export default function GroupPage() {
                                 key={member.user_id}
                                 className={`flex items-center gap-4 p-3 rounded-lg ${
                                   isCurrentUser
-                                    ? 'bg-gold-900/20 border border-gold-700/20'
-                                    : 'bg-pywel-bg/50'
+                                    ? 'bg-rust-900/20 border border-rust-700/20'
+                                    : 'bg-arc-bg/50'
                                 }`}
                               >
                                 {/* Rank */}
-                                <span className={`text-lg font-cinzel font-bold w-7 text-center ${rankColor}`}>
+                                <span className={`text-lg font-display font-bold w-7 text-center ${rankColor}`}>
                                   {rank <= 3 ? ['🥇', '🥈', '🥉'][rank - 1] : rank}
                                 </span>
 
                                 {/* Name + badges */}
                                 <div className="flex-1 min-w-0">
                                   <div className="flex items-center gap-2">
-                                    <span className={`font-semibold truncate ${isCurrentUser ? 'text-gold-300' : 'text-gray-200'}`}>
+                                    <span className={`font-semibold truncate ${isCurrentUser ? 'text-rust-300' : 'text-gray-200'}`}>
                                       {member.display_name}
                                     </span>
                                     {isCurrentUser && (
-                                      <span className="text-xs bg-gold-900/40 text-gold-400 border border-gold-700/30 px-1.5 py-0.5 rounded font-cinzel">
+                                      <span className="text-xs bg-rust-900/40 text-rust-400 border border-rust-700/30 px-1.5 py-0.5 rounded font-display">
                                         You
                                       </span>
                                     )}
                                     {isCreator && (
-                                      <span title="Group creator">
-                                        <Crown className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
+                                      <span title="Squad creator">
+                                        <Crown className="w-3.5 h-3.5 text-rust-400 flex-shrink-0" />
                                       </span>
                                     )}
                                   </div>
@@ -592,7 +594,7 @@ export default function GroupPage() {
 
                                 {/* Progress count */}
                                 <div className="text-right flex-shrink-0">
-                                  <p className={`text-lg font-bold font-cinzel ${isCurrentUser ? 'text-gold-300' : 'text-gray-300'}`}>
+                                  <p className={`text-lg font-bold font-display ${isCurrentUser ? 'text-rust-300' : 'text-gray-300'}`}>
                                     {member.total_progress}
                                   </p>
                                   <p className="text-xs text-gray-600">completions</p>
@@ -605,12 +607,12 @@ export default function GroupPage() {
                     </div>
 
                     {/* Share footer */}
-                    <div className="px-6 py-4 border-t border-pywel-border bg-pywel-bg/30">
+                    <div className="px-6 py-4 border-t border-arc-border bg-arc-bg/30">
                       <p className="text-xs text-gray-500 text-center">
                         Share the invite code{' '}
                         <button
                           onClick={() => copyInviteCode(selectedGroup.invite_code)}
-                          className="font-mono text-gold-400 hover:text-gold-300 transition-colors"
+                          className="font-mono text-rust-400 hover:text-rust-300 transition-colors"
                         >
                           {selectedGroup.invite_code}
                         </button>{' '}

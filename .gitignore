@@ -6,12 +6,6 @@ out/
 *.tsbuildinfo
 next-env.d.ts
 
-# Python
-__pycache__/
-*.pyc
-.venv/
-scraper/.env
-
 # IDE
 .vscode/
 .idea/

@@ -3,83 +3,103 @@
 import { useCallback, useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 
-// Manages syncing progress to/from Supabase with optimistic local updates
+type ProgressValue = Record<string, unknown>;
+type ProgressState = Record<string, Record<string, ProgressValue>>;
+
+// Syncs per-item progress to Supabase (user_progress) with optimistic local updates.
+// Guests get a local-only state that resets on reload.
 export function useProgress() {
-  const [progress, setProgress] = useState<Record<string, Record<string, boolean>>>({});
+  const [progress, setProgress] = useState<ProgressState>({});
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const supabase = createClient();
+  const [userId, setUserId] = useState<string | null>(null);
+  const [supabase] = useState(() => createClient());
 
-  // Load all progress on mount
   useEffect(() => {
+    let cancelled = false;
     async function load() {
       const { data: { user } } = await supabase.auth.getUser();
+      if (cancelled) return;
       if (!user) { setLoading(false); return; }
       setIsAuthenticated(true);
+      setUserId(user.id);
 
       const { data } = await supabase
         .from('user_progress')
         .select('category, item_key, value')
-        .eq('user_id', user.id);
+        .eq('user_id', user.id)
+        .like('category', 'ar-%');
 
-      if (data) {
-        const grouped: Record<string, Record<string, boolean>> = {};
-        data.forEach(row => {
+      if (data && !cancelled) {
+        const grouped: ProgressState = {};
+        data.forEach((row) => {
           if (!grouped[row.category]) grouped[row.category] = {};
-          grouped[row.category][row.item_key] = true;
+          grouped[row.category][row.item_key] = (row.value as ProgressValue) ?? { completed: true };
         });
         setProgress(grouped);
       }
-      setLoading(false);
+      if (!cancelled) setLoading(false);
     }
     load();
-  }, []);
+    return () => { cancelled = true; };
+  }, [supabase]);
 
-  const isCompleted = useCallback((category: string, key: string) => {
-    return progress[category]?.[key] ?? false;
-  }, [progress]);
+  const getValue = useCallback(
+    (category: string, key: string): ProgressValue | undefined => progress[category]?.[key],
+    [progress]
+  );
 
-  const toggle = useCallback(async (category: string, key: string) => {
-    const current = progress[category]?.[key] ?? false;
-    const next = !current;
+  const isCompleted = useCallback(
+    (category: string, key: string) => {
+      const v = progress[category]?.[key];
+      if (!v) return false;
+      if ('status' in v) return v.status === 'complete';
+      return v.completed !== false;
+    },
+    [progress]
+  );
 
-    // Optimistic update
-    setProgress(prev => {
-      const cat = { ...prev[category] };
-      if (next) cat[key] = true;
-      else delete cat[key];
-      return { ...prev, [category]: cat };
-    });
-
-    // Sync to Supabase
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return;
-
-    if (next) {
-      await supabase.rpc('upsert_progress', {
-        p_category: category,
-        p_item_key: key,
-        p_value: { completed: true },
+  const setValue = useCallback(
+    async (category: string, key: string, value: ProgressValue | null) => {
+      setProgress((prev) => {
+        const cat = { ...(prev[category] ?? {}) };
+        if (value) cat[key] = value;
+        else delete cat[key];
+        return { ...prev, [category]: cat };
       });
-    } else {
-      await supabase
-        .from('user_progress')
-        .delete()
-        .eq('user_id', user.id)
-        .eq('category', category)
-        .eq('item_key', key);
-    }
-  }, [progress, supabase]);
 
-  const countCompleted = useCallback((category: string, keys: string[]) => {
-    return keys.filter(k => progress[category]?.[k]).length;
-  }, [progress]);
+      if (!userId) return;
+      if (value) {
+        await supabase.rpc('upsert_progress', { p_category: category, p_item_key: key, p_value: value });
+      } else {
+        await supabase
+          .from('user_progress')
+          .delete()
+          .eq('user_id', userId)
+          .eq('category', category)
+          .eq('item_key', key);
+      }
+    },
+    [supabase, userId]
+  );
 
-  const totalCompleted = useCallback(() => {
-    return Object.values(progress).reduce(
-      (sum, cat) => sum + Object.keys(cat).length, 0
-    );
-  }, [progress]);
+  const toggle = useCallback(
+    async (category: string, key: string) => {
+      const current = isCompleted(category, key);
+      await setValue(category, key, current ? null : { completed: true });
+    },
+    [isCompleted, setValue]
+  );
 
-  return { progress, loading, isAuthenticated, isCompleted, toggle, countCompleted, totalCompleted };
+  const countCompleted = useCallback(
+    (category: string, keys: string[]) => keys.filter((k) => isCompleted(category, k)).length,
+    [isCompleted]
+  );
+
+  const categoryCount = useCallback(
+    (category: string) => Object.keys(progress[category] ?? {}).filter((k) => isCompleted(category, k)).length,
+    [progress, isCompleted]
+  );
+
+  return { progress, loading, isAuthenticated, getValue, isCompleted, setValue, toggle, countCompleted, categoryCount };
 }

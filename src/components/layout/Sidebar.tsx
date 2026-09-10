@@ -7,25 +7,24 @@ import {
   Menu,
   X,
   Compass,
-  Globe,
-  Users,
-  TreePine,
-  Sparkles,
-  Scroll,
-  Sword,
-  Skull,
-  Hammer,
+  Map,
+  Bot,
+  Crosshair,
+  Shield,
   Package,
-  BookOpen,
-  Users2,
+  ClipboardList,
+  GitBranch,
   Wrench,
+  Rocket,
+  Store,
+  BookOpen,
+  Layers,
   Share2,
+  Users2,
+  StickyNote,
   Coffee,
   LogIn,
   LogOut,
-  Footprints,
-  Tent,
-  HelpCircle,
 } from 'lucide-react';
 import { useUser } from '@/hooks/use-user';
 import { createClient } from '@/lib/supabase/client';
@@ -36,7 +35,7 @@ interface NavSection {
     label: string;
     href: string;
     icon: React.ReactNode;
-    comingSoon?: boolean;
+    badge?: string;
   }[];
 }
 
@@ -48,50 +47,43 @@ const navSections: NavSection[] = [
     ],
   },
   {
-    label: 'World',
+    label: 'Raid',
     items: [
-      { label: 'World Map', href: '/map', icon: <Globe className="w-5 h-5" />},
-      { label: 'Characters', href: '/characters', icon: <Users className="w-5 h-5" /> },
-      { label: 'Mounts', href: '/mounts', icon: <Footprints className="w-5 h-5" /> },
-      { label: 'Greymane Camp', href: '/camp', icon: <Tent className="w-5 h-5" /> },
+      { label: 'Raid Maps', href: '/maps', icon: <Map className="w-5 h-5" /> },
+      { label: 'ARC Bestiary', href: '/arc', icon: <Bot className="w-5 h-5" /> },
     ],
   },
   {
-    label: 'Progress',
+    label: 'Arsenal',
     items: [
-      { label: 'Skill Trees', href: '/skills', icon: <TreePine className="w-5 h-5" /> },
-      { label: 'Collectibles', href: '/collectibles', icon: <Sparkles className="w-5 h-5" /> },
-      { label: 'Quest Log', href: '/quests', icon: <Scroll className="w-5 h-5" /> },
+      { label: 'Weapons', href: '/weapons', icon: <Crosshair className="w-5 h-5" /> },
+      { label: 'Gear & Gadgets', href: '/gear', icon: <Shield className="w-5 h-5" /> },
+      { label: 'Items & Materials', href: '/items', icon: <Package className="w-5 h-5" /> },
     ],
   },
   {
-    label: 'Guides',
+    label: 'Progression',
     items: [
-      { label: 'New Player Guide', href: '/guide', icon: <HelpCircle className="w-5 h-5" /> },
+      { label: 'Quests', href: '/quests', icon: <ClipboardList className="w-5 h-5" /> },
+      { label: 'Skill Tree', href: '/skills', icon: <GitBranch className="w-5 h-5" /> },
+      { label: 'Workshop', href: '/workshop', icon: <Wrench className="w-5 h-5" /> },
+      { label: 'Expeditions', href: '/expeditions', icon: <Rocket className="w-5 h-5" /> },
     ],
   },
   {
-    label: 'Combat',
+    label: 'Speranza',
     items: [
-      { label: 'Bosses', href: '/bosses', icon: <Skull className="w-5 h-5" /> },
-      { label: 'Bestiary', href: '/bestiary', icon: <BookOpen className="w-5 h-5" /> },
-      { label: 'Weapons', href: '/weapons', icon: <Sword className="w-5 h-5" /> },
+      { label: 'Traders', href: '/traders', icon: <Store className="w-5 h-5" /> },
+      { label: 'New Raider Guide', href: '/guide', icon: <BookOpen className="w-5 h-5" /> },
     ],
   },
   {
-    label: 'Resources',
+    label: 'Squad',
     items: [
-      { label: 'Crafting', href: '/crafting', icon: <Hammer className="w-5 h-5" /> },
-      { label: 'Inventory', href: '/inventory', icon: <Package className="w-5 h-5" />, comingSoon: true },
-      { label: 'Notes', href: '/notes', icon: <BookOpen className="w-5 h-5" /> },
-    ],
-  },
-  {
-    label: 'Social',
-    items: [
-      { label: 'Group', href: '/group', icon: <Users2 className="w-5 h-5" />},
-      { label: 'Build Planner', href: '/planner', icon: <Wrench className="w-5 h-5" /> },
-      { label: 'Shared Builds', href: '/builds', icon: <Share2 className="w-5 h-5" /> },
+      { label: 'Loadout Planner', href: '/planner', icon: <Layers className="w-5 h-5" /> },
+      { label: 'Shared Loadouts', href: '/builds', icon: <Share2 className="w-5 h-5" /> },
+      { label: 'Squad', href: '/group', icon: <Users2 className="w-5 h-5" /> },
+      { label: 'Notes', href: '/notes', icon: <StickyNote className="w-5 h-5" /> },
     ],
   },
 ];
@@ -117,7 +109,7 @@ export default function Sidebar() {
       {/* Mobile toggle button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-4 left-4 z-50 md:hidden bg-pywel-card border border-pywel-border p-2 rounded-lg text-gold-300 hover:bg-pywel-card-hover"
+        className="fixed top-4 left-4 z-50 md:hidden bg-arc-card border border-arc-border p-2 rounded-lg text-rust-300 hover:bg-arc-card-hover"
         aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
       >
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -133,20 +125,24 @@ export default function Sidebar() {
 
       {/* Sidebar */}
       <aside
-        className={`fixed left-0 top-0 h-screen w-60 bg-pywel-secondary border-r border-pywel-border z-40 transition-transform duration-300 md:translate-x-0 ${
+        className={`fixed left-0 top-0 h-screen w-60 bg-arc-secondary border-r border-arc-border z-40 transition-transform duration-300 md:translate-x-0 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
-        } overflow-y-auto`}
+        } overflow-y-auto flex flex-col`}
       >
         {/* Logo section */}
-        <div className="p-6 border-b border-pywel-border">
+        <div className="p-6 border-b border-arc-border">
           <Link href="/dashboard" onClick={() => setIsOpen(false)}>
-            <div className="cursor-pointer">
-              <h1 className="font-cinzel text-2xl font-bold text-gold-300 mb-1">
-                CRIMSON
-                <br />
-                DESERT
-              </h1>
-              <p className="text-xs text-gray-400 font-cinzel">Companion Dashboard</p>
+            <div className="cursor-pointer flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg border-2 border-rust-400 flex items-center justify-center relative">
+                <div className="w-5 h-5 rounded-full border-2 border-signal-400 border-dashed" />
+                <div className="absolute w-1.5 h-1.5 rounded-full bg-rust-300" />
+              </div>
+              <div>
+                <h1 className="font-display text-xl font-bold text-rust-300 leading-tight tracking-wide">
+                  ARC RAIDERS
+                </h1>
+                <p className="text-[11px] text-gray-400 font-display uppercase tracking-widest">Companion</p>
+              </div>
             </div>
           </Link>
         </div>
@@ -154,8 +150,8 @@ export default function Sidebar() {
         {/* Navigation sections */}
         <nav className="flex-1 px-4 py-6">
           {navSections.map((section) => (
-            <div key={section.label} className="mb-8">
-              <h3 className="text-sm font-cinzel font-semibold text-gold-300 uppercase tracking-wider mb-3 px-2">
+            <div key={section.label} className="mb-6">
+              <h3 className="text-xs font-display font-semibold text-signal-400 uppercase tracking-widest mb-2 px-2">
                 {section.label}
               </h3>
               <ul className="space-y-1">
@@ -167,15 +163,15 @@ export default function Sidebar() {
                         <div
                           className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors duration-200 ${
                             active
-                              ? 'bg-pywel-card border-l-4 border-gold-400 text-gold-300'
-                              : 'text-gray-300 hover:bg-pywel-card hover:text-gold-300'
+                              ? 'bg-arc-card border-l-4 border-rust-400 text-rust-300'
+                              : 'text-gray-300 hover:bg-arc-card hover:text-rust-300'
                           }`}
                         >
                           <span className="flex-shrink-0">{item.icon}</span>
                           <span className="text-sm font-medium">{item.label}</span>
-                          {item.comingSoon && (
-                            <span className="ml-auto text-[10px] font-semibold text-gold-400/70 bg-gold-400/10 px-1.5 py-0.5 rounded">
-                              Soon
+                          {item.badge && (
+                            <span className="ml-auto text-[10px] font-semibold text-signal-300 bg-signal-400/10 px-1.5 py-0.5 rounded">
+                              {item.badge}
                             </span>
                           )}
                         </div>
@@ -189,12 +185,12 @@ export default function Sidebar() {
         </nav>
 
         {/* Support section */}
-        <div className="border-t border-pywel-border p-4 pb-2">
+        <div className="border-t border-arc-border p-4 pb-2">
           <a
             href="https://buymeacoffee.com/crimsoncompanion"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-cinzel font-semibold rounded-lg transition-all duration-200 bg-gradient-to-r from-amber-700/20 to-amber-900/20 hover:from-amber-700/30 hover:to-amber-900/30 border border-amber-600/30 hover:border-amber-500/50 text-amber-300 hover:text-amber-200"
+            className="w-full flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-display font-semibold rounded-lg transition-all duration-200 bg-gradient-to-r from-rust-700/20 to-rust-900/20 hover:from-rust-700/30 hover:to-rust-900/30 border border-rust-600/30 hover:border-rust-500/50 text-rust-300 hover:text-rust-200"
           >
             <Coffee className="w-4 h-4" />
             Buy Me a Coffee
@@ -202,29 +198,30 @@ export default function Sidebar() {
         </div>
 
         {/* Footer section */}
-        <div className="border-t border-pywel-border/50 p-4">
+        <div className="border-t border-arc-border/50 p-4">
           {userLoading ? (
             <div className="h-16 flex items-center justify-center text-gray-500 text-sm">Loading...</div>
           ) : user ? (
             <>
               <div className="flex items-center gap-3 mb-4">
                 {user.user_metadata?.avatar_url ? (
+                  // eslint-disable-next-line @next/next/no-img-element
                   <img src={user.user_metadata.avatar_url} alt="" className="w-8 h-8 rounded-full" />
                 ) : (
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-xs font-bold text-black">
-                    {(user.user_metadata?.full_name?.[0] || user.email?.[0] || 'U').toUpperCase()}
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-rust-400 to-rust-600 flex items-center justify-center text-xs font-bold text-black">
+                    {(user.user_metadata?.full_name?.[0] || user.email?.[0] || 'R').toUpperCase()}
                   </div>
                 )}
                 <div className="min-w-0">
-                  <p className="text-sm font-semibold text-gold-300 truncate">
-                    {user.user_metadata?.full_name || user.email?.split('@')[0] || 'Wanderer'}
+                  <p className="text-sm font-semibold text-rust-300 truncate">
+                    {user.user_metadata?.full_name || user.email?.split('@')[0] || 'Raider'}
                   </p>
                   <p className="text-xs text-gray-400">Signed in</p>
                 </div>
               </div>
               <button
                 onClick={handleSignOut}
-                className="w-full px-3 py-2 text-sm bg-pywel-card hover:bg-pywel-card-hover border border-pywel-border text-gray-300 rounded-lg transition-colors duration-200 font-cinzel flex items-center justify-center gap-2"
+                className="w-full px-3 py-2 text-sm bg-arc-card hover:bg-arc-card-hover border border-arc-border text-gray-300 rounded-lg transition-colors duration-200 font-display flex items-center justify-center gap-2"
               >
                 <LogOut className="w-4 h-4" />
                 Sign Out
@@ -234,7 +231,7 @@ export default function Sidebar() {
             <>
               <p className="text-xs text-gray-400 mb-3">Sign in to save progress</p>
               <Link href="/login" onClick={() => setIsOpen(false)}>
-                <button className="w-full px-3 py-2 text-sm bg-gold-600 hover:bg-gold-500 text-black font-semibold rounded-lg transition-colors duration-200 font-cinzel flex items-center justify-center gap-2">
+                <button className="w-full px-3 py-2 text-sm bg-rust-500 hover:bg-rust-400 text-black font-semibold rounded-lg transition-colors duration-200 font-display flex items-center justify-center gap-2">
                   <LogIn className="w-4 h-4" />
                   Sign In
                 </button>
